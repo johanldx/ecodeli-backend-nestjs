@@ -1,1 +1,8 @@
-{}
+{
+    "landing": {
+        "index_page": {
+            "main_title": "La livraison éco-responsable, à portée de tous.",
+            "main_description": "EcoDeli est une plateforme de crowdshipping qui connecte les particuliers pour des livraisons écologiques et solidaires. En partageant leurs trajets, les utilisateurs peuvent expédier ou transporter des colis de manière économique tout en réduisant leur empreinte carbone et en créant du lien social."
+        }
+    }
+}

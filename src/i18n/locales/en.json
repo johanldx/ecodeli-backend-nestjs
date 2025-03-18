@@ -1,1 +1,8 @@
-{}
+{
+    "landing": {
+        "index_page": {
+            "main_title": "Eco-responsible delivery, accessible to everyone.",
+            "main_description": "EcoDeli is a crowdshipping platform that connects individuals for eco-friendly and community-driven deliveries. By sharing their journeys, users can send or transport packages in a cost-effective way while reducing their carbon footprint and fostering social connections."
+        }
+    }
+}
