@@ -66,4 +66,11 @@ export class I18nController {
   ) {
     return this.translationService.deleteTranslation(lang, deleteTranslationDto.key);
   }
+
+  @ApiOperation({ summary: 'Obtenir la liste des langues disponibles' })
+  @ApiResponse({ status: 200, description: 'Liste des langues disponibles' })
+  @Get()
+  getAvailableLanguages() {
+    return this.translationService.getAvailableLanguages();
+  }
 }

@@ -123,4 +123,10 @@ export class I18nService {
 
     return { success: true, message: `Clé '${key}' supprimée.` };
   }
+
+  getAvailableLanguages(): string[] {
+    return fs.readdirSync(this.localesPath)
+      .filter(file => file.endsWith('.json'))
+      .map(file => path.basename(file, '.json'));
+  }
 }

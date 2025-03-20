@@ -1,8 +1,152 @@
 {
     "landing": {
-        "index_page": {
-            "main_title": "La livraison éco-responsable, à portée de tous.",
-            "main_description": "EcoDeli est une plateforme de crowdshipping qui connecte les particuliers pour des livraisons écologiques et solidaires. En partageant leurs trajets, les utilisateurs peuvent expédier ou transporter des colis de manière économique tout en réduisant leur empreinte carbone et en créant du lien social."
+        "global": {
+            "header": {
+                "top_notice": "EcoDeli vous offre une livraison éco-responsable et solidaire. Cherchez des livraisons près de chez vous !",
+                "menu": {
+                  "register": "S'inscrire",
+                  "login": "Se connecter"
+                }
+            },
+            "footer": {
+                "title": "La livraison éco-responsable, pratique et solidaire.",
+                "cta_button": "Voir les annonces",
+                "company_info": {
+                    "name": "EcoDeli",
+                    "address": "110 Rue de Flandre",
+                    "postal_code": "75019 Paris"
+                },
+                "menu": {
+                    "private_space": "Espace particulier",
+                    "business_space": "Espace pro",
+                    "legal_mentions": "Mentions légales",
+                    "admin": "Administration"
+                }
+            }
+        },
+        "index": {
+            "hero_section": {
+                "title": "La livraison éco-responsable, à portée de tous.",
+                "subtitle": "EcoDeli est une plateforme de covoiturage qui connecte les particuliers avec des livraisons écologiques et solidaires. En partageant leurs trajets, les utilisateurs peuvent expédier ou transporter des colis à moindre coût tout en favorisant leur empreinte carbone et le lien social.",
+                "cta_button": "Voir les annonces"
+            },
+            "features_section": {
+                "title": "Ensemble, livrons plus vert.",
+                "features": {
+                    "collaborative_delivery": {
+                        "title": "Livraison collaborative de colis",
+                        "description": "Nous aidons à réduire l'empreinte carbone en favorisant le transport collaboratif des marchandises. EcoDeli facilite la mise en relation entre expéditeurs et transporteurs pour un service plus vert."
+                    },
+                    "personal_services": {
+                        "title": "Services à la personne",
+                        "description": "Trouvez des personnes fiables pour des missions locales : livraisons ponctuelles, courses, trajets quotidiens. L’avenir du transport repose sur l’entraide locale, plus économique, plus humain et éthique."
+                    },
+                    "product_repatriation": {
+                        "title": "Achats et rapatriement de produits",
+                        "description": "Achetez ou récupérez des articles et victuailles localement, sans contrainte, en voyageant plus intelligemment."
+                    },
+                    "chariot_rental": {
+                        "title": "Lâcher de chariot",
+                        "description": "EcoDeli encourage un échange utile et flexible de chariots entre particuliers, mis à disposition dans des zones clés."
+                    }
+                }
+            },
+            "faq_section": {
+                "title": "Vous vous posez des questions ? C’est normal !",
+                "questions": {
+                    "what_is_ecodeli": {
+                        "question": "Qu’est-ce qu’EcoDeli et comment ça fonctionne ?",
+                        "answer": "EcoDeli est une plateforme de covoiturage qui connecte des expéditeurs et des voyageurs en leur permettant d’optimiser les trajets déjà prévus. En partageant leurs itinéraires, les utilisateurs peuvent économiser sur l’envoi, réduire leur impact écologique et créer une solidarité entre les membres de la communauté."
+                    },
+                    "how_to_find_delivery": {
+                        "question": "Comment puis-je envoyer un colis ou devenir livreur sur EcoDeli ?",
+                        "answer": "..."
+                    },
+                    "delivery_security": {
+                        "question": "Les livraisons sont-elles sécurisées et assurées ?",
+                        "answer": "..."
+                    }
+                }
+            }
+        },
+        "legal_mentions": {
+            "title": "Mentions légales",
+            "intro": "Conformément aux dispositions légales en vigueur, nous mettons à disposition les informations relatives à notre entreprise et aux conditions d'utilisation de ce site."
+        }
+    },
+    "clients": {
+        "global": {
+            "header": {
+                "menu": {
+                    "discover": "Découvrir",
+                    "conversations": "Mes conversations",
+                    "ads": "Mes annonces",
+                    "account": "Mon compte"
+                  }
+            }
+        }
+    },
+    "auth": {
+        "login": {
+            "title": "Se connecter",
+            "email_placeholder": "Adresse e-mail",
+            "password_placeholder": "Mot de passe",
+            "button": "Connexion",
+            "forgot_password_link": "Mot de passe oublié ?",
+            "register_link": "S'inscrire"
+        },
+        "register": {
+            "title": "S'inscrire",
+            "first_name_placeholder": "Prénom",
+            "last_name_placeholder": "Nom",
+            "email_placeholder": "Adresse e-mail",
+            "password_placeholder": "Mot de passe",
+            "confirm_password_placeholder": "Retaper le mot de passe",
+            "button": "Inscription",
+            "login_link": "Se connecter"
+        },
+        "forgot_password": {
+            "title": "Mot de passe oublié",
+            "email_placeholder": "Adresse e-mail",
+            "button": "Envoyer un e-mail",
+            "login_link": "Retour à la connexion"
+        },
+        "profile_choice": {
+            "title": "Bonjour {name} !",
+            "options": {
+              "client_link": "Espace client",
+              "delivery_link": "Espace livreur",
+              "merchant_link": "Espace commerçant",
+              "service_provider_link": "Espace prestataire"
+            },
+            "logout": "Déconnexion"
+        },
+        "account": {
+            "title": "Mon compte",
+            "profile": {
+                "first_name_placeholder": "Prénom",
+                "last_name_placeholder": "Nom",
+                "email_placeholder": "Adresse e-mail",
+                "save_button": "Enregistrer"
+            },
+            "password": {
+                "old_password_placeholder": "Ancien mot de passe",
+                "new_password_placeholder": "Nouveau mot de passe",
+                "save_button": "Enregistrer"
+            },
+            "actions": {
+                "delete_account": "Supprimer mon compte",
+                "personal_info": "Mes informations personnelles",
+                "return_to_app_link": "Retour à l’application"
+            }
+        },
+        "admin_login": {
+            "title": "Panel Admin",
+            "email_placeholder": "Adresse e-mail",
+            "password_placeholder": "Mot de passe",
+            "button": "Connexion",
+            "forgot_password_link": "Mot de passe oublié ?",
+            "login_link": "Retour à la page de connexion"
         }
     }
 }
