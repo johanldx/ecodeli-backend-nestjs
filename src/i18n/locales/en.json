@@ -1,8 +1,152 @@
 {
     "landing": {
-        "index_page": {
-            "main_title": "Eco-responsible delivery, accessible to everyone.",
-            "main_description": "EcoDeli is a crowdshipping platform that connects individuals for eco-friendly and community-driven deliveries. By sharing their journeys, users can send or transport packages in a cost-effective way while reducing their carbon footprint and fostering social connections."
+        "global": {
+            "header": {
+                "top_notice": "EcoDeli offers you eco-friendly and solidarity-based delivery. Find deliveries near you!",
+                "menu": {
+                    "register": "Sign Up",
+                    "login": "Log In"
+                }
+            },
+            "footer": {
+                "title": "Eco-friendly, convenient, and solidarity-based delivery.",
+                "cta_button": "View Listings",
+                "company_info": {
+                    "name": "EcoDeli",
+                    "address": "110 Rue de Flandre",
+                    "postal_code": "75019 Paris"
+                },
+                "menu": {
+                    "private_space": "Individual Space",
+                    "business_space": "Business Space",
+                    "legal_mentions": "Legal Mentions",
+                    "admin": "Administration"
+                }
+            }
+        },
+        "index": {
+            "hero_section": {
+                "title": "Eco-friendly delivery, within everyone's reach.",
+                "subtitle": "EcoDeli is a carpooling platform that connects individuals with eco-friendly and solidarity-based deliveries. By sharing their routes, users can send or transport packages at lower costs while reducing their carbon footprint and fostering social connections.",
+                "cta_button": "View Listings"
+            },
+            "features_section": {
+                "title": "Together, let's deliver greener.",
+                "features": {
+                    "collaborative_delivery": {
+                        "title": "Collaborative Package Delivery",
+                        "description": "We help reduce the carbon footprint by promoting collaborative transportation of goods. EcoDeli facilitates connections between shippers and carriers for a greener service."
+                    },
+                    "personal_services": {
+                        "title": "Personal Services",
+                        "description": "Find reliable individuals for local tasks: occasional deliveries, errands, daily commutes. The future of transportation relies on local mutual aid, more economical, more human, and ethical."
+                    },
+                    "product_repatriation": {
+                        "title": "Product Purchases and Repatriation",
+                        "description": "Buy or retrieve items and food locally, without constraints, by traveling smarter."
+                    },
+                    "chariot_rental": {
+                        "title": "Chariot Drop-off",
+                        "description": "EcoDeli encourages useful and flexible exchange of chariots between individuals, made available in key areas."
+                    }
+                }
+            },
+            "faq_section": {
+                "title": "Have questions? That's normal!",
+                "questions": {
+                    "what_is_ecodeli": {
+                        "question": "What is EcoDeli and how does it work?",
+                        "answer": "EcoDeli is a carpooling platform that connects shippers and travelers by allowing them to optimize already planned trips. By sharing their itineraries, users can save on shipping, reduce their ecological impact, and create solidarity among community members."
+                    },
+                    "how_to_find_delivery": {
+                        "question": "How can I send a package or become a courier on EcoDeli?",
+                        "answer": "..."
+                    },
+                    "delivery_security": {
+                        "question": "Are deliveries secure and insured?",
+                        "answer": "..."
+                    }
+                }
+            }
+        },
+        "legal_mentions": {
+            "title": "Legal Mentions",
+            "intro": "In accordance with current legal provisions, we provide information about our company and the terms of use of this site."
+        }
+    },
+    "clients": {
+        "global": {
+            "header": {
+                "menu": {
+                    "discover": "Discover",
+                    "conversations": "My Conversations",
+                    "ads": "My Listings",
+                    "account": "My Account"
+                }
+            }
+        }
+    },
+    "auth": {
+        "login": {
+            "title": "Log In",
+            "email_placeholder": "Email Address",
+            "password_placeholder": "Password",
+            "button": "Log In",
+            "forgot_password_link": "Forgot Password?",
+            "register_link": "Sign Up"
+        },
+        "register": {
+            "title": "Sign Up",
+            "first_name_placeholder": "First Name",
+            "last_name_placeholder": "Last Name",
+            "email_placeholder": "Email Address",
+            "password_placeholder": "Password",
+            "confirm_password_placeholder": "Retype Password",
+            "button": "Sign Up",
+            "login_link": "Log In"
+        },
+        "forgot_password": {
+            "title": "Forgot Password",
+            "email_placeholder": "Email Address",
+            "button": "Send Email",
+            "login_link": "Back to Login"
+        },
+        "profile_choice": {
+            "title": "Hello {name}!",
+            "options": {
+                "client_link": "Client Space",
+                "delivery_link": "Courier Space",
+                "merchant_link": "Merchant Space",
+                "service_provider_link": "Service Provider Space"
+            },
+            "logout": "Log Out"
+        },
+        "account": {
+            "title": "My Account",
+            "profile": {
+                "first_name_placeholder": "First Name",
+                "last_name_placeholder": "Last Name",
+                "email_placeholder": "Email Address",
+                "save_button": "Save"
+            },
+            "password": {
+                "old_password_placeholder": "Old Password",
+                "new_password_placeholder": "New Password",
+                "save_button": "Save"
+            },
+            "actions": {
+                "delete_account": "Delete My Account",
+                "personal_info": "My Personal Information",
+                "return_to_app_link": "Back to App"
+            }
+        },
+        "admin_login": {
+            "title": "Admin Panel",
+            "email_placeholder": "Email Address",
+            "password_placeholder": "Password",
+            "button": "Log In",
+            "forgot_password_link": "Forgot Password?",
+            "login_link": "Back to Login Page"
         }
     }
 }
