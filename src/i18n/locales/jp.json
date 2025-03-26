@@ -1,0 +1,152 @@
+{
+    "landing": {
+      "global": {
+        "header": {
+          "top_notice": "EcoDeliは、エコで助け合いのある配達を提供します。お近くの配達を探しましょう！",
+          "menu": {
+            "register": "登録する",
+            "login": "ログイン"
+          }
+        },
+        "footer": {
+          "title": "エコで便利、そして助け合いの配達。",
+          "cta_button": "投稿を見る",
+          "company_info": {
+            "address": "110 Rue de Flandre",
+            "postal_code": "75019 パリ"
+          },
+          "menu": {
+            "private_space": "個人用スペース",
+            "business_space": "ビジネススペース",
+            "legal_mentions": "法的通知",
+            "admin": "管理者"
+          }
+        }
+      },
+      "index": {
+        "hero_section": {
+          "title": "すべての人に届くエコ配達。",
+          "subtitle": "EcoDeliは、個人をつなぐエコで助け合いのあるカーシェア配達プラットフォームです。移動を共有することで、利用者は荷物を安く送ったり運んだりでき、環境への配慮と地域の絆が生まれます。",
+          "cta_button": "投稿を見る"
+        },
+        "features_section": {
+          "title": "みんなでグリーン配達。",
+          "features": {
+            "collaborative_delivery": {
+              "title": "共同での荷物配達",
+              "description": "EcoDeliは、荷物の共同運送を通してCO2削減を支援します。発送者と運送者をつなげることで、よりグリーンな配達を実現します。"
+            },
+            "personal_services": {
+              "title": "パーソナルサービス",
+              "description": "近所で信頼できる人を探しましょう：単発の配達、買い物、通勤など。交通の未来は、より経済的で人間的、倫理的な地域の助け合いにあります。"
+            },
+            "product_repatriation": {
+              "title": "商品購入と受け取り",
+              "description": "地元で商品や食品を賢く購入・受け取り。旅をもっと自由に、もっとスマートに。"
+            },
+            "chariot_rental": {
+              "title": "カートの共有",
+              "description": "EcoDeliは、重要な場所での柔軟で役立つカートの貸し借りを促進します。"
+            }
+          }
+        },
+        "faq_section": {
+          "title": "質問がありますか？ご安心ください！",
+          "questions": {
+            "what_is_ecodeli": {
+              "question": "EcoDeliとは何ですか？どうやって使うの？",
+              "answer": "EcoDeliは、発送者と旅行者をつなげ、既存の移動を最適化できるカーシェア配達プラットフォームです。ルートを共有することで、発送費を節約し、環境に優しく、地域の助け合いを育てます。"
+            },
+            "how_to_find_delivery": {
+              "question": "荷物を送りたい／配達員になりたい場合はどうすればいい？",
+              "answer": "..."
+            },
+            "delivery_security": {
+              "question": "配達は安全で保険がかかっていますか？",
+              "answer": "..."
+            }
+          }
+        }
+      },
+      "legal_mentions": {
+        "title": "法的通知",
+        "intro": "現在の法律に従い、当社に関する情報およびこのサイトの利用条件をご案内します。"
+      }
+    },
+    "clients": {
+      "global": {
+        "header": {
+          "menu": {
+            "discover": "探す",
+            "conversations": "メッセージ",
+            "ads": "自分の投稿",
+            "account": "マイアカウント"
+          }
+        }
+      }
+    },
+    "auth": {
+      "login": {
+        "title": "ログイン",
+        "email_placeholder": "メールアドレス",
+        "password_placeholder": "パスワード",
+        "button": "ログイン",
+        "forgot_password_link": "パスワードをお忘れですか？",
+        "register_link": "登録する"
+      },
+      "register": {
+        "title": "登録する",
+        "first_name_placeholder": "名",
+        "last_name_placeholder": "姓",
+        "email_placeholder": "メールアドレス",
+        "password_placeholder": "パスワード",
+        "confirm_password_placeholder": "パスワード再入力",
+        "button": "登録",
+        "login_link": "ログイン"
+      },
+      "forgot_password": {
+        "title": "パスワードをお忘れですか",
+        "email_placeholder": "メールアドレス",
+        "button": "メールを送信",
+        "login_link": "ログインに戻る"
+      },
+      "profile_choice": {
+        "title": "{name}さん、こんにちは！",
+        "options": {
+          "client_link": "クライアントエリア",
+          "delivery_link": "配達員エリア",
+          "merchant_link": "店舗エリア",
+          "service_provider_link": "サービス提供者エリア"
+        },
+        "logout": "ログアウト"
+      },
+      "account": {
+        "title": "マイアカウント",
+        "profile": {
+          "first_name_placeholder": "名",
+          "last_name_placeholder": "姓",
+          "email_placeholder": "メールアドレス",
+          "save_button": "保存"
+        },
+        "password": {
+          "old_password_placeholder": "現在のパスワード",
+          "new_password_placeholder": "新しいパスワード",
+          "save_button": "保存"
+        },
+        "actions": {
+          "delete_account": "アカウントを削除する",
+          "personal_info": "個人情報",
+          "return_to_app_link": "アプリに戻る"
+        }
+      },
+      "admin_login": {
+        "title": "管理パネル",
+        "email_placeholder": "メールアドレス",
+        "password_placeholder": "パスワード",
+        "button": "ログイン",
+        "forgot_password_link": "パスワードをお忘れですか？",
+        "login_link": "ログインページに戻る"
+      }
+    }
+  }
+  

@@ -10,33 +10,35 @@ import { AddLanguageDto } from './dto/add-language.dto';
 export class I18nController {
   constructor(private readonly translationService: I18nService) {}
 
-  @ApiOperation({ summary: "Obtenir les traductions d'une langue" })
-  @ApiParam({ name: 'lang', example: 'fr', description: 'Code de la langue' })
-  @ApiResponse({ status: 200, description: 'Renvoie les traductions en JSON' })
+  @ApiOperation({ summary: "Get translations for a language" })
+  @ApiParam({ name: 'lang', example: 'fr', description: 'Language code' })
+  @ApiResponse({ status: 200, description: 'Returns translations as JSON' })
   @Get(':lang')
   getTranslations(@Param('lang') lang: string) {
     return this.translationService.getTranslations(lang);
   }
 
-  @ApiOperation({ summary: 'Ajouter une nouvelle langue' })
-  @ApiParam({ name: 'lang', example: 'en', description: 'Code de la langue' })
-  @ApiResponse({ status: 200, description: 'Langue ajoutée' })
-  @Post() // Changement de PUT à POST
+  @ApiOperation({ summary: 'Add a new language' })
+  @ApiResponse({ status: 200, description: 'Language added' })
+  @ApiResponse({ status: 400, description: 'Language already exists' })
+  @Post()
   addLanguage(@Body() addLanguageDto: AddLanguageDto) {
     return this.translationService.addLanguage(addLanguageDto.lang, addLanguageDto.translations);
   }
 
-  @ApiOperation({ summary: 'Supprimer une langue' })
-  @ApiParam({ name: 'lang', example: 'en', description: 'Code de la langue' })
-  @ApiResponse({ status: 200, description: 'Langue supprimée' })
+  @ApiOperation({ summary: 'Delete a language' })
+  @ApiParam({ name: 'lang', example: 'en', description: 'Language code' })
+  @ApiResponse({ status: 200, description: 'Language deleted' })
+  @ApiResponse({ status: 404, description: 'Language not found' })
   @Delete(':lang')
   deleteLanguage(@Param('lang') lang: string) {
     return this.translationService.deleteLanguage(lang);
   }
 
-  @ApiOperation({ summary: 'Modifier toutes les traductions d\'une langue' })
-  @ApiParam({ name: 'lang', example: 'fr', description: 'Code de la langue' })
-  @ApiResponse({ status: 200, description: 'Traductions mises à jour' })
+  @ApiOperation({ summary: 'Update all translations for a language' })
+  @ApiParam({ name: 'lang', example: 'fr', description: 'Language code' })
+  @ApiResponse({ status: 200, description: 'Translations updated' })
+  @ApiResponse({ status: 400, description: 'Invalid translation format' })
   @Put(':lang/all')
   updateAllTranslations(
     @Param('lang') lang: string,
@@ -45,9 +47,10 @@ export class I18nController {
     return this.translationService.updateAllTranslations(lang, translations);
   }
 
-  @ApiOperation({ summary: 'Ajouter ou modifier une traduction' })
-  @ApiParam({ name: 'lang', example: 'en', description: 'Code de la langue' })
-  @ApiResponse({ status: 200, description: 'Traduction mise à jour' })
+  @ApiOperation({ summary: 'Add or update a translation' })
+  @ApiParam({ name: 'lang', example: 'en', description: 'Language code' })
+  @ApiResponse({ status: 200, description: 'Translation updated' })
+  @ApiResponse({ status: 400, description: 'Invalid translation key or value' })
   @Put(':lang/translation')
   updateTranslation(
     @Param('lang') lang: string,
@@ -56,9 +59,10 @@ export class I18nController {
     return this.translationService.updateTranslation(lang, updateTranslationDto.key, updateTranslationDto.value);
   }
 
-  @ApiOperation({ summary: 'Supprimer une traduction' })
-  @ApiParam({ name: 'lang', example: 'en', description: 'Code de la langue' })
-  @ApiResponse({ status: 200, description: "Clé de traduction supprimée" })
+  @ApiOperation({ summary: 'Delete a translation' })
+  @ApiParam({ name: 'lang', example: 'en', description: 'Language code' })
+  @ApiResponse({ status: 200, description: "Translation key deleted" })
+  @ApiResponse({ status: 404, description: 'Translation key not found' })
   @Delete(':lang/translation')
   deleteTranslation(
     @Param('lang') lang: string,
@@ -67,8 +71,9 @@ export class I18nController {
     return this.translationService.deleteTranslation(lang, deleteTranslationDto.key);
   }
 
-  @ApiOperation({ summary: 'Obtenir la liste des langues disponibles' })
-  @ApiResponse({ status: 200, description: 'Liste des langues disponibles' })
+  @ApiOperation({ summary: 'Get the list of available languages' })
+  @ApiResponse({ status: 200, description: 'List of available languages' })
+  @ApiResponse({ status: 404, description: 'No languages available' })
   @Get()
   getAvailableLanguages() {
     return this.translationService.getAvailableLanguages();

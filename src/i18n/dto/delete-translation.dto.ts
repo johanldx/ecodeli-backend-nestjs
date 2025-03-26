@@ -3,7 +3,7 @@ import { IsString } from 'class-validator';
 
 export class DeleteTranslationDto {
   @ApiProperty({
-    description: 'Clé de traduction à supprimer',
+    description: 'Translation key to delete',
     example: 'greeting.hello',
   })
   @IsString()

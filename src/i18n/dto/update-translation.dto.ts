@@ -3,15 +3,15 @@ import { IsString } from 'class-validator';
 
 export class UpdateTranslationDto {
   @ApiProperty({
-    description: 'Clé de traduction à mettre à jour',
+    description: 'Translation key to modify',
     example: 'greeting.hello',
   })
   @IsString()
   key: string;
 
   @ApiProperty({
-    description: 'Nouvelle valeur pour la clé de traduction',
-    example: 'Bonjour',
+    description: 'New value for the translation',
+    example: 'Hello',
   })
   @IsString()
   value: string;

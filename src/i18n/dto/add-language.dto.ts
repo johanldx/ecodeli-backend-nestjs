@@ -3,14 +3,14 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class AddLanguageDto {
   @ApiProperty({
-    description: 'Code de la langue à ajouter',
+    description: 'Code of the language to add',
     example: 'fr',
   })
   @IsString()
   lang: string;
 
   @ApiProperty({
-    description: 'Traductions associées à la langue',
+    description: 'Translations associated with the language',
     type: Object,
   })
   @IsObject()
