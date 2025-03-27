@@ -21,6 +21,12 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('documentation', app, document);
 
+  app.use('/documentation/open-api.json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', 'attachment; filename=ecodeli_open_api.json');
+    res.send(document);
+  });
+
   await app.listen(3000);
 }
 bootstrap();
