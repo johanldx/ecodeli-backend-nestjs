@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards, Req } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -8,6 +8,9 @@ import { ResetPasswordDto } from './dto/reset-password.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UserResponseDto } from '../users/dto/user-response.dto';
 import { TokensDto } from './dto/tokens.dto';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { User } from 'src/users/user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -61,22 +64,25 @@ export class AuthController {
   @Get('me')
   @ApiOperation({ summary: 'Get logged-in user profile' })
   @ApiResponse({ status: 200, description: 'User profile information', type: UserResponseDto })
-  getProfile(@Param('userId') userId: string) {
-    return this.authService.getProfile(userId);
+  @UseGuards(JwtAuthGuard)
+  getProfile(@CurrentUser() user: User) {
+    return this.authService.getProfile(user.id);
   }
 
   @Put('me')
   @ApiOperation({ summary: 'Update logged-in user profile' })
   @ApiResponse({ status: 200, description: 'Profile successfully updated', type: UserResponseDto })
   @ApiBody({ type: UpdateProfileDto })
-  updateProfile(@Param('userId') userId: string, @Body() updateProfileDto: UpdateProfileDto) {
-    return this.authService.updateProfile(userId, updateProfileDto);
+  @UseGuards(JwtAuthGuard)
+  updateProfile(@CurrentUser() user: User, @Body() updateProfileDto: UpdateProfileDto) {
+    return this.authService.updateProfile(user.id, updateProfileDto);
   }
 
   @Delete('me')
   @ApiOperation({ summary: 'Delete user profile' })
   @ApiResponse({ status: 200, description: 'User profile deleted' })
-  deleteProfile(@Param('userId') userId: string) {
-    return this.authService.deleteProfile(userId);
+  @UseGuards(JwtAuthGuard)
+  deleteProfile(@CurrentUser() user: User) {
+    return this.authService.deleteProfile(user.id);
   }
 }

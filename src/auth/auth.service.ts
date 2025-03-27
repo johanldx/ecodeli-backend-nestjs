@@ -136,8 +136,8 @@ export class AuthService {
   }
 
   // Informations sur le profil (route /me)
-  async getProfile(userId: string) {
-    const user = await this.userRepository.findOne({ where: { id: Number(userId) } });
+  async getProfile(userId: number) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
     if (!user) {
       // Utilisation de NotFoundException si l'utilisateur n'est pas trouvé
       throw new NotFoundException('User not found');
@@ -146,13 +146,13 @@ export class AuthService {
   }
 
   // Mise à jour du profil
-  async updateProfile(userId: string, updateProfileDto: UpdateProfileDto) {
+  async updateProfile(userId: number, updateProfileDto: UpdateProfileDto) {
     await this.userRepository.update(userId, updateProfileDto);
     return this.getProfile(userId);
   }
 
   // Suppression du profil
-  async deleteProfile(userId: string) {
+  async deleteProfile(userId: number) {
     const result = await this.userRepository.delete(userId);
     if (result.affected === 0) {
       // Utilisation de NotFoundException si l'utilisateur n'est pas trouvé pour la suppression
