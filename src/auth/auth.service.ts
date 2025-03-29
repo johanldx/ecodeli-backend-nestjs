@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,7 +11,10 @@ import { ResetPasswordDto } from './dto/reset-password.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { EmailService } from '../email/email.service';
 import { v4 as uuidv4 } from 'uuid';
-import { BadRequestException, NotFoundException } from '@nestjs/common';  // Importer les exceptions
+import { BadRequestException, NotFoundException } from '@nestjs/common';
+import { UserResponseDto } from 'src/users/dto/user-response.dto';
+import { ChangePasswordDto } from './dto/change-password.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
@@ -20,18 +23,19 @@ export class AuthService {
     private userRepository: Repository<User>,
     private jwtService: JwtService,
     private emailService: EmailService,
+    private readonly configService: ConfigService
   ) {}
 
-  // Inscription
   async register(registerDto: RegisterDto) {
     const { password, email, ...userData } = registerDto;
-
-    // Vérification si l'email existe déjà
+  
     const existingUser = await this.userRepository.findOne({ where: { email } });
     if (existingUser) {
-      throw new BadRequestException('Email is already in use');
+      throw new ConflictException('Email is already in use');
     }
-
+  
+    this.validatePassword(password);
+  
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = this.userRepository.create({
       ...userData,
@@ -41,19 +45,21 @@ export class AuthService {
     await this.userRepository.save(newUser);
     return this.login({ email: newUser.email, password: registerDto.password });
   }
+  
 
-  // Connexion
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      // Utilisation de BadRequestException pour une erreur de credentials invalides
       throw new UnauthorizedException('Invalid credentials');
+    }
+    if (!user.active) {
+      throw new ForbiddenException('Account is inactive');
     }
     return this.generateTokens(user);
   }
+  
 
-  // Générer les tokens JWT (Access et Refresh)
   generateTokens(user: User) {
     const payload = { email: user.email, sub: user.id };
     const access_token = this.jwtService.sign(payload, {
@@ -67,7 +73,6 @@ export class AuthService {
     return { access_token, refresh_token };
   }
 
-  // Refresh Token
   async refreshToken(token: string) {
     try {
       const decoded = this.jwtService.verify(token, {
@@ -75,89 +80,149 @@ export class AuthService {
       });
       return this.generateTokens(decoded);
     } catch (error) {
-      // Utilisation de BadRequestException pour un token invalide
       throw new BadRequestException('Invalid refresh token');
     }
   }
 
-  // Mot de passe oublié - Envoi du token de réinitialisation par e-mail
   async forgotPassword(forgotPasswordDto: ForgotPasswordDto) {
     const { email } = forgotPasswordDto;
     const user = await this.userRepository.findOne({ where: { email } });
     if (!user) {
-      // Utilisation de NotFoundException pour une erreur d'utilisateur introuvable
       throw new NotFoundException('User not found');
     }
 
-    // Générer un token UUID pour la réinitialisation du mot de passe
     const resetToken = uuidv4();
     user.resetPasswordToken = resetToken;
     await this.userRepository.save(user);
 
-    // Envoyer un e-mail avec le token de réinitialisation
-    const resetUrl = `https://your-app.com/reset-password?token=${resetToken}`;
+    const resetUrl = `${this.configService.get<string>('FRONDEND_URL')}/auth/reset-password?token=${resetToken}`;
     const emailContent = `
-      <h1>Password Reset Request</h1>
-      <p>Please click the link below to reset your password:</p>
-      <a href="${resetUrl}">Reset Password</a>
+      <p>Vous avez demandé à réinitialiser le mot de passe de votre compte EcoDeli. Pour ce faire, cliquez sur le bouton ci-dessous afin de définir un nouveau mot de passe :</p>
+      <div style="text-align: center; margin: 25px 0;">
+        <a href="${resetUrl}" style="display: inline-block; background-color: #0C392C; color: #FEFCF3; text-decoration: none; padding: 12px 25px; border-radius: 1000px;">
+          Réinitialiser mon mot de passe
+        </a>
+      </div>
+      <p>Si le bouton ci-dessus ne fonctionne pas, copiez-collez le lien suivant dans la barre d'adresse de votre navigateur :</p>
+      <p>${resetUrl}</p>
+      </br>
+      <p>Si vous n'avez pas initié cette demande, veuillez ignorer cet e-mail.</p>
     `;
 
-    const emailResult = await this.emailService.sendEmail(user.email, 'Password Reset Request', emailContent);
+    const emailResult = await this.emailService.sendEmail(user.email, 'Réinitialisation de votre mot de passe', 'Réinitialisation de votre mot de passe', emailContent);
     if (emailResult.success) {
       return { message: 'Password reset instructions sent to your email.' };
     } else {
-      // Utilisation de BadRequestException pour un échec d'envoi d'email
       throw new BadRequestException('Failed to send email');
     }
   }
 
-  // Réinitialisation du mot de passe
   async resetPassword(resetPasswordDto: ResetPasswordDto) {
     const { resetPasswordToken, password } = resetPasswordDto;
-
-    // Vérification du token de réinitialisation
+  
     const user = await this.userRepository.findOne({ where: { resetPasswordToken } });
     if (!user) {
-      // Utilisation de BadRequestException pour un token invalide ou expiré
       throw new BadRequestException('Invalid or expired reset token');
     }
-
-    // Hachage du nouveau mot de passe
+  
+    this.validatePassword(password);
+  
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Mise à jour du mot de passe de l'utilisateur
+  
     user.password = hashedPassword;
-
-    // Réinitialiser le token (par mesure de sécurité)
     user.resetPasswordToken = null;
-
+  
     await this.userRepository.save(user);
     return { message: 'Password successfully reset' };
   }
+  
 
-  // Informations sur le profil (route /me)
   async getProfile(userId: number) {
     const user = await this.userRepository.findOne({ where: { id: userId } });
     if (!user) {
-      // Utilisation de NotFoundException si l'utilisateur n'est pas trouvé
       throw new NotFoundException('User not found');
     }
+    return this.toResponseDto(user);
+  }
+
+  async updateProfile(userId: number, updateProfileDto: UpdateProfileDto): Promise<User> {
+    if (updateProfileDto.email !== undefined) {
+      if (updateProfileDto.email.trim() === '') {
+        throw new BadRequestException("L'email ne peut pas être vide");
+      }
+      const userWithEmail = await this.userRepository.findOne({ where: { email: updateProfileDto.email } });
+      if (userWithEmail && userWithEmail.id !== userId) {
+        throw new ConflictException("Cet email est déjà pris");
+      }
+    }
+  
+    if (updateProfileDto.first_name !== undefined && updateProfileDto.first_name.trim() === '') {
+      throw new BadRequestException("Le prénom ne peut pas être vide");
+    }
+    if (updateProfileDto.last_name !== undefined && updateProfileDto.last_name.trim() === '') {
+      throw new BadRequestException("Le nom ne peut pas être vide");
+    }
+  
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException("Utilisateur non trouvé");
+    }
+  
+    if (updateProfileDto.email !== undefined) {
+      user.email = updateProfileDto.email;
+    }
+    if (updateProfileDto.first_name !== undefined) {
+      user.first_name = updateProfileDto.first_name;
+    }
+    if (updateProfileDto.last_name !== undefined) {
+      user.last_name = updateProfileDto.last_name;
+    }
+  
+    await this.userRepository.save(user);
     return user;
-  }
+  }  
 
-  // Mise à jour du profil
-  async updateProfile(userId: number, updateProfileDto: UpdateProfileDto) {
-    await this.userRepository.update(userId, updateProfileDto);
-    return this.getProfile(userId);
-  }
-
-  // Suppression du profil
   async deleteProfile(userId: number) {
     const result = await this.userRepository.delete(userId);
     if (result.affected === 0) {
-      // Utilisation de NotFoundException si l'utilisateur n'est pas trouvé pour la suppression
       throw new NotFoundException('User not found');
     }
     return { message: 'User deleted successfully' };
   }
+
+  async changePassword(userId: number, changePasswordDto: ChangePasswordDto): Promise<UserResponseDto> {
+    const { oldPassword, newPassword } = changePasswordDto;
+  
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+  
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      throw new UnauthorizedException('Old password is incorrect');
+    }
+  
+    this.validatePassword(newPassword);
+  
+    user.password = await bcrypt.hash(newPassword, 10);
+    await this.userRepository.save(user);
+  
+    return this.toResponseDto(user);
+  }
+
+  private toResponseDto(user: User): UserResponseDto {
+      const { password, resetPasswordToken, ...userResponse } = user;
+      return userResponse;
+  }
+
+  private validatePassword(password: string): void {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      throw new BadRequestException(
+        'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.'
+      );
+    }
+  }
+  
 }

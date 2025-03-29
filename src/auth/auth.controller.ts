@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards, Req } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards, Req, Patch } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -11,6 +11,7 @@ import { TokensDto } from './dto/tokens.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -19,7 +20,7 @@ export class AuthController {
   @Post('register')
   @ApiOperation({ summary: 'Register a new user' })
   @ApiResponse({ status: 201, description: 'User successfully registered', type: UserResponseDto })
-  @ApiResponse({ status: 400, description: 'User already exists' })
+  @ApiResponse({ status: 409, description: 'User already exists' })
   @ApiBody({ type: RegisterDto })
   register(@Body() registerDto: RegisterDto) {
     return this.authService.register(registerDto);
@@ -29,8 +30,10 @@ export class AuthController {
   @ApiOperation({ summary: 'Log in the user and generate tokens' })
   @ApiResponse({ status: 200, description: 'User successfully logged in and tokens generated', type: TokensDto })
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
+  @ApiResponse({ status: 403, description: 'Account is inactive' })
   @ApiBody({ type: LoginDto })
   login(@Body() loginDto: LoginDto) {
+    console.log('Corps de la requête : ', LoginDto);
     return this.authService.login(loginDto);
   }
 
@@ -38,7 +41,7 @@ export class AuthController {
   @ApiOperation({ summary: 'Refresh access token using refresh token' })
   @ApiResponse({ status: 200, description: 'Access token refreshed', type: TokensDto })
   @ApiResponse({ status: 400, description: 'Invalid refresh token' })
-  @ApiBody({ type: TokensDto })
+  @ApiBody({ schema: { properties: { refresh_token: { type: 'string' } } } })
   refresh(@Body('refresh_token') refreshToken: string) {
     return this.authService.refreshToken(refreshToken);
   }
@@ -69,7 +72,7 @@ export class AuthController {
     return this.authService.getProfile(user.id);
   }
 
-  @Put('me')
+  @Patch('me')
   @ApiOperation({ summary: 'Update logged-in user profile' })
   @ApiResponse({ status: 200, description: 'Profile successfully updated', type: UserResponseDto })
   @ApiBody({ type: UpdateProfileDto })
@@ -84,5 +87,16 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   deleteProfile(@CurrentUser() user: User) {
     return this.authService.deleteProfile(user.id);
+  }
+
+  @Patch('change-password')
+  @ApiOperation({ summary: 'Change user password' })
+  @ApiResponse({ status: 200, description: 'Password successfully changed' })
+  @UseGuards(JwtAuthGuard)
+  changePassword(
+    @CurrentUser() user: User,
+    @Body() changePasswordDto: ChangePasswordDto,
+  ) {
+    return this.authService.changePassword(user.id, changePasswordDto);
   }
 }

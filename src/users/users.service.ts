@@ -53,7 +53,7 @@ export class UsersService {
   }
 
   private toResponseDto(user: User): UserResponseDto {
-    const { password, ...userResponse } = user;
+    const { password, resetPasswordToken, ...userResponse } = user;
     return userResponse;
   }
 }
