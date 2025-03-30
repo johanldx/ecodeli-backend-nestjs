@@ -1,4 +1,9 @@
-import { ConflictException, ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -23,19 +28,21 @@ export class AuthService {
     private userRepository: Repository<User>,
     private jwtService: JwtService,
     private emailService: EmailService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
   ) {}
 
   async register(registerDto: RegisterDto) {
     const { password, email, ...userData } = registerDto;
-  
-    const existingUser = await this.userRepository.findOne({ where: { email } });
+
+    const existingUser = await this.userRepository.findOne({
+      where: { email },
+    });
     if (existingUser) {
       throw new ConflictException('Email is already in use');
     }
-  
+
     this.validatePassword(password);
-  
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = this.userRepository.create({
       ...userData,
@@ -45,7 +52,6 @@ export class AuthService {
     await this.userRepository.save(newUser);
     return this.login({ email: newUser.email, password: registerDto.password });
   }
-  
 
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
@@ -58,7 +64,6 @@ export class AuthService {
     }
     return this.generateTokens(user);
   }
-  
 
   generateTokens(user: User) {
     const payload = { email: user.email, sub: user.id };
@@ -109,7 +114,12 @@ export class AuthService {
       <p>Si vous n'avez pas initié cette demande, veuillez ignorer cet e-mail.</p>
     `;
 
-    const emailResult = await this.emailService.sendEmail(user.email, 'Réinitialisation de votre mot de passe', 'Réinitialisation de votre mot de passe', emailContent);
+    const emailResult = await this.emailService.sendEmail(
+      user.email,
+      'Réinitialisation de votre mot de passe',
+      'Réinitialisation de votre mot de passe',
+      emailContent,
+    );
     if (emailResult.success) {
       return { message: 'Password reset instructions sent to your email.' };
     } else {
@@ -119,23 +129,24 @@ export class AuthService {
 
   async resetPassword(resetPasswordDto: ResetPasswordDto) {
     const { resetPasswordToken, password } = resetPasswordDto;
-  
-    const user = await this.userRepository.findOne({ where: { resetPasswordToken } });
+
+    const user = await this.userRepository.findOne({
+      where: { resetPasswordToken },
+    });
     if (!user) {
       throw new BadRequestException('Invalid or expired reset token');
     }
-  
+
     this.validatePassword(password);
-  
+
     const hashedPassword = await bcrypt.hash(password, 10);
-  
+
     user.password = hashedPassword;
     user.resetPasswordToken = null;
-  
+
     await this.userRepository.save(user);
     return { message: 'Password successfully reset' };
   }
-  
 
   async getProfile(userId: number) {
     const user = await this.userRepository.findOne({ where: { id: userId } });
@@ -145,29 +156,40 @@ export class AuthService {
     return this.toResponseDto(user);
   }
 
-  async updateProfile(userId: number, updateProfileDto: UpdateProfileDto): Promise<User> {
+  async updateProfile(
+    userId: number,
+    updateProfileDto: UpdateProfileDto,
+  ): Promise<User> {
     if (updateProfileDto.email !== undefined) {
       if (updateProfileDto.email.trim() === '') {
         throw new BadRequestException("L'email ne peut pas être vide");
       }
-      const userWithEmail = await this.userRepository.findOne({ where: { email: updateProfileDto.email } });
+      const userWithEmail = await this.userRepository.findOne({
+        where: { email: updateProfileDto.email },
+      });
       if (userWithEmail && userWithEmail.id !== userId) {
-        throw new ConflictException("Cet email est déjà pris");
+        throw new ConflictException('Cet email est déjà pris');
       }
     }
-  
-    if (updateProfileDto.first_name !== undefined && updateProfileDto.first_name.trim() === '') {
-      throw new BadRequestException("Le prénom ne peut pas être vide");
+
+    if (
+      updateProfileDto.first_name !== undefined &&
+      updateProfileDto.first_name.trim() === ''
+    ) {
+      throw new BadRequestException('Le prénom ne peut pas être vide');
     }
-    if (updateProfileDto.last_name !== undefined && updateProfileDto.last_name.trim() === '') {
-      throw new BadRequestException("Le nom ne peut pas être vide");
+    if (
+      updateProfileDto.last_name !== undefined &&
+      updateProfileDto.last_name.trim() === ''
+    ) {
+      throw new BadRequestException('Le nom ne peut pas être vide');
     }
-  
+
     const user = await this.userRepository.findOne({ where: { id: userId } });
     if (!user) {
-      throw new NotFoundException("Utilisateur non trouvé");
+      throw new NotFoundException('Utilisateur non trouvé');
     }
-  
+
     if (updateProfileDto.email !== undefined) {
       user.email = updateProfileDto.email;
     }
@@ -177,10 +199,10 @@ export class AuthService {
     if (updateProfileDto.last_name !== undefined) {
       user.last_name = updateProfileDto.last_name;
     }
-  
+
     await this.userRepository.save(user);
     return user;
-  }  
+  }
 
   async deleteProfile(userId: number) {
     const result = await this.userRepository.delete(userId);
@@ -190,39 +212,41 @@ export class AuthService {
     return { message: 'User deleted successfully' };
   }
 
-  async changePassword(userId: number, changePasswordDto: ChangePasswordDto): Promise<UserResponseDto> {
+  async changePassword(
+    userId: number,
+    changePasswordDto: ChangePasswordDto,
+  ): Promise<UserResponseDto> {
     const { oldPassword, newPassword } = changePasswordDto;
-  
+
     const user = await this.userRepository.findOne({ where: { id: userId } });
     if (!user) {
       throw new NotFoundException('User not found');
     }
-  
+
     const isMatch = await bcrypt.compare(oldPassword, user.password);
     if (!isMatch) {
       throw new UnauthorizedException('Old password is incorrect');
     }
-  
+
     this.validatePassword(newPassword);
-  
+
     user.password = await bcrypt.hash(newPassword, 10);
     await this.userRepository.save(user);
-  
+
     return this.toResponseDto(user);
   }
 
   private toResponseDto(user: User): UserResponseDto {
-      const { password, resetPasswordToken, ...userResponse } = user;
-      return userResponse;
+    const { password, resetPasswordToken, ...userResponse } = user;
+    return userResponse;
   }
 
   private validatePassword(password: string): void {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
     if (!passwordRegex.test(password)) {
       throw new BadRequestException(
-        'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.'
+        'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.',
       );
     }
   }
-  
 }

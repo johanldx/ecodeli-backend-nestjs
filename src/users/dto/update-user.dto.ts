@@ -17,22 +17,34 @@ export class UpdateUserDto {
   @IsOptional()
   email: string;
 
-  @ApiProperty({ description: 'Password for the user account', required: false })
+  @ApiProperty({
+    description: 'Password for the user account',
+    required: false,
+  })
   @IsString()
   @IsOptional()
   password: string;
 
-  @ApiProperty({ description: 'Indicates if the user is verified', required: false })
+  @ApiProperty({
+    description: 'Indicates if the user is verified',
+    required: false,
+  })
   @IsBoolean()
   @IsOptional()
   verified: boolean;
 
-  @ApiProperty({ description: 'Indicates if the user is active', required: false })
+  @ApiProperty({
+    description: 'Indicates if the user is active',
+    required: false,
+  })
   @IsBoolean()
   @IsOptional()
   active: boolean;
 
-  @ApiProperty({ description: 'Indicates if the user is an administrator', required: false })
+  @ApiProperty({
+    description: 'Indicates if the user is an administrator',
+    required: false,
+  })
   @IsBoolean()
   @IsOptional()
   administrator: boolean;

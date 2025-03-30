@@ -1,4 +1,5 @@
 export interface JwtPayload {
-    email: string;
-    sub: string;
-  }
+  email: string;
+  sub: number;
+  administrator: boolean;
+}

@@ -9,6 +9,9 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { User } from './users/user.entity';
 import { APP_PIPE } from '@nestjs/core';
+import { ClientsModule } from './clients/clients.module';
+import { StorageModule } from './storage/storage.module';
+import { DeliveryPersonsModule } from './delivery-persons/delivery-persons.module';
 
 @Module({
   imports: [
@@ -31,6 +34,9 @@ import { APP_PIPE } from '@nestjs/core';
     EmailModule,
     UsersModule,
     AuthModule,
+    ClientsModule,
+    StorageModule,
+    DeliveryPersonsModule,
   ],
   controllers: [AppController],
   providers: [

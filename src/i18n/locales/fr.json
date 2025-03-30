@@ -1,274 +1,274 @@
 {
-    "landing": {
-        "global": {
-            "header": {
-                "top_notice": "EcoDeli vous offre une livraison éco-responsable et solidaire. Cherchez des livraisons près de chez vous !",
-                "menu": {
-                  "register": "S'inscrire",
-                  "login": "Se connecter"
-                }
-            },
-            "footer": {
-                "title": "La livraison éco-responsable, pratique et solidaire.",
-                "cta_button": "Voir les annonces",
-                "company_info": {
-                    "address": "110 Rue de Flandre",
-                    "postal_code": "75019 Paris"
-                },
-                "menu": {
-                    "private_space": "Espace particulier",
-                    "business_space": "Espace pro",
-                    "legal_mentions": "Mentions légales",
-                    "admin": "Administration"
-                }
-            },
-            "errors": {
-                "400": {
-                    "message": "Oups ! Quelque chose cloche dans votre demande. On vous aide à recoller l’étiquette ?",
-                    "action_label": "Revenir à l’accueil",
-                    "action_href": "/"
-                },
-                "401": {
-                    "message": "Vous devez être connecté pour continuer. Pas de trajet sans conducteur 😉",
-                    "action_label": "Se connecter",
-                    "action_href": "/login"
-                },
-                "403": {
-                    "message": "Cette route est réservée. Vous n’avez pas encore les accès pour livrer ici.",
-                    "action_label": "Retour",
-                    "action_href": "/"
-                },
-                "404": {
-                    "message": "Page introuvable. Le colis a peut-être pris un raccourci… ou une mauvaise direction.",
-                    "action_label": "Retour à l’accueil",
-                    "action_href": "/"
-                },
-                "408": {
-                    "message": "Trop long à charger. La plateforme attendait, mais le temps a filé comme un vélo cargo !",
-                    "action_label": "Réessayer",
-                    "action_href": "reload"
-                },
-                "409": {
-                    "message": "Un petit embouteillage : une autre action est déjà en cours. Revenez dans un instant.",
-                    "action_label": "Revenir à l’accueil",
-                    "action_href": "/"
-                },
-                "410": {
-                    "message": "Ce contenu a quitté l’entrepôt. Il n’est plus disponible à la livraison.",
-                    "action_label": "Voir les annonces",
-                    "action_href": "/"
-                },
-                "418": {
-                    "message": "Je suis une théière. Et je ne peux pas livrer de colis ☕",
-                    "action_label": "Retour à l’accueil",
-                    "action_href": "/"
-                },
-                "429": {
-                    "message": "Vous allez un peu trop vite ! Laissez-nous souffler entre deux courses.",
-                    "action_label": "Patienter et réessayer",
-                    "action_href": "reload"
-                },
-                "500": {
-                    "message": "Quelque chose s’est mal passé. Nos livreurs techniques sont sur le coup.",
-                    "action_label": "Retour à l’accueil",
-                    "action_href": "/"
-                },
-                "502": {
-                    "message": "Le relais de communication est coupé. La connexion avec le serveur a échoué.",
-                    "action_label": "Réessayer",
-                    "action_href": "reload"
-                },
-                "503": {
-                    "message": "Pause éco-responsable… Le service revient très bientôt !",
-                    "action_label": "Retour à l’accueil",
-                    "action_href": "/"
-                },
-                "504": {
-                    "message": "Temps de réponse dépassé. Même les plus rapides peuvent avoir un coup de pompe.",
-                    "action_label": "Réessayer",
-                    "action_href": "reload"
-                }
-            }
-        },
-        "index": {
-            "hero_section": {
-                "title": "La livraison éco-responsable, à portée de tous.",
-                "subtitle": "EcoDeli est une plateforme de covoiturage qui connecte les particuliers avec des livraisons écologiques et solidaires. En partageant leurs trajets, les utilisateurs peuvent expédier ou transporter des colis à moindre coût tout en favorisant leur empreinte carbone et le lien social.",
-                "cta_button": "Voir les annonces"
-            },
-            "features_section": {
-                "title": "Ensemble, livrons plus vert.",
-                "features": {
-                    "collaborative_delivery": {
-                        "title": "Livraison collaborative de colis",
-                        "description": "Nous aidons à réduire l'empreinte carbone en favorisant le transport collaboratif des marchandises. EcoDeli facilite la mise en relation entre expéditeurs et transporteurs pour un service plus vert."
-                    },
-                    "personal_services": {
-                        "title": "Services à la personne",
-                        "description": "Trouvez des personnes fiables pour des missions locales : livraisons ponctuelles, courses, trajets quotidiens. L’avenir du transport repose sur l’entraide locale, plus économique, plus humain et éthique."
-                    },
-                    "product_repatriation": {
-                        "title": "Achats et rapatriement de produits",
-                        "description": "Achetez ou récupérez des articles et victuailles localement, sans contrainte, en voyageant plus intelligemment."
-                    },
-                    "chariot_rental": {
-                        "title": "Lâcher de chariot",
-                        "description": "EcoDeli encourage un échange utile et flexible de chariots entre particuliers, mis à disposition dans des zones clés."
-                    }
-                }
-            },
-            "faq_section": {
-                "title": "Vous vous posez des questions ? C’est normal !",
-                "questions": {
-                    "what_is_ecodeli": {
-                        "question": "Qu’est-ce qu’EcoDeli et comment ça fonctionne ?",
-                        "answer": "EcoDeli est une plateforme de crowdshipping qui connecte des expéditeurs avec des voyageurs ou conducteurs prêts à transporter leurs colis lors de trajets déjà prévus, réduisant ainsi l'impact écologique. Les utilisateurs publient une annonce, suivent le colis en temps réel et bénéficient d'une livraison sécurisée grâce à l'assurance proposée par EcoDeli."
-                    },
-                    "become_delivery_person": {
-                        "question": "Comment puis-je devenir livreur sur EcoDeli ?",
-                        "answer": "Pour devenir livreur, il vous suffit de créer un compte sur EcoDeli, puis de consulter les annonces disponibles autour de vous. Une fois une annonce sélectionnée, vous pouvez proposer votre trajet et convenir des modalités avec l’expéditeur. C’est simple, rapide et sans engagement."
-                      },
-                      "delivery_security": {
-                        "question": "Les livraisons sont-elles sécurisées et assurées ?",
-                        "answer": "Oui, EcoDeli met en place plusieurs mesures pour garantir la sécurité des livraisons. Les profils sont vérifiés, les échanges sont sécurisés via la plateforme, et nous encourageons les utilisateurs à laisser des avis pour renforcer la confiance. Une assurance peut également être proposée pour certains colis selon leur valeur."
-                      }
-                }
-            }
-        },
-        "legal_mentions": {
-            "title": "Mentions légales",
-            "intro": "Conformément aux dispositions légales applicables, vous trouverez ci-dessous les informations relatives à l’éditeur du site, à la politique de confidentialité, aux conditions générales, ainsi qu’une note importante sur le caractère fictif du projet.",
-            "legal_notice": {
-                "title": "Mentions légales",
-                "content": "Le présent site est édité par une personne physique dans le cadre d’un projet académique à l’ESGI (École Supérieure de Génie Informatique).<br><br><strong>Identité de l’éditeur :</strong><br>Noms : Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Adresse : 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email : ecodeli.fr@gmail.com<br>Téléphone : non communiqué<br><br><strong>Propriété intellectuelle :</strong><br>Les images, illustrations et photographies utilisées sur ce site sont soit libres de droits, soit utilisées avec autorisation. Leur propriété intellectuelle est respectée et indiquée lorsque nécessaire.<br>Les textes rédigés proviennent de l’équipe projet. Toute citation externe est attribuée à son auteur ou à la source d’origine.<br><br><strong>Hébergement :</strong><br>Nom de l’hébergeur : Guillaume CONSTANTY<br>Raison sociale : particulier<br>Adresse : Avon, France<br>Téléphone : non communiqué"
-            },
-            "privacy_policy": {
-                "title": "Politique de confidentialité et cookies",
-                "content": "EcoDeli accorde une grande importance à la protection de votre vie privée.<br><br>Aucune donnée personnelle n’est collectée sans votre consentement. Le site utilise Matomo, un outil de mesure d’audience respectueux de la vie privée, configuré sans cookies et sans collecte de données personnelles identifiables.<br><br><strong>Technologies utilisées sur ce site :</strong><br><ul><li>Svelte : framework frontend</li><li>TailwindCSS et DaisyUI : bibliothèques d’interface</li><li>FontShare : polices libres de droits</li></ul><br>Aucune donnée n’est partagée avec des tiers, et aucune publicité n’est diffusée.<br><br>Vous pouvez demander la suppression de toute donnée vous concernant en contactant l’équipe projet."
-            },
-            "terms_of_use": {
-                "title": "Conditions Générales d’Utilisation (CGU)",
-                "content": "L’accès et l’utilisation du site <strong>EcoDeli</strong> sont réservés à un usage strictement personnel, dans le cadre de la consultation du projet. Toute utilisation à des fins commerciales ou professionnelles est interdite.<br><br>L’utilisateur s’engage à utiliser le site dans le respect de la législation française en vigueur.<br><br>Le site étant fictif, certaines fonctionnalités peuvent être inopérantes ou simulées à des fins pédagogiques.<br><br>Les auteurs déclinent toute responsabilité quant à l’usage des informations présentées sur ce site."
-            },
-            "terms_of_sale": {
-                "title": "Conditions Générales de Vente (CGV)",
-                "content": "Aucune vente réelle n’est effectuée sur cette plateforme.<br><br>Les <strong>Conditions Générales de Vente</strong> sont présentes uniquement à titre illustratif dans le cadre du projet de simulation.<br><br>Aucun paiement, produit ou service ne sera réellement délivré via EcoDeli.<br><br>Toute référence à une transaction, un prix ou une commande est fictive et sans effet contractuel.<br><br>L’utilisateur est informé que le site ne propose aucun service marchand."
-            },
-            "disclaimer": {
-                "title": "Avertissement - Projet fictif",
-                "content": "<strong>EcoDeli</strong> est un projet pédagogique fictif développé par des étudiants de l’ESGI dans le cadre de leur année académique.<br><br>Il ne s’agit pas d’une entreprise réelle, et aucun service de livraison ou d’intermédiation n’est effectivement proposé.<br><br>Toutes les données affichées (annonces, profils, trajets, etc.) sont simulées.<br><br>L’objectif de ce projet est de démontrer des compétences techniques en développement web, UX/UI, gestion de projet et déploiement d’applications modernes.<br><br>Toute ressemblance avec des services existants est purement fortuite."
-            }
+  "landing": {
+    "global": {
+      "header": {
+        "top_notice": "EcoDeli vous offre une livraison éco-responsable et solidaire. Cherchez des livraisons près de chez vous !",
+        "menu": {
+          "register": "S'inscrire",
+          "login": "Se connecter"
         }
+      },
+      "footer": {
+        "title": "La livraison éco-responsable, pratique et solidaire.",
+        "cta_button": "Voir les annonces",
+        "company_info": {
+          "address": "110 Rue de Flandre",
+          "postal_code": "75019 Paris"
+        },
+        "menu": {
+          "private_space": "Espace particulier",
+          "business_space": "Espace pro",
+          "legal_mentions": "Mentions légales",
+          "admin": "Administration"
+        }
+      },
+      "errors": {
+        "400": {
+          "message": "Oups ! Quelque chose cloche dans votre demande. On vous aide à recoller l’étiquette ?",
+          "action_label": "Revenir à l’accueil",
+          "action_href": "/"
+        },
+        "401": {
+          "message": "Vous devez être connecté pour continuer. Pas de trajet sans conducteur 😉",
+          "action_label": "Se connecter",
+          "action_href": "/login"
+        },
+        "403": {
+          "message": "Cette route est réservée. Vous n’avez pas encore les accès pour livrer ici.",
+          "action_label": "Retour",
+          "action_href": "/"
+        },
+        "404": {
+          "message": "Page introuvable. Le colis a peut-être pris un raccourci… ou une mauvaise direction.",
+          "action_label": "Retour à l’accueil",
+          "action_href": "/"
+        },
+        "408": {
+          "message": "Trop long à charger. La plateforme attendait, mais le temps a filé comme un vélo cargo !",
+          "action_label": "Réessayer",
+          "action_href": "reload"
+        },
+        "409": {
+          "message": "Un petit embouteillage : une autre action est déjà en cours. Revenez dans un instant.",
+          "action_label": "Revenir à l’accueil",
+          "action_href": "/"
+        },
+        "410": {
+          "message": "Ce contenu a quitté l’entrepôt. Il n’est plus disponible à la livraison.",
+          "action_label": "Voir les annonces",
+          "action_href": "/"
+        },
+        "418": {
+          "message": "Je suis une théière. Et je ne peux pas livrer de colis ☕",
+          "action_label": "Retour à l’accueil",
+          "action_href": "/"
+        },
+        "429": {
+          "message": "Vous allez un peu trop vite ! Laissez-nous souffler entre deux courses.",
+          "action_label": "Patienter et réessayer",
+          "action_href": "reload"
+        },
+        "500": {
+          "message": "Quelque chose s’est mal passé. Nos livreurs techniques sont sur le coup.",
+          "action_label": "Retour à l’accueil",
+          "action_href": "/"
+        },
+        "502": {
+          "message": "Le relais de communication est coupé. La connexion avec le serveur a échoué.",
+          "action_label": "Réessayer",
+          "action_href": "reload"
+        },
+        "503": {
+          "message": "Pause éco-responsable… Le service revient très bientôt !",
+          "action_label": "Retour à l’accueil",
+          "action_href": "/"
+        },
+        "504": {
+          "message": "Temps de réponse dépassé. Même les plus rapides peuvent avoir un coup de pompe.",
+          "action_label": "Réessayer",
+          "action_href": "reload"
+        }
+      }
     },
-    "clients": {
-        "global": {
-            "header": {
-                "menu": {
-                    "discover": "Découvrir",
-                    "conversations": "Mes conversations",
-                    "ads": "Mes annonces",
-                    "account": "Mon compte"
-                  }
-            }
+    "index": {
+      "hero_section": {
+        "title": "La livraison éco-responsable, à portée de tous.",
+        "subtitle": "EcoDeli est une plateforme de covoiturage qui connecte les particuliers avec des livraisons écologiques et solidaires. En partageant leurs trajets, les utilisateurs peuvent expédier ou transporter des colis à moindre coût tout en favorisant leur empreinte carbone et le lien social.",
+        "cta_button": "Voir les annonces"
+      },
+      "features_section": {
+        "title": "Ensemble, livrons plus vert.",
+        "features": {
+          "collaborative_delivery": {
+            "title": "Livraison collaborative de colis",
+            "description": "Nous aidons à réduire l'empreinte carbone en favorisant le transport collaboratif des marchandises. EcoDeli facilite la mise en relation entre expéditeurs et transporteurs pour un service plus vert."
+          },
+          "personal_services": {
+            "title": "Services à la personne",
+            "description": "Trouvez des personnes fiables pour des missions locales : livraisons ponctuelles, courses, trajets quotidiens. L’avenir du transport repose sur l’entraide locale, plus économique, plus humain et éthique."
+          },
+          "product_repatriation": {
+            "title": "Achats et rapatriement de produits",
+            "description": "Achetez ou récupérez des articles et victuailles localement, sans contrainte, en voyageant plus intelligemment."
+          },
+          "chariot_rental": {
+            "title": "Lâcher de chariot",
+            "description": "EcoDeli encourage un échange utile et flexible de chariots entre particuliers, mis à disposition dans des zones clés."
+          }
         }
+      },
+      "faq_section": {
+        "title": "Vous vous posez des questions ? C’est normal !",
+        "questions": {
+          "what_is_ecodeli": {
+            "question": "Qu’est-ce qu’EcoDeli et comment ça fonctionne ?",
+            "answer": "EcoDeli est une plateforme de crowdshipping qui connecte des expéditeurs avec des voyageurs ou conducteurs prêts à transporter leurs colis lors de trajets déjà prévus, réduisant ainsi l'impact écologique. Les utilisateurs publient une annonce, suivent le colis en temps réel et bénéficient d'une livraison sécurisée grâce à l'assurance proposée par EcoDeli."
+          },
+          "become_delivery_person": {
+            "question": "Comment puis-je devenir livreur sur EcoDeli ?",
+            "answer": "Pour devenir livreur, il vous suffit de créer un compte sur EcoDeli, puis de consulter les annonces disponibles autour de vous. Une fois une annonce sélectionnée, vous pouvez proposer votre trajet et convenir des modalités avec l’expéditeur. C’est simple, rapide et sans engagement."
+          },
+          "delivery_security": {
+            "question": "Les livraisons sont-elles sécurisées et assurées ?",
+            "answer": "Oui, EcoDeli met en place plusieurs mesures pour garantir la sécurité des livraisons. Les profils sont vérifiés, les échanges sont sécurisés via la plateforme, et nous encourageons les utilisateurs à laisser des avis pour renforcer la confiance. Une assurance peut également être proposée pour certains colis selon leur valeur."
+          }
+        }
+      }
     },
-    "auth": {
-        "login": {
-            "title": "Se connecter",
-            "email_placeholder": "Adresse e-mail",
-            "password_placeholder": "Mot de passe",
-            "button": "Connexion",
-            "forgot_password_link": "Mot de passe oublié ?",
-            "register_link": "S'inscrire"
-        },
-        "register": {
-            "title": "S'inscrire",
-            "first_name_placeholder": "Prénom",
-            "last_name_placeholder": "Nom",
-            "email_placeholder": "Adresse e-mail",
-            "password_placeholder": "Mot de passe",
-            "button": "Inscription",
-            "login_link": "Se connecter"
-        },
-        "forgot_password": {
-            "title": "Mot de passe oublié",
-            "email_placeholder": "Adresse e-mail",
-            "button": "Envoyer un e-mail",
-            "login_link": "Retour à la connexion"
-        },
-        "profile_choice": {
-            "title": "Bonjour {name} !",
-            "options": {
-              "client_link": "Espace client",
-              "delivery_link": "Espace livreur",
-              "merchant_link": "Espace commerçant",
-              "service_provider_link": "Espace prestataire"
-            },
-            "logout": "Déconnexion"
-        },
-        "account": {
-            "title": "Mon compte",
-            "profile": {
-                "first_name_placeholder": "Prénom",
-                "last_name_placeholder": "Nom",
-                "email_placeholder": "Adresse e-mail",
-                "save_button": "Enregistrer"
-            },
-            "password": {
-                "old_password_placeholder": "Ancien mot de passe",
-                "new_password_placeholder": "Nouveau mot de passe",
-                "save_button": "Enregistrer"
-            },
-            "actions": {
-                "delete_account": "Supprimer mon compte",
-                "personal_info": "Mes informations personnelles",
-                "return_to_app_link": "Retour à l’application"
-            }
-        },
-        "admin_login": {
-            "title": "Panel Admin",
-            "email_placeholder": "Adresse e-mail",
-            "password_placeholder": "Mot de passe",
-            "button": "Connexion",
-            "forgot_password_link": "Mot de passe oublié ?",
-            "login_link": "Retour à la page de connexion"
-        }
-    },
-    "api_responses": {
-        "auth": {
-            "account": {
-                "user_already_exists": "Un utilisateur avec cet email existe déjà",
-                "account_updated": "Compte modifié avec succès.",
-                "password_updated": "Mot de passe modifié avec succès.",
-                "incorrect_new_password": "Le mot de passe doit comporter au moins 8 caractères, dont une minuscule, une majuscule et un chiffre.",
-                "incorrect_old_password": "Ancien mot de passe incorrect."
-            },
-            "login": {
-                "login_successful": "Vous avez été connecté avec succès",
-                "invalid_credentials": "Identifiants invalides",
-                "account_inactive": "Votre compte est inactif. Veuillez contacter le support."
-            },
-            "register": {
-                "register_successful": "Vous avez été inscrit avec succès",
-                "user_already_exists": "Un utilisateur avec cet email existe déjà",
-                "bad_request": "Tous les champs sont obligatoires. Le mot de passe doit comporter au moins 8 caractères, dont une minuscule, une majuscule et un chiffre."
-            },
-            "forgot_password": {
-                "email_sent": "L'email de réinitialisation a été envoyé avec succès.",
-                "account_not_found": "Compte introuvable."
-            },
-            "reset_password": {
-                "password_updated": "Mot de passe modifié avec succès.",
-                "invalid_token": "Token invalide. Veuillez relancer la procédure de réinitialisation."
-            },
-            "global": {
-                "already_logged_in": "Vous êtes déjà connecté.",
-                "logged_out": "Vous avez été déconnecté avec succès",
-                "session_expired": "Votre session a expiré. Veuillez vous reconnecter.",
-                "unknown_error": "Une erreur inconnue est survenue. Veuillez réessayer plus tard.",
-                "fields_missing_invalid": "Champs manquants ou invalides.",
-                "user_not_found": "Utilisateur introuvable."
-            }
-        }
+    "legal_mentions": {
+      "title": "Mentions légales",
+      "intro": "Conformément aux dispositions légales applicables, vous trouverez ci-dessous les informations relatives à l’éditeur du site, à la politique de confidentialité, aux conditions générales, ainsi qu’une note importante sur le caractère fictif du projet.",
+      "legal_notice": {
+        "title": "Mentions légales",
+        "content": "Le présent site est édité par une personne physique dans le cadre d’un projet académique à l’ESGI (École Supérieure de Génie Informatique).<br><br><strong>Identité de l’éditeur :</strong><br>Noms : Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Adresse : 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email : ecodeli.fr@gmail.com<br>Téléphone : non communiqué<br><br><strong>Propriété intellectuelle :</strong><br>Les images, illustrations et photographies utilisées sur ce site sont soit libres de droits, soit utilisées avec autorisation. Leur propriété intellectuelle est respectée et indiquée lorsque nécessaire.<br>Les textes rédigés proviennent de l’équipe projet. Toute citation externe est attribuée à son auteur ou à la source d’origine.<br><br><strong>Hébergement :</strong><br>Nom de l’hébergeur : Guillaume CONSTANTY<br>Raison sociale : particulier<br>Adresse : Avon, France<br>Téléphone : non communiqué"
+      },
+      "privacy_policy": {
+        "title": "Politique de confidentialité et cookies",
+        "content": "EcoDeli accorde une grande importance à la protection de votre vie privée.<br><br>Aucune donnée personnelle n’est collectée sans votre consentement. Le site utilise Matomo, un outil de mesure d’audience respectueux de la vie privée, configuré sans cookies et sans collecte de données personnelles identifiables.<br><br><strong>Technologies utilisées sur ce site :</strong><br><ul><li>Svelte : framework frontend</li><li>TailwindCSS et DaisyUI : bibliothèques d’interface</li><li>FontShare : polices libres de droits</li></ul><br>Aucune donnée n’est partagée avec des tiers, et aucune publicité n’est diffusée.<br><br>Vous pouvez demander la suppression de toute donnée vous concernant en contactant l’équipe projet."
+      },
+      "terms_of_use": {
+        "title": "Conditions Générales d’Utilisation (CGU)",
+        "content": "L’accès et l’utilisation du site <strong>EcoDeli</strong> sont réservés à un usage strictement personnel, dans le cadre de la consultation du projet. Toute utilisation à des fins commerciales ou professionnelles est interdite.<br><br>L’utilisateur s’engage à utiliser le site dans le respect de la législation française en vigueur.<br><br>Le site étant fictif, certaines fonctionnalités peuvent être inopérantes ou simulées à des fins pédagogiques.<br><br>Les auteurs déclinent toute responsabilité quant à l’usage des informations présentées sur ce site."
+      },
+      "terms_of_sale": {
+        "title": "Conditions Générales de Vente (CGV)",
+        "content": "Aucune vente réelle n’est effectuée sur cette plateforme.<br><br>Les <strong>Conditions Générales de Vente</strong> sont présentes uniquement à titre illustratif dans le cadre du projet de simulation.<br><br>Aucun paiement, produit ou service ne sera réellement délivré via EcoDeli.<br><br>Toute référence à une transaction, un prix ou une commande est fictive et sans effet contractuel.<br><br>L’utilisateur est informé que le site ne propose aucun service marchand."
+      },
+      "disclaimer": {
+        "title": "Avertissement - Projet fictif",
+        "content": "<strong>EcoDeli</strong> est un projet pédagogique fictif développé par des étudiants de l’ESGI dans le cadre de leur année académique.<br><br>Il ne s’agit pas d’une entreprise réelle, et aucun service de livraison ou d’intermédiation n’est effectivement proposé.<br><br>Toutes les données affichées (annonces, profils, trajets, etc.) sont simulées.<br><br>L’objectif de ce projet est de démontrer des compétences techniques en développement web, UX/UI, gestion de projet et déploiement d’applications modernes.<br><br>Toute ressemblance avec des services existants est purement fortuite."
+      }
     }
+  },
+  "clients": {
+    "global": {
+      "header": {
+        "menu": {
+          "discover": "Découvrir",
+          "conversations": "Mes conversations",
+          "ads": "Mes annonces",
+          "account": "Mon compte"
+        }
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Se connecter",
+      "email_placeholder": "Adresse e-mail",
+      "password_placeholder": "Mot de passe",
+      "button": "Connexion",
+      "forgot_password_link": "Mot de passe oublié ?",
+      "register_link": "S'inscrire"
+    },
+    "register": {
+      "title": "S'inscrire",
+      "first_name_placeholder": "Prénom",
+      "last_name_placeholder": "Nom",
+      "email_placeholder": "Adresse e-mail",
+      "password_placeholder": "Mot de passe",
+      "button": "Inscription",
+      "login_link": "Se connecter"
+    },
+    "forgot_password": {
+      "title": "Mot de passe oublié",
+      "email_placeholder": "Adresse e-mail",
+      "button": "Envoyer un e-mail",
+      "login_link": "Retour à la connexion"
+    },
+    "profile_choice": {
+      "title": "Bonjour {name} !",
+      "options": {
+        "client_link": "Espace client",
+        "delivery_link": "Espace livreur",
+        "merchant_link": "Espace commerçant",
+        "service_provider_link": "Espace prestataire"
+      },
+      "logout": "Déconnexion"
+    },
+    "account": {
+      "title": "Mon compte",
+      "profile": {
+        "first_name_placeholder": "Prénom",
+        "last_name_placeholder": "Nom",
+        "email_placeholder": "Adresse e-mail",
+        "save_button": "Enregistrer"
+      },
+      "password": {
+        "old_password_placeholder": "Ancien mot de passe",
+        "new_password_placeholder": "Nouveau mot de passe",
+        "save_button": "Enregistrer"
+      },
+      "actions": {
+        "delete_account": "Supprimer mon compte",
+        "personal_info": "Mes informations personnelles",
+        "return_to_app_link": "Retour à l’application"
+      }
+    },
+    "admin_login": {
+      "title": "Panel Admin",
+      "email_placeholder": "Adresse e-mail",
+      "password_placeholder": "Mot de passe",
+      "button": "Connexion",
+      "forgot_password_link": "Mot de passe oublié ?",
+      "login_link": "Retour à la page de connexion"
+    }
+  },
+  "api_responses": {
+    "auth": {
+      "account": {
+        "user_already_exists": "Un utilisateur avec cet email existe déjà",
+        "account_updated": "Compte modifié avec succès.",
+        "password_updated": "Mot de passe modifié avec succès.",
+        "incorrect_new_password": "Le mot de passe doit comporter au moins 8 caractères, dont une minuscule, une majuscule et un chiffre.",
+        "incorrect_old_password": "Ancien mot de passe incorrect."
+      },
+      "login": {
+        "login_successful": "Vous avez été connecté avec succès",
+        "invalid_credentials": "Identifiants invalides",
+        "account_inactive": "Votre compte est inactif. Veuillez contacter le support."
+      },
+      "register": {
+        "register_successful": "Vous avez été inscrit avec succès",
+        "user_already_exists": "Un utilisateur avec cet email existe déjà",
+        "bad_request": "Tous les champs sont obligatoires. Le mot de passe doit comporter au moins 8 caractères, dont une minuscule, une majuscule et un chiffre."
+      },
+      "forgot_password": {
+        "email_sent": "L'email de réinitialisation a été envoyé avec succès.",
+        "account_not_found": "Compte introuvable."
+      },
+      "reset_password": {
+        "password_updated": "Mot de passe modifié avec succès.",
+        "invalid_token": "Token invalide. Veuillez relancer la procédure de réinitialisation."
+      },
+      "global": {
+        "already_logged_in": "Vous êtes déjà connecté.",
+        "logged_out": "Vous avez été déconnecté avec succès",
+        "session_expired": "Votre session a expiré. Veuillez vous reconnecter.",
+        "unknown_error": "Une erreur inconnue est survenue. Veuillez réessayer plus tard.",
+        "fields_missing_invalid": "Champs manquants ou invalides.",
+        "user_not_found": "Utilisateur introuvable."
+      }
+    }
+  }
 }

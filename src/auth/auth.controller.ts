@@ -1,4 +1,15 @@
-import { Controller, Post, Body, Get, Param, Put, Delete, UseGuards, Req, Patch } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Put,
+  Delete,
+  UseGuards,
+  Req,
+  Patch,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -8,7 +19,7 @@ import { ResetPasswordDto } from './dto/reset-password.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UserResponseDto } from '../users/dto/user-response.dto';
 import { TokensDto } from './dto/tokens.dto';
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -19,7 +30,11 @@ export class AuthController {
 
   @Post('register')
   @ApiOperation({ summary: 'Register a new user' })
-  @ApiResponse({ status: 201, description: 'User successfully registered', type: UserResponseDto })
+  @ApiResponse({
+    status: 201,
+    description: 'User successfully registered',
+    type: UserResponseDto,
+  })
   @ApiResponse({ status: 409, description: 'User already exists' })
   @ApiBody({ type: RegisterDto })
   register(@Body() registerDto: RegisterDto) {
@@ -28,7 +43,11 @@ export class AuthController {
 
   @Post('login')
   @ApiOperation({ summary: 'Log in the user and generate tokens' })
-  @ApiResponse({ status: 200, description: 'User successfully logged in and tokens generated', type: TokensDto })
+  @ApiResponse({
+    status: 200,
+    description: 'User successfully logged in and tokens generated',
+    type: TokensDto,
+  })
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
   @ApiResponse({ status: 403, description: 'Account is inactive' })
   @ApiBody({ type: LoginDto })
@@ -39,7 +58,11 @@ export class AuthController {
 
   @Post('refresh')
   @ApiOperation({ summary: 'Refresh access token using refresh token' })
-  @ApiResponse({ status: 200, description: 'Access token refreshed', type: TokensDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Access token refreshed',
+    type: TokensDto,
+  })
   @ApiResponse({ status: 400, description: 'Invalid refresh token' })
   @ApiBody({ schema: { properties: { refresh_token: { type: 'string' } } } })
   refresh(@Body('refresh_token') refreshToken: string) {
@@ -48,7 +71,10 @@ export class AuthController {
 
   @Post('forgot-password')
   @ApiOperation({ summary: 'Request a password reset link' })
-  @ApiResponse({ status: 200, description: 'Password reset instructions sent to email' })
+  @ApiResponse({
+    status: 200,
+    description: 'Password reset instructions sent to email',
+  })
   @ApiResponse({ status: 404, description: 'User not found' })
   @ApiBody({ type: ForgotPasswordDto })
   forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
@@ -66,7 +92,11 @@ export class AuthController {
 
   @Get('me')
   @ApiOperation({ summary: 'Get logged-in user profile' })
-  @ApiResponse({ status: 200, description: 'User profile information', type: UserResponseDto })
+  @ApiResponse({
+    status: 200,
+    description: 'User profile information',
+    type: UserResponseDto,
+  })
   @UseGuards(JwtAuthGuard)
   getProfile(@CurrentUser() user: User) {
     return this.authService.getProfile(user.id);
@@ -74,10 +104,17 @@ export class AuthController {
 
   @Patch('me')
   @ApiOperation({ summary: 'Update logged-in user profile' })
-  @ApiResponse({ status: 200, description: 'Profile successfully updated', type: UserResponseDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Profile successfully updated',
+    type: UserResponseDto,
+  })
   @ApiBody({ type: UpdateProfileDto })
   @UseGuards(JwtAuthGuard)
-  updateProfile(@CurrentUser() user: User, @Body() updateProfileDto: UpdateProfileDto) {
+  updateProfile(
+    @CurrentUser() user: User,
+    @Body() updateProfileDto: UpdateProfileDto,
+  ) {
     return this.authService.updateProfile(user.id, updateProfileDto);
   }
 

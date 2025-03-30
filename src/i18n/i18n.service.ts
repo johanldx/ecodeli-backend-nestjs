@@ -24,7 +24,10 @@ export class I18nService {
   }
 
   // Ajouter une nouvelle langue (création du fichier)
-  addLanguage(lang: string, translations: Record<string, any>): Record<string, any> {
+  addLanguage(
+    lang: string,
+    translations: Record<string, any>,
+  ): Record<string, any> {
     const filePath = path.join(this.localesPath, `${lang}.json`);
 
     if (fs.existsSync(filePath)) {
@@ -52,7 +55,10 @@ export class I18nService {
   }
 
   // Modifier tout le fichier d'une langue d'un coup
-  updateAllTranslations(lang: string, translations: Record<string, any>): Record<string, any> {
+  updateAllTranslations(
+    lang: string,
+    translations: Record<string, any>,
+  ): Record<string, any> {
     const filePath = path.join(this.localesPath, `${lang}.json`);
 
     if (!fs.existsSync(filePath)) {
@@ -62,11 +68,18 @@ export class I18nService {
     // Sauvegarder le fichier complet
     fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
 
-    return { success: true, message: `Toutes les traductions de '${lang}' ont été mises à jour.` };
+    return {
+      success: true,
+      message: `Toutes les traductions de '${lang}' ont été mises à jour.`,
+    };
   }
 
   // Ajouter ou modifier une traduction
-  updateTranslation(lang: string, key: string, value: string): Record<string, any> {
+  updateTranslation(
+    lang: string,
+    key: string,
+    value: string,
+  ): Record<string, any> {
     const filePath = path.join(this.localesPath, `${lang}.json`);
     let translations = {};
 
@@ -88,7 +101,10 @@ export class I18nService {
     // Sauvegarder le fichier
     fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
 
-    return { success: true, message: `Traduction mise à jour : ${key} = ${value}` };
+    return {
+      success: true,
+      message: `Traduction mise à jour : ${key} = ${value}`,
+    };
   }
 
   // Supprimer une clé de traduction
@@ -125,8 +141,9 @@ export class I18nService {
   }
 
   getAvailableLanguages(): string[] {
-    return fs.readdirSync(this.localesPath)
-      .filter(file => file.endsWith('.json'))
-      .map(file => path.basename(file, '.json'));
+    return fs
+      .readdirSync(this.localesPath)
+      .filter((file) => file.endsWith('.json'))
+      .map((file) => path.basename(file, '.json'));
   }
 }

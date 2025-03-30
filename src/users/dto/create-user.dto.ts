@@ -18,17 +18,29 @@ export class CreateUserDto {
   @IsString()
   password: string;
 
-  @ApiProperty({ description: 'Indicates if the user is verified', default: true, required: false })
+  @ApiProperty({
+    description: 'Indicates if the user is verified',
+    default: true,
+    required: false,
+  })
   @IsBoolean()
   @IsOptional()
   verified: boolean;
 
-  @ApiProperty({ description: 'Indicates if the user is active', default: true, required: false })
+  @ApiProperty({
+    description: 'Indicates if the user is active',
+    default: true,
+    required: false,
+  })
   @IsBoolean()
   @IsOptional()
   active: boolean;
 
-  @ApiProperty({ description: 'Indicates if the user is an administrator', default: false, required: false })
+  @ApiProperty({
+    description: 'Indicates if the user is an administrator',
+    default: false,
+    required: false,
+  })
   @IsBoolean()
   @IsOptional()
   administrator: boolean;

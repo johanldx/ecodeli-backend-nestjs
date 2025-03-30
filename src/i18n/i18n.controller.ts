@@ -1,4 +1,12 @@
-import { Controller, Get, Param, Post, Put, Delete, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Delete,
+  Body,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { I18nService } from './i18n.service';
 import { UpdateTranslationDto } from './dto/update-translation.dto';
@@ -10,7 +18,7 @@ import { AddLanguageDto } from './dto/add-language.dto';
 export class I18nController {
   constructor(private readonly translationService: I18nService) {}
 
-  @ApiOperation({ summary: "Get translations for a language" })
+  @ApiOperation({ summary: 'Get translations for a language' })
   @ApiParam({ name: 'lang', example: 'fr', description: 'Language code' })
   @ApiResponse({ status: 200, description: 'Returns translations as JSON' })
   @Get(':lang')
@@ -23,7 +31,10 @@ export class I18nController {
   @ApiResponse({ status: 400, description: 'Language already exists' })
   @Post()
   addLanguage(@Body() addLanguageDto: AddLanguageDto) {
-    return this.translationService.addLanguage(addLanguageDto.lang, addLanguageDto.translations);
+    return this.translationService.addLanguage(
+      addLanguageDto.lang,
+      addLanguageDto.translations,
+    );
   }
 
   @ApiOperation({ summary: 'Delete a language' })
@@ -42,7 +53,7 @@ export class I18nController {
   @Put(':lang/all')
   updateAllTranslations(
     @Param('lang') lang: string,
-    @Body() translations: Record<string, any>
+    @Body() translations: Record<string, any>,
   ) {
     return this.translationService.updateAllTranslations(lang, translations);
   }
@@ -54,21 +65,28 @@ export class I18nController {
   @Put(':lang/translation')
   updateTranslation(
     @Param('lang') lang: string,
-    @Body() updateTranslationDto: UpdateTranslationDto
+    @Body() updateTranslationDto: UpdateTranslationDto,
   ) {
-    return this.translationService.updateTranslation(lang, updateTranslationDto.key, updateTranslationDto.value);
+    return this.translationService.updateTranslation(
+      lang,
+      updateTranslationDto.key,
+      updateTranslationDto.value,
+    );
   }
 
   @ApiOperation({ summary: 'Delete a translation' })
   @ApiParam({ name: 'lang', example: 'en', description: 'Language code' })
-  @ApiResponse({ status: 200, description: "Translation key deleted" })
+  @ApiResponse({ status: 200, description: 'Translation key deleted' })
   @ApiResponse({ status: 404, description: 'Translation key not found' })
   @Delete(':lang/translation')
   deleteTranslation(
     @Param('lang') lang: string,
-    @Body() deleteTranslationDto: DeleteTranslationDto
+    @Body() deleteTranslationDto: DeleteTranslationDto,
   ) {
-    return this.translationService.deleteTranslation(lang, deleteTranslationDto.key);
+    return this.translationService.deleteTranslation(
+      lang,
+      deleteTranslationDto.key,
+    );
   }
 
   @ApiOperation({ summary: 'Get the list of available languages' })

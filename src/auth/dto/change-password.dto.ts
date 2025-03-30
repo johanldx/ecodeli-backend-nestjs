@@ -3,7 +3,7 @@ import { IsNotEmpty } from 'class-validator';
 
 export class ChangePasswordDto {
   @ApiProperty({ example: 'oldPassword123' })
-  @IsNotEmpty({ message: 'L\'ancien mot de passe est requis.' })
+  @IsNotEmpty({ message: "L'ancien mot de passe est requis." })
   oldPassword: string;
 
   @ApiProperty({ example: 'NewPassword123' })

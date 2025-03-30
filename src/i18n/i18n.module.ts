@@ -5,6 +5,6 @@ import { I18nController } from './i18n.controller';
 @Module({
   providers: [I18nService],
   controllers: [I18nController],
-  exports: []
+  exports: [],
 })
 export class I18nModule {}
