@@ -9,5 +9,6 @@ import { StorageModule } from '../storage/storage.module';
   imports: [TypeOrmModule.forFeature([DeliveryPerson]), StorageModule],
   controllers: [DeliveryPersonsController],
   providers: [DeliveryPersonsService],
+  exports: [DeliveryPersonsService],
 })
 export class DeliveryPersonsModule {}

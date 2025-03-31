@@ -28,7 +28,6 @@ import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { StorageService } from '../storage/storage.service';
 import { UpdateDeliveryPersonStatusDto } from './dto/update-delivery-person-status.dto';
 import { DeliveryPersonResponseDto } from './dto/delivery-person-response.dto';
-import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
 import { assertUserOwnsResourceOrIsAdmin } from 'src/auth/utils/assert-ownership';
@@ -192,14 +191,12 @@ export class DeliveryPersonsController {
   @ApiOperation({ summary: 'Delete delivery person' })
   @ApiResponse({ status: 200, description: 'Delivery person deleted' })
   @UseGuards(JwtAuthGuard)
-  @IsAdmin()
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.service.remove(id);
   }
 
   @Patch(':id/status')
   @UseGuards(JwtAuthGuard)
-  @IsAdmin()
   @ApiOperation({ summary: 'Manually update the validation status' })
   @ApiResponse({
     status: 200,

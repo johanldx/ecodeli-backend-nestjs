@@ -23,10 +23,18 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
 import { ChangePasswordDto } from './dto/change-password.dto';
+import { Client } from 'src/clients/client.entity';
+import { ClientsService } from 'src/clients/clients.service';
+import { DeliveryPersonsService } from 'src/delivery-persons/delivery-persons.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  
+  constructor(
+    private readonly authService: AuthService, 
+    private readonly clientsService: ClientsService,
+    private readonly deliveryPersonsService: DeliveryPersonsService,
+  ) {}
 
   @Post('register')
   @ApiOperation({ summary: 'Register a new user' })
@@ -136,4 +144,21 @@ export class AuthController {
   ) {
     return this.authService.changePassword(user.id, changePasswordDto);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('me/clients')
+  @ApiOperation({ summary: 'Get current user client profile' })
+  @ApiResponse({ status: 200, description: 'Client found', type: Client })
+  @ApiResponse({ status: 404, description: 'Client not found' })
+  getMyClient(@CurrentUser() user: User): Promise<Client> {
+    return this.clientsService.findByUserId(user.id);
+  }
+
+  @Get('me/delivery-persons')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Get current user delivery person profile' })
+  async getMyDeliveryPerson(@CurrentUser() user: User) {
+    return this.deliveryPersonsService.findByUserId(user.id);
+  }
+
 }

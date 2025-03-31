@@ -196,7 +196,7 @@
       "button": "Envoyer un e-mail",
       "login_link": "Retour à la connexion"
     },
-    "profile_choice": {
+    "space": {
       "title": "Bonjour {name} !",
       "options": {
         "client_link": "Espace client",
@@ -205,6 +205,25 @@
         "service_provider_link": "Espace prestataire"
       },
       "logout": "Déconnexion"
+    },
+    "space_validation": {
+      "clients": {
+        "title": "Devenir client",
+        "subtitle": "Visionez le tuto afin de découvir le fonctonnement d'Ecodeli !",
+        "button": "Devenir client",
+        "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande."
+      },
+      "delivery-persons": {
+        "title": "Devenir livreur",
+        "subtitle": "Déposez votre dossir de candidature pour devenir livreur Ecodeli !",
+        "button": "Envoyer la demande",
+        "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande."
+      },
+      "pending": {
+        "title": "Votre demande a bien été reçu !",
+        "subtitle": "Nos équipes sont en train d'étudier votre demande, vous aurez une réponse sous 72h.",
+        "back_link": "Retour"
+      }
     },
     "account": {
       "title": "Mon compte",

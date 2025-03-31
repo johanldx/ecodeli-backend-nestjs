@@ -68,4 +68,11 @@ export class DeliveryPersonsService {
     entity.status = status;
     return this.repo.save(entity);
   }
+
+  async findByUserId(userId: number): Promise<DeliveryPerson> {
+    const dp = await this.repo.findOne({ where: { user: { id: userId } }, relations: ['user'] });
+    if (!dp) throw new NotFoundException('Delivery person profile not found');
+    return dp;
+  }
+  
 }

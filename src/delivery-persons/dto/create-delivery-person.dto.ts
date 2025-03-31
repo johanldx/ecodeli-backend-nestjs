@@ -1,8 +1,11 @@
-import { IsEnum, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsInt, IsOptional, IsString } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 
 export class CreateDeliveryPersonDto {
   @ApiProperty({ example: 1 })
+  @IsInt()
+  @Type(() => Number)
   user_id: number;
 
   @ApiPropertyOptional()

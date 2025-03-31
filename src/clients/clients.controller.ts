@@ -16,7 +16,7 @@ import { ApiTags, ApiResponse, ApiOperation, ApiParam } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
-import { IsAdmin } from 'src/auth/decorators/is-admin.decorator';
+import { AdminGuard } from 'src/auth/guards/admin.guard';
 
 @ApiTags('Clients')
 @Controller('clients')
@@ -34,8 +34,7 @@ export class ClientsController {
   @Get()
   @ApiOperation({ summary: 'Get all clients' })
   @ApiResponse({ status: 200, description: 'List of clients' })
-  @UseGuards(JwtAuthGuard)
-  @IsAdmin()
+  @UseGuards(JwtAuthGuard, AdminGuard)
   findAll() {
     return this.clientsService.findAll();
   }
@@ -45,8 +44,7 @@ export class ClientsController {
   @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, description: 'Client found' })
   @ApiResponse({ status: 404, description: 'Client not found' })
-  @UseGuards(JwtAuthGuard)
-  @IsAdmin()
+  @UseGuards(JwtAuthGuard, AdminGuard)
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.clientsService.findOne(id);
   }
@@ -71,7 +69,6 @@ export class ClientsController {
   @ApiResponse({ status: 404, description: 'Client not found' })
   @HttpCode(204)
   @UseGuards(JwtAuthGuard)
-  @IsAdmin()
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.clientsService.remove(id);
   }

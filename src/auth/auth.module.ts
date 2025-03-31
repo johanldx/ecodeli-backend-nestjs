@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/users/user.entity';
 import { EmailModule } from '../email/email.module';
 import { ConfigModule } from '@nestjs/config';
+import { ClientsModule } from 'src/clients/clients.module';
+import { DeliveryPersonsModule } from 'src/delivery-persons/delivery-persons.module';
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { ConfigModule } from '@nestjs/config';
       signOptions: { expiresIn: '1h' },
     }),
     EmailModule,
+    ClientsModule,
+    DeliveryPersonsModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
