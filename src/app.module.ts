@@ -12,6 +12,7 @@ import { APP_PIPE } from '@nestjs/core';
 import { ClientsModule } from './clients/clients.module';
 import { StorageModule } from './storage/storage.module';
 import { DeliveryPersonsModule } from './delivery-persons/delivery-persons.module';
+import { TradersModule } from './traders/traders.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { DeliveryPersonsModule } from './delivery-persons/delivery-persons.modul
     ClientsModule,
     StorageModule,
     DeliveryPersonsModule,
+    TradersModule,
   ],
   controllers: [AppController],
   providers: [

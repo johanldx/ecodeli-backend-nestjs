@@ -3,11 +3,8 @@ import {
   Post,
   Body,
   Get,
-  Param,
-  Put,
   Delete,
   UseGuards,
-  Req,
   Patch,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
@@ -26,6 +23,7 @@ import { ChangePasswordDto } from './dto/change-password.dto';
 import { Client } from 'src/clients/client.entity';
 import { ClientsService } from 'src/clients/clients.service';
 import { DeliveryPersonsService } from 'src/delivery-persons/delivery-persons.service';
+import { TradersService } from 'src/traders/traders.service';
 
 @Controller('auth')
 export class AuthController {
@@ -34,6 +32,7 @@ export class AuthController {
     private readonly authService: AuthService, 
     private readonly clientsService: ClientsService,
     private readonly deliveryPersonsService: DeliveryPersonsService,
+    private readonly tradersService: TradersService,
   ) {}
 
   @Post('register')
@@ -159,6 +158,14 @@ export class AuthController {
   @ApiOperation({ summary: 'Get current user delivery person profile' })
   async getMyDeliveryPerson(@CurrentUser() user: User) {
     return this.deliveryPersonsService.findByUserId(user.id);
+  }
+
+  @Get('me/traders')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Get current user trader profile' })
+  async getMyTrader(@CurrentUser() user: User) {
+    // Recherche du profil trader de l'utilisateur connecté
+    return this.tradersService.findByUserId(user.id);
   }
 
 }

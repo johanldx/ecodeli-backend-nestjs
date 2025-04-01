@@ -160,16 +160,26 @@
       }
     }
   },
-  "clients": {
+  "app": {
     "global": {
-      "header": {
-        "menu": {
-          "discover": "Découvrir",
-          "conversations": "Mes conversations",
-          "ads": "Mes annonces",
-          "account": "Mon compte"
-        }
+      "menu": {
+        "title": "Mon compte",
+        "account_link": "Mon compte",
+        "profile_link": "Mon profil",
+        "logout_link": "Déconnexion"
       }
+    },
+    "clients": {
+      
+    },
+    "delevery": {
+
+    },
+    "providers": {
+
+    },
+    "traders": {
+      
     }
   },
   "auth": {
@@ -202,7 +212,8 @@
         "client_link": "Espace client",
         "delivery_link": "Espace livreur",
         "merchant_link": "Espace commerçant",
-        "service_provider_link": "Espace prestataire"
+        "service_provider_link": "Espace prestataire",
+        "account_link": "Mon compte"
       },
       "logout": "Déconnexion"
     },
@@ -211,13 +222,22 @@
         "title": "Devenir client",
         "subtitle": "Visionez le tuto afin de découvir le fonctonnement d'Ecodeli !",
         "button": "Devenir client",
-        "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande."
+        "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande.",
+        "not_found": "Vous n'avez pas de profil client."
       },
       "delivery-persons": {
         "title": "Devenir livreur",
         "subtitle": "Déposez votre dossir de candidature pour devenir livreur Ecodeli !",
         "button": "Envoyer la demande",
-        "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande."
+        "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande.",
+        "not_found": "Vous n'avez pas de profil livreur."
+      },
+      "traders": {
+        "title": "Devenir commerçant",
+        "subtitle": "Déposez votre dossir de candidature pour devenir commerçant sur Ecodeli !",
+        "button": "Envoyer la demande",
+        "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande.",
+        "not_found": "Vous n'avez pas de profil commerçant."
       },
       "pending": {
         "title": "Votre demande a bien été reçu !",

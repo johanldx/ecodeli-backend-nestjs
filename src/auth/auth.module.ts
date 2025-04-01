@@ -9,6 +9,7 @@ import { EmailModule } from '../email/email.module';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule } from 'src/clients/clients.module';
 import { DeliveryPersonsModule } from 'src/delivery-persons/delivery-persons.module';
+import { TradersModule } from 'src/traders/traders.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { DeliveryPersonsModule } from 'src/delivery-persons/delivery-persons.mod
     EmailModule,
     ClientsModule,
     DeliveryPersonsModule,
+    TradersModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

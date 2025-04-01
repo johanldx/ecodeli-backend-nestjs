@@ -50,6 +50,25 @@ export class AuthService {
       password: hashedPassword,
     });
     await this.userRepository.save(newUser);
+
+    const welcomeUrl = `${this.configService.get<string>('FRONDEND_URL')}/app/clients`;
+    const emailContent = `
+      <p>Bienvenue sur EcoDeli ! Nous sommes heureux de vous compter parmi nos membres. Vous pouvez découvir une large gamme de services tel que la livraison collaborative de colis, du services à la personne, et bien d'autres encore.</p>
+      <div style="text-align: center; margin: 25px 0;">
+        <a href="${welcomeUrl}" style="display: inline-block; background-color: #0C392C; color: #FEFCF3; text-decoration: none; padding: 12px 25px; border-radius: 1000px;">
+          Découvrir EcoDeli
+        </a>
+      </div>
+      <p>Nous espérons que vous apprécierez l'expérience sur notre site. Si vous avez des questions, n'hésitez pas à nous contacter.</p>
+    `;
+
+    await this.emailService.sendEmail(
+      email,
+      'Bienvenue chez Ecodeli !',
+      'Bienvenue chez Ecodeli !',
+      emailContent,
+    );
+
     return this.login({ email: newUser.email, password: registerDto.password });
   }
 
@@ -145,6 +164,26 @@ export class AuthService {
     user.resetPasswordToken = null;
 
     await this.userRepository.save(user);
+
+    const loginUrl = `${this.configService.get<string>('FRONDEND_URL')}/auth/login`;
+    const emailContent = `
+      <p>Nous vous informons que votre mot de passe EcoDeli a été modifié avec succès. Si vous êtes à l'origine de cette modification, vous pouvez vous connecter en utilisant votre nouveau mot de passe.</p>
+      <div style="text-align: center; margin: 25px 0;">
+        <a href="${loginUrl}" style="display: inline-block; background-color: #0C392C; color: #FEFCF3; text-decoration: none; padding: 12px 25px; border-radius: 1000px;">
+          Se connecter
+        </a>
+      </div>
+      <p>Si vous n'êtes pas à l'origine de cette modification, nous vous conseillons de nous contacter immédiatement pour sécuriser votre compte.</p>
+      <p>Pour toute question, n'hésitez pas à nous contacter.</p>
+    `;
+
+    await this.emailService.sendEmail(
+      user.email,
+      'Votre mot de passe a bien été modifié',
+      'Votre mot de passe a bien été modifié',
+      emailContent,
+    );
+
     return { message: 'Password successfully reset' };
   }
 
@@ -232,6 +271,25 @@ export class AuthService {
 
     user.password = await bcrypt.hash(newPassword, 10);
     await this.userRepository.save(user);
+
+    const loginUrl = `${this.configService.get<string>('FRONDEND_URL')}/auth/login`;
+    const emailContent = `
+      <p>Nous vous informons que votre mot de passe EcoDeli a été modifié avec succès. Si vous êtes à l'origine de cette modification, vous pouvez vous connecter en utilisant votre nouveau mot de passe.</p>
+      <div style="text-align: center; margin: 25px 0;">
+        <a href="${loginUrl}" style="display: inline-block; background-color: #0C392C; color: #FEFCF3; text-decoration: none; padding: 12px 25px; border-radius: 1000px;">
+          Se connecter
+        </a>
+      </div>
+      <p>Si vous n'êtes pas à l'origine de cette modification, nous vous conseillons de nous contacter immédiatement pour sécuriser votre compte.</p>
+      <p>Pour toute question, n'hésitez pas à nous contacter.</p>
+    `;
+
+    await this.emailService.sendEmail(
+      user.email,
+      'Votre mot de passe a bien été modifié',
+      'Votre mot de passe a bien été modifié',
+      emailContent,
+    );
 
     return this.toResponseDto(user);
   }

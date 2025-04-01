@@ -15,7 +15,7 @@ export class DeliveryPersonsService {
   ) {}
 
   async create(
-    dto: CreateDeliveryPersonDto & { user_id: number },
+    dto: CreateDeliveryPersonDto & { user_id: number }, 
   ): Promise<DeliveryPerson> {
     const entity = this.repo.create({
       ...dto,

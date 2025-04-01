@@ -23,7 +23,7 @@ export class DeliveryPerson {
   @Column()
   user_id: number;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
