@@ -2,84 +2,84 @@
   "landing": {
     "global": {
       "header": {
-        "top_notice": "EcoDeliは環境に配慮した、社会貢献型の配送サービスを提供します。近くの配送を探してみてください！",
+        "top_notice": "EcoDeliはエコフレンドリーでソリダリティのある配達を提供します。近くの配達を探してください！",
         "menu": {
-          "register": "登録する",
+          "register": "登録",
           "login": "ログイン"
         }
       },
       "footer": {
-        "title": "環境に配慮した、便利で社会的な配送サービス",
+        "title": "エコフレンドリーで実用的かつソリダリティのある配達。",
         "cta_button": "広告を見る",
         "company_info": {
-          "address": "110 フランドル通り",
-          "postal_code": "75019 パリ"
+          "address": "110 Rue de Flandre",
+          "postal_code": "75019 Paris"
         },
         "menu": {
           "private_space": "個人スペース",
-          "business_space": "プロフェッショナルスペース",
-          "legal_mentions": "法的注意事項",
+          "business_space": "ビジネススペース",
+          "legal_mentions": "法的な注意",
           "admin": "管理"
         }
       },
       "errors": {
         "400": {
-          "message": "おっと！リクエストに何か問題が発生しました。ラベルを再び貼り直すお手伝いをしましょうか？",
+          "message": "おっと！リクエストに問題があります。ラベルを貼り直すお手伝いが必要ですか？",
           "action_label": "ホームに戻る",
           "action_href": "/"
         },
         "401": {
-          "message": "続行するにはログインが必要です。運転手なしの移動はできません 😉",
-          "action_label": "ログインする",
+          "message": "続行するにはログインが必要です。ドライバーなしでの旅はありません😉",
+          "action_label": "ログイン",
           "action_href": "/login"
         },
         "403": {
-          "message": "このルートは予約されています。ここで配送する権限がまだありません。",
+          "message": "このルートは予約されています。ここに配達するためのアクセス権がまだありません。",
           "action_label": "戻る",
           "action_href": "/"
         },
         "404": {
-          "message": "ページが見つかりません。荷物が近道をしたか、あるいは間違った方向に行ってしまったのかもしれません。",
+          "message": "ページが見つかりません。荷物がショートカットを取ったか、間違った方向に行ったかもしれません。",
           "action_label": "ホームに戻る",
           "action_href": "/"
         },
         "408": {
-          "message": "読み込みに時間がかかりすぎました。プラットフォームは待っていましたが、時間はカーゴバイクのように速く過ぎてしまいました！",
+          "message": "読み込みに時間がかかりすぎました。プラットフォームは待っていましたが、時間はカーゴバイクのように過ぎ去りました！",
           "action_label": "再試行",
           "action_href": "reload"
         },
         "409": {
-          "message": "ちょっとした渋滞です。別のアクションがすでに進行中です。少し後に戻ってください。",
+          "message": "少し渋滞があります：別のアクションがすでに進行中です。しばらくしてから再度お試しください。",
           "action_label": "ホームに戻る",
           "action_href": "/"
         },
         "410": {
-          "message": "このコンテンツは倉庫を出ました。もう配送は利用できません。",
+          "message": "このコンテンツは倉庫を出ました。もう配達できません。",
           "action_label": "広告を見る",
           "action_href": "/"
         },
         "418": {
-          "message": "私はティーポットです。荷物を配送することはできません ☕",
+          "message": "私はティーポットです。そして荷物を配達することはできません☕",
           "action_label": "ホームに戻る",
           "action_href": "/"
         },
         "429": {
-          "message": "少し速すぎます！次の配送の間に一息つかせてください。",
-          "action_label": "待ってから再試行",
+          "message": "少し速すぎます！配達の合間に少し休ませてください。",
+          "action_label": "待って再試行",
           "action_href": "reload"
         },
         "500": {
-          "message": "何か問題が発生しました。技術担当の配送員が対応中です。",
+          "message": "何かがうまくいきませんでした。技術チームが対応しています。",
           "action_label": "ホームに戻る",
           "action_href": "/"
         },
         "502": {
-          "message": "通信中継が切断されました。サーバーへの接続に失敗しました。",
+          "message": "通信リレーが切断されました。サーバーへの接続に失敗しました。",
           "action_label": "再試行",
           "action_href": "reload"
         },
         "503": {
-          "message": "環境に配慮した休憩…サービスはまもなく復帰します！",
+          "message": "エコフレンドリーな休憩中…サービスはすぐに戻ります！",
           "action_label": "ホームに戻る",
           "action_href": "/"
         },
@@ -92,84 +92,172 @@
     },
     "index": {
       "hero_section": {
-        "title": "誰でも手軽に環境に優しい配送",
-        "subtitle": "EcoDeliは個人を環境に優しく、社会的な配送に結びつける相乗りプラットフォームです。ルートを共有することで、利用者はコストを抑えつつ、カーボンフットプリントの削減と社会的な繋がりを促進できます。",
+        "title": "エコフレンドリーな配達、誰でも手軽に。",
+        "subtitle": "EcoDeliは、個人をエコロジカルでソリダリティのある配達とつなぐカーシェアリングプラットフォームです。ユーザーはトリップを共有することで、低コストで荷物を送ることができ、カーボンフットプリントと社会的なつながりを促進します。",
         "cta_button": "広告を見る"
       },
       "features_section": {
-        "title": "共に、よりグリーンな配送を。",
+        "title": "一緒にもっとエコに配達しましょう。",
         "features": {
           "collaborative_delivery": {
-            "title": "荷物の協力配送",
-            "description": "荷物の共同輸送を促進することでカーボンフットプリントの削減を支援します。EcoDeliは発送者と運送者の連携を容易にし、よりグリーンなサービスを実現します。"
+            "title": "荷物のコラボレーティブ配達",
+            "description": "荷物の共同輸送を促進することで、カーボンフットプリントを削減します。EcoDeliは、よりエコなサービスを提供するために、発送者と運送者をつなぎます。"
           },
           "personal_services": {
             "title": "個人向けサービス",
-            "description": "信頼できる人々を見つけ、地域の配送、買い物、日常の移動などのミッションに参加してください。交通の未来は、より経済的で人間的かつ倫理的な地域の助け合いにかかっています。"
+            "description": "信頼できる人を見つけて、地元のミッションを行いましょう：一時的な配達、買い物、日常の移動。輸送の未来は、より経済的で人間的で倫理的な地域の相互扶助にあります。"
           },
           "product_repatriation": {
-            "title": "製品の購入と再輸送",
-            "description": "より賢く移動しながら、制約なく地元で商品や食材を購入または受け取ってください。"
+            "title": "商品の購入と回収",
+            "description": "旅行をもっと賢くして、地元で商品や食料を購入または回収しましょう。"
           },
           "chariot_rental": {
-            "title": "カートのレンタル",
-            "description": "EcoDeliは主要地域で利用可能なカートの柔軟で有用な個人間交換を推奨しています。"
+            "title": "カートのリリース",
+            "description": "EcoDeliは、個人間でカートを柔軟に交換することを推奨しています。"
           }
         }
       },
       "faq_section": {
-        "title": "ご質問ですか？それは当然です！",
+        "title": "疑問がありますか？当然です！",
         "questions": {
           "what_is_ecodeli": {
-            "question": "EcoDeliとは何ですか、そしてどのように機能しますか？",
-            "answer": "EcoDeliは、既に予定されているルート上で荷物を運ぶ旅行者や運転手と発送者を結びつけるクラウドシッピングプラットフォームで、環境への影響を軽減します。利用者は広告を投稿し、リアルタイムで荷物を追跡し、EcoDeliが提供する保険によって安全な配送を享受できます。"
+            "question": "EcoDeliとは何ですか？どのように動作しますか？",
+            "answer": "EcoDeliは、クラウドシッピングプラットフォームで、発送者を既に計画されている旅行中に荷物を運ぶ旅行者やドライバーとつなぎます。これにより、環境への影響を軽減します。ユーザーは広告を投稿し、リアルタイムで荷物を追跡し、EcoDeliが提供する保険によって保護された配達を受け取ります。"
           },
           "become_delivery_person": {
-            "question": "EcoDeliで配送員になるにはどうすればよいですか？",
-            "answer": "配送員になるには、EcoDeliでアカウントを作成し、周辺の広告を確認するだけです。広告を選択した後、ルートを提案し、発送者と詳細を調整できます。シンプルで迅速、かつ拘束なしです。"
+            "question": "EcoDeliの配達員になるにはどうすればよいですか？",
+            "answer": "配達員になるには、EcoDeliにアカウントを作成し、周辺の広告を確認します。広告を選択したら、トリップを提案し、発送者と条件を調整します。簡単で迅速で、無約束です。"
           },
           "delivery_security": {
-            "question": "配送は安全で保険が適用されていますか？",
-            "answer": "はい、EcoDeliは配送の安全性を保証するためにいくつかの対策を講じています。プロフィールは確認され、プラットフォームを通じて取引が保護され、利用者は信頼性を高めるためにレビューを残すことが奨励されています。また、荷物の価値に応じて保険が提供される場合もあります。"
+            "question": "配達は安全で保険がかかっていますか？",
+            "answer": "はい、EcoDeliは配達の安全を確保するためにいくつかの対策を講じています。プロフィールは確認され、プラットフォームを通じて交換がセキュアに行われ、ユーザーにレビューを残すことを推奨しています。また、荷物の価値に応じて保険が提供されることもあります。"
           }
         }
       }
     },
     "legal_mentions": {
-      "title": "法的注意事項",
-      "intro": "適用される法令に従い、以下にサイトの運営者情報、プライバシーポリシー、利用規約、およびプロジェクトの架空性に関する重要な注意事項を記載しています。",
+      "title": "法的な注意",
+      "intro": "以下に、サイトの編集者、プライバシーポリシー、一般条件に関する情報をご覧いただけます。また、プロジェクトがフィクションであることについての重要な注意もご確認ください。",
       "legal_notice": {
-        "title": "法的注意事項",
-        "content": "このサイトはESGI（高等情報工学学校）の学術プロジェクトの一環として個人によって運営されています。<br><br><strong>運営者の情報 :</strong><br>氏名 : Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>住所 : 242 rue du Faubourg Saint-Antoine, 75012 パリ, フランス<br>メール : ecodeli.fr@gmail.com<br>電話番号 : 公表されていません<br><br><strong>知的財産権 :</strong><br>このサイトで使用されている画像、イラスト、写真は、著作権フリーであるか、許可を得て使用されています。必要に応じて、その知的財産権が尊重され、明示されています。<br>記載されたテキストはプロジェクトチームによるものです。外部からの引用は、その著者または原典に帰属します。<br><br><strong>ホスティング :</strong><br>ホスト名 : Guillaume CONSTANTY<br>事業形態 : 個人<br>住所 : Avon, フランス<br>電話番号 : 公表されていません"
+        "title": "法的な注意",
+        "content": "このサイトは、ESGI（エコール・シュペリウール・ド・ジェニ・アンフォルマティク）での学術プロジェクトの一環として個人が編集しています。<br><br><strong>編集者の身元：</strong><br>名前：Johan LEDOUX、Guillaume CONSTANTY、Rayan CHEBICHEB<br>住所：242 rue du Faubourg Saint-Antoine、75012 Paris、フランス<br>メール：ecodeli.fr@gmail.com<br>電話：非公開<br><br><strong>知的財産権：</strong><br>このサイトで使用されている画像、イラスト、写真は、著作権フリーであるか、許可を得て使用しています。知的財産権は尊重され、必要に応じて表示されます。<br>記事はプロジェクトチームによって執筆されており、外部の引用は著者または元の情報源に帰属されます。<br><br><strong>ホスティング：</strong><br>ホスト名：Guillaume CONSTANTY<br>社名：個人<br>住所：Avon、フランス<br>電話：非公開"
       },
       "privacy_policy": {
-        "title": "プライバシーポリシーとクッキーについて",
-        "content": "EcoDeliは、あなたのプライバシー保護を非常に重要視しています。<br><br>あなたの同意なしに個人データは収集されません。このサイトは、プライバシーに配慮したアクセス解析ツールMatomoを使用しており、クッキーや個人を特定できるデータは収集していません。<br><br><strong>このサイトで使用されている技術 :</strong><br><ul><li>Svelte : フロントエンドフレームワーク</li><li>TailwindCSS と DaisyUI : UIライブラリ</li><li>FontShare : 著作権フリーのフォント</li></ul><br>データは第三者と共有されず、広告も表示されません。<br><br>ご自身のデータ削除を希望される場合は、プロジェクトチームにお問い合わせください。"
+        "title": "プライバシーポリシーとクッキー",
+        "content": "EcoDeliは、あなたのプライバシーを非常に重要視しています。<br><br>あなたの同意なしに個人データは収集されません。このサイトでは、プライバシーを尊重する測定ツールであるMatomoを使用しており、クッキーなしで個人を特定できないデータを収集しません。<br><br><strong>このサイトで使用されている技術：</strong><br><ul><li>Svelte：フロントエンドフレームワーク</li><li>TailwindCSSとDaisyUI：インターフェースライブラリ</li><li>FontShare：著作権フリーのフォント</li></ul><br>データは第三者と共有されず、広告も表示されません。<br><br>自分に関するデータの削除を依頼するには、プロジェクトチームに連絡してください。"
       },
       "terms_of_use": {
-        "title": "利用規約 (CGU)",
-        "content": "サイト<strong>EcoDeli</strong>へのアクセスおよび利用は、プロジェクトの閲覧という目的に限定された個人的な使用に限られます。商業的または職業的な利用は禁止されています。<br><br>利用者は、現行のフランス法に従ってサイトを利用することに同意します。<br><br>このサイトは架空のものであり、教育目的のために一部の機能が無効またはシミュレーションされている場合があります。<br><br>掲載情報の利用に関して、著者は一切の責任を負いません。"
+        "title": "利用規約（TOS）",
+        "content": "サイト<strong>EcoDeli</strong>のアクセスと利用は、プロジェクトの閲覧に限り、厳密に個人的な目的に限定されています。商業目的または職業目的での利用は禁止されています。<br><br>ユーザーは、現行のフランス法に従ってサイトを利用することに同意します。<br><br>サイトがフィクションであるため、一部の機能は教育目的で無効またはシミュレートされている場合があります。<br><br>著者は、このサイトに掲載されている情報の使用について一切の責任を負いません。"
       },
       "terms_of_sale": {
-        "title": "販売条件 (CGV)",
-        "content": "このプラットフォームでは実際の販売は行われていません。<br><br><strong>販売条件</strong>はシミュレーションプロジェクトの一環として、あくまで参考として掲載されています。<br><br>EcoDeliを通じて実際の支払い、商品、サービスは提供されません。<br><br>取引、価格、注文に関する記述は架空のもので、契約上の効力はありません。<br><br>利用者は、このサイトが商業サービスを提供していないことを認識しています。"
+        "title": "販売規約（TOS）",
+        "content": "このプラットフォームでは実際の販売は行われません。<br><br><strong>販売規約</strong>は、シミュレーションプロジェクトの一環として参考のためにのみ掲載されています。<br><br>EcoDeliを通じて実際の支払い、製品、サービスは提供されません。<br><br>取引、価格、注文に関するすべての言及はフィクションであり、契約上の効力はありません。<br><br>ユーザーには、このサイトが商業サービスを提供しないことが通知されます。"
       },
       "disclaimer": {
-        "title": "注意事項 - 架空のプロジェクト",
-        "content": "<strong>EcoDeli</strong>は、ESGIの学生によって学年度内の学習プロジェクトとして開発された架空の教育プロジェクトです。<br><br>これは実在する企業ではなく、配送や仲介サービスも実際には提供されていません。<br><br>表示されているすべてのデータ（広告、プロフィール、ルートなど）はシミュレーションです。<br><br>このプロジェクトの目的は、ウェブ開発、UX/UI、プロジェクト管理、現代的なアプリケーションの展開における技術的スキルを示すことにあります。<br><br>既存のサービスとの類似は偶然の一致に過ぎません。"
+        "title": "免責事項 - フィクションプロジェクト",
+        "content": "<strong>EcoDeli</strong>は、ESGIの学生が学術年度の一環として開発したフィクションの教育プロジェクトです。<br><br>これは実在の企業ではなく、実際の配達サービスや仲介サービスは提供されません。<br><br>表示されているすべてのデータ（広告、プロフィール、トリップなど）はシミュレートされています。<br><br>このプロジェクトの目的は、ウェブ開発、UX/UI、プロジェクト管理、モダンアプリケーションのデプロイメントに関する技術的なスキルを示すことです。<br><br>既存のサービスとの類似性は偶然の一致です。"
       }
     }
   },
-  "clients": {
+  "app": {
     "global": {
-      "header": {
-        "menu": {
-          "discover": "発見する",
-          "conversations": "私の会話",
-          "ads": "私の広告",
-          "account": "私のアカウント"
-        }
+      "menu": {
+        "title": "マイアカウント",
+        "account_link": "マイアカウント",
+        "profile_link": "マイプロフィール",
+        "logout_link": "ログアウト"
       }
+    },
+    "clients": {
+      "account":{
+        "my_account": {
+          "title":"マイクライアントアカウント",
+          "my_sub":"マイサブスクリプション",
+          "sub_status_premium":"プレミアム",
+          "sub_status_basic":"ベーシック",
+          "sub_status_pro":"プロ",
+          "manage":"管理",
+          "manage_global_account":"グローバルアカウントを管理",
+          "manage_addresses":"住所を管理"
+                 },
+        "my_electronic_wallet": {
+          "title":"マイ電子ウォレット",
+          "amount_available":"利用可能な金額",
+          "amount_pending":"保留中の金額",
+          "to_validate":"検証",
+          "iban":"私のIBAN",
+        "transfer_bank_account":"銀行口座に振り込む"
+      },
+      "addresses": {
+    "title": "私の住所",
+    "name": "名前",
+    "address": "住所",
+    "postal_code": "郵便番号",
+    "city": "市区町村",
+    "country": "国",
+    "modify": "編集",
+    "delete_address": "削除",
+    "add_address": "住所を追加"
+    }
+  },
+  "addresses": {
+    "title": "私の住所",
+    "name": "名前",
+    "address": "住所",
+    "postal_code": "郵便番号",
+    "city": "市区町村",
+    "country": "国",
+    "modify": "編集",
+    "delete_address": "削除",
+    "add_address": "住所を追加"
+  },
+   "ads": {
+  "title": "私の投稿",
+  "modify": "編集",
+  "cancel": "キャンセル",
+  "details": "詳細",
+  "add_new_adds": "新しい投稿を追加"
+},
+
+   "discover": {
+  "all_services": "すべてのサービス",
+  "taxi": "タクシー",
+  "gardening": "ガーデニング",
+  "childcare": "子どもの世話",
+  "professional_service_provider": "プロのサービス提供者",
+  "contact": "連絡する",
+  "details": "詳細"
+},
+
+    "new-ads": {
+  "main_title": "新しい投稿",
+  "delivery_announcement": "配達の案内",
+  "title": "タイトル",
+  "address": "住所",
+  "picture": "写真",
+  "add_picture": "追加",
+  "desired_delivery_date": "希望配達日",
+  "package_size": "荷物のサイズ",
+  "total_price_offer": "合計提示価格",
+  "departure": "出発地",
+  "add_a_step": "ステップを追加",
+  "cancel": "キャンセル",
+  "arrival": "到着地"
+}
+
+
+ 
+
+},
+"delevery": {
+
+    },
+    "providers": {
+
+    },
+    "traders": {
+
     }
   },
   "auth": {
@@ -179,7 +267,7 @@
       "password_placeholder": "パスワード",
       "button": "ログイン",
       "forgot_password_link": "パスワードをお忘れですか？",
-      "register_link": "登録する"
+      "register_link": "登録"
     },
     "register": {
       "title": "登録",
@@ -188,39 +276,68 @@
       "email_placeholder": "メールアドレス",
       "password_placeholder": "パスワード",
       "button": "登録",
-      "login_link": "ログインする"
+      "login_link": "ログイン"
     },
     "forgot_password": {
-      "title": "パスワードを忘れた",
+      "title": "パスワードをお忘れですか？",
       "email_placeholder": "メールアドレス",
-      "button": "メール送信",
-      "login_link": "ログイン画面に戻る"
+      "button": "メールを送信",
+      "login_link": "ログインに戻る"
     },
-    "profile_choice": {
-      "title": "こんにちは {name} さん！",
+    "space": {
+      "title": "こんにちは、{name}さん！",
       "options": {
         "client_link": "クライアントスペース",
-        "delivery_link": "配送員スペース",
+        "delivery_link": "配達員スペース",
         "merchant_link": "商人スペース",
-        "service_provider_link": "サービス提供者スペース"
+        "service_provider_link": "サービスプロバイダースペース",
+        "account_link": "マイアカウント"
       },
       "logout": "ログアウト"
     },
+    "space_validation": {
+      "clients": {
+        "title": "クライアントになる",
+        "subtitle": "Ecodeliの動作を理解するためにチュートリアルを視聴してください！",
+        "button": "クライアントになる",
+        "rejected": "前回の申請は却下されました。再度申請してください。",
+        "not_found": "クライアントプロフィールがありません。"
+      },
+      "delivery-persons": {
+        "title": "配達員になる",
+        "subtitle": "Ecodeliの配達員になるための応募書類を提出してください！",
+        "button": "申請を送信",
+        "rejected": "前回の申請は却下されました。再度申請してください。",
+        "not_found": "配達員プロフィールがありません。"
+      },
+      "traders": {
+        "title": "商人になる",
+        "subtitle": "Ecodeliで商人になるための応募書類を提出してください！",
+        "button": "申請を送信",
+        "rejected": "前回の申請は却下されました。再度申請してください。",
+        "not_found": "商人プロフィールがありません。"
+      },
+      "pending": {
+        "title": "申請が受け付けられました！",
+        "subtitle": "チームが申請を検討中です。72時間以内に回答いたします。",
+        "back_link": "戻る"
+      }
+    },
     "account": {
-      "title": "私のアカウント",
+      "title": "マイアカウント",
       "profile": {
         "first_name_placeholder": "名",
         "last_name_placeholder": "姓",
         "email_placeholder": "メールアドレス",
-        "save_button": "保存する"
+        "save_button": "保存"
       },
       "password": {
         "old_password_placeholder": "現在のパスワード",
         "new_password_placeholder": "新しいパスワード",
-        "save_button": "保存する"
+        "save_button": "保存"
       },
       "actions": {
-        "delete_account": "アカウントを削除する",
+        "delete_account": "アカウントを削除",
         "personal_info": "個人情報",
         "return_to_app_link": "アプリに戻る"
       }
@@ -235,27 +352,40 @@
     }
   },
   "api_responses": {
-    "errors": {
-      "auth": {
-        "bad_request": "一部のフィールドが無効です ❌",
-        "invalid_credentials": "無効な認証情報です ❌",
-        "failed_to_send_email": "メール送信に失敗しました ❌",
-        "invalid_token": "無効または期限切れのトークンです ❌",
-        "password_reset_successful": "パスワードが正常にリセットされました ✅",
-        "password_reset_failed": "パスワードのリセットに失敗しました ❌"
+    "auth": {
+      "account": {
+        "user_already_exists": "このメールアドレスのユーザーは既に存在します",
+        "account_updated": "アカウントが正常に更新されました。",
+        "password_updated": "パスワードが正常に更新されました。",
+        "incorrect_new_password": "パスワードは、少なくとも8文字で、小文字、大文字、数字を含む必要があります。",
+        "incorrect_old_password": "現在のパスワードが正しくありません。"
+      },
+      "login": {
+        "login_successful": "ログインに成功しました",
+        "invalid_credentials": "無効な資格情報",
+        "account_inactive": "アカウントが非アクティブです。サポートにお問い合わせください。"
+      },
+      "register": {
+        "register_successful": "登録が成功しました",
+        "user_already_exists": "このメールアドレスのユーザーは既に存在します",
+        "bad_request": "すべてのフィールドは必須です。パスワードは、少なくとも8文字で、小文字、大文字、数字を含む必要があります。"
+      },
+      "forgot_password": {
+        "email_sent": "リセットメールが正常に送信されました。",
+        "account_not_found": "アカウントが見つかりません。"
+      },
+      "reset_password": {
+        "password_updated": "パスワードが正常に更新されました。",
+        "invalid_token": "無効なトークンです。リセット手続きを再度実行してください。"
+      },
+      "global": {
+        "already_logged_in": "既にログインしています。",
+        "logged_out": "正常にログアウトしました",
+        "session_expired": "セッションが期限切れです。再度ログインしてください。",
+        "unknown_error": "不明なエラーが発生しました。後で再試行してください。",
+        "fields_missing_invalid": "フィールドが不足しているか無効です。",
+        "user_not_found": "ユーザーが見つかりません。"
       }
-    },
-    "success": {
-      "auth": {
-        "login_successful": "ログイン成功 ✅",
-        "already_logged_in": "すでにログインしています ✅",
-        "register_successful": "登録成功 ✅",
-        "profile_updated": "プロフィールが正常に更新されました ✅"
-      }
-    },
-    "general": {
-      "loading": "読み込み中...",
-      "error_occurred": "エラーが発生しました。再試行してください。"
     }
   }
 }

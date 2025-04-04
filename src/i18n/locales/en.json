@@ -2,89 +2,89 @@
   "landing": {
     "global": {
       "header": {
-        "top_notice": "EcoDeli offers you eco-friendly and solidarity-based delivery. Look for deliveries near you!",
+        "top_notice": "EcoDeli offers eco-friendly and community-based delivery. Find deliveries near you!",
         "menu": {
           "register": "Sign up",
           "login": "Log in"
         }
       },
       "footer": {
-        "title": "Eco-friendly, practical, and solidarity-based delivery.",
-        "cta_button": "See the listings",
+        "title": "Eco-friendly, practical, and community-based delivery.",
+        "cta_button": "View listings",
         "company_info": {
           "address": "110 Rue de Flandre",
           "postal_code": "75019 Paris"
         },
         "menu": {
-          "private_space": "Private space",
+          "private_space": "Personal space",
           "business_space": "Business space",
           "legal_mentions": "Legal notices",
-          "admin": "Admin"
+          "admin": "Administration"
         }
       },
       "errors": {
         "400": {
-          "message": "Oops! Something went wrong with your request. Would you like help sticking the label back on?",
-          "action_label": "Go back to home",
+          "message": "Oops! Something's wrong with your request. Need help fixing the label?",
+          "action_label": "Return to homepage",
           "action_href": "/"
         },
         "401": {
-          "message": "You need to be logged in to continue. No ride without a driver 😉",
+          "message": "You must be logged in to continue. No ride without a driver 😉",
           "action_label": "Log in",
           "action_href": "/login"
         },
         "403": {
-          "message": "This route is reserved. You don't have access to deliver here yet.",
-          "action_label": "Back",
+          "message": "This route is restricted. You don't have access to deliver here yet.",
+          "action_label": "Go back",
           "action_href": "/"
         },
         "404": {
           "message": "Page not found. The package might have taken a shortcut… or the wrong direction.",
-          "action_label": "Back to home",
+          "action_label": "Return to homepage",
           "action_href": "/"
         },
         "408": {
-          "message": "Too long to load. The platform was waiting, but time flew like a cargo bike!",
+          "message": "Loading took too long. The platform waited, but time flew by like a cargo bike!",
           "action_label": "Try again",
           "action_href": "reload"
         },
         "409": {
-          "message": "A little traffic jam: another action is already in progress. Come back in a moment.",
-          "action_label": "Go back to home",
+          "message": "A small traffic jam: another action is already in progress. Come back in a moment.",
+          "action_label": "Return to homepage",
           "action_href": "/"
         },
         "410": {
-          "message": "This content has left the warehouse. It is no longer available for delivery.",
-          "action_label": "See the listings",
+          "message": "This content has left the warehouse. It's no longer available for delivery.",
+          "action_label": "View listings",
           "action_href": "/"
         },
         "418": {
-          "message": "I am a teapot. And I can't deliver packages ☕",
-          "action_label": "Back to home",
+          "message": "I'm a teapot. And I can't deliver packages ☕",
+          "action_label": "Return to homepage",
           "action_href": "/"
         },
         "429": {
-          "message": "You are going a bit too fast! Let us breathe between trips.",
+          "message": "You're going a bit too fast! Let us catch our breath between trips.",
           "action_label": "Wait and try again",
           "action_href": "reload"
         },
         "500": {
-          "message": "Something went wrong. Our technical couriers are on it.",
-          "action_label": "Back to home",
+          "message": "Something went wrong. Our technical team is on it.",
+          "action_label": "Return to homepage",
           "action_href": "/"
         },
         "502": {
-          "message": "The communication relay is cut off. The connection with the server failed.",
+          "message": "The communication relay is down. The connection with the server failed.",
           "action_label": "Try again",
           "action_href": "reload"
         },
         "503": {
-          "message": "Eco-friendly break... The service will be back very soon!",
-          "action_label": "Back to home",
+          "message": "Eco-friendly break… Service will be back soon!",
+          "action_label": "Return to homepage",
           "action_href": "/"
         },
         "504": {
-          "message": "Response time exceeded. Even the fastest can have a moment of fatigue.",
+          "message": "Response time exceeded. Even the fastest can run out of steam.",
           "action_label": "Try again",
           "action_href": "reload"
         }
@@ -93,27 +93,27 @@
     "index": {
       "hero_section": {
         "title": "Eco-friendly delivery, within everyone's reach.",
-        "subtitle": "EcoDeli is a crowdshipping platform that connects individuals with eco-friendly and solidarity-based deliveries. By sharing their trips, users can ship or transport parcels at a lower cost while reducing their carbon footprint and promoting social connections.",
-        "cta_button": "See the listings"
+        "subtitle": "EcoDeli is a ride-sharing platform that connects individuals with eco-friendly and community-based deliveries. By sharing their trips, users can send or transport packages at a lower cost while reducing their carbon footprint and fostering social connections.",
+        "cta_button": "View listings"
       },
       "features_section": {
         "title": "Together, let's deliver greener.",
         "features": {
           "collaborative_delivery": {
-            "title": "Collaborative parcel delivery",
-            "description": "We help reduce carbon footprints by promoting collaborative transportation of goods. EcoDeli facilitates the connection between senders and transporters for a greener service."
+            "title": "Collaborative package delivery",
+            "description": "We help reduce carbon emissions by promoting collaborative transport of goods. EcoDeli facilitates connections between senders and carriers for a greener service."
           },
           "personal_services": {
             "title": "Personal services",
-            "description": "Find reliable people for local tasks: one-off deliveries, errands, daily trips. The future of transportation relies on local cooperation, which is more economical, more human, and ethical."
+            "description": "Find reliable people for local tasks: occasional deliveries, errands, daily commutes. The future of transport relies on local mutual aid—more economical, humane, and ethical."
           },
           "product_repatriation": {
             "title": "Purchases and product repatriation",
-            "description": "Buy or retrieve items and groceries locally, without constraint, by traveling smarter."
+            "description": "Buy or pick up items and groceries locally, hassle-free, while traveling smarter."
           },
           "chariot_rental": {
-            "title": "Cart rental",
-            "description": "EcoDeli promotes the useful and flexible exchange of carts between individuals, made available in key areas."
+            "title": "Cart sharing",
+            "description": "EcoDeli encourages useful and flexible cart exchanges between individuals, made available in key areas."
           }
         }
       },
@@ -122,54 +122,127 @@
         "questions": {
           "what_is_ecodeli": {
             "question": "What is EcoDeli and how does it work?",
-            "answer": "EcoDeli is a crowdshipping platform that connects shippers with travelers or drivers willing to transport their parcels on pre-planned trips, thus reducing ecological impact. Users post a listing, track the parcel in real-time, and benefit from secure delivery with the insurance provided by EcoDeli."
+            "answer": "EcoDeli is a crowdshipping platform that connects senders with travelers or drivers willing to transport their packages during planned trips, reducing environmental impact. Users post a listing, track the package in real-time, and benefit from secure delivery thanks to the insurance offered by EcoDeli."
           },
           "become_delivery_person": {
             "question": "How can I become a delivery person on EcoDeli?",
-            "answer": "To become a delivery person, simply create an account on EcoDeli, then browse available listings near you. Once you select a listing, you can offer your trip and arrange the details with the sender. It's easy, quick, and commitment-free."
+            "answer": "To become a delivery person, simply create an account on EcoDeli, then browse available listings near you. Once you select a listing, you can propose your trip and agree on terms with the sender. It's simple, quick, and commitment-free."
           },
           "delivery_security": {
             "question": "Are deliveries secure and insured?",
-            "answer": "Yes, EcoDeli implements several measures to ensure delivery security. Profiles are verified, exchanges are secured via the platform, and we encourage users to leave reviews to strengthen trust. Insurance can also be offered for certain parcels depending on their value."
+            "answer": "Yes, EcoDeli implements several measures to ensure delivery security. Profiles are verified, exchanges are secured via the platform, and we encourage users to leave reviews to build trust. Insurance may also be offered for certain packages based on their value."
           }
         }
       }
     },
     "legal_mentions": {
       "title": "Legal notices",
-      "intro": "In accordance with applicable legal provisions, you will find below the information regarding the site's publisher, privacy policy, terms and conditions, and an important note about the fictitious nature of the project.",
+      "intro": "In accordance with applicable legal provisions, you will find below information about the site's publisher, privacy policy, terms and conditions, as well as an important note about the fictional nature of the project.",
       "legal_notice": {
         "title": "Legal notices",
-        "content": "This site is published by an individual as part of an academic project at ESGI (École Supérieure de Génie Informatique).<br><br><strong>Publisher identity:</strong><br>Names: Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Address: 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email: ecodeli.fr@gmail.com<br>Phone: not disclosed<br><br><strong>Intellectual property:</strong><br>The images, illustrations, and photographs used on this site are either royalty-free or used with permission. Their intellectual property is respected and indicated when necessary.<br>The texts were written by the project team. Any external quotes are attributed to their author or original source.<br><br><strong>Hosting:</strong><br>Host name: Guillaume CONSTANTY<br>Legal entity: individual<br>Address: Avon, France<br>Phone: not disclosed"
+        "content": "This site is published by an individual as part of an academic project at ESGI (École Supérieure de Génie Informatique).<br><br><strong>Publisher's identity:</strong><br>Names: Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Address: 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email: ecodeli.fr@gmail.com<br>Phone: not provided<br><br><strong>Intellectual property:</strong><br>The images, illustrations, and photographs used on this site are either royalty-free or used with permission. Their intellectual property is respected and credited when necessary.<br>The written texts come from the project team. Any external quote is attributed to its author or original source.<br><br><strong>Hosting:</strong><br>Host name: Guillaume CONSTANTY<br>Legal entity: individual<br>Address: Avon, France<br>Phone: not provided"
       },
       "privacy_policy": {
         "title": "Privacy policy and cookies",
-        "content": "EcoDeli cares deeply about the protection of your privacy.<br><br>No personal data is collected without your consent. The site uses Matomo, a privacy-respecting analytics tool, configured without cookies and without collecting personally identifiable data.<br><br><strong>Technologies used on this site:</strong><br><ul><li>Svelte: frontend framework</li><li>TailwindCSS and DaisyUI: interface libraries</li><li>FontShare: royalty-free fonts</li></ul><br>No data is shared with third parties, and no advertisements are displayed.<br><br>You may request the deletion of any data about you by contacting the project team."
+        "content": "EcoDeli places great importance on protecting your privacy.<br><br>No personal data is collected without your consent. The site uses Matomo, a privacy-respecting audience measurement tool, configured without cookies and without collecting identifiable personal data.<br><br><strong>Technologies used on this site:</strong><br><ul><li>Svelte: frontend framework</li><li>TailwindCSS and DaisyUI: interface libraries</li><li>FontShare: royalty-free fonts</li></ul><br>No data is shared with third parties, and no advertising is displayed.<br><br>You can request the deletion of any data concerning you by contacting the project team."
       },
       "terms_of_use": {
-        "title": "Terms of Use (TOU)",
-        "content": "Access and use of the EcoDeli site are strictly reserved for personal use in the context of the project's consultation. Any use for commercial or professional purposes is prohibited.<br><br>The user agrees to use the site in compliance with the applicable French law.<br><br>Since the site is fictitious, some features may be inoperative or simulated for educational purposes.<br><br>The authors disclaim any responsibility for the use of the information presented on this site."
+        "title": "Terms of Use (ToU)",
+        "content": "Access to and use of the <strong>EcoDeli</strong> site are strictly reserved for personal use, within the scope of consulting the project. Any commercial or professional use is prohibited.<br><br>The user agrees to use the site in compliance with current French legislation.<br><br>As the site is fictional, some features may be non-functional or simulated for educational purposes.<br><br>The authors disclaim any responsibility for the use of the information presented on this site."
       },
       "terms_of_sale": {
-        "title": "Terms of Sale (TOS)",
-        "content": "No actual sales are conducted on this platform.<br><br>The <strong>Terms of Sale</strong> are provided solely for illustrative purposes within the framework of the simulation project.<br><br>No payment, product, or service will be actually delivered via EcoDeli.<br><br>Any reference to a transaction, price, or order is fictitious and without contractual effect.<br><br>The user is informed that the site does not offer any commercial services."
+        "title": "General Terms of Sale (GTS)",
+        "content": "No actual sales are conducted on this platform.<br><br>The <strong>General Terms of Sale</strong> are present solely for illustrative purposes as part of the simulation project.<br><br>No payment, product, or service will actually be delivered via EcoDeli.<br><br>Any reference to a transaction, price, or order is fictional and has no contractual effect.<br><br>The user is informed that the site does not offer any commercial services."
       },
       "disclaimer": {
-        "title": "Disclaimer - Fictitious project",
-        "content": "<strong>EcoDeli</strong> is a fictitious academic project developed by students from ESGI as part of their academic year.<br><br>This is not a real company, and no actual delivery or intermediary services are offered.<br><br>All displayed data (listings, profiles, trips, etc.) is simulated.<br><br>The purpose of this project is to demonstrate technical skills in web development, UX/UI, project management, and deployment of modern applications.<br><br>Any resemblance to existing services is purely coincidental."
+        "title": "Disclaimer - Fictional project",
+        "content": "<strong>EcoDeli</strong> is a fictional educational project developed by ESGI students as part of their academic year.<br><br>This is not a real company, and no delivery or intermediation services are actually offered.<br><br>All displayed data (listings, profiles, trips, etc.) are simulated.<br><br>The goal of this project is to demonstrate technical skills in web development, UX/UI, project management, and deployment of modern applications.<br><br>Any resemblance to existing services is purely coincidental."
       }
     }
   },
-  "clients": {
+  "app": {
     "global": {
-      "header": {
-        "menu": {
-          "discover": "Discover",
-          "conversations": "My conversations",
-          "ads": "My listings",
-          "account": "My account"
-        }
+      "menu": {
+        "title": "My account",
+        "account_link": "My account",
+        "profile_link": "My profile",
+        "logout_link": "Logout"
       }
+    },
+    "clients": {
+      "account":{
+        "my_account": {
+          "title":"My client account",
+          "my_sub":"My subscription",
+          "sub_status_premium":"Premium",
+          "sub_status_basic":"Basic",
+          "sub_status_pro":"Pro",
+          "manage":"Manage",
+          "manage_global_account":"Manage my global account",
+          "manage_addresses":"Manage my addresses"
+                 },
+        "my_electronic_wallet": {
+          "title":"My electronic wallet",
+          "amount_available":"Available amount",
+          "amount_pending":"Pending amount",
+          "to_validate":"Validate",
+          "iban":"My IBAN",
+          "transfer_bank_account":"Transfer to my bank account" 
+        }
+      },
+        "addresses": {
+      "title": "My addresses",
+      "name": "Name",
+      "address": "Address",
+      "postal_code": "Postal Code",
+      "city": "City",
+      "country": "Country",
+      "modify": "Edit",
+      "delete_address": "Delete",
+      "add_address": "Add an address"
+  },
+  "ads": {
+  "title": "My listings",
+  "modify": "Edit",
+  "cancel": "Cancel",
+  "details": "Details",
+  "add_new_adds": "Add a new listing"
+},
+  "discover": {
+    "all_services": "All services",
+    "taxi": "Taxi",
+    "gardening": "Gardening",
+    "childcare": "Childcare",
+    "professional_service_provider": "Professional Service Provider",
+    "contact": "Contact",
+    "details": "Details"
+  },
+  "new-ads": {
+  "main_title": "New listing",
+  "delivery_announcement": "Delivery announcement",
+  "title": "Title",
+  "address": "Address",
+  "picture": "Photo",
+  "add_picture": "Add",
+  "desired_delivery_date": "Desired delivery date",
+  "package_size": "Package size",
+  "total_price_offer": "Total price offer",
+  "departure": "Departure",
+  "add_a_step": "Add a step",
+  "cancel": "Cancel",
+  "arrival": "Arrival"
+  
+
+  }
+    },
+    "delevery": {
+
+    },
+    "providers": {
+
+    },
+    "traders": {
+      
     }
   },
   "auth": {
@@ -177,7 +250,7 @@
       "title": "Log in",
       "email_placeholder": "Email address",
       "password_placeholder": "Password",
-      "button": "Log in",
+      "button": "Login",
       "forgot_password_link": "Forgot password?",
       "register_link": "Sign up"
     },
@@ -187,24 +260,53 @@
       "last_name_placeholder": "Last name",
       "email_placeholder": "Email address",
       "password_placeholder": "Password",
-      "button": "Sign up",
+      "button": "Register",
       "login_link": "Log in"
     },
     "forgot_password": {
       "title": "Forgot password",
       "email_placeholder": "Email address",
       "button": "Send email",
-      "login_link": "Back to log in"
+      "login_link": "Back to login"
     },
-    "profile_choice": {
+    "space": {
       "title": "Hello {name}!",
       "options": {
         "client_link": "Client space",
         "delivery_link": "Delivery space",
         "merchant_link": "Merchant space",
-        "service_provider_link": "Service provider space"
+        "service_provider_link": "Service provider space",
+        "account_link": "My account"
       },
-      "logout": "Log out"
+      "logout": "Logout"
+    },
+    "space_validation": {
+      "clients": {
+        "title": "Become a client",
+        "subtitle": "Watch the tutorial to discover how EcoDeli works!",
+        "button": "Become a client",
+        "rejected": "Your previous request was rejected; you must submit a new one.",
+        "not_found": "You don't have a client profile."
+      },
+      "delivery-persons": {
+        "title": "Become a delivery person",
+        "subtitle": "Submit your application to become an EcoDeli delivery person!",
+        "button": "Send request",
+        "rejected": "Your previous request was rejected; you must submit a new one.",
+        "not_found": "You don't have a delivery profile."
+      },
+      "traders": {
+        "title": "Become a merchant",
+        "subtitle": "Submit your application to become a merchant on EcoDeli!",
+        "button": "Send request",
+        "rejected": "Your previous request was rejected; you must submit a new one.",
+        "not_found": "You don't have a merchant profile."
+      },
+      "pending": {
+        "title": "Your request has been received!",
+        "subtitle": "Our team is reviewing your request; you'll receive a response within 72 hours.",
+        "back_link": "Back"
+      }
     },
     "account": {
       "title": "My account",
@@ -222,39 +324,53 @@
       "actions": {
         "delete_account": "Delete my account",
         "personal_info": "My personal information",
-        "return_to_app_link": "Return to app"
+        "return_to_app_link": "Back to the app"
       }
     },
     "admin_login": {
       "title": "Admin Panel",
       "email_placeholder": "Email address",
       "password_placeholder": "Password",
-      "button": "Log in",
+      "button": "Login",
       "forgot_password_link": "Forgot password?",
-      "login_link": "Back to log in page"
+      "login_link": "Back to login page"
     }
   },
   "api_responses": {
-    "errors": {
-      "auth": {
-        "bad_request": "Some fields are invalid ❌",
-        "invalid_credentials": "Invalid credentials ❌",
-        "failed_to_send_email": "Failed to send the email ❌",
-        "invalid_token": "Invalid or expired token ❌",
-        "password_reset_successful": "Password reset successful ✅",
-        "password_reset_failed": "Password reset failed ❌"
+    "auth": {
+      "account": {
+        "user_already_exists": "A user with this email already exists",
+        "account_updated": "Account updated successfully.",
+        "password_updated": "Password updated successfully.",
+        "incorrect_new_password": "The password must be at least 8 characters long, including a lowercase letter, an uppercase letter, and a number.",
+        "incorrect_old_password": "Incorrect old password."
+      },
+      "login": {
+        "login_successful": "You have been successfully logged in",
+        "invalid_credentials": "Invalid credentials",
+        "account_inactive": "Your account is inactive. Please contact support."
+      },
+      "register": {
+        "register_successful": "You have been successfully registered",
+        "user_already_exists": "A user with this email already exists",
+        "bad_request": "All fields are required. The password must be at least 8 characters long, including a lowercase letter, an uppercase letter, and a number."
+      },
+      "forgot_password": {
+        "email_sent": "The reset email has been sent successfully.",
+        "account_not_found": "Account not found."
+      },
+      "reset_password": {
+        "password_updated": "Password updated successfully.",
+        "invalid_token": "Invalid token. Please restart the reset procedure."
+      },
+      "global": {
+        "already_logged_in": "You are already logged in.",
+        "logged_out": "You have been successfully logged out",
+        "session_expired": "Your session has expired. Please log in again.",
+        "unknown_error": "An unknown error occurred. Please try again later.",
+        "fields_missing_invalid": "Missing or invalid fields.",
+        "user_not_found": "User not found."
       }
-    },
-    "success": {
-      "auth": {
-        "login_successful": "Login successful ✅",
-        "register_successful": "Registration successful ✅",
-        "profile_updated": "Profile updated successfully ✅"
-      }
-    },
-    "general": {
-      "loading": "Loading...",
-      "error_occurred": "An error occurred. Please try again."
     }
   }
 }
