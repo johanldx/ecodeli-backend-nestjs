@@ -170,8 +170,77 @@
       }
     },
     "clients": {
-      
+      "account":{
+        "my_account": {
+          "title":"Mon compte client",
+          "my_sub":"Mon abonnement",
+          "sub_status_premium":"Premium",
+          "sub_status_basic":"Basic",
+          "sub_status_pro":"Pro",
+          "manage":"Gérer",
+          "manage_global_account":"Gérer mon compte global",
+          "manage_addresses":"Gérer mes adresses"
+                 },
+        "my_electronic_wallet": {
+          "title":"Mon portefeuille électronique",
+          "amount_available":"Montant disponible",
+          "amount_pending":"Montant en attente",
+          "to_validate":"Valider",
+          "iban":"Mon IBAN",
+          "transfer_bank_account":"Transférer vers mon compte bancaire" 
+        }
+      },
+      "addresses":{
+        "title":"Mes adresses",
+        "name":"Nom",
+        "address":"Adresse",
+        "postal_code":"Code postal",
+        "city":"Ville",
+        "country":"Pays",
+        "modify":"Modifier",
+        "delete_address":"Supprimer",
+        "add_address":"Ajouter une adresse"
+
+      },
+      "ads":{
+      "title":"Mes annonces",
+      "modify":"Modifier",
+      "cancel":"Annuler",
+      "details":"Détails",
+      "add_new_ads":"Ajouter une nouvelle annonce"
     },
+    "discover":{
+      "all_services":"Tous les services",
+      "taxi":"Taxi",
+      "gardening":"Jardinage",
+      "childcare":"Garde d'enfants",
+      "professional_service_provider":"Prestataire Pro",
+      "contact":"Contacter",
+      "details":"Détails",
+      "city":"Ville"
+
+    },
+    "new-ads":{
+      "main_title":"Nouvelle annonce",
+      "delivery_announcement":"Annonce de livraison",
+      "title":"Titre",
+      "address":"Adresse",
+      "picture":"Photo",
+      "add_picture":"Ajouter",
+      "desired_delivery_date":"Date de livraison souhaitée",
+      "package_size":"Taille du colis",
+      "total_price_offer":"Prix total proposé",
+      "departure":"Départ",
+      "add_a_step":"Ajouter une étape",
+      "cancel":"Annuler",
+      "arrival":"Arrivée"
+      
+
+
+
+    }
+    },
+    
     "delevery": {
 
     },
