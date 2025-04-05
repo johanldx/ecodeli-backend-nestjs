@@ -237,13 +237,160 @@
 
 
     },
-    "delevery": {
+    "delivery": {
+      "account": {
+        "title": "حسابي كمُسلم",
+        "manage_supporting_documents": "إدارة المستندات الداعمة",
+        "manage_global_account": "إدارة الحساب العام",
+        "manage_addresses": "إدارة العناوين"
+      },
+      "my_electronic_wallet": {
+        "title": "محفظتي الإلكترونية",
+        "amount_available": "المبلغ المتاح",
+        "amount_pending": "المبلغ قيد الانتظار",
+        "to_validate": "تحقق",
+        "iban": "رقم IBAN الخاص بي",
+        "transfer_bank_account": "التحويل إلى حسابي البنكي"
+      },
+      "notification": {
+        "delivery_notification": "إشعارات تطابق التسليم عبر البريد الإلكتروني",
+        "confirmation": "تأكيد"
+      },
+      "addresses": {
+        "title": "عناويني",
+        "name": "الاسم",
+        "address": "العنوان",
+        "postal_code": "الرمز البريدي",
+        "city": "المدينة",
+        "country": "البلد",
+        "modify": "تعديل",
+        "delete_address": "حذف",
+        "add_address": "إضافة عنوان"
+      },
+      "announce": {
+    "all_services": "جميع الخدمات",
+    "transport": "النقل",
+    "delivery": "التوصيل",
+    "city": "المدينة",
+    "individual": "فرد",
+    "contact": "اتصل",
+    "details": "تفاصيل"
+  },
+  "my_planned_trips": {
+    "title": "رحلاتي المخطط لها",
+    "departure": "مدينة الانطلاق",
+    "arrival": "مدينة الوصول",
+    "date": "اليوم",
+    "modify": "تعديل",
+    "cancel": "إلغاء"
+  }
 
     },
     "providers": {
+      "account": {
+    "title": "حسابي التجاري",
+    "manage_my_documents": "إدارة مستنداتي الداعمة",
+    "manage_global_account": "إدارة حسابي العام",
+    "manage_addresses": "إدارة عناويني",
+    "manage_my_profil": "إدارة ملفي الشخصي"
+  },
+  "income": {
+    "title": "إيراداتي الشهرية",
+    "amount_raised_month": "المبلغ الذي تم جمعه هذا الشهر",
+    "iban": "رقم الآيبان الخاص بي",
+    "valid": "تأكيد"
+  },
+  "service": {
+    "title": "خدماتي المعتمدة",
+    "transport": "نقل الركاب",
+    "gardening": "البستنة",
+    "childcare": "رعاية الأطفال",
+    "request": "يمكنك الاتصال بخدمة العملاء لأي طلب",
+    "customer_service": "الاتصال بخدمة العملاء"
+  },
+  "invoice": {
+    "title": "فواتيري"
+  },
+  "addresses": {
+    "title": "عناويني",
+    "name": "الاسم",
+    "address": "العنوان",
+    "postal_code": "الرمز البريدي",
+    "city": "المدينة",
+    "country": "البلد",
+    "modify": "تعديل",
+    "delete_address": "حذف",
+    "add_address": "إضافة عنوان"
+  },
+  "my_announces": {
+    "title": "إعلاناتي",
+    "modify": "تعديل",
+    "cancel": "إلغاء",
+    "details": "التفاصيل",
+    "add_new_ads": "إضافة إعلان جديد"
+  }
 
     },
     "traders": {
+      "account": {
+    "title": "حسابي التجاري",
+    "manage_my_documents": "إدارة مستنداتي الداعمة",
+    "manage_global_account": "إدارة حسابي العام",
+    "manage_my_addresses": "إدارة عناويني"
+  },
+  "samples": {
+    "title": "خصوماتي عبر SEPA",
+    "amount_billed_month": "المبلغ المفوتر هذا الشهر",
+    "manage_samples": "إدارة الخصومات"
+  },
+  "pricing": {
+    "title": "التسعير الخاص",
+    "customer_service": "يمكنك الاتصال بخدمة العملاء لأي استفسار.",
+    "customer_contact": "الاتصال بخدمة العملاء"
+  },
+  "invoice": {
+    "title": "فواتيري"
+  },
+  "addresses": {
+    "title": "عناويني",
+    "name": "الاسم",
+    "address": "العنوان",
+    "postal_code": "الرمز البريدي",
+    "city": "المدينة",
+    "country": "البلد",
+    "modify": "تعديل",
+    "delete_address": "حذف",
+    "add_address": "إضافة عنوان"
+  },
+  "my_requests": {
+    "title": "طلباتي",
+    "modify": "تعديل",
+    "cancel": "إلغاء",
+    "details": "التفاصيل",
+    "add_new_announce": "إضافة إعلان جديد"
+  },
+  "new_request": {
+    "title": "طلب جديد",
+    "add": "إضافة",
+    "cancel": "إلغاء",
+    "announce": "إعلان التسليم"
+  },
+  "requests": {
+    "title": "العنوان",
+    "address": "العنوان",
+    "picture": "الصورة",
+    "add": "إضافة",
+    "desired_delivery_date": "تاريخ التسليم المطلوب",
+    "package_size": "حجم الطرد",
+    "total_price_offer": "السعر الإجمالي المقترح"
+  },
+  "contact": {
+    "mail": "بريد العميل الإلكتروني",
+    "departure": "المغادرة",
+    "arrival": "الوصول",
+    "first_address": "العنوان الأول",
+    "second_address": "العنوان الثاني"
+  }
       
     }
   },

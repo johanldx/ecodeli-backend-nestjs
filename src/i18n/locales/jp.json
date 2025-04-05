@@ -250,13 +250,162 @@
  
 
 },
-"delevery": {
+"delivery": {
+  "account": {
+    "title": "配達アカウント",
+    "manage_supporting_documents": "補足書類を管理する",
+    "manage_global_account": "グローバルアカウントを管理する",
+    "manage_addresses": "住所を管理する"
+  },
+  "my_electronic_wallet": {
+    "title": "電子ウォレット",
+    "amount_available": "利用可能金額",
+    "amount_pending": "保留中の金額",
+    "to_validate": "検証する",
+    "iban": "私のIBAN",
+    "transfer_bank_account": "銀行口座に送金する"
+  },
+  "notification": {
+    "delivery_notification": "メールでの配送一致通知",
+    "confirmation": "確認"
+  },
+  "addresses": {
+    "title": "私の住所",
+    "name": "名前",
+    "address": "住所",
+    "postal_code": "郵便番号",
+    "city": "市区町村",
+    "country": "国",
+    "modify": "編集",
+    "delete_address": "削除",
+    "add_address": "住所を追加"
+  },
+  "announce": {
+    "all_services": "すべてのサービス",
+    "transport": "輸送",
+    "delivery": "配達",
+    "city": "都市",
+    "individual": "個人",
+    "contact": "連絡する",
+    "details": "詳細"
+  },
+    "my_planned_trips": {
+    "title": "予定された旅程",
+    "departure": "出発都市",
+    "arrival": "到着都市",
+    "date": "日付",
+    "modify": "編集",
+    "cancel": "キャンセル"
+  }
+
+
 
     },
     "providers": {
+      "account": {
+    "title": "マーチャントアカウント",
+    "manage_my_documents": "書類を管理する",
+    "manage_global_account": "グローバルアカウントを管理する",
+    "manage_addresses": "住所を管理する",
+    "manage_my_profil": "プロフィールを管理する"
+  },
+  "income": {
+    "title": "今月の収入",
+    "amount_raised_month": "今月の収益額",
+    "iban": "私のIBAN",
+    "valid": "確認する"
+  },
+  "service": {
+    "title": "認定サービス",
+    "transport": "乗客輸送",
+    "gardening": "ガーデニング",
+    "childcare": "チャイルドケア",
+    "request": "ご不明な点はカスタマーサービスにお問い合わせください",
+    "customer_service": "カスタマーサービスに連絡する"
+  },
+  "invoice": {
+    "title": "請求書"
+  },
+  "addresses": {
+    "title": "私の住所",
+    "name": "名前",
+    "address": "住所",
+    "postal_code": "郵便番号",
+    "city": "市区町村",
+    "country": "国",
+    "modify": "編集",
+    "delete_address": "削除",
+    "add_address": "住所を追加"
+  },
+  "my_announces": {
+    "title": "私の広告",
+    "modify": "編集",
+    "cancel": "キャンセル",
+    "details": "詳細",
+    "add_new_ads": "新しい広告を追加"
+  }
 
     },
     "traders": {
+      "account": {
+    "title": "マーチャントアカウント",
+    "manage_my_documents": "書類を管理する",
+    "manage_global_account": "グローバルアカウントを管理する",
+    "manage_my_addresses": "住所を管理する"
+  },
+  "samples": {
+    "title": "SEPA引き落とし",
+    "amount_billed_month": "今月の請求額",
+    "manage_samples": "引き落としを管理する"
+  },
+  "pricing": {
+    "title": "特別料金",
+    "customer_service": "ご不明な点はカスタマーサービスにお問い合わせください。",
+    "customer_contact": "カスタマーサービスに連絡する"
+  },
+  "invoice": {
+    "title": "請求書"
+  },
+  "addresses": {
+    "title": "私の住所",
+    "name": "名前",
+    "address": "住所",
+    "postal_code": "郵便番号",
+    "city": "市区町村",
+    "country": "国",
+    "modify": "編集",
+    "delete_address": "削除",
+    "add_address": "住所を追加"
+  },
+  "my_requests": {
+    "title": "私のリクエスト",
+    "modify": "編集",
+    "cancel": "キャンセル",
+    "details": "詳細",
+    "add_new_announce": "新しい広告を追加"
+  },
+  "new_request": {
+    "title": "新しいリクエスト",
+    "add": "追加",
+    "cancel": "キャンセル",
+    "announce": "配達広告"
+  },
+  "requests": {
+    "title": "タイトル",
+    "address": "住所",
+    "picture": "写真",
+    "add": "追加",
+    "desired_delivery_date": "希望配達日",
+    "package_size": "荷物のサイズ",
+    "total_price_offer": "提案された合計金額"
+  },
+  "contact": {
+    "mail": "顧客のメールアドレス",
+    "departure": "出発",
+    "arrival": "到着",
+    "first_address": "最初の住所",
+    "second_address": "2番目の住所"
+  }
 
     }
   },

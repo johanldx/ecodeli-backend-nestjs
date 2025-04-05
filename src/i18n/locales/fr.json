@@ -241,13 +241,169 @@
     }
     },
     
-    "delevery": {
+    "delivery": {
+      "account":{
 
+         "title":"Mon compte livreur",
+         "manage_supporting_documents":"Gérer mes pièces justificatifs",
+         "manage_global_account":"Gérer mon compte global",
+         "manage_addresses":"Gérer mes adresses"
+      },
+        "my_electronic_wallet": {
+          "title":"Mon portefeuille électronique",
+          "amount_available":"Montant disponible",
+          "amount_pending":"Montant en attente",
+          "to_validate":"Valider",
+          "iban":"Mon IBAN",
+          "transfer_bank_account":"Transférer vers mon compte bancaire" 
+        },
+        "notification":{
+          "delivery_notification":"Notifications de concordance de livraison par mail",
+          "confirmation":"Confirmation"
+      },
+      "addresses":{
+        "title":"Mes adresses",
+        "name":"Nom",
+        "address":"Adresse",
+        "postal_code":"Code postal",
+        "city":"Ville",
+        "country":"Pays",
+        "modify":"Modifier",
+        "delete_address":"Supprimer",
+        "add_address":"Ajouter une adresse"
+      
     },
-    "providers": {
+      "announce":{
+        "all_services":"Tous les services",
+        "transport":"Transport",
+        "delivery":"Livraison",
+        "city":"Ville",
+        "individual":"Particulier",
+        "contact":"Contacter",
+        "details":"Détails"
 
+      },
+      "my_planned_trips":{
+        "title":"Mes trajets prévus",
+        "departure":"Ville de départ",
+        "arrival":"Ville d'arrivée",
+        "date":"Jour",
+        "modify":"Modifier",
+        "cancel":"Annuler"
+      }
+      },
+    
+    "providers": {
+      "account":{
+        "title":"Mon compte commerçant",
+        "manage_my_documents":"Gérer mes pièces justificatifs",
+        "manage_global_account":"Gérer mon compte global",
+        "manage_addresses":"Gérer mes adresses",
+        "manage_my_profil":"Gérer mon profil"
+      },
+      "income":{
+        "title":"Mes revenus du mois",
+        "amount_raised_month":"Montant récolté ce mois-ci",
+        "iban":"Mon IBAN",
+        "valid":"Valider" 
+      },
+      "service":{
+        "title":"Mes services accréditées",
+        "transport":"Transport de personnes",
+        "gardening":"Jardinage",
+        "childcare":"Garde d'enfants",
+        "request":"Vous pouvez contactez le service client pour toute demande",
+        "customer_service":"Contacter le service client"
+      },
+      "invoice":{
+        "title":"Mes Factures"
+      },
+      "addresses":{
+        "title":"Mes adresses",
+        "name":"Nom",
+        "address":"Adresse",
+        "postal_code":"Code postal",
+        "city":"Ville",
+        "country":"Pays",
+        "modify":"Modifier",
+        "delete_address":"Supprimer",
+        "add_address":"Ajouter une adresse"},
+      
+      "my_announces":{
+        "title":"Mes annonces",
+        "modify":"Modifier",
+        "cancel":"Annuler",
+        "details":"Détails",
+        "add_new_ads":"Ajouter une nouvelle annonce"
+
+      
+    }
+    
     },
     "traders": {
+      "account":{
+        "title":"Mon compte commerçant",
+        "manage_my_documents":"Gérer mes pièces justificatifs",
+        "manage_global_account":"Gérer mon compte global",
+        "manage_my_addresses":"Gérer mes adresses"
+      },
+      "samples":{
+        "title":"Mes prélèvements SEPA",
+        "amount_billed_month":"Montant facturé ce mois-ci",
+        "manage_samples":"Gérer mes prélèvements" 
+      },
+      "pricing":{
+        "title":"Tarification spéciale",
+        "customer_service":"Vous pouvez contacter le service client pour toute demande.",
+        "customer_contact":"Contacter le service client"
+
+
+      },
+      "invoice":{
+        "title":"Mes factures"
+      },
+      "addresses":{
+        "title":"Mes adresses",
+        "name":"Nom",
+        "address":"Adresse",
+        "postal_code":"Code postal",
+        "city":"Ville",
+        "country":"Pays",
+        "modify":"Modifier",
+        "delete_address":"Supprimer",
+        "add_address":"Ajouter une adresse"
+      },
+      "my_requests":{
+        "title":"Mes demandes",
+        "modify":"Modifier",
+        "cancel":"Annuler",
+        "details":"Détails",
+        "add_new_announce":"Ajouter une nouvelle annonce"
+      },
+      "new_request":{
+        "title":"Nouvelle demande",
+        "add":"Ajouter",
+        "cancel":"Annuler",
+        "announce":"Annonce de livraison"
+      },
+      "requests":{
+        "title":"Titre",
+        "address":"Adresse",
+        "picture":"Photo",
+        "add":"Ajouter",
+        "desired_delivery_date":"Date de livraison souhaitée",
+        "package_size":"Taille du colis",
+        "total_price_offer":"Prix total proposé"
+
+      },
+      "contact":{
+        "mail":"Email du client",
+        "departure":"Départ",
+        "arrival":"Arrivée",
+        "first_address":"Première adresse",
+        "second_address":"Deuxième adresse"
+      }
+        
       
     }
   },
@@ -340,9 +496,10 @@
       "button": "Connexion",
       "forgot_password_link": "Mot de passe oublié ?",
       "login_link": "Retour à la page de connexion"
-    }
-  },
-  "api_responses": {
+      }
+    },
+  
+    "api_responses": {
     "auth": {
       "account": {
         "user_already_exists": "Un utilisateur avec cet email existe déjà",

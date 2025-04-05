@@ -238,13 +238,164 @@
 
 
     },
-    "delevery": {
-
+    "delivery": {
+      "account": {
+        "title": "मेरा डिलीवरी खाता",
+        "manage_supporting_documents": "सहायक दस्तावेज़ प्रबंधित करें",
+        "manage_global_account": "वैश्विक खाता प्रबंधित करें",
+        "manage_addresses": "मेरे पते प्रबंधित करें"
+      },
+      "my_electronic_wallet": {
+        "title": "मेरा इलेक्ट्रॉनिक वॉलेट",
+        "amount_available": "उपलब्ध राशि",
+        "amount_pending": "लंबित राशि",
+        "to_validate": "सत्यापित करें",
+        "iban": "मेरा IBAN",
+        "transfer_bank_account": "मेरे बैंक खाते में स्थानांतरित करें"
+      },
+      "notification": {
+        "delivery_notification": "ईमेल द्वारा डिलीवरी मिलान सूचनाएं",
+        "confirmation": "पुष्टि"
+      },
+      "addresses": {
+        "title": "मेरे पते",
+        "name": "नाम",
+        "address": "पता",
+        "postal_code": "डाक कोड",
+        "city": "शहर",
+        "country": "देश",
+        "modify": "संपादित करें",
+        "delete_address": "हटाएं",
+        "add_address": "पता जोड़ें"
+      },
+      "announce": {
+    "all_services": "सभी सेवाएं",
+    "transport": "परिवहन",
+    "delivery": "डिलीवरी",
+    "city": "शहर",
+    "individual": "व्यक्ति",
+    "contact": "संपर्क करें",
+    "details": "विवरण"
+  },
+  "my_planned_trips": {
+    "title": "मेरी योजनाबद्ध यात्राएं",
+    "departure": "प्रस्थान शहर",
+    "arrival": "गंतव्य शहर",
+    "date": "दिन",
+    "modify": "संपादित करें",
+    "cancel": "रद्द करें"
+  }
+      
+      
+      
+    
     },
     "providers": {
+      "account": {
+    "title": "मेरा व्यापारी खाता",
+    "manage_my_documents": "मेरे दस्तावेज़ प्रबंधित करें",
+    "manage_global_account": "मेरा वैश्विक खाता प्रबंधित करें",
+    "manage_addresses": "मेरे पते प्रबंधित करें",
+    "manage_my_profil": "मेरी प्रोफ़ाइल प्रबंधित करें"
+  },
+  "income": {
+    "title": "मेरी मासिक आय",
+    "amount_raised_month": "इस महीने एकत्र की गई राशि",
+    "iban": "मेरा IBAN",
+    "valid": "सत्यापित करें"
+  },
+  "service": {
+    "title": "मेरी मान्यता प्राप्त सेवाएँ",
+    "transport": "यात्री परिवहन",
+    "gardening": "बागवानी",
+    "childcare": "बच्चों की देखभाल",
+    "request": "किसी भी अनुरोध के लिए आप ग्राहक सेवा से संपर्क कर सकते हैं",
+    "customer_service": "ग्राहक सेवा से संपर्क करें"
+  },
+  "invoice": {
+    "title": "मेरे चालान"
+  },
+  "addresses": {
+    "title": "मेरे पते",
+    "name": "नाम",
+    "address": "पता",
+    "postal_code": "डाक कोड",
+    "city": "शहर",
+    "country": "देश",
+    "modify": "संपादित करें",
+    "delete_address": "हटाएं",
+    "add_address": "पता जोड़ें"
+  },
+  "my_announces": {
+    "title": "मेरी घोषणाएँ",
+    "modify": "संपादित करें",
+    "cancel": "रद्द करें",
+    "details": "विवरण",
+    "add_new_ads": "नई घोषणा जोड़ें"
+  }
+      
 
     },
     "traders": {
+      "account": {
+        "title": "मेरा व्यापारी खाता",
+        "manage_my_documents": "मेरे दस्तावेज़ प्रबंधित करें",
+        "manage_global_account": "मेरा वैश्विक खाता प्रबंधित करें",
+        "manage_my_addresses": "मेरे पते प्रबंधित करें"
+      },
+      "samples": {
+        "title": "मेरे SEPA डेबिट्स",
+        "amount_billed_month": "इस महीने बिल की गई राशि",
+        "manage_samples": "मेरे डेबिट्स प्रबंधित करें"
+      },
+      "pricing": {
+        "title": "विशेष मूल्य निर्धारण",
+        "customer_service": "किसी भी अनुरोध के लिए आप ग्राहक सेवा से संपर्क कर सकते हैं।",
+        "customer_contact": "ग्राहक सेवा से संपर्क करें"
+      },
+      "invoice": {
+        "title": "मेरे चालान"
+      },
+      "addresses": {
+    "title": "मेरे पते",
+    "name": "नाम",
+    "address": "पता",
+    "postal_code": "डाक कोड",
+    "city": "शहर",
+    "country": "देश",
+    "modify": "संपादित करें",
+    "delete_address": "पता हटाएँ",
+    "add_address": "पता जोड़ें"
+  },
+  "my_requests": {
+    "title": "मेरे अनुरोध",
+    "modify": "संपादित करें",
+    "cancel": "रद्द करें",
+    "details": "विवरण",
+    "add_new_announce": "नई घोषणा जोड़ें"
+  },
+  "new_request": {
+    "title": "नया अनुरोध",
+    "add": "जोड़ें",
+    "cancel": "रद्द करें",
+    "announce": "डिलीवरी की घोषणा"
+  },
+  "requests": {
+    "title": "शीर्षक",
+    "address": "पता",
+    "picture": "फ़ोटो",
+    "add": "जोड़ें",
+    "desired_delivery_date": "वांछित डिलीवरी तिथि",
+    "package_size": "पार्सल का आकार",
+    "total_price_offer": "प्रस्तावित कुल मूल्य"
+  },
+  "contact": {
+    "mail": "ग्राहक का ईमेल",
+    "departure": "प्रस्थान",
+    "arrival": "आगमन",
+    "first_address": "पहला पता",
+    "second_address": "दूसरा पता"
+  }
       
     }
   },
