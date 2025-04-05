@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Client } from 'src/clients/client.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -35,4 +36,10 @@ export class User {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+  
+  // Relations
+
+  @OneToOne(() => Client, (client) => client.user, { onDelete: 'CASCADE' })
+  clients: Client[];
+
 }

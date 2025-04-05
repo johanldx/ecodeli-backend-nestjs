@@ -206,7 +206,7 @@ export class AuthService {
       const userWithEmail = await this.userRepository.findOne({
         where: { email: updateProfileDto.email },
       });
-      if (userWithEmail && userWithEmail.id !== userId) {
+      if (userWithEmail && userWithEmail.id !== userId && userWithEmail.email != updateProfileDto.email) {
         throw new ConflictException('Cet email est déjà pris');
       }
     }

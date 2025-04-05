@@ -13,12 +13,13 @@ export class AdminGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const user = request.user;
+    console.log(user);
 
     if (!user) {
       throw new ForbiddenException('No user in request');
     }
 
-    if (user.administrator !== true) {
+    if (user.administrator != true) {
       throw new ForbiddenException(
         'You must be an administrator to access this resource',
       );

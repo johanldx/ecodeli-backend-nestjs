@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UsersService } from './users.service';
@@ -52,7 +53,10 @@ export class UsersController {
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a user by ID' })
   @ApiResponse({ status: 204 })
+  @HttpCode(204)
   async remove(@Param('id') id: number): Promise<void> {
     return this.userService.remove(id);
   }
+
+  
 }
