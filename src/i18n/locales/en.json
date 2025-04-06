@@ -166,7 +166,15 @@
         "title": "My account",
         "account_link": "My account",
         "profile_link": "My profile",
-        "logout_link": "Logout"
+        "logout_link": "Logout",
+        "discover_link": "Discover",
+        "discussion_link": "My conversations",
+        "announces_link": "My ads",
+        "addresses_link": "My addresses",
+        "delivery_link": "My deliveries",
+        "schedule_link": "My schedule",
+        "service_link": "My services",
+        "request_link": "My requests"
       }
     },
     "clients": {
@@ -235,13 +243,180 @@
 
   }
     },
-    "delevery": {
+    "delivery": {
+      "account": {
+        "title": "My delivery account",
+        "manage_supporting_documents": "Manage supporting documents",
+        "manage_global_account": "Manage global account",
+        "manage_addresses": "Manage my addresses"
+      },
+      "my_electronic_wallet": {
+        "title": "My electronic wallet",
+        "amount_available": "Available amount",
+        "amount_pending": "Pending amount",
+        "to_validate": "Validate",
+        "iban": "My IBAN",
+        "transfer_bank_account": "Transfer to my bank account"
+      },
+      "notification": {
+        "delivery_notification": "Delivery match notifications by email",
+        "confirmation": "Confirmation"
+      },
+      "addresses": {
+        "title": "My addresses",
+        "name": "Name",
+        "address": "Address",
+        "postal_code": "Postal code",
+        "city": "City",
+        "country": "Country",
+        "modify": "Edit",
+        "delete_address": "Delete",
+        "add_address": "Add address"
+      },
+      "announce": {
+    "all_services": "All services",
+    "transport": "Transport",
+    "delivery": "Delivery",
+    "city": "City",
+    "individual": "Individual",
+    "contact": "Contact",
+    "details": "Details"
+  },
+  "my_planned_trips": {
+    "title": "My planned trips",
+    "departure": "Departure city",
+    "arrival": "Arrival city",
+    "date": "Day",
+    "modify": "Edit",
+    "cancel": "Cancel"
+  }
+    
+    
 
     },
     "providers": {
+      "account": {
+    "title": "My Merchant Account",
+    "manage_my_documents": "Manage my supporting documents",
+    "manage_global_account": "Manage my global account",
+    "manage_addresses": "Manage my addresses",
+    "manage_my_profil": "Manage my profile"
+  },
+  "income": {
+    "title": "My monthly income",
+    "amount_raised_month": "Amount raised this month",
+    "iban": "My IBAN",
+    "valid": "Validate"
+  },
+  "service": {
+    "title": "My accredited services",
+    "transport": "Passenger transport",
+    "gardening": "Gardening",
+    "childcare": "Childcare",
+    "request": "You can contact customer service for any request",
+    "customer_service": "Contact customer service"
+  },
+  "invoice": {
+    "title": "My invoices"
+  },
+  "addresses": {
+    "title": "My addresses",
+    "name": "Name",
+    "address": "Address",
+    "postal_code": "Postal code",
+    "city": "City",
+    "country": "Country",
+    "modify": "Edit",
+    "delete_address": "Delete",
+    "add_address": "Add an address"
+  },
+  "my_announces": {
+    "title": "My ads",
+    "modify": "Edit",
+    "cancel": "Cancel",
+    "details": "Details",
+    "add_new_ads": "Add a new ad"
+  },
+  "calendar": {
+    "add": "Add",
+    "time": "Time",
+    "title": "Title",
+    "cancel": "Cancel",
+    "day": "Day",
+    "place": "Location (optional)",
+    "special": "Special",
+    "title_meeting": "New appointment",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "week": "Week"
+  }
 
     },
     "traders": {
+      "account": {
+    "title": "My merchant account",
+    "manage_my_documents": "Manage my supporting documents",
+    "manage_global_account": "Manage my global account",
+    "manage_my_addresses": "Manage my addresses"
+  },
+  "samples": {
+    "title": "My SEPA debits",
+    "amount_billed_month": "Amount billed this month",
+    "manage_samples": "Manage my debits"
+  },
+  "pricing": {
+    "title": "Special pricing",
+    "customer_service": "You can contact customer service for any request.",
+    "customer_contact": "Contact customer service"
+  },
+  "invoice": {
+    "title": "My invoices"
+  },
+  "addresses": {
+    "title": "My addresses",
+    "name": "Name",
+    "address": "Address",
+    "postal_code": "Postal code",
+    "city": "City",
+    "country": "Country",
+    "modify": "Edit",
+    "delete_address": "Delete",
+    "add_address": "Add an address"
+  },
+  "my_requests": {
+    "title": "My requests",
+    "modify": "Edit",
+    "cancel": "Cancel",
+    "details": "Details",
+    "add_new_announce": "Add a new ad"
+  },
+  "new_request": {
+    "title": "New request",
+    "add": "Add",
+    "cancel": "Cancel",
+    "announce": "Delivery ad"
+  },
+  "requests": {
+    "title": "Title",
+    "address": "Address",
+    "picture": "Photo",
+    "add": "Add",
+    "desired_delivery_date": "Desired delivery date",
+    "package_size": "Package size",
+    "total_price_offer": "Total price offered"
+  },
+  "contact": {
+    "mail": "Customer's email",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "first_address": "First address",
+    "second_address": "Second address"
+  }
       
     }
   },
