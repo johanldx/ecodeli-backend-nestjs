@@ -187,10 +187,10 @@ export class DeliveryPersonsController {
   }
 
   @Delete(':id')
-  @HttpCode(200)
   @ApiOperation({ summary: 'Delete delivery person' })
   @ApiResponse({ status: 200, description: 'Delivery person deleted' })
   @UseGuards(JwtAuthGuard)
+  @HttpCode(204)
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.service.remove(id);
   }
