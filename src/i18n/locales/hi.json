@@ -166,7 +166,15 @@
         "title": "मेरा खाता",
         "account_link": "मेरा खाता",
         "profile_link": "मेरी प्रोफ़ाइल",
-        "logout_link": "लॉग आउट"
+        "logout_link": "लॉग आउट",
+        "discover_link": "खोजें",
+        "discussion_link": "मेरी बातचीत",
+        "announces_link": "मेरे विज्ञापन",
+        "addresses_link": "मेरे पते",
+        "delivery_link": "मेरी डिलिवरी",
+        "schedule_link": "मेरी योजना",
+        "service_link": "मेरी सेवाएं",
+        "request_link": "मेरी अनुरोधित सेवाएं"
       }
     },
     "clients": {
@@ -332,6 +340,24 @@
     "cancel": "रद्द करें",
     "details": "विवरण",
     "add_new_ads": "नई घोषणा जोड़ें"
+  },
+  "calendar": {
+    "add": "जोड़ें",
+    "time": "समय",
+    "title": "शीर्षक",
+    "cancel": "रद्द करें",
+    "day": "दिन",
+    "place": "स्थान (वैकल्पिक)",
+    "special": "विशेष",
+    "title_meeting": "नई मीटिंग",
+    "monday": "सोमवार",
+    "tuesday": "मंगलवार",
+    "wednesday": "बुधवार",
+    "thursday": "गुरुवार",
+    "friday": "शुक्रवार",
+    "saturday": "शनिवार",
+    "sunday": "रविवार",
+    "week": "सप्ताह"
   }
       
 

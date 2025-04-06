@@ -166,7 +166,16 @@
         "title": "Mon compte",
         "account_link": "Mon compte",
         "profile_link": "Mon profil",
-        "logout_link": "Déconnexion"
+        "logout_link": "Déconnexion",
+        "discover_link": "Découvrir",
+        "discussion_link": "Mes conversations",
+        "announces_link":"Mes annonces",
+        "addresses_link":"Mes adresses",
+        "delivery_link":"Mes livraisons",
+        "schedule_link":"Mon planning",
+        "service_link":"Mes services",
+        "request_link":"Mes demandes"
+
       }
     },
     "clients": {
@@ -337,8 +346,25 @@
         "add_new_ads":"Ajouter une nouvelle annonce"
 
       
+    },
+    "calendar":{
+      "add":"Ajouter",
+      "time":"Heure",
+      "title":"Titre",
+      "cancel":"Annuler",
+      "day":"Jour",
+      "place":"Lieu (optionnel)",
+      "special":"Spécial",
+      "title_meeting":"Nouveau rendez-vous",
+      "monday":"Lundi",
+      "tuesday":"Mardi",
+      "wednesday":"Mercredi",
+      "thursday":"Jeudi",
+      "friday":"Vendredi",
+      "saturday":"Samedi",
+      "sunday":"Dimanche",
+      "week":"Semaine"
     }
-    
     },
     "traders": {
       "account":{

@@ -166,7 +166,15 @@
         "title": "My account",
         "account_link": "My account",
         "profile_link": "My profile",
-        "logout_link": "Logout"
+        "logout_link": "Logout",
+        "discover_link": "Discover",
+        "discussion_link": "My conversations",
+        "announces_link": "My ads",
+        "addresses_link": "My addresses",
+        "delivery_link": "My deliveries",
+        "schedule_link": "My schedule",
+        "service_link": "My services",
+        "request_link": "My requests"
       }
     },
     "clients": {
@@ -328,6 +336,24 @@
     "cancel": "Cancel",
     "details": "Details",
     "add_new_ads": "Add a new ad"
+  },
+  "calendar": {
+    "add": "Add",
+    "time": "Time",
+    "title": "Title",
+    "cancel": "Cancel",
+    "day": "Day",
+    "place": "Location (optional)",
+    "special": "Special",
+    "title_meeting": "New appointment",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "week": "Week"
   }
 
     },

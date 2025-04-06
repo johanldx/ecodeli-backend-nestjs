@@ -166,7 +166,15 @@
         "title": "حسابي",
         "account_link": "حسابي",
         "profile_link": "ملفي",
-        "logout_link": "تسجيل الخروج"
+        "logout_link": "تسجيل الخروج",
+        "discover_link": "اكتشف",
+        "discussion_link": "محادثاتي",
+        "announces_link": "إعلاناتي",
+        "addresses_link": "عناويني",
+        "delivery_link": "توصيلاتي",
+        "schedule_link": "جدولي",
+        "service_link": "خدماتي",
+        "request_link": "طلباتي"
       }
     },
     "clients": {
@@ -328,6 +336,24 @@
     "cancel": "إلغاء",
     "details": "التفاصيل",
     "add_new_ads": "إضافة إعلان جديد"
+  },
+  "calendar": {
+    "add": "إضافة",
+    "time": "الوقت",
+    "title": "العنوان",
+    "cancel": "إلغاء",
+    "day": "اليوم",
+    "place": "الموقع (اختياري)",
+    "special": "خاص",
+    "title_meeting": "موعد جديد",
+    "monday": "الاثنين",
+    "tuesday": "الثلاثاء",
+    "wednesday": "الأربعاء",
+    "thursday": "الخميس",
+    "friday": "الجمعة",
+    "saturday": "السبت",
+    "sunday": "الأحد",
+    "week": "الأسبوع"
   }
 
     },
