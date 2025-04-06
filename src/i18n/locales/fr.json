@@ -1,6 +1,7 @@
 {
   "landing": {
     "global": {
+      "tab_message": "Ecodeli | Reviens, tu nous manques !",
       "header": {
         "top_notice": "EcoDeli vous offre une livraison éco-responsable et solidaire. Cherchez des livraisons près de chez vous !",
         "menu": {
@@ -91,6 +92,7 @@
       }
     },
     "index": {
+      "tab_title": "Ecodeli | La livraison éco-responsable, à portée de tous.",
       "hero_section": {
         "title": "La livraison éco-responsable, à portée de tous.",
         "subtitle": "EcoDeli est une plateforme de covoiturage qui connecte les particuliers avec des livraisons écologiques et solidaires. En partageant leurs trajets, les utilisateurs peuvent expédier ou transporter des colis à moindre coût tout en favorisant leur empreinte carbone et le lien social.",
@@ -136,6 +138,7 @@
       }
     },
     "legal_mentions": {
+      "tab_title": "Ecodeli | Mentions légales",
       "title": "Mentions légales",
       "intro": "Conformément aux dispositions légales applicables, vous trouverez ci-dessous les informations relatives à l’éditeur du site, à la politique de confidentialité, aux conditions générales, ainsi qu’une note importante sur le caractère fictif du projet.",
       "legal_notice": {
@@ -340,6 +343,11 @@
       "button": "Connexion",
       "forgot_password_link": "Mot de passe oublié ?",
       "login_link": "Retour à la page de connexion"
+    }
+  },
+  "admin": {
+    "users": {
+      "tab_title": "Ecodeli | Gestion des utilisateurs" 
     }
   },
   "api_responses": {

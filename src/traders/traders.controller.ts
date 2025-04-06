@@ -185,7 +185,7 @@ import { UpdateDeliveryPersonStatusDto } from 'src/delivery-persons/dto/update-d
     }
   
     @Delete(':id')
-    @HttpCode(200)
+    @HttpCode(204)
     @ApiOperation({ summary: 'Delete trader' })
     @ApiResponse({ status: 200, description: 'Trader deleted' })
     @UseGuards(JwtAuthGuard)
