@@ -15,6 +15,7 @@ import { DeliveryPersonsModule } from './delivery-persons/delivery-persons.modul
 import { TradersModule } from './traders/traders.module';
 import { ConfigurationsModule } from './configurations/configurations.module'; // ✅ ajouté
 import { InvoicesModule } from './invoices/invoices.module';
+import { LocationsModule } from './locations/locations.module';
 
 @Module({
   imports: [
@@ -42,7 +43,8 @@ import { InvoicesModule } from './invoices/invoices.module';
     DeliveryPersonsModule,
     TradersModule,
     ConfigurationsModule,
-    InvoicesModule, // ✅ ajouté ici dans les imports
+    InvoicesModule,
+    LocationsModule, // ✅ ajouté ici dans les imports
   ],
   controllers: [AppController],
   providers: [

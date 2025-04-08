@@ -16,6 +16,7 @@ import {
   ApiConsumes,
   ApiTags,
   ApiResponse,
+  ApiOperation,
 } from '@nestjs/swagger';
 import { InvoicesService } from './invoices.service';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
@@ -44,18 +45,10 @@ export class InvoicesController {
       required: ['providerId', 'userId', 'file'],
     },
   })
-  @ApiResponse({
-    status: 201,
-    description: 'Facture créée avec succès',
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Requête invalide (valeurs manquantes ou mal formatées)',
-  })
-  @ApiResponse({
-    status: 500,
-    description: 'Erreur serveur (ex: problème lors de l’upload sur S3)',
-  })
+  @ApiOperation({ summary: 'Créer une nouvelle facture' })
+  @ApiResponse({ status: 201, description: 'Facture créée avec succès', type: Invoice })
+  @ApiResponse({ status: 400, description: 'Requête invalide' })
+  @ApiResponse({ status: 500, description: 'Erreur serveur (upload ou base)' })
   create(
     @Body() createInvoiceDto: CreateInvoiceDto,
     @UploadedFile() file: Express.Multer.File,
@@ -64,21 +57,33 @@ export class InvoicesController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Récupérer toutes les factures visibles' })
+  @ApiResponse({ status: 200, description: 'Liste des factures', type: [Invoice] })
   findAll(): Promise<Invoice[]> {
     return this.invoicesService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Récupérer une facture par son ID' })
+  @ApiResponse({ status: 200, description: 'Facture trouvée', type: Invoice })
+  @ApiResponse({ status: 404, description: 'Facture non trouvée' })
   findOne(@Param('id', ParseIntPipe) id: number): Promise<Invoice> {
     return this.invoicesService.findOne(id);
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Supprimer une facture' })
+  @ApiResponse({ status: 200, description: 'Facture supprimée' })
+  @ApiResponse({ status: 404, description: 'Facture non trouvée' })
   remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.invoicesService.remove(id);
   }
 
   @Patch(':id/status')
+  @ApiOperation({ summary: 'Mettre à jour le statut d’une facture' })
+  @ApiResponse({ status: 200, description: 'Statut mis à jour', type: Invoice })
+  @ApiResponse({ status: 400, description: 'Statut invalide' })
+  @ApiResponse({ status: 404, description: 'Facture non trouvée' })
   updateStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateInvoiceStatusDto,

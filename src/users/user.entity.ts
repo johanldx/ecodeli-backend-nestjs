@@ -1,5 +1,7 @@
 import { Client } from 'src/clients/client.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
+import { Location } from 'src/locations/entities/location.entity';
+
 
 @Entity('users')
 export class User {
@@ -41,5 +43,8 @@ export class User {
 
   @OneToOne(() => Client, (client) => client.user, { onDelete: 'CASCADE' })
   clients: Client[];
+
+  @OneToMany(() => Location, (location) => location.user)
+locations: Location[];
 
 }
