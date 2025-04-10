@@ -32,8 +32,8 @@ export class DeliveryAd {
   @Column('text')
   description: string;
 
-  @Column('json')
-  imageUrls: string[];
+  @Column('text')
+  imageUrls: string;
 
   @Column({ type: 'enum', enum: AdStatus, default: AdStatus.PENDING })
   status: AdStatus;
@@ -56,7 +56,6 @@ export class DeliveryAd {
   @OneToMany(() => DeliveryStep, (step) => step.deliveryAd)
   deliverySteps: DeliveryStep[];
 
-  // Nouveau champ 'packageSize' basé sur l'énumération
   @Column({ type: 'enum', enum: PackageSize, default: PackageSize.M })
   packageSize: PackageSize;
 }

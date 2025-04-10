@@ -18,6 +18,8 @@ import { InvoicesModule } from './invoices/invoices.module';
 import { LocationsModule } from './locations/locations.module';
 import { DeliveryAdsModule } from './delivery-ads/delivery-ads.module';
 import { DeliveryStepsModule } from './delivery-steps/delivery-steps.module';
+import { SubscriptionsModule } from './subscriptions/subscriptions.module';
+import { SubscriptionPaymentsModule } from './subscription-payments/subscription-payments.module';
 
 @Module({
   imports: [
@@ -48,7 +50,9 @@ import { DeliveryStepsModule } from './delivery-steps/delivery-steps.module';
     InvoicesModule,
     LocationsModule,
     DeliveryAdsModule,
-    DeliveryStepsModule, // ✅ ajouté ici dans les imports
+    DeliveryStepsModule,
+    SubscriptionsModule,
+    SubscriptionPaymentsModule, // ✅ ajouté ici dans les imports
   ],
   controllers: [AppController],
   providers: [
