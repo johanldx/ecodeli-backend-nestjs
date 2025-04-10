@@ -52,8 +52,6 @@ jobs:
           
       - name: Deploy container
         run: |
-          docker stop ecodeli-backend || true
-          docker rm ecodeli-backend || true
           docker run -d \
             --name ecodeli-backend \
             --env-file .env \
