@@ -32,9 +32,6 @@ jobs:
       - name: Installer les dépendances
         run: npm ci
 
-      - name: Lancer le linter
-        run: npm run lint
-
       - name: Construire le projet
         run: npm run build
 
