@@ -484,14 +484,37 @@
         "subtitle": "Déposez votre dossir de candidature pour devenir livreur Ecodeli !",
         "button": "Envoyer la demande",
         "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande.",
-        "not_found": "Vous n'avez pas de profil livreur."
+        "not_found": "Vous n'avez pas de profil livreur.",
+        "form": {
+          "1": "IBAN",
+          "2": "Carte d'identité (PDF, JPG, PNG)",
+          "3": "Permis de conduire (PDF, JPG, PNG)"
+        }
       },
       "traders": {
         "title": "Devenir commerçant",
         "subtitle": "Déposez votre dossir de candidature pour devenir commerçant sur Ecodeli !",
         "button": "Envoyer la demande",
         "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande.",
-        "not_found": "Vous n'avez pas de profil commerçant."
+        "not_found": "Vous n'avez pas de profil commerçant.",
+        "form": {
+          "1": "IBAN",
+          "2": "Carte d'identité du dirigent (PDF, JPG, PNG)",
+          "3": "Extrait de KBIS (PDF, JPG, PNG)"
+        }
+      },
+      "providers": {
+        "title": "Devenir prestataire",
+        "subtitle": "Déposez votre dossir de candidature pour devenir prestataire sur Ecodeli !",
+        "button": "Envoyer la demande",
+        "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande.",
+        "not_found": "Vous n'avez pas de profil prestataire.",
+        "form": {
+          "1": "IBAN",
+          "2": "Carte d'identité du dirigent (PDF, JPG, PNG)",
+          "3": "Extrait de KBIS (PDF, JPG, PNG)",
+          "4": "Certificats de prestation (PDF, JPG, PNG)"
+        }
       },
       "pending": {
         "title": "Votre demande a bien été reçu !",
@@ -531,6 +554,15 @@
   "admin": {
     "users": {
       "tab_title": "Ecodeli | Gestion des utilisateurs" 
+    }
+  },
+  "track": {
+    "tab_title": "Ecodeli | Suivis de commande",
+    "form": {
+      "title": "Suivis",
+      "email_placeholder": "E-mail",
+      "ref_placeholder": "Référence",
+      "button": "Afficher"
     }
   },
   "api_responses": {

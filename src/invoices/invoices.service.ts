@@ -3,41 +3,29 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Invoice, InvoiceStatus } from './entities/invoice.entity';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
-import { S3 } from 'aws-sdk';
-import { v4 as uuidv4 } from 'uuid';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class InvoicesService {
-  private readonly s3 = new S3();
-
   constructor(
     @InjectRepository(Invoice)
     private invoiceRepository: Repository<Invoice>,
+    private storageService: StorageService,
   ) {}
 
   async create(
     createInvoiceDto: CreateInvoiceDto,
     file: Express.Multer.File,
   ): Promise<Invoice> {
-    const bucket = process.env.AWS_S3_BUCKET;
-    const key = `Invoice/${uuidv4()}-${file.originalname}`;
-
-    if (!bucket) {
-      throw new Error('AWS_S3_BUCKET is not defined in environment variables');
-    }
-
-    const uploadResult = await this.s3
-      .upload({
-        Bucket: bucket,
-        Key: key,
-        Body: file.buffer,
-        ContentType: file.mimetype,
-      })
-      .promise();
+    const documentUrl = await this.storageService.uploadFile(
+      file.buffer,
+      file.originalname,
+      'Invoice', // dossier personnalisé pour les factures
+    );
 
     const invoice = this.invoiceRepository.create({
       ...createInvoiceDto,
-      documentUrl: uploadResult.Location,
+      documentUrl,
       status: InvoiceStatus.CREATED,
     });
 
@@ -61,6 +49,10 @@ export class InvoicesService {
   }
 
   async remove(id: number): Promise<void> {
+    const invoice = await this.findOne(id);
+    if (invoice.documentUrl) {
+      await this.storageService.deleteFile(invoice.documentUrl);
+    }
     await this.invoiceRepository.delete(id);
   }
 
