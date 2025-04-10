@@ -70,3 +70,4 @@ jobs:
 
           echo "[INFO] Logs du conteneur"
           docker logs ecodeli-backend || true
+
