@@ -24,7 +24,7 @@ jobs:
           node-version: '18'
 
       - name: Copier le fichier .env depuis l'hôte
-        run: cp /home/github-runner-back/.env .env
+        run: cp /home/stage-ecodeli/github-runner-back/.env .env
 
       - name: Install dependencies
         run: npm ci
