@@ -1,5 +1,5 @@
-FROM node:20-alpine
-WORKDIR ./
+FROM node:20-bullseye
+WORKDIR .
 
 COPY ./src ./src
 
