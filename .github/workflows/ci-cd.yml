@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [stage]
   pull_request:
-    branches: [main]
+    branches: [stage]
 
 env:
   REGISTRY: ghcr.io
@@ -23,8 +23,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Copier le fichier .env depuis l'hôte
-        run: cp /home/stage-ecodeli/github-runner-back/.env .env
+      - name: Recréer le .env depuis le secret GitHub
+        run: echo "${{ secrets.ENV_FILE_STAGE }}" > .env
 
       - name: Install dependencies
         run: npm ci
