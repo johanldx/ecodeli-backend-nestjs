@@ -52,3 +52,13 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Deploy container
+        run: |
+          docker stop ecodeli-backend || true
+          docker rm ecodeli-backend || true
+          docker run -d \
+            --name ecodeli-backend \
+            --env-file .env \
+            -p 3000:3000 \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
