@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
 
+
 @Entity('clients')
 export class Client {
   @PrimaryGeneratedColumn()

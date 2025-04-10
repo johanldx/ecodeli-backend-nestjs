@@ -526,8 +526,8 @@
       "forgot_password_link": "Mot de passe oublié ?",
       "login_link": "Retour à la page de connexion"
       }
-    }
-  },
+    },
+  
   "admin": {
     "users": {
       "tab_title": "Ecodeli | Gestion des utilisateurs" 
