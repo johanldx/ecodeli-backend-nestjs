@@ -16,6 +16,8 @@ import { TradersModule } from './traders/traders.module';
 import { ConfigurationsModule } from './configurations/configurations.module'; // ✅ ajouté
 import { InvoicesModule } from './invoices/invoices.module';
 import { LocationsModule } from './locations/locations.module';
+import { DeliveryAdsModule } from './delivery-ads/delivery-ads.module';
+import { DeliveryStepsModule } from './delivery-steps/delivery-steps.module';
 
 @Module({
   imports: [
@@ -44,7 +46,9 @@ import { LocationsModule } from './locations/locations.module';
     TradersModule,
     ConfigurationsModule,
     InvoicesModule,
-    LocationsModule, // ✅ ajouté ici dans les imports
+    LocationsModule,
+    DeliveryAdsModule,
+    DeliveryStepsModule, // ✅ ajouté ici dans les imports
   ],
   controllers: [AppController],
   providers: [
