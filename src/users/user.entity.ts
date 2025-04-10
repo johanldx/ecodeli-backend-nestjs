@@ -1,8 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
 import { Client } from 'src/clients/client.entity';
 import { Location } from 'src/locations/entities/location.entity';
-import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity'; // Import pour la relation avec DeliveryStep
-import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity'; // Import pour la relation avec DeliveryAd
+import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity'; 
+import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity'; 
+import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.entity'; 
+import { ShoppingAd } from 'src/shopping-ads/entities/shopping-ads.entity'; 
 
 @Entity('users')
 export class User {
@@ -49,8 +51,14 @@ export class User {
   locations: Location[];
 
   @OneToMany(() => DeliveryStep, (deliveryStep) => deliveryStep.receivedBy)
-  deliverySteps: DeliveryStep[]; // Relation avec DeliveryStep
+  deliverySteps: DeliveryStep[];
 
   @OneToMany(() => DeliveryAd, (deliveryAd) => deliveryAd.postedBy)
-  deliveryAds: DeliveryAd[]; // Relation avec DeliveryAd
+  deliveryAds: DeliveryAd[];
+
+  @OneToMany(() => ReleaseCartAd, (releaseCartAd) => releaseCartAd.postedBy)
+  releaseCartAds: ReleaseCartAd[];
+
+  @OneToMany(() => ShoppingAd, (shoppingAd) => shoppingAd.postedBy)  // Added relationship with ShoppingAd
+  shoppingAds: ShoppingAd[];  // Relation with ShoppingAd
 }

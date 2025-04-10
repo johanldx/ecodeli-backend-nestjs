@@ -20,6 +20,8 @@ import { DeliveryAdsModule } from './delivery-ads/delivery-ads.module';
 import { DeliveryStepsModule } from './delivery-steps/delivery-steps.module';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { SubscriptionPaymentsModule } from './subscription-payments/subscription-payments.module';
+import { ReleaseCartAdsModule } from './release-cart-ads/release-cart-ads.module';
+import { ShoppingAdsModule } from './shopping-ads/shopping-ads.module';
 
 @Module({
   imports: [
@@ -52,7 +54,9 @@ import { SubscriptionPaymentsModule } from './subscription-payments/subscription
     DeliveryAdsModule,
     DeliveryStepsModule,
     SubscriptionsModule,
-    SubscriptionPaymentsModule, // ✅ ajouté ici dans les imports
+    SubscriptionPaymentsModule,
+    ReleaseCartAdsModule,
+    ShoppingAdsModule, // ✅ ajouté ici dans les imports
   ],
   controllers: [AppController],
   providers: [
