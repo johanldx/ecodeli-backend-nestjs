@@ -1,7 +1,8 @@
-import { Client } from 'src/clients/client.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
+import { Client } from 'src/clients/client.entity';
 import { Location } from 'src/locations/entities/location.entity';
-
+import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity'; // Import pour la relation avec DeliveryStep
+import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity'; // Import pour la relation avec DeliveryAd
 
 @Entity('users')
 export class User {
@@ -38,13 +39,18 @@ export class User {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
-  
+
   // Relations
 
   @OneToOne(() => Client, (client) => client.user, { onDelete: 'CASCADE' })
   clients: Client[];
 
   @OneToMany(() => Location, (location) => location.user)
-locations: Location[];
+  locations: Location[];
 
+  @OneToMany(() => DeliveryStep, (deliveryStep) => deliveryStep.receivedBy)
+  deliverySteps: DeliveryStep[]; // Relation avec DeliveryStep
+
+  @OneToMany(() => DeliveryAd, (deliveryAd) => deliveryAd.postedBy)
+  deliveryAds: DeliveryAd[]; // Relation avec DeliveryAd
 }
