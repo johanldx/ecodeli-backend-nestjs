@@ -5,6 +5,7 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
@@ -15,9 +16,11 @@ export class Location {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ApiProperty()
   @Column()
-  userId: number;
+  user_id: number;
+  @ManyToOne(() => User, user => user.locations, { eager: true })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @ApiProperty()
   @Column()
@@ -54,7 +57,4 @@ export class Location {
   @ApiProperty()
   @UpdateDateColumn({ name: 'edited_at' })
   editedAt: Date;
-
-  @ManyToOne(() => User, (user) => user.locations)
-  user: User;
 }

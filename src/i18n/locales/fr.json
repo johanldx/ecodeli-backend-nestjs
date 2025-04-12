@@ -554,6 +554,9 @@
   "admin": {
     "users": {
       "tab_title": "Ecodeli | Gestion des utilisateurs" 
+    },
+    "addresses": {
+      "tab_title": "Ecodeli | Gestion des adresses" 
     }
   },
   "track": {

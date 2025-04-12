@@ -18,20 +18,25 @@ export class LocationsService {
   ) {}
 
   async create(createDto: CreateLocationDto, user: any): Promise<Location> {
-    // TODO: sécuriser public/price uniquement accessible aux admins
     const location = this.locationRepository.create({
       ...createDto,
-      userId: user.id,
+      user_id: user.id,
     });
 
     return this.locationRepository.save(location);
   }
 
   async findAll(user: any): Promise<Location[]> {
-    // TODO: filtrer intelligemment selon rôle (admin / owner / public)
-    return this.locationRepository.find({
-      where: { userId: user.id }, // temporaire : on ne renvoie que les siennes
-    });
+    if (user.administrator) {
+      return this.locationRepository.find();
+    } else {
+      return this.locationRepository.find({
+        where: [
+          { user_id: user.id },
+          { public: true },
+        ],
+      });
+    }
   }
 
   async findOne(id: number, user: any): Promise<Location> {
@@ -39,7 +44,7 @@ export class LocationsService {
 
     if (!location) throw new NotFoundException();
 
-    assertUserOwnsResourceOrIsAdmin(user, location.userId);
+    assertUserOwnsResourceOrIsAdmin(user, location.user_id);
 
     return location;
   }
@@ -49,15 +54,13 @@ export class LocationsService {
     updateDto: UpdateLocationDto,
     user: any,
   ): Promise<Location> {
-    const location = await this.findOne(id, user); // inclut la vérification
-
-    // TODO: empêcher modification public/price si non admin
+    const location = await this.findOne(id, user);
     Object.assign(location, updateDto);
     return this.locationRepository.save(location);
   }
 
   async remove(id: number, user: any): Promise<void> {
-    const location = await this.findOne(id, user); // inclut vérification
+    const location = await this.findOne(id, user);
     await this.locationRepository.delete(location.id);
   }
 }

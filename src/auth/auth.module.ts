@@ -10,6 +10,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ClientsModule } from 'src/clients/clients.module';
 import { DeliveryPersonsModule } from 'src/delivery-persons/delivery-persons.module';
 import { TradersModule } from 'src/traders/traders.module';
+import { ProvidersModule } from 'src/providers/providers.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { TradersModule } from 'src/traders/traders.module';
     ClientsModule,
     DeliveryPersonsModule,
     TradersModule,
+    ProvidersModule
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
