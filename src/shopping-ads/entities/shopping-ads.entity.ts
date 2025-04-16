@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, JoinColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/users/user.entity';
 import { Location } from 'src/locations/entities/location.entity';
@@ -25,12 +25,16 @@ export class ShoppingAd {
   @ApiProperty({ description: 'The unique identifier for the shopping ad.' })
   id: number;
 
-  @ManyToOne(() => User, (user) => user.shoppingAds)
-  @ApiProperty({ description: 'The user who posted the shopping ad.' })
+  @Column()
+  posted_by: number;
+  @ManyToOne(() => User, { eager: true })
+  @JoinColumn({ name: 'user_id' })
   postedBy: User;
 
-  @ManyToOne(() => User, (user) => user.shoppingAds)
-  @ApiProperty({ description: 'The user who received the shopping ad.' })
+  @Column({ nullable: true })
+  receive_by: number;
+  @ManyToOne(() => User, { eager: true, nullable: true })
+  @JoinColumn({ name: 'user_id' })
   receivedBy: User;
 
   @Column()

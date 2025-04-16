@@ -5,6 +5,8 @@ import { ShoppingAd } from './entities/shopping-ads.entity';
 import { CreateShoppingAdDto } from './dto/create-shopping-ad.dto';
 import { UpdateShoppingAdDto } from './dto/update-shopping-ad.dto';
 import { Location } from 'src/locations/entities/location.entity';
+import { StorageService } from 'src/storage/storage.service';
+import { Express } from 'express';
 
 @Injectable()
 export class ShoppingAdsService {
@@ -13,26 +15,38 @@ export class ShoppingAdsService {
     private readonly shoppingAdRepository: Repository<ShoppingAd>,
     @InjectRepository(Location)
     private readonly locationRepository: Repository<Location>,
+    private readonly storageService: StorageService,
   ) {}
+  
 
-  async create(createShoppingAdDto: CreateShoppingAdDto): Promise<ShoppingAd> {
-    const { departure_location, arrival_location } = createShoppingAdDto;
-
-    const departureLocation = await this.locationRepository.findOne({ where: { id: departure_location } });
-    const arrivalLocation = await this.locationRepository.findOne({ where: { id: arrival_location } });
-
+  async create(
+    userId: number,
+    dto: CreateShoppingAdDto,
+    images: Express.Multer.File[]
+  ): Promise<ShoppingAd> {
+    const { departureLocationId, arrivalLocationId } = dto;
+  
+    const departureLocation = await this.locationRepository.findOne({ where: { id: departureLocationId } });
+    const arrivalLocation = await this.locationRepository.findOne({ where: { id: arrivalLocationId } });
+  
     if (!departureLocation || !arrivalLocation) {
       throw new NotFoundException('Location(s) not found');
     }
-
+  
+    const imageUrls = await Promise.all(
+      images.map(file => this.storageService.uploadFile(file.buffer, file.originalname, 'shopping-ads'))
+    );
+  
     const shoppingAd = this.shoppingAdRepository.create({
-      ...createShoppingAdDto,
-      departureLocation: departureLocation,
-      arrivalLocation: arrivalLocation,
+      ...dto,
+      posted_by: userId,
+      imageUrls,
+      departureLocation,
+      arrivalLocation,
     });
-
+  
     return this.shoppingAdRepository.save(shoppingAd);
-  }
+  }  
 
   findAll(query: any): Promise<ShoppingAd[]> {
     return this.shoppingAdRepository.find(query);
@@ -51,22 +65,65 @@ export class ShoppingAdsService {
     return shoppingAd;
   }
 
-  async update(id: number, updateShoppingAdDto: UpdateShoppingAdDto): Promise<ShoppingAd> {
-    const shoppingAd = await this.findOne(id); 
-
-
-    Object.assign(shoppingAd, updateShoppingAdDto);
-
-    return this.shoppingAdRepository.save(shoppingAd);
+  async update(
+    id: number,
+    userId: number,
+    dto: UpdateShoppingAdDto,
+    newImages?: Express.Multer.File[],
+  ): Promise<ShoppingAd> {
+    const ad = await this.findOne(id);
+  
+    // Vérifier que l'utilisateur est bien le propriétaire (optionnel mais recommandé)
+    if (ad.posted_by !== userId) {
+      throw new Error('Vous n’êtes pas autorisé à modifier cette annonce');
+    }
+  
+    // Relations à mettre à jour si modifiées
+    if (dto.departureLocationId) {
+      const departureLocation = await this.locationRepository.findOne({ where: { id: dto.departureLocationId } });
+      if (!departureLocation) {
+        throw new NotFoundException('Departure location not found');
+      }
+      ad.departureLocation = departureLocation;
+    }
+  
+    if (dto.arrivalLocationId) {
+      const arrivalLocation = await this.locationRepository.findOne({ where: { id: dto.arrivalLocationId } });
+      if (!arrivalLocation) {
+        throw new NotFoundException('Arrival location not found');
+      }
+      ad.arrivalLocation = arrivalLocation;
+    }
+  
+    // Suppression des anciennes images si de nouvelles sont envoyées
+    if (newImages?.length) {
+      if (ad.imageUrls?.length) {
+        await Promise.all(ad.imageUrls.map(url => this.storageService.deleteFile(url)));
+      }
+  
+      const uploaded = await Promise.all(
+        newImages.map(file =>
+          this.storageService.uploadFile(file.buffer, file.originalname, 'shopping-ads'),
+        ),
+      );
+  
+      ad.imageUrls = uploaded;
+    }
+  
+    Object.assign(ad, dto);
+  
+    return this.shoppingAdRepository.save(ad);
   }
+  
 
   async remove(id: number): Promise<void> {
-    const shoppingAd = await this.findOne(id);
-
-    if (!shoppingAd) {
-      throw new NotFoundException('Shopping Ad not found');
+    const ad = await this.findOne(id);
+  
+    if (ad.imageUrls?.length) {
+      await Promise.all(ad.imageUrls.map(url => this.storageService.deleteFile(url)));
     }
-
+  
     await this.shoppingAdRepository.delete(id);
   }
+  
 }

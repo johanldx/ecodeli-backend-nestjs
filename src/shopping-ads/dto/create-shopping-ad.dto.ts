@@ -1,42 +1,59 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsEnum, IsNumber, IsArray } from 'class-validator';
-import { AdStatus } from 'src/delivery-ads/entities/delivery-ads.entity';
-import { PackageSize } from 'src/shopping-ads/entities/shopping-ads.entity';
+import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { AdStatus, PackageSize } from '../entities/shopping-ads.entity';
+import { Transform, Type } from 'class-transformer';
 
 export class CreateShoppingAdDto {
-  @ApiProperty({ description: 'The title of the shopping ad.' })
+  @ApiProperty()
+  @IsNumber()
+  @Type(() => Number)
+  posted_by: number;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  receive_by?: number;
+
+  @ApiProperty()
   @IsString()
   title: string;
 
-  @ApiProperty({ description: 'The description of the shopping ad.' })
+  @ApiProperty()
   @IsString()
   description: string;
 
-  @ApiProperty({ description: 'The list of image URLs for the shopping ad.' })
+  @ApiProperty({ type: [String] })
   @IsArray()
-  image_urls: string[];
+  @IsOptional()
+  imageUrls: string[];
 
-  @ApiProperty({ description: 'The status of the shopping ad.', enum: AdStatus })
+  @ApiProperty({ enum: AdStatus, default: AdStatus.PENDING, required: false })
+  @IsOptional()
   @IsEnum(AdStatus)
-  status: AdStatus;
+  status?: AdStatus;
 
-  @ApiProperty({ description: 'The departure location ID for the shopping ad.' })
+  @ApiProperty()
   @IsNumber()
-  departure_location: number;
+  @Type(() => Number)
+  departureLocationId: number;
 
-  @ApiProperty({ description: 'The arrival location ID for the shopping ad.' })
+  @ApiProperty()
   @IsNumber()
-  arrival_location: number;
+  @Type(() => Number)
+  arrivalLocationId: number;
 
-  @ApiProperty({ description: 'The package size for the shopping ad.', enum: PackageSize })
+  @ApiProperty({ enum: PackageSize })
   @IsEnum(PackageSize)
-  package_size: PackageSize;
+  packageSize: PackageSize;
 
-  @ApiProperty({ description: 'The shopping list in the ad.' })
   @IsArray()
-  shopping_list: string[];
+  @IsString({ each: true })
+  @Transform(({ value }) => Array.isArray(value) ? value : [value])
+  shoppingList: string[];
 
-  @ApiProperty({ description: 'The price of the shopping ad.' })
+  @ApiProperty()
   @IsNumber()
+  @Type(() => Number)
   price: number;
 }
