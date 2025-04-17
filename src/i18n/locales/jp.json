@@ -526,6 +526,64 @@
       "login_link": "ログインページに戻る"
     }
   },
+  "admin": {
+    "global": {
+      "users_title": "ユーザー",
+      "addresses_title": "住所"
+    },
+    "users": {
+      "tab_title": "エコデリ | ユーザー管理",
+      "users_title": "ユーザー",
+      "providers_title": "プロバイダー",
+      "delivery_persons_title": "配達員",
+      "traders_title": "商人",
+      "clients_title": "顧客",
+      "profiles_title": "プロフィール",
+      "search_bar": "検索...",
+      "user_name": "姓",
+      "user_first_name": "名",
+      "user_email": "メール",
+      "status": "状態",
+      "creation_date": "作成日",
+      "actions": "アクション",
+      "modify": "編集",
+      "cancel": "削除",
+      "next": "次",
+      "previous": "前",
+      "page": "ページ",
+      "card_id": "IDカード",
+      "driving_license": "運転免許証",
+      "RIB": "銀行詳細（RIB）",
+      "create_it": "作成日",
+      "proof_of_activity": "活動証明",
+      "certification_document": "認証書類",
+      "user_modify": "ユーザーを編集",
+      "active": "アクティブ",
+      "verify": "確認済み",
+      "administrator": "管理者",
+      "close_button": "閉じる",
+      "record_button": "保存",
+      "user_delete": "ユーザー削除",
+      "delete_confirmation": "本当に削除しますか？",
+      "cancel_delete": "キャンセル",
+      "client_delete": "顧客削除",
+      "provider_delete": "プロバイダー削除",
+      "trader_delete": "商人削除",
+      "delivery_delete": "配達員削除",
+      "supplier_delete": "サプライヤー削除",
+      "delivery_status_modify": "配達員の状態変更",
+      "provider_status_modify": "プロバイダーの状態変更",
+      "trader_status_modify": "商人の状態変更",
+      "client_status_modify": "顧客の状態変更",
+      "to_validate": "確認する",
+      "pending": "保留中",
+      "rejected": "却下",
+      "none_validated": "未確認",
+      "pages": "ページ",
+      "on": "上"
+      
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {

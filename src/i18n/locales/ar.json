@@ -511,6 +511,64 @@
       "login_link": "العودة إلى صفحة تسجيل الدخول"
     }
   },
+
+    "admin": {
+      "global": {
+        "users_title": "المستخدمين",
+        "addresses_title": "العناوين"
+      },
+     "users": {
+      "tab_title": "إيكوديلي | إدارة المستخدمين",
+      "users_title": "المستخدمين",
+      "providers_title": "المزودين",
+      "delivery_persons_title": "مندوبي التوصيل",
+      "traders_title": "التجار",
+      "clients_title": "العملاء",
+      "profiles_title": "الملفات الشخصية",
+      "search_bar": "بحث...",
+      "user_name": "الاسم الأخير",
+      "user_first_name": "الاسم الأول",
+      "user_email": "البريد الإلكتروني",
+      "status": "الحالة",
+      "creation_date": "تاريخ الإنشاء",
+      "actions": "الإجراءات",
+      "modify": "تعديل",
+      "cancel": "حذف",
+      "next": "التالي",
+      "previous": "السابق",
+      "page": "الصفحة",
+      "card_id": "بطاقة الهوية",
+      "driving_license": "رخصة القيادة",
+      "RIB": "تفاصيل البنك (RIB)",
+      "create_it": "تم الإنشاء في",
+      "proof_of_activity": "إثبات النشاط",
+      "certification_document": "وثيقة الشهادة",
+      "user_modify": "تعديل المستخدم",
+      "active": "نشط",
+      "verify": "تم التحقق",
+      "administrator": "المسؤول",
+      "close_button": "إغلاق",
+      "record_button": "حفظ",
+      "user_delete": "حذف المستخدم",
+      "delete_confirmation": "هل أنت متأكد أنك تريد الحذف؟",
+      "cancel_delete": "إلغاء",
+      "client_delete": "حذف العميل",
+      "provider_delete": "حذف المزود",
+      "trader_delete": "حذف التاجر",
+      "delivery_delete": "حذف مندوب التوصيل",
+      "supplier_delete": "حذف المورد",
+      "delivery_status_modify": "تعديل حالة مندوب التوصيل",
+      "provider_status_modify": "تعديل حالة المزود",
+      "trader_status_modify": "تعديل حالة التاجر",
+      "client_status_modify": "تعديل حالة العميل",
+      "to_validate": "التحقق",
+      "pending": "قيد الانتظار",
+      "rejected": "مرفوض",
+      "none_validated": "غير مُعتمد",
+      "pages": "صفحة",
+      "on": "على"
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {

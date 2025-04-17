@@ -511,6 +511,63 @@
       "login_link": "Back to login page"
     }
   },
+  "admin": {
+    "global": {
+    "users_title": "Users",
+    "addresses_title": "Addresses"
+  },
+    "users": {
+      "tab_title": "Ecodeli | User Management",
+      "users_title": "Users",
+      "providers_title": "Providers",
+      "delivery_persons_title": "Delivery Persons",
+      "traders_title": "Traders",
+      "clients_title": "Clients",
+      "profiles_title": "Profiles",
+      "search_bar": "Search...",
+      "user_name": "Last Name",
+      "user_first_name": "First Name",
+      "user_email": "Email",
+      "status": "Status",
+      "creation_date": "Creation Date",
+      "actions": "Actions",
+      "modify": "Edit",
+      "cancel": "Delete",
+      "next": "Next",
+      "previous": "Previous",
+      "page": "Page",
+      "card_id": "ID Card",
+      "driving_license": "Driving License",
+      "RIB": "Bank Details (RIB)",
+      "create_it": "Created On",
+      "proof_of_activity": "Proof of Activity",
+      "certification_document": "Certification Document",
+      "user_modify": "Edit User",
+      "active": "Active",
+      "verify": "Verified",
+      "administrator": "Administrator",
+      "close_button": "Close",
+      "record_button": "Save",
+      "user_delete": "Delete User",
+      "delete_confirmation": "Are you sure you want to delete",
+      "cancel_delete": "Cancel",
+      "client_delete": "Delete Client",
+      "provider_delete": "Delete Provider",
+      "trader_delete": "Delete Trader",
+      "delivery_delete": "Delete Delivery Person",
+      "supplier_delete": "Delete Supplier",
+      "delivery_status_modify": "Modify Delivery Person Status",
+      "provider_status_modify": "Modify Provider Status",
+      "trader_status_modify": "Modify Trader Status",
+      "client_status_modify": "Modify Client Status",
+      "to_validate": "Validate",
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "none_validated": "Not validated",
+      "pages": "Page",
+      "on": "on"
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {

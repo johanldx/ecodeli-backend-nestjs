@@ -516,6 +516,63 @@
       "login_link": "लॉग इन पृष्ठ पर वापस जाएं"
     }
   },
+  "admin": {
+    "global": {
+    "users_title": "उपयोगकर्ता",
+    "addresses_title": "पते"
+  },
+    "users": {
+      "tab_title": "इकोडेली | उपयोगकर्ता प्रबंधन",
+      "users_title": "उपयोगकर्ता",
+      "providers_title": "प्रदाता",
+      "delivery_persons_title": "डिलीवरी व्यक्ति",
+      "traders_title": "व्यापारी",
+      "clients_title": "ग्राहक",
+      "profiles_title": "प्रोफाइल्स",
+      "search_bar": "खोज...",
+      "user_name": "अंतिम नाम",
+      "user_first_name": "पहला नाम",
+      "user_email": "ईमेल",
+      "status": "स्थिति",
+      "creation_date": "निर्माण तिथि",
+      "actions": "क्रियाएं",
+      "modify": "संपादित करें",
+      "cancel": "हटाएं",
+      "next": "अगला",
+      "previous": "पिछला",
+      "page": "पृष्ठ",
+      "card_id": "ID कार्ड",
+      "driving_license": "चालक लाइसेंस",
+      "RIB": "बैंक विवरण (RIB)",
+      "create_it": "निर्मित किया गया",
+      "proof_of_activity": "गतिविधि का प्रमाण",
+      "certification_document": "प्रमाणन दस्तावेज़",
+      "user_modify": "उपयोगकर्ता संपादित करें",
+      "active": "सक्रिय",
+      "verify": "सत्यापित",
+      "administrator": "व्यवस्थापक",
+      "close_button": "बंद करें",
+      "record_button": "सहेजें",
+      "user_delete": "उपयोगकर्ता हटाएं",
+      "delete_confirmation": "क्या आप सुनिश्चित हैं कि आप हटाना चाहते हैं",
+      "cancel_delete": "रद्द करें",
+      "client_delete": "ग्राहक हटाएं",
+      "provider_delete": "प्रदाता हटाएं",
+      "trader_delete": "व्यापारी हटाएं",
+      "delivery_delete": "डिलीवरी व्यक्ति हटाएं",
+      "supplier_delete": "आपूर्तिकर्ता हटाएं",
+      "delivery_status_modify": "डिलीवरी व्यक्ति की स्थिति बदलें",
+      "provider_status_modify": "प्रदाता की स्थिति बदलें",
+      "trader_status_modify": "व्यापारी की स्थिति बदलें",
+      "client_status_modify": "ग्राहक की स्थिति बदलें",
+      "to_validate": "सत्यापित करें",
+      "pending": "लंबित",
+      "rejected": "अस्वीकृत",
+      "none_validated": "सत्यापित नहीं किया गया",
+      "pages": "पृष्ठ",
+       "on": "पर"
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {
