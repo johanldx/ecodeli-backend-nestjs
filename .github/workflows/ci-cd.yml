@@ -9,6 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  NETWORK_NAME: ecodeli-net
 
 jobs:
   build-and-deploy:
@@ -25,7 +26,7 @@ jobs:
 
       - name: Recréer le fichier .env depuis le secret GitHub
         run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+          echo "${{ secrets.ENV_FILE_STAGE }}" > .env
           echo "[INFO] Fichier .env généré :"
           cat .env
 
@@ -40,7 +41,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.TOKEN }}
 
       - name: Construire et pousser l'image Docker
         uses: docker/build-push-action@v5
@@ -49,22 +50,19 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
-      - name: Déployer le conteneur
+      - name: Déployer uniquement le backend
         run: |
-          echo "[INFO] Arrêt et suppression de l'ancien conteneur (si existe)"
+          echo "[INFO] Redéploiement du conteneur backend uniquement"
+
           docker stop ecodeli-backend || true
           docker rm ecodeli-backend || true
 
-          echo "[INFO] Lancement du nouveau conteneur..."
           docker run -d \
             --name ecodeli-backend \
             --env-file .env \
+            --network ${{ env.NETWORK_NAME }} \
             -p 3000:3000 \
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
-          echo "[INFO] Liste des conteneurs en cours"
+          echo "[INFO] Conteneurs actifs"
           docker ps
-
-          echo "[INFO] Logs du conteneur"
-          docker logs ecodeli-backend || true
-
