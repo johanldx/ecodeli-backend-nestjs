@@ -23,6 +23,7 @@ import { SubscriptionPaymentsModule } from './subscription-payments/subscription
 import { ReleaseCartAdsModule } from './release-cart-ads/release-cart-ads.module';
 import { ShoppingAdsModule } from './shopping-ads/shopping-ads.module';
 import { ProvidersModule } from './providers/providers.module';
+import { StripeModule } from './stripe/stripe.module';
 
 @Module({
   imports: [
@@ -58,7 +59,8 @@ import { ProvidersModule } from './providers/providers.module';
     SubscriptionPaymentsModule,
     ReleaseCartAdsModule,
     ShoppingAdsModule,
-    ProvidersModule, // ✅ ajouté ici dans les imports
+    ProvidersModule,
+    StripeModule,
   ],
   controllers: [AppController],
   providers: [
