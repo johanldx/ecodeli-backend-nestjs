@@ -13,7 +13,7 @@ import { ClientsModule } from './clients/clients.module';
 import { StorageModule } from './storage/storage.module';
 import { DeliveryPersonsModule } from './delivery-persons/delivery-persons.module';
 import { TradersModule } from './traders/traders.module';
-import { ConfigurationsModule } from './configurations/configurations.module'; // ✅ ajouté
+import { ConfigurationsModule } from './configurations/configurations.module';
 import { InvoicesModule } from './invoices/invoices.module';
 import { LocationsModule } from './locations/locations.module';
 import { DeliveryAdsModule } from './delivery-ads/delivery-ads.module';
@@ -24,6 +24,7 @@ import { ReleaseCartAdsModule } from './release-cart-ads/release-cart-ads.module
 import { ShoppingAdsModule } from './shopping-ads/shopping-ads.module';
 import { ProvidersModule } from './providers/providers.module';
 import { RoutesModule } from './routes/routes.module';
+import { StripeModule } from './stripe/stripe.module';
 
 @Module({
   imports: [
@@ -60,7 +61,8 @@ import { RoutesModule } from './routes/routes.module';
     ReleaseCartAdsModule,
     ShoppingAdsModule,
     ProvidersModule,
-    RoutesModule, // ✅ ajouté ici dans les imports
+    RoutesModule,
+    StripeModule,
   ],
   controllers: [AppController],
   providers: [

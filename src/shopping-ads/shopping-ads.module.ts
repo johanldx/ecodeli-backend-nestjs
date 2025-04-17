@@ -5,6 +5,7 @@ import { ShoppingAdsController } from './shopping-ads.controller';
 import { ShoppingAd } from './entities/shopping-ads.entity';
 import { Location } from 'src/locations/entities/location.entity'; 
 import { LocationsModule } from 'src/locations/locations.module'; 
+import { StorageService } from 'src/storage/storage.service';
 
 @Module({
   imports: [
@@ -12,6 +13,6 @@ import { LocationsModule } from 'src/locations/locations.module';
     LocationsModule, 
   ],
   controllers: [ShoppingAdsController],
-  providers: [ShoppingAdsService], 
+  providers: [ShoppingAdsService, StorageService], 
 })
 export class ShoppingAdsModule {}

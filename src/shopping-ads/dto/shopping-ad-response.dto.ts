@@ -1,48 +1,48 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { AdStatus, PackageSize } from '../entities/shopping-ads.entity'; 
-import { Location } from 'src/locations/entities/location.entity';
+import { AdStatus, PackageSize } from '../entities/shopping-ads.entity';
 import { User } from 'src/users/user.entity';
+import { Location } from 'src/locations/entities/location.entity';
 
 export class ShoppingAdResponseDto {
-  @ApiProperty({ description: 'The unique identifier for the shopping ad.' })
+  @ApiProperty()
   id: number;
 
-  @ApiProperty({ description: 'The user who posted the shopping ad.' })
+  @ApiProperty({ type: () => User })
   postedBy: User;
 
-  @ApiProperty({ description: 'The user who received the shopping ad.' })
+  @ApiProperty({ type: () => User })
   receivedBy: User;
 
-  @ApiProperty({ description: 'The title of the shopping ad.' })
+  @ApiProperty()
   title: string;
 
-  @ApiProperty({ description: 'A description of the shopping ad.' })
+  @ApiProperty()
   description: string;
 
-  @ApiProperty({ description: 'Image URLs related to the shopping ad.' })
+  @ApiProperty({ type: [String] })
   imageUrls: string[];
 
-  @ApiProperty({ description: 'The status of the shopping ad.' })
+  @ApiProperty({ enum: AdStatus })
   status: AdStatus;
 
-  @ApiProperty({ description: 'The departure location for the shopping ad.' })
+  @ApiProperty({ type: () => Location })
   departureLocation: Location;
 
-  @ApiProperty({ description: 'The arrival location for the shopping ad.' })
+  @ApiProperty({ type: () => Location })
   arrivalLocation: Location;
 
-  @ApiProperty({ description: 'The package size for the shopping ad.' })
+  @ApiProperty({ enum: PackageSize })
   packageSize: PackageSize;
 
-  @ApiProperty({ description: 'The shopping list associated with the shopping ad.' })
+  @ApiProperty({ type: [String] })
   shoppingList: string[];
 
-  @ApiProperty({ description: 'The price for the shopping ad.' })
+  @ApiProperty()
   price: number;
 
-  @ApiProperty({ description: 'Timestamp when the shopping ad was created.' })
+  @ApiProperty()
   createdAt: Date;
 
-  @ApiProperty({ description: 'Timestamp when the shopping ad was last updated.' })
+  @ApiProperty()
   updatedAt: Date;
 }
