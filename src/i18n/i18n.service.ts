@@ -4,7 +4,7 @@ import * as path from 'path';
 
 @Injectable()
 export class I18nService {
-  private readonly localesPath = path.join(__dirname, 'locales');
+  private readonly localesPath = path.join(process.cwd(), 'locales');
 
   constructor() {
     if (!fs.existsSync(this.localesPath)) {
@@ -12,83 +12,82 @@ export class I18nService {
     }
   }
 
-  // Récupérer les traductions pour une langue
-  getTranslations(lang: string): Record<string, any> {
-    const filePath = path.join(this.localesPath, `${lang}.json`);
-
-    if (!fs.existsSync(filePath)) {
-      throw new NotFoundException(`Traductions pour '${lang}' non trouvées.`);
+  private readJsonFile(filePath: string): Record<string, any> | null {
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      if (!content.trim()) return null; // vide
+      return JSON.parse(content);
+    } catch {
+      return null; // JSON invalide
     }
-
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
   }
 
-  // Ajouter une nouvelle langue (création du fichier)
-  addLanguage(
-    lang: string,
-    translations: Record<string, any>,
-  ): Record<string, any> {
+  getTranslations(lang: string): Record<string, any> {
     const filePath = path.join(this.localesPath, `${lang}.json`);
+    const fallbackPath = path.join(this.localesPath, 'default.json');
 
+    const translations = this.readJsonFile(filePath);
+    if (translations) return translations;
+
+    const fallback = this.readJsonFile(fallbackPath);
+    if (fallback) return fallback;
+
+    throw new NotFoundException(`Aucune traduction valide pour '${lang}', ni de fallback.`);
+  }
+
+  addLanguage(lang: string, translations: Record<string, any>): Record<string, any> {
+    if (lang === 'default') {
+      throw new NotFoundException(`La langue '${lang}' est protégée.`);
+    }
+
+    const filePath = path.join(this.localesPath, `${lang}.json`);
     if (fs.existsSync(filePath)) {
       throw new NotFoundException(`La langue '${lang}' existe déjà.`);
     }
 
-    // Sauvegarder le fichier
     fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
-
     return { success: true, message: `Langue '${lang}' ajoutée.` };
   }
 
-  // Supprimer une langue
   deleteLanguage(lang: string): Record<string, any> {
-    const filePath = path.join(this.localesPath, `${lang}.json`);
+    if (lang === 'default') {
+      throw new NotFoundException(`La langue '${lang}' est protégée.`);
+    }
 
+    const filePath = path.join(this.localesPath, `${lang}.json`);
     if (!fs.existsSync(filePath)) {
       throw new NotFoundException(`Traductions pour '${lang}' non trouvées.`);
     }
 
-    // Supprimer le fichier
     fs.unlinkSync(filePath);
-
     return { success: true, message: `Langue '${lang}' supprimée.` };
   }
 
-  // Modifier tout le fichier d'une langue d'un coup
-  updateAllTranslations(
-    lang: string,
-    translations: Record<string, any>,
-  ): Record<string, any> {
-    const filePath = path.join(this.localesPath, `${lang}.json`);
+  updateAllTranslations(lang: string, translations: Record<string, any>): Record<string, any> {
+    if (lang === 'default') {
+      throw new NotFoundException(`La langue '${lang}' est protégée.`);
+    }
 
+    const filePath = path.join(this.localesPath, `${lang}.json`);
     if (!fs.existsSync(filePath)) {
       throw new NotFoundException(`Traductions pour '${lang}' non trouvées.`);
     }
 
-    // Sauvegarder le fichier complet
     fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
-
     return {
       success: true,
       message: `Toutes les traductions de '${lang}' ont été mises à jour.`,
     };
   }
 
-  // Ajouter ou modifier une traduction
-  updateTranslation(
-    lang: string,
-    key: string,
-    value: string,
-  ): Record<string, any> {
+  updateTranslation(lang: string, key: string, value: string): Record<string, any> {
     const filePath = path.join(this.localesPath, `${lang}.json`);
-    let translations = {};
-
-    // Charger les traductions existantes
-    if (fs.existsSync(filePath)) {
-      translations = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    if (lang === 'default') {
+      throw new NotFoundException(`La langue '${lang}' est protégée.`);
     }
 
-    // Parcourir les clés pour insérer la valeur dans un objet imbriqué
+    let translations = this.readJsonFile(filePath) || {};
+
     const keys = key.split('.');
     let obj = translations;
 
@@ -96,28 +95,28 @@ export class I18nService {
       obj[keys[i]] = obj[keys[i]] || {};
       obj = obj[keys[i]];
     }
+
     obj[keys[keys.length - 1]] = value;
 
-    // Sauvegarder le fichier
     fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
-
     return {
       success: true,
       message: `Traduction mise à jour : ${key} = ${value}`,
     };
   }
 
-  // Supprimer une clé de traduction
   deleteTranslation(lang: string, key: string): Record<string, any> {
-    const filePath = path.join(this.localesPath, `${lang}.json`);
-
-    if (!fs.existsSync(filePath)) {
-      throw new NotFoundException(`Traductions pour '${lang}' non trouvées.`);
+    if (lang === 'default') {
+      throw new NotFoundException(`La langue '${lang}' est protégée.`);
     }
 
-    let translations = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const filePath = path.join(this.localesPath, `${lang}.json`);
+    const translations = this.readJsonFile(filePath);
 
-    // Fonction récursive pour supprimer la clé
+    if (!translations) {
+      throw new NotFoundException(`Traductions pour '${lang}' non valides.`);
+    }
+
     const deleteKey = (obj: any, keys: string[]): boolean => {
       if (keys.length === 1) {
         if (obj[keys[0]] !== undefined) {
@@ -134,9 +133,7 @@ export class I18nService {
       throw new NotFoundException(`Clé '${key}' non trouvée dans '${lang}'.`);
     }
 
-    // Sauvegarder les changements
     fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
-
     return { success: true, message: `Clé '${key}' supprimée.` };
   }
 
@@ -144,6 +141,7 @@ export class I18nService {
     return fs
       .readdirSync(this.localesPath)
       .filter((file) => file.endsWith('.json'))
-      .map((file) => path.basename(file, '.json'));
+      .map((file) => path.basename(file, '.json'))
+      .filter((lang) => lang !== 'default'); // exclure default
   }
 }
