@@ -182,6 +182,7 @@
     },
     "clients": {
       "account": {
+        "tab_title": "Ecodeli | Mon compte client",
         "my_account": {
           "title": "Mon compte client",
           "my_sub": "Mon abonnement",
@@ -202,6 +203,7 @@
         }
       },
       "addresses": {
+        "tab_title": "Ecodeli | Mes adresses",
         "title": "Mes adresses",
         "name": "Nom",
         "address": "Adresse",
@@ -213,6 +215,7 @@
         "add_address": "Ajouter une adresse"
       },
       "ads": {
+        "tab_title": "Ecodeli | Mes annonces",
         "title": "Mes annonces",
         "modify": "Modifier",
         "cancel": "Annuler",
@@ -220,6 +223,7 @@
         "add_new_ads": "Ajouter une nouvelle annonce"
       },
       "discover": {
+        "tab_title": "Ecodeli | Découvrir",
         "all_services": "Tous les services",
         "taxi": "Taxi",
         "gardening": "Jardinage",
@@ -230,6 +234,7 @@
         "city": "Ville"
       },
       "new-ads": {
+        "tab_title": "Ecodeli | Nouvelle annonce",
         "main_title": "Nouvelle annonce",
         "delivery_announcement": "Annonce de livraison",
         "title": "Titre",
@@ -246,13 +251,16 @@
       }
     },
     "delivery": {
+      
       "account": {
+        "tab_title": "Ecodeli | Mon compte livreur",
         "title": "Mon compte livreur",
         "manage_supporting_documents": "Gérer mes pièces justificatifs",
         "manage_global_account": "Gérer mon compte global",
         "manage_addresses": "Gérer mes adresses"
       },
       "my_electronic_wallet": {
+        "tab_title": "Ecodeli | Mon portefeuille électronique",
         "title": "Mon portefeuille électronique",
         "amount_available": "Montant disponible",
         "amount_pending": "Montant en attente",
@@ -265,6 +273,7 @@
         "confirmation": "Confirmation"
       },
       "addresses": {
+        "tab_title": "Ecodeli | Mes adresses",
         "title": "Mes adresses",
         "name": "Nom",
         "address": "Adresse",
@@ -285,6 +294,7 @@
         "details": "Détails"
       },
       "my_planned_trips": {
+        "tab_title": "Ecodeli | Mes trajets prévus",
         "title": "Mes trajets prévus",
         "departure": "Ville de départ",
         "arrival": "Ville d'arrivée",
@@ -532,61 +542,67 @@
     }
   },
   "admin": {
-    "global": {
-      "users_title": "Utilisateurs",
-      "addresses_title": "Adresses",
-      "langs_title": "Langues"
+    "global":{
+      "users_title":"Utilisateurs",
+      "addresses_title":"Adresses",
+      "langs_title": "Langues",
+      "ads_title": "Annonces"
+    },
+    "ads": {
+      "tab_title": "Ecodeli | Gestion des annonces",
+      "ads_title": "Annonces"
     },
     "users": {
       "tab_title": "Ecodeli | Gestion des utilisateurs",
-      "users_title": "Utilisateurs",
-      "providers_title": "Prestataires",
-      "delivery_persons_title": "Livreurs",
-      "traders_title": "Commerçants",
-      "clients_title": "Clients",
-      "profiles_title": "Profiles",
-      "search_bar": "Rechercher...",
-      "user_name": "Nom",
-      "user_first_name": "Prénom",
-      "user_email": "Email",
-      "status": "Statut",
-      "creation_date": "Date de création",
-      "actions": "Actions",
-      "modify": "Modifier",
-      "cancel": "Supprimer",
-      "next": "Suivant",
-      "previous": "Précédent",
-      "page": "Page",
-      "card_id": "Carte d'identité",
-      "driving_license": "Permis de conduire",
-      "RIB": "RIB",
-      "create_it": "Crée le",
-      "proof_of_activity": "Justificatif d'activité",
-      "certification_document": "Document de certification",
-      "user_modify": "Modifier l'utilisateur",
-      "active": "Actif",
-      "verify": "Vérifié",
-      "administrator": "Administrateur",
-      "close_button": "Fermer",
-      "record_button:": "Enregistrer",
-      "user_delete": "Supprimer l'utilisateur",
-      "delete_confirmation": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?",
-      "cancel_delete": "Annuler",
-      "client_delete": "Supprimer le client",
-      "provider_delete": "Supprimer le prestataire",
-      "trader_delete": "Supprimer le commerçant",
-      "delivery_delete": "Supprimer le livreur",
-      "supplier_delete": "Supprimer le fournisseur",
-      "delivery_status_modify": "Modifier le statut du livreur",
-      "provider_status_modify": "Modifier le statut du prestataire",
-      "trader_status_modify": "Modifier le statut du commerçant",
-      "client_status_modify": "Modifier le statut du client",
-      "to_validate": "Valider",
-      "pending": "En attente",
-      "rejected": "Rejeté",
-      "none_validated": "Non validé",
-      "pages": "Page",
-      "on": "sur"
+      "users_title":"Utilisateurs",
+      "providers_title":"Prestataires",
+      "delivery_persons_title":"Livreurs",
+      "traders_title":"Commerçants",
+      "clients_title":"Clients",
+      "profiles_title":"Profiles",
+      "search_bar":"Rechercher...",
+      "user_name":"Nom",
+      "user_first_name":"Prénom",
+      "user_email":"Email",
+      "status":"Statut",
+      "creation_date":"Date de création",
+      "actions":"Actions",
+      "modify":"Modifier",
+      "cancel":"Supprimer",
+      "next":"Suivant",
+      "previous":"Précédent",
+      "page":"Page",
+      "card_id":"Carte d'identité",
+      "driving_license":"Permis de conduire",
+      "RIB":"RIB",
+      "create_it":"Crée le",
+      "proof_of_activity":"Justificatif d'activité",
+      "certification_document":"Document de certification",
+      "user_modify":"Modifier l'utilisateur",
+      "active":"Actif",
+      "verify":"Vérifié",
+      "administrator":"Administrateur",
+      "close_button":"Fermer",
+      "record_button:":"Enregistrer",
+      "user_delete":"Supprimer l'utilisateur",
+      "delete_confirmation":"Êtes-vous sûr de vouloir supprimer cet utilisateur ?",
+      "cancel_delete":"Annuler",
+      "client_delete":"Supprimer le client",
+      "provider_delete":"Supprimer le prestataire",
+      "trader_delete":"Supprimer le commerçant",
+      "delivery_delete":"Supprimer le livreur",
+      "supplier_delete":"Supprimer le fournisseur",
+      "delivery_status_modify":"Modifier le statut du livreur",
+      "provider_status_modify":"Modifier le statut du prestataire",
+      "trader_status_modify":"Modifier le statut du commerçant",
+      "client_status_modify":"Modifier le statut du client",
+      "to_validate":"Valider",
+      "pending":"En attente",
+      "rejected":"Rejeté",
+      "none_validated":"Non validé",
+      "pages":"Page",
+      "on":"sur"
+
     },
     "addresses": {
       "tab_title": "Ecodeli | Gestion des adresses"
