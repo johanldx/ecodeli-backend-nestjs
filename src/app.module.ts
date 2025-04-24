@@ -23,12 +23,8 @@ import { SubscriptionPaymentsModule } from './subscription-payments/subscription
 import { ReleaseCartAdsModule } from './release-cart-ads/release-cart-ads.module';
 import { ShoppingAdsModule } from './shopping-ads/shopping-ads.module';
 import { ProvidersModule } from './providers/providers.module';
-<<<<<<< HEAD
 import { RoutesModule } from './routes/routes.module';
-import { StripeModule } from './stripe/stripe.module';
-=======
 // import { StripeModule } from './stripe/stripe.module';
->>>>>>> d0dc6263b473698cb9d584916e4e0b3008d8dde1
 
 @Module({
   imports: [
@@ -65,12 +61,8 @@ import { StripeModule } from './stripe/stripe.module';
     ReleaseCartAdsModule,
     ShoppingAdsModule,
     ProvidersModule,
-<<<<<<< HEAD
     RoutesModule,
-    StripeModule,
-=======
-    //StripeModule,
->>>>>>> d0dc6263b473698cb9d584916e4e0b3008d8dde1
+    // StripeModule,
   ],
   controllers: [AppController],
   providers: [
