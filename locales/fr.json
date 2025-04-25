@@ -304,6 +304,7 @@
       }
     },
     "providers": {
+      "tab_title": "Ecodeli | Mon profil",
       "account": {
         "title": "Mon compte commerçant",
         "manage_my_documents": "Gérer mes pièces justificatifs",
@@ -318,6 +319,7 @@
         "valid": "Valider"
       },
       "service": {
+        "tab_title": "Ecodeli | Mes services",
         "title": "Mes services accréditées",
         "transport": "Transport de personnes",
         "gardening": "Jardinage",
@@ -329,6 +331,7 @@
         "title": "Mes Factures"
       },
       "addresses": {
+        "tab_title": "Ecodeli | Mes adresses",
         "title": "Mes adresses",
         "name": "Nom",
         "address": "Adresse",
@@ -347,6 +350,7 @@
         "add_new_ads": "Ajouter une nouvelle annonce"
       },
       "calendar": {
+        "tab_title": "Ecodeli | Mon planning",
         "add": "Ajouter",
         "time": "Heure",
         "title": "Titre",
@@ -367,6 +371,7 @@
     },
     "traders": {
       "account": {
+        "tab_title": "Ecodeli | Mon compte commerçant",
         "title": "Mon compte commerçant",
         "manage_my_documents": "Gérer mes pièces justificatifs",
         "manage_global_account": "Gérer mon compte global",
@@ -386,6 +391,7 @@
         "title": "Mes factures"
       },
       "addresses": {
+        "tab_title": "Ecodeli | Mes adresses",
         "title": "Mes adresses",
         "name": "Nom",
         "address": "Adresse",
@@ -397,6 +403,7 @@
         "add_address": "Ajouter une adresse"
       },
       "my_requests": {
+        "tab_title": "Ecodeli | Mes demandes",
         "title": "Mes demandes",
         "modify": "Modifier",
         "cancel": "Annuler",
@@ -404,6 +411,7 @@
         "add_new_announce": "Ajouter une nouvelle annonce"
       },
       "new_request": {
+        "tab_title": "Ecodeli | Nouvelle demande",
         "title": "Nouvelle demande",
         "add": "Ajouter",
         "cancel": "Annuler",
@@ -543,6 +551,7 @@
   },
   "admin": {
     "global":{
+      "tab_title": "Ecodeli | Gestion des langues",
       "users_title":"Utilisateurs",
       "addresses_title":"Adresses",
       "langs_title": "Langues",
