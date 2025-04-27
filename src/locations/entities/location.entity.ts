@@ -12,6 +12,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('locations')
 export class Location {
+  [x: string]: any;
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;

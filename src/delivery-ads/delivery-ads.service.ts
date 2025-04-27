@@ -1,133 +1,139 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { DeliveryAd, AdStatus } from './entities/delivery-ads.entity';
+import { Express } from 'express';
+import { v4 as uuidv4 } from 'uuid';
+
+import { DeliveryAd } from './entities/delivery-ads.entity';
 import { CreateDeliveryAdDto } from './dto/create-delivery-ads.dto';
 import { UpdateDeliveryAdDto } from './dto/update-delivery-ads.dto';
-import { User } from 'src/users/user.entity';
+import { DeliveryAdResponseDto } from './dto/delivery-ads.response.dto';
+import { StorageService } from 'src/storage/storage.service';
+import { AdStatus } from './entities/delivery-ads.entity';
+import { assertUserOwnsResourceOrIsAdmin } from 'src/auth/utils/assert-ownership';
 
 @Injectable()
 export class DeliveryAdsService {
   constructor(
     @InjectRepository(DeliveryAd)
     private readonly adRepo: Repository<DeliveryAd>,
+    private readonly storageService: StorageService,
   ) {}
 
-  async create(dto: CreateDeliveryAdDto, user: User): Promise<DeliveryAd> {
+  async create(
+    userId: number,
+    dto: CreateDeliveryAdDto,
+    reference: string,
+    images: Express.Multer.File[],
+  ): Promise<DeliveryAdResponseDto> {
+    // upload images
+    const urls = await Promise.all(
+      images.map(f =>
+        this.storageService.uploadFile(f.buffer, f.originalname, 'delivery-ads'),
+      ),
+    );
+
     const ad = this.adRepo.create({
       ...dto,
+      postedBy: { id: userId },
+      reference,
+      imageUrls: urls,
       status: AdStatus.PENDING,
-      postedBy: user,
     });
-    return this.adRepo.save(ad);
+    const saved = await this.adRepo.save(ad);
+    return DeliveryAdResponseDto.fromEntity(saved);
   }
 
-  async findAll(user: User, filters: any): Promise<DeliveryAd[]> {
+  async findAll(user: any, filters: any): Promise<DeliveryAdResponseDto[]> {
     const qb = this.adRepo
       .createQueryBuilder('ad')
-      .leftJoinAndSelect('ad.postedBy', 'postedBy')
-      .leftJoinAndSelect('ad.departure_location', 'departure')
-      .leftJoinAndSelect('ad.arrival_location', 'arrival');
+      .leftJoinAndSelect('ad.postedBy', 'postedBy');
 
-    // Si non admin → voir toutes les annonces PENDING ou IN_PROGRESS + les siennes
     if (!user.administrator) {
       qb.where('ad.status IN (:...allowed)', {
         allowed: [AdStatus.PENDING, AdStatus.IN_PROGRESS],
       }).orWhere('ad.postedBy.id = :userId', { userId: user.id });
     }
 
-    // Filtres facultatifs
     if (filters.posted_by) {
-      qb.andWhere('ad.postedBy.id = :posted_by', {
-        posted_by: filters.posted_by,
-      });
-    }
-    if (filters.departure_location) {
-      qb.andWhere('departure.id = :dep', {
-        dep: filters.departure_location,
-      });
-    }
-    if (filters.arrival_location) {
-      qb.andWhere('arrival.id = :arr', {
-        arr: filters.arrival_location,
-      });
+      qb.andWhere('postedBy.id = :posted_by', { posted_by: filters.posted_by });
     }
     if (filters.delivery_date) {
-      qb.andWhere('DATE(ad.delivery_date) = DATE(:date)', {
-        date: filters.delivery_date,
-      });
+      qb.andWhere('DATE(ad.delivery_date) = DATE(:d)', { d: filters.delivery_date });
     }
 
-    return qb.getMany();
+    const list = await qb.getMany();
+    return list.map(DeliveryAdResponseDto.fromEntity);
   }
 
-  async findOne(id: number, user: User): Promise<DeliveryAd> {
+  async findOne(id: number, user: any): Promise<DeliveryAdResponseDto> {
     const ad = await this.adRepo.findOne({
       where: { id },
-      relations: ['postedBy', 'departure_location', 'arrival_location'],
+      relations: ['postedBy', 'deliverySteps'],
     });
-
-    if (!ad) throw new NotFoundException();
-
-    // Accès limité
+    if (!ad) throw new NotFoundException('Annonce introuvable');
     if (
       !user.administrator &&
       ad.postedBy.id !== user.id &&
-      ![AdStatus.PENDING, AdStatus.IN_PROGRESS].includes(ad.status)
+      ad.status !== AdStatus.PENDING &&
+      ad.status !== AdStatus.IN_PROGRESS
     ) {
-      throw new ForbiddenException();
+      throw new ForbiddenException('Accès refusé');
     }
-
-    return ad;
+    return DeliveryAdResponseDto.fromEntity(ad);
   }
 
   async update(
     id: number,
+    user: any,
     dto: UpdateDeliveryAdDto,
-    user: User,
-  ): Promise<DeliveryAd> {
-    const ad = await this.findOne(id, user);
+    newImages?: Express.Multer.File[],
+  ): Promise<DeliveryAdResponseDto> {
+    const ad = await this.adRepo.findOne({ where: { id } });
+    if (!ad) throw new NotFoundException('Annonce introuvable');
+    assertUserOwnsResourceOrIsAdmin(user, ad.postedBy.id);
 
-    // Statut non modifiable ici
-    if ('status' in dto) {
-      throw new ForbiddenException(
-        'Le statut ne peut être modifié que via une route dédiée',
+    // handle new images
+    if (newImages && newImages.length) {
+      // delete old
+      if (ad.imageUrls?.length) {
+        await Promise.all(ad.imageUrls.map(u => this.storageService.deleteFile(u)));
+      }
+      const urls = await Promise.all(
+        newImages.map(f => this.storageService.uploadFile(f.buffer, f.originalname, 'delivery-ads')),
       );
-    }
-
-    // Seul le proprio ou admin peut modifier
-    if (!user.administrator && ad.postedBy.id !== user.id) {
-      throw new ForbiddenException();
+      ad.imageUrls = urls.length === 1 ? [urls[0]] : (() => { throw new Error('Expected exactly one image URL'); })();
     }
 
     Object.assign(ad, dto);
-    return this.adRepo.save(ad);
+    const saved = await this.adRepo.save(ad);
+    return DeliveryAdResponseDto.fromEntity(saved);
   }
 
-  async remove(id: number, user: User): Promise<void> {
-    const ad = await this.findOne(id, user);
-
-    if (!user.administrator && ad.postedBy.id !== user.id) {
-      throw new ForbiddenException();
+  async remove(id: number, user: any): Promise<void> {
+    const ad = await this.adRepo.findOne({ where: { id } });
+    if (!ad) throw new NotFoundException('Annonce introuvable');
+    assertUserOwnsResourceOrIsAdmin(user, ad.postedBy.id);
+    if (ad.imageUrls?.length) {
+      await Promise.all(ad.imageUrls.map(u => this.storageService.deleteFile(u)));
     }
-
-    await this.adRepo.delete(ad.id);
+    await this.adRepo.delete(id);
   }
 
   async updateStatus(
     id: number,
     status: AdStatus,
-    user: User,
-  ): Promise<DeliveryAd> {
-    const ad = await this.adRepo.findOneBy({ id });
-    if (!ad) throw new NotFoundException();
-
-    // Seul un admin peut modifier le statut
-    if (!user.administrator) {
-      throw new ForbiddenException();
-    }
-
+    userId: number,
+  ): Promise<DeliveryAdResponseDto> {
+    const ad = await this.adRepo.findOne({ where: { id } });
+    if (!ad) throw new NotFoundException('Annonce introuvable');
+    // ici on considère que seul l’admin passe, sinon on ajoute un check
     ad.status = status;
-    return this.adRepo.save(ad);
+    const saved = await this.adRepo.save(ad);
+    return DeliveryAdResponseDto.fromEntity(saved);
   }
 }

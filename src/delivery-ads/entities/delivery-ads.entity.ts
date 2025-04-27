@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { Location } from 'src/locations/entities/location.entity';
-import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity'; // Import pour la relation avec DeliveryStep
+import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
 
 export enum AdStatus {
   PENDING = 'pending',
@@ -32,20 +32,14 @@ export class DeliveryAd {
   @Column('text')
   description: string;
 
-  @Column('text')
-  imageUrls: string;
+  @Column('simple-array')
+  imageUrls: string[];
 
   @Column({ type: 'enum', enum: AdStatus, default: AdStatus.PENDING })
   status: AdStatus;
 
   @Column()
   reference: string;
-
-  @ManyToOne(() => Location)
-  departureLocation: Location;
-
-  @ManyToOne(() => Location)
-  arrivalLocation: Location;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

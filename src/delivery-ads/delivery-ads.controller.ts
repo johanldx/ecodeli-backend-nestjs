@@ -1,54 +1,123 @@
-import { Controller, Post, Body, Get, Param, Query, Delete, Patch } from '@nestjs/common';
-import { AdStatus } from './entities/delivery-ads.entity'; // Adjust the path as needed
-import { ApiTags, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Query,
+  Delete,
+  Patch,
+  ParseIntPipe,
+  UseGuards,
+  UseInterceptors,
+  UploadedFiles,
+} from '@nestjs/common';
+import {
+  ApiTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiBody,
+  ApiQuery,
+  ApiParam,
+  ApiOperation,
+  ApiConsumes,
+} from '@nestjs/swagger';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
+import { v4 as uuidv4 } from 'uuid';
+
 import { DeliveryAdsService } from './delivery-ads.service';
 import { CreateDeliveryAdDto } from './dto/create-delivery-ads.dto';
 import { UpdateDeliveryAdDto } from './dto/update-delivery-ads.dto';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';  // On importe seulement le décorateur
-import { User } from 'src/users/user.entity';  // Cette importation est juste si nécessaire pour d'autres fonctionnalités
+import { DeliveryAdResponseDto } from './dto/delivery-ads.response.dto';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { User } from 'src/users/user.entity';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AdStatus } from './entities/delivery-ads.entity';
 
 @ApiTags('Delivery Ads')
 @ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('delivery-ads')
 export class DeliveryAdsController {
   constructor(private readonly deliveryAdsService: DeliveryAdsService) {}
 
   @Post()
-  @ApiResponse({ status: 201, description: 'Annonce de livraison créée avec succès' })
-  async create(@Body() dto: CreateDeliveryAdDto, @CurrentUser() user: User) {
-    return this.deliveryAdsService.create(dto, user);
+  @UseInterceptors(FilesInterceptor('images'))
+  @ApiConsumes('multipart/form-data')
+  @ApiOperation({ summary: 'Créer une nouvelle annonce de livraison' })
+  @ApiBody({ type: CreateDeliveryAdDto })
+  @ApiResponse({ status: 201, type: DeliveryAdResponseDto })
+  async create(
+    @CurrentUser() user: User,
+    @Body() dto: CreateDeliveryAdDto,
+    @UploadedFiles() images: Express.Multer.File[],
+  ): Promise<DeliveryAdResponseDto> {
+    if (!images || images.length === 0) {
+      throw new Error('Au moins une image est requise');
+    }
+    const reference = uuidv4();
+    return this.deliveryAdsService.create(user.id, dto, reference, images);
   }
 
   @Get()
-  @ApiResponse({ status: 200, description: 'Retourne la liste des annonces de livraison' })
-  async findAll(@Query() query: any, @CurrentUser() user: User) {
+  @ApiOperation({ summary: 'Lister les annonces de livraison' })
+  @ApiQuery({ name: 'posted_by', required: false, type: Number })
+  @ApiQuery({ name: 'delivery_date', required: false, type: String })
+  @ApiResponse({ status: 200, type: [DeliveryAdResponseDto] })
+  async findAll(@CurrentUser() user: User, @Query() query: any): Promise<DeliveryAdResponseDto[]> {
     return this.deliveryAdsService.findAll(user, query);
   }
 
   @Get(':id')
-  @ApiResponse({ status: 200, description: 'Retourne l\'annonce de livraison demandée' })
-  async findOne(@Param('id') id: number, @CurrentUser() user: User) {
+  @ApiOperation({ summary: 'Récupérer une annonce par son ID' })
+  @ApiParam({ name: 'id', type: Number })
+  @ApiResponse({ status: 200, type: DeliveryAdResponseDto })
+  async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User): Promise<DeliveryAdResponseDto> {
     return this.deliveryAdsService.findOne(id, user);
   }
 
   @Patch(':id')
-  @ApiResponse({ status: 200, description: 'Annonce de livraison mise à jour avec succès' })
-  @ApiResponse({ status: 403, description: 'Non autorisé' })
-  async update(@Param('id') id: number, @Body() dto: UpdateDeliveryAdDto, @CurrentUser() user: User) {
-    return this.deliveryAdsService.update(id, dto, user);
+  @UseInterceptors(FilesInterceptor('images'))
+  @ApiConsumes('multipart/form-data')
+  @ApiOperation({ summary: 'Mettre à jour une annonce (hors statut)' })
+  @ApiParam({ name: 'id', type: Number })
+  @ApiBody({ type: UpdateDeliveryAdDto })
+  @ApiResponse({ status: 200, type: DeliveryAdResponseDto })
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() user: User,
+    @Body() dto: UpdateDeliveryAdDto,
+    @UploadedFiles() images?: Express.Multer.File[],
+  ): Promise<DeliveryAdResponseDto> {
+    return this.deliveryAdsService.update(id, user, dto, images);
   }
 
   @Delete(':id')
-  @ApiResponse({ status: 200, description: 'Annonce de livraison supprimée avec succès' })
-  @ApiResponse({ status: 403, description: 'Non autorisé' })
-  async remove(@Param('id') id: number, @CurrentUser() user: User) {
+  @ApiOperation({ summary: 'Supprimer une annonce' })
+  @ApiParam({ name: 'id', type: Number })
+  @ApiResponse({ status: 200 })
+  async remove(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User): Promise<void> {
     return this.deliveryAdsService.remove(id, user);
   }
 
   @Patch(':id/status')
-  @ApiResponse({ status: 200, description: 'Statut de l\'annonce mis à jour avec succès' })
-  @ApiResponse({ status: 403, description: 'Non autorisé' })
-  async updateStatus(@Param('id') id: number, @Body() status: 'active' | 'inactive', @CurrentUser() user: User) {
-    return this.deliveryAdsService.updateStatus(id, status as AdStatus, user);
+  @ApiOperation({ summary: 'Mettre à jour le statut (ADMIN only)' })
+  @ApiParam({ name: 'id', type: Number })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { status: { type: 'string', enum: ['pending','in_progress','completed','cancelled'] } },
+      required: ['status'],
+    },
+  })
+  
+  @ApiResponse({ status: 200, type: DeliveryAdResponseDto })
+  async updateStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status') status: AdStatus,
+    @CurrentUser() user: User,
+  ): Promise<DeliveryAdResponseDto> {
+    return this.deliveryAdsService.updateStatus(id, status, user.id);
   }
 }

@@ -5,6 +5,7 @@ import {
     IsArray,
     IsDateString,
     IsUUID,
+    IsOptional,
   } from 'class-validator';
   import { ApiProperty } from '@nestjs/swagger';
   import { AdStatus, PackageSize } from '../entities/delivery-ads.entity';
@@ -22,20 +23,13 @@ import {
   
     @ApiProperty({ type: [String] })
     @IsArray()
+    @IsOptional()
     image_urls: string[];
   
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     reference: string;
-  
-    @ApiProperty()
-    @IsUUID()
-    departure_location_id: string;
-  
-    @ApiProperty()
-    @IsUUID()
-    arrival_location_id: string;
   
     @ApiProperty()
     @IsDateString()

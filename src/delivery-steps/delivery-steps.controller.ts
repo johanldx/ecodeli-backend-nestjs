@@ -1,10 +1,34 @@
-import { Controller, Post, Body, Get, Param, Query, Delete, Patch } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
+// src/delivery-steps/delivery-steps.controller.ts
+
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Query,
+  Delete,
+  Patch,
+  ParseIntPipe,
+} from '@nestjs/common';
+import {
+  ApiTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation,
+  ApiBody,
+  ApiQuery,
+  ApiParam,
+  ApiCreatedResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 import { DeliveryStepsService } from './delivery-steps.service';
 import { CreateDeliveryStepDto } from './dto/create-delivery-step.dto';
 import { UpdateDeliveryStepDto } from './dto/update-delivery-step.dto';
+import { DeliveryStepResponseDto } from './dto/delivery-step-response.dto';
+import { DeliveryStep } from './entities/delivery-step.entity';
 import { DeliveryStepStatus } from './entities/delivery-step.entity';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator'; 
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
 
 @ApiTags('Delivery Steps')
@@ -13,36 +37,76 @@ import { User } from 'src/users/user.entity';
 export class DeliveryStepsController {
   constructor(private readonly stepsService: DeliveryStepsService) {}
 
+  private toDto(step: DeliveryStep): DeliveryStepResponseDto {
+    return {
+      id: step.id,
+      receivedById: step.receivedBy?.id,
+      deliveryAdId: step.deliveryAd.id,
+      stepNumber: step.stepNumber,
+      price: step.price,
+      status: step.status,
+      departureLocationId: step.departureLocation.id,
+      arrivalLocationId: step.arrivalLocation.id,
+      createdAt: step.createdAt,
+      updatedAt: step.updatedAt,
+    };
+  }
+
   @Post()
-  @ApiResponse({ status: 201, description: 'Étape de livraison créée avec succès' })
+  @ApiOperation({ summary: 'Créer une étape de livraison' })
+  @ApiBody({ type: CreateDeliveryStepDto })
+  @ApiCreatedResponse({ type: DeliveryStepResponseDto, description: 'Étape créée' })
   @ApiResponse({ status: 403, description: 'Non autorisé' })
-  async create(@Body() dto: CreateDeliveryStepDto, @CurrentUser() user: User) {
-    return this.stepsService.create(dto, user);
+  async create(
+    @Body() dto: CreateDeliveryStepDto,
+    @CurrentUser() user: User,
+  ): Promise<DeliveryStepResponseDto> {
+    const step = await this.stepsService.create(dto, user);
+    return this.toDto(step);
   }
 
   @Get()
-  @ApiResponse({ status: 200, description: 'Retourne la liste des étapes de livraison' })
-  async findAll(@Query() query: any) {
-    return this.stepsService.findAll(query);
+  @ApiOperation({ summary: 'Lister les étapes de livraison' })
+  @ApiQuery({ name: 'status', required: false, enum: DeliveryStepStatus, description: 'Filtrer par statut' })
+  @ApiOkResponse({ type: DeliveryStepResponseDto, isArray: true })
+  async findAll(@Query() query: any): Promise<DeliveryStepResponseDto[]> {
+    const steps = await this.stepsService.findAll(query);
+    return steps.map(s => this.toDto(s));
   }
 
   @Get(':id')
-  @ApiResponse({ status: 200, description: 'Retourne l\'étape de livraison demandée' })
-  async findOne(@Param('id') id: number) {
-    return this.stepsService.findOne(id);
+  @ApiOperation({ summary: 'Récupérer une étape par ID' })
+  @ApiParam({ name: 'id', type: Number, description: 'ID de l’étape' })
+  @ApiOkResponse({ type: DeliveryStepResponseDto })
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<DeliveryStepResponseDto> {
+    const step = await this.stepsService.findOne(id);
+    return this.toDto(step);
   }
 
   @Patch(':id')
-  @ApiResponse({ status: 200, description: 'Étape de livraison mise à jour avec succès' })
+  @ApiOperation({ summary: 'Mettre à jour une étape de livraison' })
+  @ApiParam({ name: 'id', type: Number, description: 'ID de l’étape' })
+  @ApiBody({ type: UpdateDeliveryStepDto })
+  @ApiOkResponse({ type: DeliveryStepResponseDto })
   @ApiResponse({ status: 403, description: 'Non autorisé' })
-  async update(@Param('id') id: number, @Body() dto: UpdateDeliveryStepDto, @CurrentUser() user: User) {
-    return this.stepsService.update(id, dto);
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdateDeliveryStepDto,
+    @CurrentUser() user: User,
+  ): Promise<DeliveryStepResponseDto> {
+    const step = await this.stepsService.update(id, dto, user);
+    return this.toDto(step);
   }
 
   @Delete(':id')
-  @ApiResponse({ status: 200, description: 'Étape de livraison supprimée avec succès' })
+  @ApiOperation({ summary: 'Supprimer une étape de livraison' })
+  @ApiParam({ name: 'id', type: Number, description: 'ID de l’étape' })
+  @ApiResponse({ status: 200, description: 'Étape supprimée avec succès' })
   @ApiResponse({ status: 403, description: 'Non autorisé' })
-  async remove(@Param('id') id: number, @CurrentUser() user: User) {
-    return this.stepsService.remove(id, user);
+  async remove(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() user: User,
+  ): Promise<void> {
+    await this.stepsService.remove(id, user);
   }
 }
