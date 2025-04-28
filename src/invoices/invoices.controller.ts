@@ -46,7 +46,11 @@ export class InvoicesController {
     },
   })
   @ApiOperation({ summary: 'Créer une nouvelle facture' })
-  @ApiResponse({ status: 201, description: 'Facture créée avec succès', type: Invoice })
+  @ApiResponse({
+    status: 201,
+    description: 'Facture créée avec succès',
+    type: Invoice,
+  })
   @ApiResponse({ status: 400, description: 'Requête invalide' })
   @ApiResponse({ status: 500, description: 'Erreur serveur (upload ou base)' })
   create(
@@ -58,7 +62,11 @@ export class InvoicesController {
 
   @Get()
   @ApiOperation({ summary: 'Récupérer toutes les factures visibles' })
-  @ApiResponse({ status: 200, description: 'Liste des factures', type: [Invoice] })
+  @ApiResponse({
+    status: 200,
+    description: 'Liste des factures',
+    type: [Invoice],
+  })
   findAll(): Promise<Invoice[]> {
     return this.invoicesService.findAll();
   }

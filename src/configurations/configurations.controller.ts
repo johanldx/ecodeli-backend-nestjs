@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Patch, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Patch,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { ConfigurationsService } from './configurations.service';
 import { CreateConfigurationDto } from './dto/create-configuration.dto';
 import { UpdateConfigurationDto } from './dto/update-configuration.dto';

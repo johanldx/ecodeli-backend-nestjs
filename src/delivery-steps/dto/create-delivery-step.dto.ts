@@ -28,7 +28,11 @@ export class CreateDeliveryStepDto {
   @IsPositive()
   arrivalLocationId: number;
 
-  @ApiProperty({ description: 'Statut initial de l’étape', enum: DeliveryStepStatus, default: DeliveryStepStatus.PENDING })
+  @ApiProperty({
+    description: 'Statut initial de l’étape',
+    enum: DeliveryStepStatus,
+    default: DeliveryStepStatus.PENDING,
+  })
   @IsEnum(DeliveryStepStatus)
   status?: DeliveryStepStatus;
 }

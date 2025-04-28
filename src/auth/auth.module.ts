@@ -24,7 +24,7 @@ import { ProvidersModule } from 'src/providers/providers.module';
     ClientsModule,
     DeliveryPersonsModule,
     TradersModule,
-    ProvidersModule
+    ProvidersModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

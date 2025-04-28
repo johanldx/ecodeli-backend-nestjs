@@ -8,7 +8,9 @@ export class CreateSubscriptionPaymentDto {
   @IsNotEmpty()
   amount: number;
 
-  @ApiProperty({ description: 'The Stripe payment ID associated with the payment.' })
+  @ApiProperty({
+    description: 'The Stripe payment ID associated with the payment.',
+  })
   @IsString()
   @IsNotEmpty()
   stripe_payment_id: string;
@@ -18,7 +20,9 @@ export class CreateSubscriptionPaymentDto {
   @IsNotEmpty()
   status: PaymentStatus;
 
-  @ApiProperty({ description: 'The ID of the subscription associated with this payment.' })
+  @ApiProperty({
+    description: 'The ID of the subscription associated with this payment.',
+  })
   @IsNumber()
   @IsNotEmpty()
   subscriptionId: number;

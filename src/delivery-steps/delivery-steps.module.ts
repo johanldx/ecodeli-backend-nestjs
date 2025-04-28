@@ -10,5 +10,6 @@ import { Location } from 'src/locations/entities/location.entity';
   imports: [TypeOrmModule.forFeature([DeliveryStep, DeliveryAd, Location])],
   controllers: [DeliveryStepsController],
   providers: [DeliveryStepsService],
+  exports: [DeliveryStepsService],
 })
 export class DeliveryStepsModule {}

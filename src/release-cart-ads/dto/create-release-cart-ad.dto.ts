@@ -1,4 +1,11 @@
-import { IsString, IsEnum, IsArray, IsEmail, IsOptional, IsNumber } from 'class-validator';
+import {
+  IsString,
+  IsEnum,
+  IsArray,
+  IsEmail,
+  IsOptional,
+  IsNumber,
+} from 'class-validator';
 import { AdStatus, PackageSize } from '../entities/release-cart-ad.entity';
 
 export class CreateReleaseCartAdDto {

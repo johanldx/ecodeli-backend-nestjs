@@ -19,7 +19,7 @@ export class CreateProviderDto {
   @IsString()
   @IsOptional()
   proof_of_business_document: string;
-  
+
   @IsString()
   @IsOptional()
   certification_documents: string[];

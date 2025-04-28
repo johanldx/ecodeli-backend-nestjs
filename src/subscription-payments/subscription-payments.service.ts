@@ -1,7 +1,11 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SubscriptionPayment } from './entities/subscription-payment.entity'; 
+import { SubscriptionPayment } from './entities/subscription-payment.entity';
 import { CreateSubscriptionPaymentDto } from './dto/create-subscription-payment.dto';
 import { UpdateSubscriptionPaymentDto } from './dto/update-subscription-payment.dto';
 
@@ -12,8 +16,12 @@ export class SubscriptionPaymentsService {
     private readonly subscriptionPaymentRepo: Repository<SubscriptionPayment>,
   ) {}
 
-  async create(createSubscriptionPaymentDto: CreateSubscriptionPaymentDto): Promise<SubscriptionPayment> {
-    const payment = this.subscriptionPaymentRepo.create(createSubscriptionPaymentDto);
+  async create(
+    createSubscriptionPaymentDto: CreateSubscriptionPaymentDto,
+  ): Promise<SubscriptionPayment> {
+    const payment = this.subscriptionPaymentRepo.create(
+      createSubscriptionPaymentDto,
+    );
     return this.subscriptionPaymentRepo.save(payment);
   }
 
@@ -22,12 +30,17 @@ export class SubscriptionPaymentsService {
   }
 
   async findOne(id: number): Promise<SubscriptionPayment> {
-    const payment = await this.subscriptionPaymentRepo.findOne({ where: { id } });
+    const payment = await this.subscriptionPaymentRepo.findOne({
+      where: { id },
+    });
     if (!payment) throw new NotFoundException();
     return payment;
   }
 
-  async update(id: number, updateSubscriptionPaymentDto: UpdateSubscriptionPaymentDto): Promise<SubscriptionPayment> {
+  async update(
+    id: number,
+    updateSubscriptionPaymentDto: UpdateSubscriptionPaymentDto,
+  ): Promise<SubscriptionPayment> {
     const payment = await this.findOne(id);
     Object.assign(payment, updateSubscriptionPaymentDto);
     return this.subscriptionPaymentRepo.save(payment);

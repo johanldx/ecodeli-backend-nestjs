@@ -14,9 +14,7 @@ export class TradersService {
     private repo: Repository<Trader>,
   ) {}
 
-  async create(
-    dto: CreateTraderDto & { user_id: number }
-  ): Promise<Trader> {
+  async create(dto: CreateTraderDto & { user_id: number }): Promise<Trader> {
     const entity = this.repo.create({
       ...dto,
       status: ValidationStatus.PENDING,
@@ -29,7 +27,10 @@ export class TradersService {
   }
 
   async findOne(id: number): Promise<Trader> {
-    const trader = await this.repo.findOne({ where: { id }, relations: ['user'] });
+    const trader = await this.repo.findOne({
+      where: { id },
+      relations: ['user'],
+    });
     if (!trader) throw new NotFoundException('Trader not found');
     return trader;
   }

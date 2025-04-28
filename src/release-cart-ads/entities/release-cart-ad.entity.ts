@@ -1,8 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/users/user.entity';
 import { Location } from 'src/locations/entities/location.entity';
-
 
 export enum AdStatus {
   PENDING = 'pending',
@@ -22,7 +28,9 @@ export enum PackageSize {
 @Entity('release_cart_ads')
 export class ReleaseCartAd {
   @PrimaryGeneratedColumn()
-  @ApiProperty({ description: 'The unique identifier for the release cart ad.' })
+  @ApiProperty({
+    description: 'The unique identifier for the release cart ad.',
+  })
   id: number;
 
   @ManyToOne(() => User, (user) => user.releaseCartAds)
@@ -70,10 +78,14 @@ export class ReleaseCartAd {
   packageSize: PackageSize;
 
   @CreateDateColumn({ type: 'timestamp' })
-  @ApiProperty({ description: 'Timestamp when the release cart ad was created.' })
+  @ApiProperty({
+    description: 'Timestamp when the release cart ad was created.',
+  })
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  @ApiProperty({ description: 'Timestamp when the release cart ad was last updated.' })
+  @ApiProperty({
+    description: 'Timestamp when the release cart ad was last updated.',
+  })
   updatedAt: Date;
 }

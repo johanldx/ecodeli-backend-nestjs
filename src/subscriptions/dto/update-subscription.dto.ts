@@ -7,7 +7,9 @@ export class UpdateSubscriptionDto {
   @IsOptional()
   name?: string;
 
-  @ApiProperty({ description: 'A detailed description of the subscription plan.' })
+  @ApiProperty({
+    description: 'A detailed description of the subscription plan.',
+  })
   @IsString()
   @IsOptional()
   description?: string;
@@ -17,7 +19,10 @@ export class UpdateSubscriptionDto {
   @IsOptional()
   price?: number;
 
-  @ApiProperty({ description: 'The Stripe payment system ID associated with the subscription.' })
+  @ApiProperty({
+    description:
+      'The Stripe payment system ID associated with the subscription.',
+  })
   @IsString()
   @IsOptional()
   stripe_id?: string;

@@ -5,7 +5,10 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { DeliveryStep, DeliveryStepStatus } from './entities/delivery-step.entity';
+import {
+  DeliveryStep,
+  DeliveryStepStatus,
+} from './entities/delivery-step.entity';
 import { CreateDeliveryStepDto } from './dto/create-delivery-step.dto';
 import { UpdateDeliveryStepDto } from './dto/update-delivery-step.dto';
 import { User } from 'src/users/user.entity';
@@ -24,14 +27,23 @@ export class DeliveryStepsService {
   ) {}
 
   async create(dto: CreateDeliveryStepDto, user: User): Promise<DeliveryStep> {
-    const deliveryAd = await this.deliveryAdRepo.findOne({ where: { id: dto.deliveryAdId } });
-    if (!deliveryAd) throw new NotFoundException('Annonce de livraison introuvable');
+    const deliveryAd = await this.deliveryAdRepo.findOne({
+      where: { id: dto.deliveryAdId },
+    });
+    if (!deliveryAd)
+      throw new NotFoundException('Annonce de livraison introuvable');
 
-    const departure = await this.locationRepo.findOne({ where: { id: dto.departureLocationId } });
-    if (!departure) throw new NotFoundException('Localisation de départ introuvable');
+    const departure = await this.locationRepo.findOne({
+      where: { id: dto.departureLocationId },
+    });
+    if (!departure)
+      throw new NotFoundException('Localisation de départ introuvable');
 
-    const arrival = await this.locationRepo.findOne({ where: { id: dto.arrivalLocationId } });
-    if (!arrival) throw new NotFoundException('Localisation d’arrivée introuvable');
+    const arrival = await this.locationRepo.findOne({
+      where: { id: dto.arrivalLocationId },
+    });
+    if (!arrival)
+      throw new NotFoundException('Localisation d’arrivée introuvable');
 
     const step = this.stepRepo.create({
       ...dto,
@@ -46,7 +58,8 @@ export class DeliveryStepsService {
   }
 
   async findAll(query: any): Promise<DeliveryStep[]> {
-    const qb = this.stepRepo.createQueryBuilder('step')
+    const qb = this.stepRepo
+      .createQueryBuilder('step')
       .leftJoinAndSelect('step.receivedBy', 'receivedBy')
       .leftJoinAndSelect('step.deliveryAd', 'deliveryAd')
       .leftJoinAndSelect('step.departureLocation', 'departure')
@@ -62,18 +75,29 @@ export class DeliveryStepsService {
   async findOne(id: number): Promise<DeliveryStep> {
     const step = await this.stepRepo.findOne({
       where: { id },
-      relations: ['receivedBy', 'deliveryAd', 'departureLocation', 'arrivalLocation'],
+      relations: [
+        'receivedBy',
+        'deliveryAd',
+        'departureLocation',
+        'arrivalLocation',
+      ],
     });
 
     if (!step) throw new NotFoundException('Étape introuvable');
     return step;
   }
 
-  async update(id: number, dto: UpdateDeliveryStepDto, user: User): Promise<DeliveryStep> {
+  async update(
+    id: number,
+    dto: UpdateDeliveryStepDto,
+    user: User,
+  ): Promise<DeliveryStep> {
     const step = await this.findOne(id);
 
     if (dto.status) {
-      throw new ForbiddenException('Le statut ne peut être mis à jour que via la route dédiée');
+      throw new ForbiddenException(
+        'Le statut ne peut être mis à jour que via la route dédiée',
+      );
     }
 
     if (step.receivedBy?.id !== user.id && !user.administrator) {
@@ -81,13 +105,19 @@ export class DeliveryStepsService {
     }
 
     if (dto.departureLocationId) {
-      const departure = await this.locationRepo.findOne({ where: { id: dto.departureLocationId } });
-      if (!departure) throw new NotFoundException('Localisation de départ introuvable');
+      const departure = await this.locationRepo.findOne({
+        where: { id: dto.departureLocationId },
+      });
+      if (!departure)
+        throw new NotFoundException('Localisation de départ introuvable');
       step.departureLocation = departure;
     }
     if (dto.arrivalLocationId) {
-      const arrival = await this.locationRepo.findOne({ where: { id: dto.arrivalLocationId } });
-      if (!arrival) throw new NotFoundException('Localisation d’arrivée introuvable');
+      const arrival = await this.locationRepo.findOne({
+        where: { id: dto.arrivalLocationId },
+      });
+      if (!arrival)
+        throw new NotFoundException('Localisation d’arrivée introuvable');
       step.arrivalLocation = arrival;
     }
 

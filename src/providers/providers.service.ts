@@ -11,15 +11,16 @@ import { assertUserOwnsResourceOrIsAdmin } from 'src/auth/utils/assert-ownership
 export class ProvidersService {
   constructor(
     @InjectRepository(Provider)
-    private repo: Repository<Provider>
+    private repo: Repository<Provider>,
   ) {}
 
   async create(dto: CreateProviderDto): Promise<Provider> {
     const provider = this.repo.create({
-        ...dto,
-        user: { id: dto.user_id },
-        status: ValidationStatus.PENDING
-        });    return this.repo.save(provider);
+      ...dto,
+      user: { id: dto.user_id },
+      status: ValidationStatus.PENDING,
+    });
+    return this.repo.save(provider);
   }
 
   findAll(): Promise<Provider[]> {
@@ -27,12 +28,19 @@ export class ProvidersService {
   }
 
   async findOne(id: number): Promise<Provider> {
-    const provider = await this.repo.findOne({ where: { id }, relations: ['user'] });
+    const provider = await this.repo.findOne({
+      where: { id },
+      relations: ['user'],
+    });
     if (!provider) throw new NotFoundException('Provider not found');
     return provider;
   }
 
-  async update(id: number, dto: UpdateProviderDto, user: User): Promise<Provider> {
+  async update(
+    id: number,
+    dto: UpdateProviderDto,
+    user: User,
+  ): Promise<Provider> {
     const provider = await this.findOne(id);
     assertUserOwnsResourceOrIsAdmin(user, provider.user.id);
 
@@ -60,5 +68,4 @@ export class ProvidersService {
     if (!provider) throw new NotFoundException('Provider profile not found');
     return provider;
   }
-  
 }

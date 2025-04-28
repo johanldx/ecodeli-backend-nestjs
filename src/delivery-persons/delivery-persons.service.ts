@@ -15,7 +15,7 @@ export class DeliveryPersonsService {
   ) {}
 
   async create(
-    dto: CreateDeliveryPersonDto & { user_id: number }, 
+    dto: CreateDeliveryPersonDto & { user_id: number },
   ): Promise<DeliveryPerson> {
     const entity = this.repo.create({
       ...dto,
@@ -70,9 +70,11 @@ export class DeliveryPersonsService {
   }
 
   async findByUserId(userId: number): Promise<DeliveryPerson> {
-    const dp = await this.repo.findOne({ where: { user: { id: userId } }, relations: ['user'] });
+    const dp = await this.repo.findOne({
+      where: { user: { id: userId } },
+      relations: ['user'],
+    });
     if (!dp) throw new NotFoundException('Delivery person profile not found');
     return dp;
   }
-  
 }

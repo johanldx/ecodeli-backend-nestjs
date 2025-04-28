@@ -19,7 +19,7 @@ export class Location {
 
   @Column()
   user_id: number;
-  @ManyToOne(() => User, user => user.locations, { eager: true })
+  @ManyToOne(() => User, (user) => user.locations, { eager: true })
   @JoinColumn({ name: 'user_id' })
   user: User;
 

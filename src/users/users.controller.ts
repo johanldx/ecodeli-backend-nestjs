@@ -57,6 +57,4 @@ export class UsersController {
   async remove(@Param('id') id: number): Promise<void> {
     return this.userService.remove(id);
   }
-
-  
 }

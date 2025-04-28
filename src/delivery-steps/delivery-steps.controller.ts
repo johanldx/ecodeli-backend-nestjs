@@ -55,7 +55,10 @@ export class DeliveryStepsController {
   @Post()
   @ApiOperation({ summary: 'Créer une étape de livraison' })
   @ApiBody({ type: CreateDeliveryStepDto })
-  @ApiCreatedResponse({ type: DeliveryStepResponseDto, description: 'Étape créée' })
+  @ApiCreatedResponse({
+    type: DeliveryStepResponseDto,
+    description: 'Étape créée',
+  })
   @ApiResponse({ status: 403, description: 'Non autorisé' })
   async create(
     @Body() dto: CreateDeliveryStepDto,
@@ -67,18 +70,25 @@ export class DeliveryStepsController {
 
   @Get()
   @ApiOperation({ summary: 'Lister les étapes de livraison' })
-  @ApiQuery({ name: 'status', required: false, enum: DeliveryStepStatus, description: 'Filtrer par statut' })
+  @ApiQuery({
+    name: 'status',
+    required: false,
+    enum: DeliveryStepStatus,
+    description: 'Filtrer par statut',
+  })
   @ApiOkResponse({ type: DeliveryStepResponseDto, isArray: true })
   async findAll(@Query() query: any): Promise<DeliveryStepResponseDto[]> {
     const steps = await this.stepsService.findAll(query);
-    return steps.map(s => this.toDto(s));
+    return steps.map((s) => this.toDto(s));
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Récupérer une étape par ID' })
   @ApiParam({ name: 'id', type: Number, description: 'ID de l’étape' })
   @ApiOkResponse({ type: DeliveryStepResponseDto })
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<DeliveryStepResponseDto> {
+  async findOne(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<DeliveryStepResponseDto> {
     const step = await this.stepsService.findOne(id);
     return this.toDto(step);
   }

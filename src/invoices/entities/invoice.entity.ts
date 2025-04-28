@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 export enum InvoiceStatus {
   CREATED = 'created',
@@ -29,8 +35,7 @@ export class Invoice {
 
   @UpdateDateColumn()
   editedAt: Date;
-  
-  @Column()
-userId: number;
 
+  @Column()
+  userId: number;
 }

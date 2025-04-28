@@ -7,7 +7,9 @@ export class CreateSubscriptionDto {
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({ description: 'A detailed description of the subscription plan.' })
+  @ApiProperty({
+    description: 'A detailed description of the subscription plan.',
+  })
   @IsString()
   @IsNotEmpty()
   description: string;
@@ -17,7 +19,10 @@ export class CreateSubscriptionDto {
   @IsNotEmpty()
   price: number;
 
-  @ApiProperty({ description: 'The Stripe payment system ID associated with the subscription.' })
+  @ApiProperty({
+    description:
+      'The Stripe payment system ID associated with the subscription.',
+  })
   @IsString()
   @IsNotEmpty()
   stripe_id: string;

@@ -1,9 +1,24 @@
 import {
-  Controller, Get, Post, Body, Param, Delete, Patch, UploadedFiles,
-  UseInterceptors, ParseIntPipe, BadRequestException, UseGuards, HttpCode
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+  UploadedFiles,
+  UseInterceptors,
+  ParseIntPipe,
+  BadRequestException,
+  UseGuards,
+  HttpCode,
 } from '@nestjs/common';
 import {
-  ApiTags, ApiOperation, ApiResponse, ApiConsumes, ApiBody
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiConsumes,
+  ApiBody,
 } from '@nestjs/swagger';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { ProvidersService } from './providers.service';
@@ -40,10 +55,20 @@ export class ProvidersController {
     description: 'Upload des documents nécessaires + infos du provider',
     schema: {
       type: 'object',
-      required: ['user_id', 'identity_card_document', 'proof_of_business_document', 'bank_account', 'name', 'description'],
+      required: [
+        'user_id',
+        'identity_card_document',
+        'proof_of_business_document',
+        'bank_account',
+        'name',
+        'description',
+      ],
       properties: {
         user_id: { type: 'integer', example: 1 },
-        bank_account: { type: 'string', example: 'FR7630001007941234567890185' },
+        bank_account: {
+          type: 'string',
+          example: 'FR7630001007941234567890185',
+        },
         name: { type: 'string', example: 'Mon fournisseur' },
         description: { type: 'string', example: 'Description du fournisseur' },
         identity_card_document: { type: 'string', format: 'binary' },
@@ -67,57 +92,62 @@ export class ProvidersController {
     @CurrentUser() user: User,
   ) {
     assertUserOwnsResourceOrIsAdmin(user, dto.user_id);
-  
+
     const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
     const maxSize = 5 * 1024 * 1024;
-  
+
     const idDoc = files.identity_card_document?.[0];
     const proof = files.proof_of_business_document?.[0];
     const certs = files.certification_documents || [];
-  
+
     if (!idDoc || !proof) {
       throw new BadRequestException('Les documents requis sont manquants.');
     }
-  
+
     if (idDoc.size > maxSize || !allowedTypes.includes(idDoc.mimetype)) {
-      throw new BadRequestException('Document identité invalide (max 5MB, jpg/png/pdf)');
+      throw new BadRequestException(
+        'Document identité invalide (max 5MB, jpg/png/pdf)',
+      );
     }
-  
+
     if (proof.size > maxSize || !allowedTypes.includes(proof.mimetype)) {
-      throw new BadRequestException('Justificatif d’activité invalide (max 5MB, jpg/png/pdf)');
+      throw new BadRequestException(
+        'Justificatif d’activité invalide (max 5MB, jpg/png/pdf)',
+      );
     }
-  
+
     dto.identity_card_document = await this.storage.uploadFile(
       idDoc.buffer,
       idDoc.originalname,
       'provider-docs',
     );
-  
+
     dto.proof_of_business_document = await this.storage.uploadFile(
       proof.buffer,
       proof.originalname,
       'provider-docs',
     );
-  
+
     dto.certification_documents = [];
-  
+
     for (const file of certs) {
       if (file.size > maxSize || !allowedTypes.includes(file.mimetype)) {
-        throw new BadRequestException('Un des documents de certification est invalide.');
+        throw new BadRequestException(
+          'Un des documents de certification est invalide.',
+        );
       }
-  
+
       const url = await this.storage.uploadFile(
         file.buffer,
         file.originalname,
         'provider-docs',
       );
-  
+
       dto.certification_documents.push(url);
     }
-  
+
     return this.service.create(dto);
   }
-  
 
   @Get()
   @UseGuards(JwtAuthGuard)
@@ -142,7 +172,7 @@ export class ProvidersController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateProviderDto,
-    @CurrentUser() user: User
+    @CurrentUser() user: User,
   ) {
     return this.service.update(id, dto, user);
   }
@@ -153,7 +183,7 @@ export class ProvidersController {
   @ApiResponse({ status: 200, type: ProviderResponseDto })
   updateStatus(
     @Param('id', ParseIntPipe) id: number,
-    @Body() dto: UpdateDeliveryPersonStatusDto
+    @Body() dto: UpdateDeliveryPersonStatusDto,
   ) {
     return this.service.updateStatus(id, dto.status);
   }

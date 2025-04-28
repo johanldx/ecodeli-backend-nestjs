@@ -85,7 +85,11 @@ export class AuthService {
   }
 
   generateTokens(user: User) {
-    const payload = { email: user.email, sub: user.id, administrator: user.administrator };
+    const payload = {
+      email: user.email,
+      sub: user.id,
+      administrator: user.administrator,
+    };
     const access_token = this.jwtService.sign(payload, {
       secret: process.env.JWT_SECRET,
       expiresIn: '1h',
@@ -206,7 +210,11 @@ export class AuthService {
       const userWithEmail = await this.userRepository.findOne({
         where: { email: updateProfileDto.email },
       });
-      if (userWithEmail && userWithEmail.id !== userId && userWithEmail.email != updateProfileDto.email) {
+      if (
+        userWithEmail &&
+        userWithEmail.id !== userId &&
+        userWithEmail.email != updateProfileDto.email
+      ) {
         throw new ConflictException('Cet email est déjà pris');
       }
     }

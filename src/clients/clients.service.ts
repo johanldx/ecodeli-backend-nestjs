@@ -46,7 +46,10 @@ export class ClientsService {
   }
 
   async findByUserId(userId: number): Promise<Client> {
-    const client = await this.clientRepo.findOne({ where: { user: { id: userId } }, relations: ['user'] });
+    const client = await this.clientRepo.findOne({
+      where: { user: { id: userId } },
+      relations: ['user'],
+    });
     if (!client) {
       throw new NotFoundException('Client not found');
     }

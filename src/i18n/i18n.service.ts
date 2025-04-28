@@ -32,10 +32,15 @@ export class I18nService {
     const fallback = this.readJsonFile(fallbackPath);
     if (fallback) return fallback;
 
-    throw new NotFoundException(`Aucune traduction valide pour '${lang}', ni de fallback.`);
+    throw new NotFoundException(
+      `Aucune traduction valide pour '${lang}', ni de fallback.`,
+    );
   }
 
-  addLanguage(lang: string, translations: Record<string, any>): Record<string, any> {
+  addLanguage(
+    lang: string,
+    translations: Record<string, any>,
+  ): Record<string, any> {
     if (lang === 'default') {
       throw new NotFoundException(`La langue '${lang}' est protégée.`);
     }
@@ -63,7 +68,10 @@ export class I18nService {
     return { success: true, message: `Langue '${lang}' supprimée.` };
   }
 
-  updateAllTranslations(lang: string, translations: Record<string, any>): Record<string, any> {
+  updateAllTranslations(
+    lang: string,
+    translations: Record<string, any>,
+  ): Record<string, any> {
     if (lang === 'default') {
       throw new NotFoundException(`La langue '${lang}' est protégée.`);
     }
@@ -80,7 +88,11 @@ export class I18nService {
     };
   }
 
-  updateTranslation(lang: string, key: string, value: string): Record<string, any> {
+  updateTranslation(
+    lang: string,
+    key: string,
+    value: string,
+  ): Record<string, any> {
     const filePath = path.join(this.localesPath, `${lang}.json`);
     if (lang === 'default') {
       throw new NotFoundException(`La langue '${lang}' est protégée.`);

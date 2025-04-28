@@ -8,7 +8,9 @@ export class UpdateSubscriptionPaymentDto {
   @IsOptional()
   amount?: number;
 
-  @ApiProperty({ description: 'The Stripe payment ID associated with the payment.' })
+  @ApiProperty({
+    description: 'The Stripe payment ID associated with the payment.',
+  })
   @IsString()
   @IsOptional()
   stripe_payment_id?: string;

@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Subscription } from 'src/subscriptions/entities/subscriptions.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -19,7 +26,9 @@ export class SubscriptionPayment {
   amount: number;
 
   @Column()
-  @ApiProperty({ description: 'The Stripe payment ID associated with the payment.' })
+  @ApiProperty({
+    description: 'The Stripe payment ID associated with the payment.',
+  })
   stripe_payment_id: string;
 
   @Column({ type: 'enum', enum: PaymentStatus, default: PaymentStatus.PENDING })
@@ -27,7 +36,9 @@ export class SubscriptionPayment {
   status: PaymentStatus;
 
   @ManyToOne(() => Subscription, (subscription) => subscription.payments)
-  @ApiProperty({ description: 'The subscription that this payment is associated with.' })
+  @ApiProperty({
+    description: 'The subscription that this payment is associated with.',
+  })
   subscription: Subscription;
 
   @CreateDateColumn({ type: 'timestamp' })

@@ -28,9 +28,8 @@ import { ProvidersService } from 'src/providers/providers.service';
 
 @Controller('auth')
 export class AuthController {
-  
   constructor(
-    private readonly authService: AuthService, 
+    private readonly authService: AuthService,
     private readonly clientsService: ClientsService,
     private readonly deliveryPersonsService: DeliveryPersonsService,
     private readonly tradersService: TradersService,
@@ -175,6 +174,4 @@ export class AuthController {
   async getMyProvider(@CurrentUser() user: User) {
     return this.providersService.findByUserId(user.id);
   }
-
-
 }

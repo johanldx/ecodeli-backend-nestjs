@@ -13,27 +13,45 @@ export class ReleaseCartAdResponseDto {
   @ApiProperty({ description: 'A detailed description of the Release Cart Ad' })
   description: string;
 
-  @ApiProperty({ description: 'URLs of images associated with the Release Cart Ad' })
+  @ApiProperty({
+    description: 'URLs of images associated with the Release Cart Ad',
+  })
   imageUrls: string[];
 
-  @ApiProperty({ description: 'The status of the Release Cart Ad', enum: AdStatus })
+  @ApiProperty({
+    description: 'The status of the Release Cart Ad',
+    enum: AdStatus,
+  })
   status: AdStatus;
 
   @ApiProperty({ description: 'The reference code for the Release Cart Ad' })
   reference: string;
 
-  @ApiProperty({ description: 'The departure location of the Release Cart Ad', type: Location })
+  @ApiProperty({
+    description: 'The departure location of the Release Cart Ad',
+    type: Location,
+  })
   departureLocation: Location;
 
-  @ApiProperty({ description: 'The arrival location of the Release Cart Ad', type: Location })
+  @ApiProperty({
+    description: 'The arrival location of the Release Cart Ad',
+    type: Location,
+  })
   arrivalLocation: Location;
 
-  @ApiProperty({ description: 'The user who posted the Release Cart Ad', type: User })
+  @ApiProperty({
+    description: 'The user who posted the Release Cart Ad',
+    type: User,
+  })
   postedBy: User;
 
-  @ApiProperty({ description: 'Timestamp when the Release Cart Ad was created' })
+  @ApiProperty({
+    description: 'Timestamp when the Release Cart Ad was created',
+  })
   createdAt: Date;
 
-  @ApiProperty({ description: 'Timestamp when the Release Cart Ad was last updated' })
+  @ApiProperty({
+    description: 'Timestamp when the Release Cart Ad was last updated',
+  })
   updatedAt: Date;
 }

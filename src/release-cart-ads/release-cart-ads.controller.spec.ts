@@ -16,7 +16,9 @@ describe('ReleaseCartAdsService', () => {
   const mockReleaseCartAdRepository = {
     create: jest.fn().mockImplementation((dto) => dto),
     save: jest.fn().mockResolvedValue(true),
-    findOne: jest.fn().mockResolvedValue({ id: 1, ...new CreateReleaseCartAdDto() }),
+    findOne: jest
+      .fn()
+      .mockResolvedValue({ id: 1, ...new CreateReleaseCartAdDto() }),
     findOneOrFail: jest.fn(),
     delete: jest.fn().mockResolvedValue(true),
     createQueryBuilder: jest.fn().mockReturnThis(),
@@ -44,7 +46,9 @@ describe('ReleaseCartAdsService', () => {
     }).compile();
 
     service = module.get<ReleaseCartAdsService>(ReleaseCartAdsService);
-    repo = module.get<Repository<ReleaseCartAd>>(getRepositoryToken(ReleaseCartAd));
+    repo = module.get<Repository<ReleaseCartAd>>(
+      getRepositoryToken(ReleaseCartAd),
+    );
   });
 
   it('should be defined', () => {
@@ -69,7 +73,10 @@ describe('ReleaseCartAdsService', () => {
   it('should find one release cart ad by ID', async () => {
     const ad = await service.findOne(1, { id: 1 } as User);
     expect(ad).toHaveProperty('id');
-    expect(mockReleaseCartAdRepository.findOne).toHaveBeenCalledWith({ where: { id: 1 }, relations: expect.any(Array) });
+    expect(mockReleaseCartAdRepository.findOne).toHaveBeenCalledWith({
+      where: { id: 1 },
+      relations: expect.any(Array),
+    });
   });
 
   it('should update a release cart ad', async () => {
@@ -86,8 +93,10 @@ describe('ReleaseCartAdsService', () => {
   });
 
   it('should throw error if user tries to modify status', async () => {
-    const dto = new UpdateReleaseCartAdDto(); 
-    dto.status = AdStatus.COMPLETED; 
-    await expect(service.update(1, dto, { id: 1 } as User)).rejects.toThrow(ForbiddenException);
+    const dto = new UpdateReleaseCartAdDto();
+    dto.status = AdStatus.COMPLETED;
+    await expect(service.update(1, dto, { id: 1 } as User)).rejects.toThrow(
+      ForbiddenException,
+    );
   });
 });

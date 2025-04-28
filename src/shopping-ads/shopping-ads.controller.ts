@@ -9,8 +9,14 @@ import {
   Query,
   UseInterceptors,
   UploadedFiles,
+  HttpCode,
 } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiResponse, ApiConsumes } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiConsumes,
+} from '@nestjs/swagger';
 import { CreateShoppingAdDto } from './dto/create-shopping-ad.dto';
 import { UpdateShoppingAdDto } from './dto/update-shopping-ad.dto';
 import { ShoppingAdResponseDto } from './dto/shopping-ad-response.dto';
@@ -35,7 +41,6 @@ export class ShoppingAdsController {
     @Body() dto: CreateShoppingAdDto,
     @UploadedFiles() images?: Express.Multer.File[],
   ) {
-
     if (!images || !images.length) {
       throw new Error('Au moins une image est requise');
     }
@@ -70,10 +75,10 @@ export class ShoppingAdsController {
     }
     return this.shoppingAdsService.update(id, dto.posted_by, dto, newImages);
   }
-  
 
   @Delete(':id')
   @ApiResponse({ status: 200 })
+  @HttpCode(204)
   async remove(@Param('id') id: number) {
     return this.shoppingAdsService.remove(id);
   }

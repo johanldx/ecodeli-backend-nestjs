@@ -7,12 +7,9 @@ import { Provider } from './provider.entity';
 import { StorageModule } from '../storage/storage.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Provider]),
-    StorageModule
-  ],
+  imports: [TypeOrmModule.forFeature([Provider]), StorageModule],
   controllers: [ProvidersController],
   providers: [ProvidersService],
-  exports: [ProvidersService]
+  exports: [ProvidersService],
 })
 export class ProvidersModule {}

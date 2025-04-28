@@ -1,8 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/users/user.entity';
 import { Location } from 'src/locations/entities/location.entity';
-
 
 export enum AdStatus {
   PENDING = 'pending',
@@ -66,7 +73,9 @@ export class ShoppingAd {
   packageSize: PackageSize;
 
   @Column('json')
-  @ApiProperty({ description: 'The shopping list associated with the shopping ad.' })
+  @ApiProperty({
+    description: 'The shopping list associated with the shopping ad.',
+  })
   shoppingList: string[];
 
   @Column('double')
@@ -78,6 +87,8 @@ export class ShoppingAd {
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  @ApiProperty({ description: 'Timestamp when the shopping ad was last updated.' })
+  @ApiProperty({
+    description: 'Timestamp when the shopping ad was last updated.',
+  })
   updatedAt: Date;
 }

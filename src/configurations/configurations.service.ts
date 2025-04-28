@@ -31,7 +31,10 @@ export class ConfigurationsService {
     return plainToInstance(ConfigurationResponseDto, config);
   }
 
-  async update(id: number, dto: UpdateConfigurationDto): Promise<ConfigurationResponseDto> {
+  async update(
+    id: number,
+    dto: UpdateConfigurationDto,
+  ): Promise<ConfigurationResponseDto> {
     const config = await this.configRepo.findOneBy({ id });
     if (!config) throw new NotFoundException('Configuration not found');
     Object.assign(config, dto);

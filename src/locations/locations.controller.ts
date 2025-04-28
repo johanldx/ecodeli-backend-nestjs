@@ -34,16 +34,32 @@ export class LocationsController {
   @Post()
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Créer une nouvelle adresse' })
-  @ApiResponse({ status: 201, description: 'Adresse créée avec succès', type: Location })
-  @ApiResponse({ status: 403, description: 'Non autorisé à définir public ou price' })
-  create(@Body() dto: CreateLocationDto, @CurrentUser() user: User): Promise<Location> {
+  @ApiResponse({
+    status: 201,
+    description: 'Adresse créée avec succès',
+    type: Location,
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Non autorisé à définir public ou price',
+  })
+  create(
+    @Body() dto: CreateLocationDto,
+    @CurrentUser() user: User,
+  ): Promise<Location> {
     return this.locationsService.create(dto, user);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  @ApiOperation({ summary: 'Récupérer les adresses de l’utilisateur (ou publiques)' })
-  @ApiResponse({ status: 200, description: 'Liste des adresses récupérée', type: [Location] })
+  @ApiOperation({
+    summary: 'Récupérer les adresses de l’utilisateur (ou publiques)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Liste des adresses récupérée',
+    type: [Location],
+  })
   findAll(@CurrentUser() user: User): Promise<Location[]> {
     return this.locationsService.findAll(user);
   }
@@ -51,18 +67,35 @@ export class LocationsController {
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Récupérer une adresse spécifique' })
-  @ApiResponse({ status: 200, description: 'Adresse récupérée', type: Location })
-  @ApiResponse({ status: 403, description: 'Non autorisé à consulter cette ressource' })
+  @ApiResponse({
+    status: 200,
+    description: 'Adresse récupérée',
+    type: Location,
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Non autorisé à consulter cette ressource',
+  })
   @ApiResponse({ status: 404, description: 'Adresse introuvable' })
-  findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User): Promise<Location> {
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() user: User,
+  ): Promise<Location> {
     return this.locationsService.findOne(id, user);
   }
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Mettre à jour une adresse' })
-  @ApiResponse({ status: 200, description: 'Adresse mise à jour', type: Location })
-  @ApiResponse({ status: 403, description: 'Non autorisé à modifier cette ressource' })
+  @ApiResponse({
+    status: 200,
+    description: 'Adresse mise à jour',
+    type: Location,
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Non autorisé à modifier cette ressource',
+  })
   @ApiResponse({ status: 404, description: 'Adresse introuvable' })
   update(
     @Param('id', ParseIntPipe) id: number,
@@ -76,10 +109,16 @@ export class LocationsController {
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Supprimer une adresse' })
   @ApiResponse({ status: 200, description: 'Adresse supprimée' })
-  @ApiResponse({ status: 403, description: 'Non autorisé à supprimer cette ressource' })
+  @ApiResponse({
+    status: 403,
+    description: 'Non autorisé à supprimer cette ressource',
+  })
   @ApiResponse({ status: 404, description: 'Adresse introuvable' })
   @HttpCode(204)
-  remove(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User): Promise<void> {
+  remove(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() user: User,
+  ): Promise<void> {
     return this.locationsService.remove(id, user);
   }
 }

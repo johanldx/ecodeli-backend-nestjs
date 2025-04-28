@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Subscription } from './entities/subscriptions.entity';
@@ -12,7 +16,9 @@ export class SubscriptionsService {
     private readonly subscriptionRepo: Repository<Subscription>,
   ) {}
 
-  async create(createSubscriptionDto: CreateSubscriptionDto): Promise<Subscription> {
+  async create(
+    createSubscriptionDto: CreateSubscriptionDto,
+  ): Promise<Subscription> {
     const subscription = this.subscriptionRepo.create(createSubscriptionDto);
     return this.subscriptionRepo.save(subscription);
   }
@@ -26,11 +32,15 @@ export class SubscriptionsService {
     }
 
     if (query.price_min) {
-      qb.andWhere('subscription.price >= :price_min', { price_min: query.price_min });
+      qb.andWhere('subscription.price >= :price_min', {
+        price_min: query.price_min,
+      });
     }
 
     if (query.price_max) {
-      qb.andWhere('subscription.price <= :price_max', { price_max: query.price_max });
+      qb.andWhere('subscription.price <= :price_max', {
+        price_max: query.price_max,
+      });
     }
 
     return qb.getMany();
@@ -42,7 +52,10 @@ export class SubscriptionsService {
     return subscription;
   }
 
-  async update(id: number, updateSubscriptionDto: UpdateSubscriptionDto): Promise<Subscription> {
+  async update(
+    id: number,
+    updateSubscriptionDto: UpdateSubscriptionDto,
+  ): Promise<Subscription> {
     const subscription = await this.findOne(id);
     Object.assign(subscription, updateSubscriptionDto);
     return this.subscriptionRepo.save(subscription);

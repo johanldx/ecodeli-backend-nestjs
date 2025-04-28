@@ -22,7 +22,7 @@ export class RoutesService {
   }
 
   findOne(id: number): Promise<Route> {
-    return this.routeRepository.findOne({ where: { id } }).then(route => {
+    return this.routeRepository.findOne({ where: { id } }).then((route) => {
       if (!route) {
         throw new Error(`Route with id ${id} not found`);
       }

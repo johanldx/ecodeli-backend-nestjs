@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
+} from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity';
 import { Location } from 'src/locations/entities/location.entity';
@@ -19,7 +27,10 @@ export class DeliveryStep {
   @ManyToOne(() => User, (user) => user.deliverySteps, { nullable: true })
   receivedBy?: User;
 
-  @ManyToOne(() => DeliveryAd, (deliveryAd) => deliveryAd.deliverySteps)
+  @ManyToOne(() => DeliveryAd, (deliveryAd) => deliveryAd.deliverySteps, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn()
   deliveryAd: DeliveryAd;
 
   @Column()
@@ -28,7 +39,11 @@ export class DeliveryStep {
   @Column()
   price: number;
 
-  @Column({ type: 'enum', enum: DeliveryStepStatus, default: DeliveryStepStatus.PENDING })
+  @Column({
+    type: 'enum',
+    enum: DeliveryStepStatus,
+    default: DeliveryStepStatus.PENDING,
+  })
   status: DeliveryStepStatus;
 
   @ManyToOne(() => Location, (location) => location.departureSteps)

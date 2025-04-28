@@ -1,10 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  OneToOne,
+} from 'typeorm';
 import { Client } from 'src/clients/client.entity';
 import { Location } from 'src/locations/entities/location.entity';
-import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity'; 
-import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity'; 
-import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.entity'; 
-import { ShoppingAd } from 'src/shopping-ads/entities/shopping-ads.entity'; 
+import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
+import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity';
+import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.entity';
+import { ShoppingAd } from 'src/shopping-ads/entities/shopping-ads.entity';
 
 @Entity('users')
 export class User {
@@ -59,6 +65,6 @@ export class User {
   @OneToMany(() => ReleaseCartAd, (releaseCartAd) => releaseCartAd.postedBy)
   releaseCartAds: ReleaseCartAd[];
 
-  @OneToMany(() => ShoppingAd, (shoppingAd) => shoppingAd.postedBy)  // Added relationship with ShoppingAd
-  shoppingAds: ShoppingAd[];  // Relation with ShoppingAd
+  @OneToMany(() => ShoppingAd, (shoppingAd) => shoppingAd.postedBy) // Added relationship with ShoppingAd
+  shoppingAds: ShoppingAd[]; // Relation with ShoppingAd
 }

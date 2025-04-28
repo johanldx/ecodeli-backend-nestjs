@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ReleaseCartAd } from './entities/release-cart-ad.entity';
@@ -13,7 +17,10 @@ export class ReleaseCartAdsService {
     private readonly releaseCartAdRepo: Repository<ReleaseCartAd>,
   ) {}
 
-  async create(dto: CreateReleaseCartAdDto, user: User): Promise<ReleaseCartAd> {
+  async create(
+    dto: CreateReleaseCartAdDto,
+    user: User,
+  ): Promise<ReleaseCartAd> {
     const releaseCartAd = this.releaseCartAdRepo.create({
       ...dto,
       postedBy: user,
@@ -24,7 +31,8 @@ export class ReleaseCartAdsService {
   }
 
   async findAll(user: User, filters: any): Promise<ReleaseCartAd[]> {
-    const qb = this.releaseCartAdRepo.createQueryBuilder('releaseCartAd')
+    const qb = this.releaseCartAdRepo
+      .createQueryBuilder('releaseCartAd')
       .leftJoinAndSelect('releaseCartAd.postedBy', 'postedBy')
       .leftJoinAndSelect('releaseCartAd.departureLocation', 'departureLocation')
       .leftJoinAndSelect('releaseCartAd.arrivalLocation', 'arrivalLocation');
@@ -53,7 +61,11 @@ export class ReleaseCartAdsService {
     return releaseCartAd;
   }
 
-  async update(id: number, dto: UpdateReleaseCartAdDto, user: User): Promise<ReleaseCartAd> {
+  async update(
+    id: number,
+    dto: UpdateReleaseCartAdDto,
+    user: User,
+  ): Promise<ReleaseCartAd> {
     const releaseCartAd = await this.findOne(id, user);
 
     if ('status' in dto) {

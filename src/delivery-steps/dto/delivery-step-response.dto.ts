@@ -5,7 +5,10 @@ export class DeliveryStepResponseDto {
   @ApiProperty()
   id: number;
 
-  @ApiProperty({ description: 'ID de l’utilisateur ayant reçu cette étape', required: false })
+  @ApiProperty({
+    description: 'ID de l’utilisateur ayant reçu cette étape',
+    required: false,
+  })
   receivedById?: number;
 
   @ApiProperty({ description: 'ID de l’annonce de livraison associée' })

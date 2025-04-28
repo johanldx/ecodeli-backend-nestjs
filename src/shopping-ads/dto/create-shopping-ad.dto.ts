@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { AdStatus, PackageSize } from '../entities/shopping-ads.entity';
 import { Transform, Type } from 'class-transformer';
 
@@ -49,7 +56,7 @@ export class CreateShoppingAdDto {
 
   @IsArray()
   @IsString({ each: true })
-  @Transform(({ value }) => Array.isArray(value) ? value : [value])
+  @Transform(({ value }) => (Array.isArray(value) ? value : [value]))
   shoppingList: string[];
 
   @ApiProperty()

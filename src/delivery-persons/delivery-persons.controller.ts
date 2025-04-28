@@ -83,7 +83,7 @@ export class DeliveryPersonsController {
     },
   })
   @ApiResponse({
-    status: 201, 
+    status: 201,
     description: 'Delivery person created with uploaded documents',
     type: DeliveryPersonResponseDto,
   })

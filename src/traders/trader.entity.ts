@@ -1,11 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { User } from 'src/users/user.entity'; // Assuming you have a User entity already
 
 export enum ValidationStatus {
-    PENDING = 'pending',
-    APPROVED = 'approved',
-    REJECTED = 'rejected',
-  }
+  PENDING = 'pending',
+  APPROVED = 'approved',
+  REJECTED = 'rejected',
+}
 
 @Entity()
 export class Trader {

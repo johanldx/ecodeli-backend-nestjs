@@ -6,7 +6,7 @@ import { UpdateShoppingAdDto } from './dto/update-shopping-ad.dto';
 import { ShoppingAdResponseDto } from './dto/shopping-ad-response.dto';
 import { User } from 'src/users/user.entity';
 import { ForbiddenException } from '@nestjs/common';
-import { AdStatus, PackageSize } from './entities/shopping-ads.entity'; 
+import { AdStatus, PackageSize } from './entities/shopping-ads.entity';
 
 describe('ShoppingAdsController', () => {
   let controller: ShoppingAdsController;
@@ -78,7 +78,10 @@ describe('ShoppingAdsController', () => {
   });
 
   it('should find all shopping ads', async () => {
-    const shoppingAds = [new ShoppingAdResponseDto(), new ShoppingAdResponseDto()];
+    const shoppingAds = [
+      new ShoppingAdResponseDto(),
+      new ShoppingAdResponseDto(),
+    ];
     mockShoppingAdService.findAll.mockResolvedValue(shoppingAds);
 
     const result = await controller.findAll({});

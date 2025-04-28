@@ -15,12 +15,15 @@ import { DeliveryAdResponseDto } from './dto/delivery-ads.response.dto';
 import { StorageService } from 'src/storage/storage.service';
 import { AdStatus } from './entities/delivery-ads.entity';
 import { assertUserOwnsResourceOrIsAdmin } from 'src/auth/utils/assert-ownership';
+import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
 
 @Injectable()
 export class DeliveryAdsService {
   constructor(
     @InjectRepository(DeliveryAd)
     private readonly adRepo: Repository<DeliveryAd>,
+    @InjectRepository(DeliveryStep)
+    private readonly stepRepo: Repository<DeliveryStep>,
     private readonly storageService: StorageService,
   ) {}
 
@@ -32,8 +35,12 @@ export class DeliveryAdsService {
   ): Promise<DeliveryAdResponseDto> {
     // upload images
     const urls = await Promise.all(
-      images.map(f =>
-        this.storageService.uploadFile(f.buffer, f.originalname, 'delivery-ads'),
+      images.map((f) =>
+        this.storageService.uploadFile(
+          f.buffer,
+          f.originalname,
+          'delivery-ads',
+        ),
       ),
     );
 
@@ -63,7 +70,9 @@ export class DeliveryAdsService {
       qb.andWhere('postedBy.id = :posted_by', { posted_by: filters.posted_by });
     }
     if (filters.delivery_date) {
-      qb.andWhere('DATE(ad.delivery_date) = DATE(:d)', { d: filters.delivery_date });
+      qb.andWhere('DATE(ad.delivery_date) = DATE(:d)', {
+        d: filters.delivery_date,
+      });
     }
 
     const list = await qb.getMany();
@@ -101,12 +110,25 @@ export class DeliveryAdsService {
     if (newImages && newImages.length) {
       // delete old
       if (ad.imageUrls?.length) {
-        await Promise.all(ad.imageUrls.map(u => this.storageService.deleteFile(u)));
+        await Promise.all(
+          ad.imageUrls.map((u) => this.storageService.deleteFile(u)),
+        );
       }
       const urls = await Promise.all(
-        newImages.map(f => this.storageService.uploadFile(f.buffer, f.originalname, 'delivery-ads')),
+        newImages.map((f) =>
+          this.storageService.uploadFile(
+            f.buffer,
+            f.originalname,
+            'delivery-ads',
+          ),
+        ),
       );
-      ad.imageUrls = urls.length === 1 ? [urls[0]] : (() => { throw new Error('Expected exactly one image URL'); })();
+      ad.imageUrls =
+        urls.length === 1
+          ? [urls[0]]
+          : (() => {
+              throw new Error('Expected exactly one image URL');
+            })();
     }
 
     Object.assign(ad, dto);
@@ -115,12 +137,24 @@ export class DeliveryAdsService {
   }
 
   async remove(id: number, user: any): Promise<void> {
-    const ad = await this.adRepo.findOne({ where: { id } });
+    // 1) On charge l'annonce avec son auteur
+    const ad = await this.adRepo.findOne({
+      where: { id },
+      relations: ['postedBy'],
+    });
     if (!ad) throw new NotFoundException('Annonce introuvable');
+
+    // 2) Vérif droits
     assertUserOwnsResourceOrIsAdmin(user, ad.postedBy.id);
+
+    // 3) Suppression des fichiers images
     if (ad.imageUrls?.length) {
-      await Promise.all(ad.imageUrls.map(u => this.storageService.deleteFile(u)));
+      await Promise.all(
+        ad.imageUrls.map((u) => this.storageService.deleteFile(u)),
+      );
     }
+
+    // 5) Suppression de l’annonce
     await this.adRepo.delete(id);
   }
 

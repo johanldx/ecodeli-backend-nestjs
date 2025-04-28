@@ -17,26 +17,35 @@ export class ShoppingAdsService {
     private readonly locationRepository: Repository<Location>,
     private readonly storageService: StorageService,
   ) {}
-  
 
   async create(
     userId: number,
     dto: CreateShoppingAdDto,
-    images: Express.Multer.File[]
+    images: Express.Multer.File[],
   ): Promise<ShoppingAd> {
     const { departureLocationId, arrivalLocationId } = dto;
-  
-    const departureLocation = await this.locationRepository.findOne({ where: { id: departureLocationId } });
-    const arrivalLocation = await this.locationRepository.findOne({ where: { id: arrivalLocationId } });
-  
+
+    const departureLocation = await this.locationRepository.findOne({
+      where: { id: departureLocationId },
+    });
+    const arrivalLocation = await this.locationRepository.findOne({
+      where: { id: arrivalLocationId },
+    });
+
     if (!departureLocation || !arrivalLocation) {
       throw new NotFoundException('Location(s) not found');
     }
-  
+
     const imageUrls = await Promise.all(
-      images.map(file => this.storageService.uploadFile(file.buffer, file.originalname, 'shopping-ads'))
+      images.map((file) =>
+        this.storageService.uploadFile(
+          file.buffer,
+          file.originalname,
+          'shopping-ads',
+        ),
+      ),
     );
-  
+
     const shoppingAd = this.shoppingAdRepository.create({
       ...dto,
       posted_by: userId,
@@ -44,9 +53,9 @@ export class ShoppingAdsService {
       departureLocation,
       arrivalLocation,
     });
-  
+
     return this.shoppingAdRepository.save(shoppingAd);
-  }  
+  }
 
   findAll(query: any): Promise<ShoppingAd[]> {
     return this.shoppingAdRepository.find(query);
@@ -55,7 +64,6 @@ export class ShoppingAdsService {
   async findOne(id: number): Promise<ShoppingAd> {
     const shoppingAd = await this.shoppingAdRepository.findOne({
       where: { id },
-      relations: ['departure_location', 'arrival_location'], 
     });
 
     if (!shoppingAd) {
@@ -72,58 +80,68 @@ export class ShoppingAdsService {
     newImages?: Express.Multer.File[],
   ): Promise<ShoppingAd> {
     const ad = await this.findOne(id);
-  
+
     // Vérifier que l'utilisateur est bien le propriétaire (optionnel mais recommandé)
     if (ad.posted_by !== userId) {
       throw new Error('Vous n’êtes pas autorisé à modifier cette annonce');
     }
-  
+
     // Relations à mettre à jour si modifiées
     if (dto.departureLocationId) {
-      const departureLocation = await this.locationRepository.findOne({ where: { id: dto.departureLocationId } });
+      const departureLocation = await this.locationRepository.findOne({
+        where: { id: dto.departureLocationId },
+      });
       if (!departureLocation) {
         throw new NotFoundException('Departure location not found');
       }
       ad.departureLocation = departureLocation;
     }
-  
+
     if (dto.arrivalLocationId) {
-      const arrivalLocation = await this.locationRepository.findOne({ where: { id: dto.arrivalLocationId } });
+      const arrivalLocation = await this.locationRepository.findOne({
+        where: { id: dto.arrivalLocationId },
+      });
       if (!arrivalLocation) {
         throw new NotFoundException('Arrival location not found');
       }
       ad.arrivalLocation = arrivalLocation;
     }
-  
+
     // Suppression des anciennes images si de nouvelles sont envoyées
     if (newImages?.length) {
       if (ad.imageUrls?.length) {
-        await Promise.all(ad.imageUrls.map(url => this.storageService.deleteFile(url)));
+        await Promise.all(
+          ad.imageUrls.map((url) => this.storageService.deleteFile(url)),
+        );
       }
-  
+
       const uploaded = await Promise.all(
-        newImages.map(file =>
-          this.storageService.uploadFile(file.buffer, file.originalname, 'shopping-ads'),
+        newImages.map((file) =>
+          this.storageService.uploadFile(
+            file.buffer,
+            file.originalname,
+            'shopping-ads',
+          ),
         ),
       );
-  
+
       ad.imageUrls = uploaded;
     }
-  
+
     Object.assign(ad, dto);
-  
+
     return this.shoppingAdRepository.save(ad);
   }
-  
 
   async remove(id: number): Promise<void> {
     const ad = await this.findOne(id);
-  
+
     if (ad.imageUrls?.length) {
-      await Promise.all(ad.imageUrls.map(url => this.storageService.deleteFile(url)));
+      await Promise.all(
+        ad.imageUrls.map((url) => this.storageService.deleteFile(url)),
+      );
     }
-  
+
     await this.shoppingAdRepository.delete(id);
   }
-  
 }

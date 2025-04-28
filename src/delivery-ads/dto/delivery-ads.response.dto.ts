@@ -15,7 +15,11 @@ export class DeliveryAdResponseDto {
   @ApiProperty({ type: [String] })
   imageUrls: string[];
 
-  @ApiProperty({ type: String, format: 'date-time', description: 'Date de livraison' })
+  @ApiProperty({
+    type: String,
+    format: 'date-time',
+    description: 'Date de livraison',
+  })
   deliveryDate: Date;
 
   @ApiProperty({ enum: PackageSize })

@@ -11,6 +11,7 @@ import {
   UseGuards,
   UseInterceptors,
   UploadedFiles,
+  HttpCode,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -65,7 +66,10 @@ export class DeliveryAdsController {
   @ApiQuery({ name: 'posted_by', required: false, type: Number })
   @ApiQuery({ name: 'delivery_date', required: false, type: String })
   @ApiResponse({ status: 200, type: [DeliveryAdResponseDto] })
-  async findAll(@CurrentUser() user: User, @Query() query: any): Promise<DeliveryAdResponseDto[]> {
+  async findAll(
+    @CurrentUser() user: User,
+    @Query() query: any,
+  ): Promise<DeliveryAdResponseDto[]> {
     return this.deliveryAdsService.findAll(user, query);
   }
 
@@ -73,7 +77,10 @@ export class DeliveryAdsController {
   @ApiOperation({ summary: 'Récupérer une annonce par son ID' })
   @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, type: DeliveryAdResponseDto })
-  async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User): Promise<DeliveryAdResponseDto> {
+  async findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() user: User,
+  ): Promise<DeliveryAdResponseDto> {
     return this.deliveryAdsService.findOne(id, user);
   }
 
@@ -96,8 +103,12 @@ export class DeliveryAdsController {
   @Delete(':id')
   @ApiOperation({ summary: 'Supprimer une annonce' })
   @ApiParam({ name: 'id', type: Number })
-  @ApiResponse({ status: 200 })
-  async remove(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: User): Promise<void> {
+  @ApiResponse({ status: 204 })
+  @HttpCode(204)
+  async remove(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() user: User,
+  ): Promise<void> {
     return this.deliveryAdsService.remove(id, user);
   }
 
@@ -107,11 +118,15 @@ export class DeliveryAdsController {
   @ApiBody({
     schema: {
       type: 'object',
-      properties: { status: { type: 'string', enum: ['pending','in_progress','completed','cancelled'] } },
+      properties: {
+        status: {
+          type: 'string',
+          enum: ['pending', 'in_progress', 'completed', 'cancelled'],
+        },
+      },
       required: ['status'],
     },
   })
-  
   @ApiResponse({ status: 200, type: DeliveryAdResponseDto })
   async updateStatus(
     @Param('id', ParseIntPipe) id: number,

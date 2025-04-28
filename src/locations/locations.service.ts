@@ -31,10 +31,7 @@ export class LocationsService {
       return this.locationRepository.find();
     } else {
       return this.locationRepository.find({
-        where: [
-          { user_id: user.id },
-          { public: true },
-        ],
+        where: [{ user_id: user.id }, { public: true }],
       });
     }
   }
