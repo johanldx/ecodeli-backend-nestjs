@@ -60,11 +60,13 @@ export class ShoppingAd {
   @ApiProperty({ description: 'The status of the shopping ad.' })
   status: AdStatus;
 
-  @ManyToOne(() => Location)
+  @ManyToOne(() => Location, { eager: true })
+  @JoinColumn({ name: 'departure_location_id' })
   @ApiProperty({ description: 'The departure location for the shopping ad.' })
   departureLocation: Location;
 
-  @ManyToOne(() => Location)
+  @ManyToOne(() => Location,{ eager: true })
+  @JoinColumn({ name: 'arrival_location_id' })
   @ApiProperty({ description: 'The arrival location for the shopping ad.' })
   arrivalLocation: Location;
 

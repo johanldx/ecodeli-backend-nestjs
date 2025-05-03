@@ -72,6 +72,24 @@ export class DeliveryStepsService {
     return qb.getMany();
   }
 
+  async findByDeliveryAd(deliveryAdId: number): Promise<DeliveryStep[]> {
+    const steps = await this.stepRepo.find({
+      where: { deliveryAd: { id: deliveryAdId } },
+      relations: [
+        'receivedBy',
+        'deliveryAd',
+        'departureLocation',
+        'arrivalLocation',
+      ],
+    });
+
+    if (!steps.length) {
+      throw new NotFoundException('Aucune étape trouvée pour cette annonce');
+    }
+
+    return steps;
+  }
+
   async findOne(id: number): Promise<DeliveryStep> {
     const step = await this.stepRepo.findOne({
       where: { id },

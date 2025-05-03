@@ -24,13 +24,11 @@ import {
   ApiConsumes,
 } from '@nestjs/swagger';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { Express } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DeliveryAdsService } from './delivery-ads.service';
 import { CreateDeliveryAdDto } from './dto/create-delivery-ads.dto';
 import { UpdateDeliveryAdDto } from './dto/update-delivery-ads.dto';
-import { DeliveryAdResponseDto } from './dto/delivery-ads.response.dto';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
@@ -48,12 +46,12 @@ export class DeliveryAdsController {
   @ApiConsumes('multipart/form-data')
   @ApiOperation({ summary: 'Créer une nouvelle annonce de livraison' })
   @ApiBody({ type: CreateDeliveryAdDto })
-  @ApiResponse({ status: 201, type: DeliveryAdResponseDto })
+  @ApiResponse({ status: 201 })
   async create(
     @CurrentUser() user: User,
     @Body() dto: CreateDeliveryAdDto,
     @UploadedFiles() images: Express.Multer.File[],
-  ): Promise<DeliveryAdResponseDto> {
+  ): Promise<any> {
     if (!images || images.length === 0) {
       throw new Error('Au moins une image est requise');
     }
@@ -65,22 +63,22 @@ export class DeliveryAdsController {
   @ApiOperation({ summary: 'Lister les annonces de livraison' })
   @ApiQuery({ name: 'posted_by', required: false, type: Number })
   @ApiQuery({ name: 'delivery_date', required: false, type: String })
-  @ApiResponse({ status: 200, type: [DeliveryAdResponseDto] })
+  @ApiResponse({ status: 200, type: [Object] })
   async findAll(
     @CurrentUser() user: User,
     @Query() query: any,
-  ): Promise<DeliveryAdResponseDto[]> {
+  ): Promise<any[]> {
     return this.deliveryAdsService.findAll(user, query);
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Récupérer une annonce par son ID' })
   @ApiParam({ name: 'id', type: Number })
-  @ApiResponse({ status: 200, type: DeliveryAdResponseDto })
+  @ApiResponse({ status: 200, type: Object })
   async findOne(
     @Param('id', ParseIntPipe) id: number,
     @CurrentUser() user: User,
-  ): Promise<DeliveryAdResponseDto> {
+  ): Promise<any> {
     return this.deliveryAdsService.findOne(id, user);
   }
 
@@ -90,13 +88,13 @@ export class DeliveryAdsController {
   @ApiOperation({ summary: 'Mettre à jour une annonce (hors statut)' })
   @ApiParam({ name: 'id', type: Number })
   @ApiBody({ type: UpdateDeliveryAdDto })
-  @ApiResponse({ status: 200, type: DeliveryAdResponseDto })
+  @ApiResponse({ status: 200, type: Object })
   async update(
     @Param('id', ParseIntPipe) id: number,
     @CurrentUser() user: User,
     @Body() dto: UpdateDeliveryAdDto,
     @UploadedFiles() images?: Express.Multer.File[],
-  ): Promise<DeliveryAdResponseDto> {
+  ): Promise<any> {
     return this.deliveryAdsService.update(id, user, dto, images);
   }
 
@@ -127,12 +125,12 @@ export class DeliveryAdsController {
       required: ['status'],
     },
   })
-  @ApiResponse({ status: 200, type: DeliveryAdResponseDto })
+  @ApiResponse({ status: 200, type: Object })
   async updateStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body('status') status: AdStatus,
     @CurrentUser() user: User,
-  ): Promise<DeliveryAdResponseDto> {
+  ): Promise<any> {
     return this.deliveryAdsService.updateStatus(id, status, user.id);
   }
 }

@@ -119,4 +119,19 @@ export class DeliveryStepsController {
   ): Promise<void> {
     await this.stepsService.remove(id, user);
   }
+
+  @Get('delivery-ad/:deliveryAdId')
+  @ApiOperation({ summary: 'Lister les étapes par annonce de livraison' })
+  @ApiParam({
+    name: 'deliveryAdId',
+    type: Number,
+    description: 'ID de l’annonce de livraison',
+  })
+  @ApiOkResponse({ type: DeliveryStepResponseDto, isArray: true })
+  async findByDeliveryAd(
+    @Param('deliveryAdId', ParseIntPipe) deliveryAdId: number,
+  ): Promise<DeliveryStepResponseDto[]> {
+    const steps = await this.stepsService.findByDeliveryAd(deliveryAdId);
+    return steps.map((s) => this.toDto(s));
+  }
 }

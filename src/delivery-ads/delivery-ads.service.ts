@@ -11,7 +11,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { DeliveryAd } from './entities/delivery-ads.entity';
 import { CreateDeliveryAdDto } from './dto/create-delivery-ads.dto';
 import { UpdateDeliveryAdDto } from './dto/update-delivery-ads.dto';
-import { DeliveryAdResponseDto } from './dto/delivery-ads.response.dto';
 import { StorageService } from 'src/storage/storage.service';
 import { AdStatus } from './entities/delivery-ads.entity';
 import { assertUserOwnsResourceOrIsAdmin } from 'src/auth/utils/assert-ownership';
@@ -32,7 +31,7 @@ export class DeliveryAdsService {
     dto: CreateDeliveryAdDto,
     reference: string,
     images: Express.Multer.File[],
-  ): Promise<DeliveryAdResponseDto> {
+  ): Promise<DeliveryAd> {
     // upload images
     const urls = await Promise.all(
       images.map((f) =>
@@ -51,11 +50,10 @@ export class DeliveryAdsService {
       imageUrls: urls,
       status: AdStatus.PENDING,
     });
-    const saved = await this.adRepo.save(ad);
-    return DeliveryAdResponseDto.fromEntity(saved);
+    return this.adRepo.save(ad);
   }
 
-  async findAll(user: any, filters: any): Promise<DeliveryAdResponseDto[]> {
+  async findAll(user: any, filters: any): Promise<DeliveryAd[]> {
     const qb = this.adRepo
       .createQueryBuilder('ad')
       .leftJoinAndSelect('ad.postedBy', 'postedBy');
@@ -75,11 +73,10 @@ export class DeliveryAdsService {
       });
     }
 
-    const list = await qb.getMany();
-    return list.map(DeliveryAdResponseDto.fromEntity);
+    return qb.getMany();
   }
 
-  async findOne(id: number, user: any): Promise<DeliveryAdResponseDto> {
+  async findOne(id: number, user: any): Promise<DeliveryAd> {
     const ad = await this.adRepo.findOne({
       where: { id },
       relations: ['postedBy', 'deliverySteps'],
@@ -93,7 +90,7 @@ export class DeliveryAdsService {
     ) {
       throw new ForbiddenException('Accès refusé');
     }
-    return DeliveryAdResponseDto.fromEntity(ad);
+    return ad;
   }
 
   async update(
@@ -101,7 +98,7 @@ export class DeliveryAdsService {
     user: any,
     dto: UpdateDeliveryAdDto,
     newImages?: Express.Multer.File[],
-  ): Promise<DeliveryAdResponseDto> {
+  ): Promise<DeliveryAd> {
     const ad = await this.adRepo.findOne({ where: { id } });
     if (!ad) throw new NotFoundException('Annonce introuvable');
     assertUserOwnsResourceOrIsAdmin(user, ad.postedBy.id);
@@ -123,17 +120,11 @@ export class DeliveryAdsService {
           ),
         ),
       );
-      ad.imageUrls =
-        urls.length === 1
-          ? [urls[0]]
-          : (() => {
-              throw new Error('Expected exactly one image URL');
-            })();
+      ad.imageUrls = urls;
     }
 
     Object.assign(ad, dto);
-    const saved = await this.adRepo.save(ad);
-    return DeliveryAdResponseDto.fromEntity(saved);
+    return this.adRepo.save(ad);
   }
 
   async remove(id: number, user: any): Promise<void> {
@@ -162,12 +153,11 @@ export class DeliveryAdsService {
     id: number,
     status: AdStatus,
     userId: number,
-  ): Promise<DeliveryAdResponseDto> {
+  ): Promise<DeliveryAd> {
     const ad = await this.adRepo.findOne({ where: { id } });
     if (!ad) throw new NotFoundException('Annonce introuvable');
     // ici on considère que seul l’admin passe, sinon on ajoute un check
     ad.status = status;
-    const saved = await this.adRepo.save(ad);
-    return DeliveryAdResponseDto.fromEntity(saved);
+    return this.adRepo.save(ad);
   }
 }
