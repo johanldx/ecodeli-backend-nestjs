@@ -16,11 +16,11 @@ export class ConversationsService {
     private readonly repo: Repository<Conversation>,
   ) {}
 
-  async create(
-    dto: CreateConversationDto,
-    userId: number,
-  ): Promise<Conversation> {
-    const conv = this.repo.create({ ...dto, userFrom: { id: userId } as any });
+  async create(dto: CreateConversationDto): Promise<Conversation> {
+    const conv = this.repo.create({
+      ...dto,
+      userFrom: { id: dto.userFrom },
+    });
     return this.repo.save(conv);
   }
 

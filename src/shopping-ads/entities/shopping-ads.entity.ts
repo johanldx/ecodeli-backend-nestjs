@@ -65,7 +65,7 @@ export class ShoppingAd {
   @ApiProperty({ description: 'The departure location for the shopping ad.' })
   departureLocation: Location;
 
-  @ManyToOne(() => Location,{ eager: true })
+  @ManyToOne(() => Location, { eager: true })
   @JoinColumn({ name: 'arrival_location_id' })
   @ApiProperty({ description: 'The arrival location for the shopping ad.' })
   arrivalLocation: Location;

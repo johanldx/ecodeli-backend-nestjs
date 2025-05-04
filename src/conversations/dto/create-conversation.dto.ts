@@ -15,4 +15,8 @@ export class CreateConversationDto {
   @IsNumber()
   @Min(0)
   price: number;
+
+  @IsInt()
+  @Min(1)
+  userFrom: number;
 }

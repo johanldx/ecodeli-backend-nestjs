@@ -32,8 +32,8 @@ export class ConversationsController {
   @Post()
   @ApiOperation({ summary: 'Créer une conversation' })
   @ApiResponse({ status: 201, description: 'Conversation créée.' })
-  create(@Body() dto: CreateConversationDto, @CurrentUser() user: User) {
-    return this.service.create(dto, user.id);
+  create(@Body() dto: CreateConversationDto) {
+    return this.service.create(dto);
   }
 
   @Get()

@@ -1,3 +1,4 @@
+import { UseGuards } from '@nestjs/common';
 import {
   WebSocketGateway,
   WebSocketServer,
@@ -9,7 +10,9 @@ import {
 import { Server, Socket } from 'socket.io';
 import { MessagesService } from './messages.service';
 import { CreateMessageDto } from './dto/create-message.dto';
+import { WsJwtAuthGuard } from 'src/auth/guards/ws-jwt.guard';
 
+@UseGuards(WsJwtAuthGuard)
 @WebSocketGateway({ namespace: '/ws', cors: true })
 export class MessagesGateway implements OnGatewayInit {
   @WebSocketServer() server: Server;
@@ -17,13 +20,13 @@ export class MessagesGateway implements OnGatewayInit {
   constructor(private readonly messagesService: MessagesService) {}
 
   afterInit(server: Server) {
-    // éventuel logging
+    // Optionnel : log, metrics…
   }
 
   @SubscribeMessage('joinConversation')
   handleJoin(
     @MessageBody() payload: { conversationId: number },
-    @ConnectedSocket() client: Socket
+    @ConnectedSocket() client: Socket,
   ) {
     client.join(`conversation_${payload.conversationId}`);
   }
@@ -31,12 +34,13 @@ export class MessagesGateway implements OnGatewayInit {
   @SubscribeMessage('sendMessage')
   async handleMessage(
     @MessageBody() dto: CreateMessageDto,
-    @ConnectedSocket() client: Socket
+    @ConnectedSocket() client: Socket,
   ) {
-    // ici tu peux récupérer userId depuis client.handshake.auth ou un Guard WS
-    const userId = client.handshake.auth.userId as number;
+    const userId = client.data.user.sub as number;
     const msg = await this.messagesService.create(dto, userId);
-    this.server.to(`conversation_${dto.conversationId}`).emit('newMessage', msg);
+    this.server
+      .to(`conversation_${dto.conversationId}`)
+      .emit('newMessage', msg);
     return { status: 'ok', messageId: msg.id };
   }
 }

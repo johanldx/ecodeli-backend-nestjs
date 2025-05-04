@@ -11,6 +11,7 @@ import { ClientsModule } from 'src/clients/clients.module';
 import { DeliveryPersonsModule } from 'src/delivery-persons/delivery-persons.module';
 import { TradersModule } from 'src/traders/traders.module';
 import { ProvidersModule } from 'src/providers/providers.module';
+import { WsJwtAuthGuard } from './guards/ws-jwt.guard';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ProvidersModule } from 'src/providers/providers.module';
     ProvidersModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, WsJwtAuthGuard],
+  exports: [JwtModule, AuthService, WsJwtAuthGuard],
 })
 export class AuthModule {}

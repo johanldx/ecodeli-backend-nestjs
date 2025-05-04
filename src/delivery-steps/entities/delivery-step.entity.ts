@@ -24,7 +24,10 @@ export class DeliveryStep {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.deliverySteps, { nullable: true, eager: true })
+  @ManyToOne(() => User, (user) => user.deliverySteps, {
+    nullable: true,
+    eager: true,
+  })
   receivedBy?: User;
 
   @ManyToOne(() => DeliveryAd, (deliveryAd) => deliveryAd.deliverySteps, {
@@ -47,10 +50,14 @@ export class DeliveryStep {
   })
   status: DeliveryStepStatus;
 
-  @ManyToOne(() => Location, (location) => location.departureSteps, { eager: true })
+  @ManyToOne(() => Location, (location) => location.departureSteps, {
+    eager: true,
+  })
   departureLocation: Location;
 
-  @ManyToOne(() => Location, (location) => location.arrivalSteps, { eager: true })
+  @ManyToOne(() => Location, (location) => location.arrivalSteps, {
+    eager: true,
+  })
   arrivalLocation: Location;
 
   @CreateDateColumn({ type: 'timestamp' })

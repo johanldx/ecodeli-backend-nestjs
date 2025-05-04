@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Message } from './entities/message.entity';
@@ -21,7 +25,10 @@ export class MessagesService {
     return this.repo.save(msg);
   }
 
-  async findByConversation(conversationId: number, userId: number): Promise<Message[]> {
+  async findByConversation(
+    conversationId: number,
+    userId: number,
+  ): Promise<Message[]> {
     // TODO : vérifier que userId fait partie de la conversation
     return this.repo.find({
       where: { conversation: { id: conversationId } },
