@@ -27,11 +27,10 @@ import { RoutesModule } from './routes/routes.module';
 // import { StripeModule } from './stripe/stripe.module';
 import { ConversationsModule } from './conversations/conversations.module';
 import { MessagesModule } from './messages/messages.module';
-import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -67,7 +66,6 @@ import { NotificationsModule } from './notifications/notifications.module';
     RoutesModule,
     ConversationsModule,
     MessagesModule,
-    NotificationsModule,
     // StripeModule,
   ],
   controllers: [AppController],

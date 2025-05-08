@@ -19,9 +19,9 @@ export class Message {
   @JoinColumn({ name: 'conversation_id' })
   conversation: Conversation;
 
-  @ManyToOne(() => User, { eager: true })
+  @ManyToOne(() => User, { eager: true, nullable: true })
   @JoinColumn({ name: 'sender_id' })
-  sender: User;
+  sender: User | null;
 
   @Column('text')
   content: string;

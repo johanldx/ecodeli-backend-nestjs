@@ -19,9 +19,7 @@ export class MessagesGateway implements OnGatewayInit {
 
   constructor(private readonly messagesService: MessagesService) {}
 
-  afterInit(server: Server) {
-    // Optionnel : log, metrics…
-  }
+  afterInit(server: Server) {}
 
   @SubscribeMessage('joinConversation')
   handleJoin(
@@ -36,7 +34,11 @@ export class MessagesGateway implements OnGatewayInit {
     @MessageBody() dto: CreateMessageDto,
     @ConnectedSocket() client: Socket,
   ) {
-    const userId = client.data.user.sub as number;
+    const userId = client.data.user?.sub;
+    if (!userId) {
+      return { status: 'error', message: 'Not authenticated' };
+    }
+
     const msg = await this.messagesService.create(dto, userId);
     this.server
       .to(`conversation_${dto.conversationId}`)

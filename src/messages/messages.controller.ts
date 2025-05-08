@@ -4,6 +4,7 @@ import {
   ApiOperation,
   ApiResponse,
   ApiBearerAuth,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { MessagesService } from './messages.service';
 import { GetMessagesDto } from './dto/get-messages.dto';
@@ -21,7 +22,25 @@ export class MessagesController {
 
   @Get()
   @ApiOperation({ summary: 'Récupère les messages d’une conversation' })
-  @ApiResponse({ status: 200, type: [Message] })
+  @ApiResponse({
+    status: 200,
+    description: 'Liste des messages récupérés avec succès.',
+    type: [Message],
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Utilisateur non authentifié.',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Accès refusé.',
+  })
+  @ApiQuery({
+    name: 'conversationId',
+    required: true,
+    description:
+      'Identifiant de la conversation pour laquelle récupérer les messages.',
+  })
   findByConversation(
     @Query() { conversationId }: GetMessagesDto,
     @CurrentUser() user: User,

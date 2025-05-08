@@ -6,7 +6,7 @@ import { JwtStrategy } from './jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/users/user.entity';
 import { EmailModule } from '../email/email.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule } from 'src/clients/clients.module';
 import { DeliveryPersonsModule } from 'src/delivery-persons/delivery-persons.module';
 import { TradersModule } from 'src/traders/traders.module';
@@ -17,9 +17,13 @@ import { WsJwtAuthGuard } from './guards/ws-jwt.guard';
   imports: [
     ConfigModule,
     TypeOrmModule.forFeature([User]),
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '1h' },
+    JwtModule.registerAsync({
+      imports: [ConfigModule], // s’appuie sur le ConfigModule global
+      inject: [ConfigService],
+      useFactory: (cfg: ConfigService) => ({
+        secret: cfg.get<string>('JWT_SECRET'), // ← votre secret
+        signOptions: { expiresIn: '1h' },
+      }),
     }),
     EmailModule,
     ClientsModule,
