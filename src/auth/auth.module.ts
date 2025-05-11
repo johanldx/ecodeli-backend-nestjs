@@ -18,10 +18,10 @@ import { WsJwtAuthGuard } from './guards/ws-jwt.guard';
     ConfigModule,
     TypeOrmModule.forFeature([User]),
     JwtModule.registerAsync({
-      imports: [ConfigModule], // s’appuie sur le ConfigModule global
+      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (cfg: ConfigService) => ({
-        secret: cfg.get<string>('JWT_SECRET'), // ← votre secret
+        secret: cfg.get<string>('JWT_SECRET'),
         signOptions: { expiresIn: '1h' },
       }),
     }),

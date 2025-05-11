@@ -3,9 +3,9 @@ import { EmailService } from './email.service';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule], // Ajout du ConfigModule pour gérer .env
+  imports: [ConfigModule],
   providers: [EmailService],
   controllers: [],
-  exports: [EmailService], // Assurez-vous que EmailService est exporté
+  exports: [EmailService],
 })
-export class EmailModule {} // Le module doit être bien défini
+export class EmailModule {}
