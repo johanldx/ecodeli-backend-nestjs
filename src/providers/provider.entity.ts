@@ -9,6 +9,7 @@ import {
 import { User } from 'src/users/user.entity';
 import { OneToMany } from 'typeorm';
 import { PersonalServiceTypeAuthorization } from '../personal-service-type-authorizations/personal-service-type-authorization.entity';
+import { ProviderSchedule } from '../provider-schedules/provider-schedule.entity';
 
 export enum ValidationStatus {
   PENDING = 'pending',
@@ -48,6 +49,9 @@ export class Provider {
 
   @OneToMany(() => PersonalServiceTypeAuthorization, (auth) => auth.provider)
   personalServiceTypeAuthorizations: PersonalServiceTypeAuthorization[];
+
+  @OneToMany(() => ProviderSchedule, (schedule) => schedule.provider)
+  schedules: ProviderSchedule[];
 
   @CreateDateColumn()
   created_at: Date;

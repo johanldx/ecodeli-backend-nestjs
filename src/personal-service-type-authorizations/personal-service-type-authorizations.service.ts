@@ -19,8 +19,13 @@ export class PersonalServiceTypeAuthorizationsService {
     return this.repo.save(entity);
   }
 
-  async findAll(): Promise<PersonalServiceTypeAuthorization[]> {
-    return this.repo.find();
+  async findAll(
+    providerId?: number,
+  ): Promise<PersonalServiceTypeAuthorization[]> {
+    const entities = providerId
+      ? await this.repo.find({ where: { providerId } })
+      : await this.repo.find();
+    return entities;
   }
 
   async findOne(

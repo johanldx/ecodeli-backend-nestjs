@@ -8,6 +8,7 @@ import {
 import { OneToMany } from 'typeorm';
 import { PersonalServiceTypeAuthorization } from '../personal-service-type-authorizations/personal-service-type-authorization.entity';
 import { PersonalServiceAd } from '../personal-services-ads/personal-service-ad.entity';
+import { ProviderSchedule } from '../provider-schedules/provider-schedule.entity';
 
 @Entity('personal_service_types')
 export class PersonalServiceType {
@@ -22,6 +23,9 @@ export class PersonalServiceType {
     (auth) => auth.personalServiceType,
   )
   authorizations: PersonalServiceTypeAuthorization[];
+
+  @OneToMany(() => ProviderSchedule, (schedule) => schedule.personalServiceType)
+  schedules: ProviderSchedule[];
 
   @OneToMany(() => PersonalServiceAd, (ad) => ad.type)
   ads: PersonalServiceAd[];

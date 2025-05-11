@@ -30,6 +30,7 @@ import { MessagesModule } from './messages/messages.module';
 import { PersonalServiceTypesModule } from './personal-service-types/personal-service-types.module';
 import { PersonalServiceTypeAuthorizationsModule } from './personal-service-type-authorizations/personal-service-type-authorizations.module';
 import { PersonalServicesAdsModule } from './personal-services-ads/personal-services-ads.module';
+import { ProviderSchedulesModule } from './provider-schedules/provider-schedules.module';
 
 @Module({
   imports: [
@@ -72,6 +73,7 @@ import { PersonalServicesAdsModule } from './personal-services-ads/personal-serv
     PersonalServiceTypesModule,
     PersonalServiceTypeAuthorizationsModule,
     PersonalServicesAdsModule,
+    ProviderSchedulesModule,
     // StripeModule,
   ],
   controllers: [AppController],

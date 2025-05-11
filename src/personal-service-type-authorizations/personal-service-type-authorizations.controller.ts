@@ -8,6 +8,9 @@ import {
   Body,
   Param,
   ParseIntPipe,
+  DefaultValuePipe,
+  Query,
+  HttpCode,
 } from '@nestjs/common';
 import { PersonalServiceTypeAuthorizationsService } from './personal-service-type-authorizations.service';
 import { CreatePersonalServiceTypeAuthorizationDto } from './dto/create-personal-service-type-authorization.dto';
@@ -19,6 +22,7 @@ import {
   ApiOperation,
   ApiResponse,
   ApiParam,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
@@ -41,10 +45,16 @@ export class PersonalServiceTypeAuthorizationsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'List all authorizations' })
+  @ApiOperation({
+    summary: 'List authorizations, optionally filtered by provider ID',
+  })
   @ApiResponse({ status: 200, type: [PersonalServiceTypeAuthorizationDto] })
-  findAll(): Promise<PersonalServiceTypeAuthorizationDto[]> {
-    return this.service.findAll();
+  @ApiQuery({ name: 'providerId', required: false, type: Number })
+  findAll(
+    @Query('providerId', new DefaultValuePipe(undefined), ParseIntPipe)
+    providerId?: number,
+  ): Promise<PersonalServiceTypeAuthorizationDto[]> {
+    return this.service.findAll(providerId);
   }
 
   @Get(':providerId/:personalServiceTypeId')
@@ -77,6 +87,7 @@ export class PersonalServiceTypeAuthorizationsController {
   @ApiParam({ name: 'providerId', type: Number })
   @ApiParam({ name: 'personalServiceTypeId', type: Number })
   @ApiResponse({ status: 200, description: 'Deleted' })
+  @HttpCode(204)
   remove(
     @Param('providerId', ParseIntPipe) providerId: number,
     @Param('personalServiceTypeId', ParseIntPipe) personalServiceTypeId: number,

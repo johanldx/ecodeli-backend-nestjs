@@ -7,7 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from 'src/users/user.entity'; // Assuming you have a User entity already
+import { User } from 'src/users/user.entity';
 
 export enum ValidationStatus {
   PENDING = 'pending',
