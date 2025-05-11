@@ -27,6 +27,9 @@ import { RoutesModule } from './routes/routes.module';
 // import { StripeModule } from './stripe/stripe.module';
 import { ConversationsModule } from './conversations/conversations.module';
 import { MessagesModule } from './messages/messages.module';
+import { PersonalServiceTypesModule } from './personal-service-types/personal-service-types.module';
+import { PersonalServiceTypeAuthorizationsModule } from './personal-service-type-authorizations/personal-service-type-authorizations.module';
+import { PersonalServicesAdsModule } from './personal-services-ads/personal-services-ads.module';
 
 @Module({
   imports: [
@@ -66,6 +69,9 @@ import { MessagesModule } from './messages/messages.module';
     RoutesModule,
     ConversationsModule,
     MessagesModule,
+    PersonalServiceTypesModule,
+    PersonalServiceTypeAuthorizationsModule,
+    PersonalServicesAdsModule,
     // StripeModule,
   ],
   controllers: [AppController],

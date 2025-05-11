@@ -7,6 +7,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
+import { OneToMany } from 'typeorm';
+import { PersonalServiceTypeAuthorization } from '../personal-service-type-authorizations/personal-service-type-authorization.entity';
 
 export enum ValidationStatus {
   PENDING = 'pending',
@@ -43,6 +45,9 @@ export class Provider {
 
   @Column()
   name: string;
+
+  @OneToMany(() => PersonalServiceTypeAuthorization, (auth) => auth.provider)
+  personalServiceTypeAuthorizations: PersonalServiceTypeAuthorization[];
 
   @CreateDateColumn()
   created_at: Date;
