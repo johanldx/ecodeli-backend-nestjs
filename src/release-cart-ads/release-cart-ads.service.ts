@@ -9,27 +9,57 @@ import { ReleaseCartAd } from './entities/release-cart-ad.entity';
 import { CreateReleaseCartAdDto } from './dto/create-release-cart-ad.dto';
 import { UpdateReleaseCartAdDto } from './dto/update-release-cart-ad.dto';
 import { User } from 'src/users/user.entity';
+import { StorageService } from 'src/storage/storage.service';
+import { Location } from 'src/locations/entities/location.entity';
 
 @Injectable()
 export class ReleaseCartAdsService {
   constructor(
     @InjectRepository(ReleaseCartAd)
     private readonly releaseCartAdRepo: Repository<ReleaseCartAd>,
+    @InjectRepository(Location)
+    private readonly locationRepository: Repository<Location>,
+    private readonly storageService: StorageService,
   ) {}
 
-  async create(
-    dto: CreateReleaseCartAdDto,
-    user: User,
-  ): Promise<ReleaseCartAd> {
-    const releaseCartAd = this.releaseCartAdRepo.create({
-      ...dto,
-      postedBy: user,
-      departureLocation: { id: dto.departureLocation },
-      arrivalLocation: { id: dto.arrivalLocation },
-    });
-    return this.releaseCartAdRepo.save(releaseCartAd);
+async create(
+  user: User,
+  dto: CreateReleaseCartAdDto,
+  images: Express.Multer.File[],
+): Promise<ReleaseCartAd> {
+  const { departureLocation, arrivalLocation } = dto;
+
+  const dep = await this.locationRepository.findOne({
+    where: { id: departureLocation },
+  });
+  const arr = await this.locationRepository.findOne({
+    where: { id: arrivalLocation },
+  });
+
+  if (!dep || !arr) {
+    throw new NotFoundException('Lieu de départ ou d’arrivée introuvable');
   }
 
+  const imageUrls = await Promise.all(
+    images.map((file) =>
+      this.storageService.uploadFile(
+        file.buffer,
+        file.originalname,
+        'release-cart-ads',
+      ),
+    ),
+  );
+
+  const ad = this.releaseCartAdRepo.create({
+    ...dto,
+    imageUrls,
+    postedBy: user,
+    departureLocation: dep,
+    arrivalLocation: arr,
+  });
+
+  return this.releaseCartAdRepo.save(ad);
+}
   async findAll(user: User, filters: any): Promise<ReleaseCartAd[]> {
     const qb = this.releaseCartAdRepo
       .createQueryBuilder('releaseCartAd')

@@ -7,6 +7,7 @@ import {
   IsNumber,
 } from 'class-validator';
 import { AdStatus, PackageSize } from '../entities/release-cart-ad.entity';
+import { Type } from 'class-transformer';
 
 export class CreateReleaseCartAdDto {
   @IsString()
@@ -19,6 +20,7 @@ export class CreateReleaseCartAdDto {
   clientEmail: string;
 
   @IsArray()
+  @IsOptional()
   imageUrls: string[];
 
   @IsEnum(AdStatus)
@@ -28,9 +30,11 @@ export class CreateReleaseCartAdDto {
   reference: string;
 
   @IsNumber()
+  @Type(() => Number)
   departureLocation: number;
 
   @IsNumber()
+  @Type(() => Number)
   arrivalLocation: number;
 
   @IsEnum(PackageSize)
@@ -43,5 +47,6 @@ export class CreateReleaseCartAdDto {
   endTime: Date;
 
   @IsNumber()
+  @Type(() => Number)
   price: number;
 }

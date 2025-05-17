@@ -39,6 +39,9 @@ export class ReleaseCartAdResponseDto {
   })
   arrivalLocation: Location;
 
+  @ApiProperty({ description: 'Price of ads' })
+  price: number;
+
   @ApiProperty({
     description: 'The user who posted the Release Cart Ad',
     type: User,

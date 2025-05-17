@@ -77,6 +77,14 @@ export class ReleaseCartAd {
   @ApiProperty({ description: 'The size of the package in the release cart.' })
   packageSize: PackageSize;
 
+  @Column('decimal', { precision: 10, scale: 2 })
+  @ApiProperty({
+    description: 'The price associated with the release cart ad.',
+    example: 49.99,
+    type: Number,
+  })
+  price: number;
+
   @CreateDateColumn({ type: 'timestamp' })
   @ApiProperty({
     description: 'Timestamp when the release cart ad was created.',
