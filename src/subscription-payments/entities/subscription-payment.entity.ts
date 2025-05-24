@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Subscription } from 'src/subscriptions/entities/subscriptions.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { User } from 'src/users/user.entity';
 
 export enum PaymentStatus {
   PENDING = 'pending',
@@ -25,11 +26,8 @@ export class SubscriptionPayment {
   @ApiProperty({ description: 'The amount of the subscription payment.' })
   amount: number;
 
-  @Column()
-  @ApiProperty({
-    description: 'The Stripe payment ID associated with the payment.',
-  })
-  stripe_payment_id: string;
+  @ManyToOne(() => User, { eager: true })
+  user: User;
 
   @Column({ type: 'enum', enum: PaymentStatus, default: PaymentStatus.PENDING })
   @ApiProperty({ description: 'The current status of the payment.' })

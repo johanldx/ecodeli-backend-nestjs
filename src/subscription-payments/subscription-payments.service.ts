@@ -37,6 +37,13 @@ export class SubscriptionPaymentsService {
     return payment;
   }
 
+  async findMine(userId: number): Promise<SubscriptionPayment[]> {
+    return this.subscriptionPaymentRepo.find({
+      where: { user: { id: userId } },
+      order: { createdAt: 'DESC' },
+    });
+  }
+
   async update(
     id: number,
     updateSubscriptionPaymentDto: UpdateSubscriptionPaymentDto,

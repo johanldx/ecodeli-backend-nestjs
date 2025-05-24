@@ -20,12 +20,17 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { UserResponseDto } from 'src/users/dto/user-response.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { ConfigService } from '@nestjs/config';
+import { Wallet } from 'src/wallets/entities/wallet.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+
+    @InjectRepository(Wallet)
+    private walletRepository: Repository<Wallet>,
+
     private jwtService: JwtService,
     private emailService: EmailService,
     private readonly configService: ConfigService,
@@ -75,12 +80,28 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
     const user = await this.userRepository.findOne({ where: { email } });
+
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new UnauthorizedException('Invalid credentials');
     }
+
     if (!user.active) {
       throw new ForbiddenException('Account is inactive');
     }
+
+    let wallet = await this.walletRepository.findOne({
+      where: { user: { id: user.id } },
+    });
+
+    if (!wallet) {
+      wallet = this.walletRepository.create({
+        user,
+        amout_available: 0,
+        amout_pending: 0,
+      });
+      await this.walletRepository.save(wallet);
+    }
+
     return this.generateTokens(user);
   }
 

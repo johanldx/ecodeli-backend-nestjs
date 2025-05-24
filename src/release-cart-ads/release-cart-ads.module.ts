@@ -7,9 +7,12 @@ import { UsersModule } from 'src/users/users.module';
 import { Location } from 'src/locations/entities/location.entity';
 import { StorageModule } from 'src/storage/storage.module';
 
-
 @Module({
-  imports: [TypeOrmModule.forFeature([ReleaseCartAd, Location]), UsersModule, StorageModule],
+  imports: [
+    TypeOrmModule.forFeature([ReleaseCartAd, Location]),
+    UsersModule,
+    StorageModule,
+  ],
   controllers: [ReleaseCartAdsController],
   providers: [ReleaseCartAdsService],
 })

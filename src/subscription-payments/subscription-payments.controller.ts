@@ -7,15 +7,20 @@ import {
   Patch,
   Delete,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
 import { SubscriptionPaymentsService } from './subscription-payments.service';
 import { CreateSubscriptionPaymentDto } from './dto/create-subscription-payment.dto';
 import { UpdateSubscriptionPaymentDto } from './dto/update-subscription-payment.dto';
 import { SubscriptionPaymentResponseDto } from './dto/subscription-payment-response.dto'; // Import du DTO de réponse
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { User } from 'src/users/user.entity';
 
 @ApiTags('Subscription Payments')
 @ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('subscription-payments')
 export class SubscriptionPaymentsController {
   constructor(
@@ -44,6 +49,16 @@ export class SubscriptionPaymentsController {
   })
   async findAll() {
     return this.subscriptionPaymentsService.findAll();
+  }
+
+  @Get('/me')
+  @ApiResponse({
+    status: 200,
+    description: 'Returns subscription payments for the current user',
+    type: [SubscriptionPaymentResponseDto],
+  })
+  async findMine(@CurrentUser() user: User) {
+    return this.subscriptionPaymentsService.findMine(user.id);
   }
 
   @Get(':id')

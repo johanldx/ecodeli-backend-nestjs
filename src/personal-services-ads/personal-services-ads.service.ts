@@ -5,26 +5,28 @@ import { PersonalServiceAd, AdStatus } from './personal-service-ad.entity';
 import { CreatePersonalServiceAdDto } from './dto/create-personal-service-ad.dto';
 import { UpdatePersonalServiceAdDto } from './dto/update-personal-service-ad.dto';
 import { StorageService } from '../storage/storage.service';
-import { v4 as uuidv4 } from 'uuid';
 import { PersonalServiceAdDto } from './dto/personal-service-ad.dto';
+import { PersonalServiceType } from 'src/personal-service-types/personal-service-type.entity';
 
 @Injectable()
 export class PersonalServicesAdsService {
   constructor(
     @InjectRepository(PersonalServiceAd)
     private readonly adRepo: Repository<PersonalServiceAd>,
+    @InjectRepository(PersonalServiceType)
+    private readonly typeRepo: Repository<PersonalServiceType>,
     private readonly storageService: StorageService,
   ) {}
 
   private toDto(ad: PersonalServiceAd): PersonalServiceAdDto {
     return {
       id: ad.id,
-      postedById: ad.postedBy.id,
-      title: ad.title,
-      description: ad.description,
-      imageUrls: ad.imageUrls,
-      status: ad.status,
-      typeId: ad.type.id,
+      postedById: ad.postedBy.id ?? null,
+      title: ad.title ?? null,
+      description: ad.description ?? null,
+      imageUrls: ad.imageUrls ?? null,
+      status: ad.status ?? null,
+      typeId: ad.type.id ?? null,
       createdAt: ad.createdAt,
       editedAt: ad.editedAt,
     };
@@ -38,7 +40,10 @@ export class PersonalServicesAdsService {
     if (!images || images.length === 0) {
       throw new Error('At least one image is required');
     }
-    const reference = uuidv4();
+
+    const type = await this.typeRepo.findOne({ where: { id: dto.typeId } });
+    if (!type) throw new NotFoundException(`Type ${dto.typeId} not found`);
+
     const urls = await Promise.all(
       images.map((file) =>
         this.storageService.uploadFile(
@@ -50,11 +55,14 @@ export class PersonalServicesAdsService {
     );
 
     const adEntity = this.adRepo.create({
-      ...dto,
+      title: dto.title,
+      description: dto.description,
       postedBy: { id: userId } as any,
+      type, // 👈 ajoute l’objet complet ici
       imageUrls: urls,
       status: AdStatus.PENDING,
     });
+
     const saved = await this.adRepo.save(adEntity);
     return this.toDto(saved);
   }

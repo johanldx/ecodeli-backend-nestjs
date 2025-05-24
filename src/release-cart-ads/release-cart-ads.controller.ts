@@ -12,7 +12,12 @@ import {
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiResponse, ApiConsumes } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiConsumes,
+} from '@nestjs/swagger';
 import { ReleaseCartAdsService } from './release-cart-ads.service';
 import { CreateReleaseCartAdDto } from './dto/create-release-cart-ad.dto';
 import { UpdateReleaseCartAdDto } from './dto/update-release-cart-ad.dto';

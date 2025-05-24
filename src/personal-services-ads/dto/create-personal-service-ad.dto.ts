@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import { IsInt, IsString, IsNotEmpty } from 'class-validator';
 
 export class CreatePersonalServiceAdDto {
@@ -14,5 +15,6 @@ export class CreatePersonalServiceAdDto {
 
   @ApiProperty({ description: 'ID of the service type', example: 1 })
   @IsInt()
+  @Type(() => Number)
   typeId: number;
 }

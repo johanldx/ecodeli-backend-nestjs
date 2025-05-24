@@ -22,44 +22,44 @@ export class ReleaseCartAdsService {
     private readonly storageService: StorageService,
   ) {}
 
-async create(
-  user: User,
-  dto: CreateReleaseCartAdDto,
-  images: Express.Multer.File[],
-): Promise<ReleaseCartAd> {
-  const { departureLocation, arrivalLocation } = dto;
+  async create(
+    user: User,
+    dto: CreateReleaseCartAdDto,
+    images: Express.Multer.File[],
+  ): Promise<ReleaseCartAd> {
+    const { departureLocation, arrivalLocation } = dto;
 
-  const dep = await this.locationRepository.findOne({
-    where: { id: departureLocation },
-  });
-  const arr = await this.locationRepository.findOne({
-    where: { id: arrivalLocation },
-  });
+    const dep = await this.locationRepository.findOne({
+      where: { id: departureLocation },
+    });
+    const arr = await this.locationRepository.findOne({
+      where: { id: arrivalLocation },
+    });
 
-  if (!dep || !arr) {
-    throw new NotFoundException('Lieu de départ ou d’arrivée introuvable');
-  }
+    if (!dep || !arr) {
+      throw new NotFoundException('Lieu de départ ou d’arrivée introuvable');
+    }
 
-  const imageUrls = await Promise.all(
-    images.map((file) =>
-      this.storageService.uploadFile(
-        file.buffer,
-        file.originalname,
-        'release-cart-ads',
+    const imageUrls = await Promise.all(
+      images.map((file) =>
+        this.storageService.uploadFile(
+          file.buffer,
+          file.originalname,
+          'release-cart-ads',
+        ),
       ),
-    ),
-  );
+    );
 
-  const ad = this.releaseCartAdRepo.create({
-    ...dto,
-    imageUrls,
-    postedBy: user,
-    departureLocation: dep,
-    arrivalLocation: arr,
-  });
+    const ad = this.releaseCartAdRepo.create({
+      ...dto,
+      imageUrls,
+      postedBy: user,
+      departureLocation: dep,
+      arrivalLocation: arr,
+    });
 
-  return this.releaseCartAdRepo.save(ad);
-}
+    return this.releaseCartAdRepo.save(ad);
+  }
   async findAll(user: User, filters: any): Promise<ReleaseCartAd[]> {
     const qb = this.releaseCartAdRepo
       .createQueryBuilder('releaseCartAd')

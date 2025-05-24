@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('routes')
@@ -23,11 +29,11 @@ export class Route {
   @ApiProperty({ description: 'The day the route is scheduled for.' })
   day: Date;
 
-  @Column({ type: 'timestamp' })
+  @CreateDateColumn({ type: 'timestamp' })
   @ApiProperty({ description: 'Timestamp when the route was created.' })
   created_at: Date;
 
-  @Column({ type: 'timestamp' })
+  @UpdateDateColumn({ type: 'timestamp' })
   @ApiProperty({ description: 'Timestamp when the route was last updated.' })
   updated_at: Date;
 }

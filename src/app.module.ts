@@ -31,6 +31,9 @@ import { PersonalServiceTypesModule } from './personal-service-types/personal-se
 import { PersonalServiceTypeAuthorizationsModule } from './personal-service-type-authorizations/personal-service-type-authorizations.module';
 import { PersonalServicesAdsModule } from './personal-services-ads/personal-services-ads.module';
 import { ProviderSchedulesModule } from './provider-schedules/provider-schedules.module';
+import { AdPaymentsModule } from './ad-payments/ad-payments.module';
+import { WalletTransactionsModule } from './wallet-transactions/wallet-transactions.module';
+import { WalletsModule } from './wallets/wallets.module';
 
 @Module({
   imports: [
@@ -74,6 +77,9 @@ import { ProviderSchedulesModule } from './provider-schedules/provider-schedules
     PersonalServiceTypeAuthorizationsModule,
     PersonalServicesAdsModule,
     ProviderSchedulesModule,
+    AdPaymentsModule,
+    WalletTransactionsModule,
+    WalletsModule,
     // StripeModule,
   ],
   controllers: [AppController],

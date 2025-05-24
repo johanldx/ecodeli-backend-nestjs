@@ -8,9 +8,9 @@ export class SubscriptionPaymentResponseDto {
   amount: number;
 
   @ApiProperty({
-    description: 'The Stripe payment ID associated with the payment.',
+    description: 'The User ID.',
   })
-  stripe_payment_id: string;
+  userId: number;
 
   @ApiProperty({
     description:

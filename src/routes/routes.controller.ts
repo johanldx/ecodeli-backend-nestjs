@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
 import { RoutesService } from './routes.service';
@@ -64,6 +65,7 @@ export class RoutesController {
 
   @Delete(':id')
   @ApiResponse({ status: 200, description: 'Route deleted successfully' })
+  @HttpCode(204)
   async remove(@Param('id') id: number) {
     return this.routesService.remove(id);
   }

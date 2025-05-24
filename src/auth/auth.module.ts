@@ -12,11 +12,12 @@ import { DeliveryPersonsModule } from 'src/delivery-persons/delivery-persons.mod
 import { TradersModule } from 'src/traders/traders.module';
 import { ProvidersModule } from 'src/providers/providers.module';
 import { WsJwtAuthGuard } from './guards/ws-jwt.guard';
+import { Wallet } from 'src/wallets/entities/wallet.entity';
 
 @Module({
   imports: [
     ConfigModule,
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Wallet]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

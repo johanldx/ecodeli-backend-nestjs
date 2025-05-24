@@ -9,11 +9,11 @@ export class UpdateSubscriptionPaymentDto {
   amount?: number;
 
   @ApiProperty({
-    description: 'The Stripe payment ID associated with the payment.',
+    description: 'The User id.',
   })
   @IsString()
   @IsOptional()
-  stripe_payment_id?: string;
+  userId?: number;
 
   @ApiProperty({ description: 'The status of the payment.' })
   @IsEnum(PaymentStatus)
