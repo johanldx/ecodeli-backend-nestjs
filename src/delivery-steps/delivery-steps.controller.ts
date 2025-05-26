@@ -1,5 +1,3 @@
-// src/delivery-steps/delivery-steps.controller.ts
-
 import {
   Controller,
   Post,
@@ -30,12 +28,24 @@ import { DeliveryStep } from './entities/delivery-step.entity';
 import { DeliveryStepStatus } from './entities/delivery-step.entity';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Route } from 'src/routes/entities/route.entity';
+import { Location } from 'src/locations/entities/location.entity';
+import { EmailService } from 'src/email/email.service';
 
 @ApiTags('Delivery Steps')
 @ApiBearerAuth()
 @Controller('delivery-steps')
 export class DeliveryStepsController {
-  constructor(private readonly stepsService: DeliveryStepsService) {}
+  constructor(
+    private readonly stepsService: DeliveryStepsService,
+    @InjectRepository(Route)
+    public readonly routeRepo: Repository<Route>,
+    @InjectRepository(Location)
+    public readonly locationRepo: Repository<Location>,
+    private emailService: EmailService,
+  ) {}
 
   private toDto(step: DeliveryStep): DeliveryStepResponseDto {
     return {
@@ -64,6 +74,53 @@ export class DeliveryStepsController {
     @Body() dto: CreateDeliveryStepDto,
     @CurrentUser() user: User,
   ): Promise<DeliveryStepResponseDto> {
+    const departureLocation = await this.locationRepo.findOne({
+      where: { id: dto.departureLocationId },
+    });
+    const arrivalLocation = await this.locationRepo.findOne({
+      where: { id: dto.arrivalLocationId },
+    });
+
+    if (!departureLocation || !arrivalLocation) {
+      throw new Error('Locations de départ ou d’arrivée invalides');
+    }
+
+    const routeMatch = await this.routeRepo
+      .createQueryBuilder('route')
+      .innerJoinAndSelect('route.deliveryPerson', 'deliveryPerson')
+      .innerJoinAndSelect('deliveryPerson.user', 'user')
+      .innerJoinAndSelect('route.departureLocationEntity', 'departureLoc')
+      .innerJoinAndSelect('route.arrivalLocationEntity', 'arrivalLoc')
+      .where('departureLoc.city = :depCity', {
+        depCity: departureLocation.city,
+      })
+      .andWhere('arrivalLoc.city = :arrCity', { arrCity: arrivalLocation.city })
+      .getMany();
+
+    if (routeMatch && routeMatch.length > 0) {
+      const uniqueEmails = new Set<string>();
+
+      for (const route of routeMatch) {
+        const email = route.deliveryPerson?.user?.email;
+        if (email && !uniqueEmails.has(email)) {
+          uniqueEmails.add(email);
+
+          const emailContent = `
+              <p><strong>Une ou plusieurs nouvelles annonces ont été publiées et correspond à un trajet que vous avez prévu.</strong></p>
+              <p>Nous sommes heureux de vous compter parmi les membres de notre plateforme.</p>
+              <p>Merci de vous connecter rapidement pour consulter les annonces correspondantes en ligne.</p>
+            `;
+
+          await this.emailService.sendEmail(
+            email,
+            'Annonce correspondant à votre trajet',
+            'Annonce correspondant à votre trajet',
+            emailContent,
+          );
+        }
+      }
+    }
+
     const step = await this.stepsService.create(dto, user);
     return this.toDto(step);
   }

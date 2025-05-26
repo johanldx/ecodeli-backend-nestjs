@@ -21,12 +21,12 @@ export class PersonalServicesAdsService {
   private toDto(ad: PersonalServiceAd): PersonalServiceAdDto {
     return {
       id: ad.id,
-      postedById: ad.postedBy.id ?? null,
+      postedById: ad.postedBy?.id ?? null,
       title: ad.title ?? null,
       description: ad.description ?? null,
       imageUrls: ad.imageUrls ?? null,
       status: ad.status ?? null,
-      typeId: ad.type.id ?? null,
+      typeId: ad.type?.id ?? null,
       createdAt: ad.createdAt,
       editedAt: ad.editedAt,
     };

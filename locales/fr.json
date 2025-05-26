@@ -198,7 +198,7 @@
           "amount_available": "Montant disponible",
           "amount_pending": "Montant en attente",
           "to_validate": "Valider",
-          "iban": "Mon IBAN",
+          "iban": "Mon IBAN (*****)",
           "transfer_bank_account": "Transférer vers mon compte bancaire",
           "available": "Disponible",
           "pending": "En attente"

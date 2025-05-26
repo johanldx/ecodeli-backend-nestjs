@@ -4,8 +4,12 @@ import {
   Column,
   UpdateDateColumn,
   CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { Location } from 'src/locations/entities/location.entity';
+import { DeliveryPerson } from 'src/delivery-persons/delivery-person.entity';
 
 @Entity('routes')
 export class Route {
@@ -13,17 +17,17 @@ export class Route {
   @ApiProperty({ description: 'The unique identifier for the route.' })
   id: number;
 
-  @Column()
-  @ApiProperty({ description: 'The delivery person assigned to the route.' })
-  delivery_person_id: number;
+  @ManyToOne(() => DeliveryPerson, { eager: true })
+  @JoinColumn({ name: 'delivery_person_id' })
+  deliveryPerson: DeliveryPerson;
 
-  @Column()
-  @ApiProperty({ description: 'The departure location ID.' })
-  departure_location: number;
+  @ManyToOne(() => Location, { eager: true })
+  @JoinColumn({ name: 'departure_location' })
+  departureLocationEntity: Location;
 
-  @Column()
-  @ApiProperty({ description: 'The arrival location ID.' })
-  arrival_location: number;
+  @ManyToOne(() => Location, { eager: true })
+  @JoinColumn({ name: 'arrival_location' })
+  arrivalLocationEntity: Location;
 
   @Column()
   @ApiProperty({ description: 'The day the route is scheduled for.' })

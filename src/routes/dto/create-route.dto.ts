@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsNotEmpty } from 'class-validator';
+import { IsDateString, IsInt, IsNotEmpty } from 'class-validator';
 
 export class CreateRouteDto {
   @ApiProperty()
@@ -18,6 +18,7 @@ export class CreateRouteDto {
   arrival_location: number;
 
   @ApiProperty()
+  @IsDateString()
   @IsNotEmpty()
-  day: Date;
+  day: string;
 }
