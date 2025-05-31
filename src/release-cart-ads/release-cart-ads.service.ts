@@ -84,10 +84,6 @@ export class ReleaseCartAdsService {
 
     if (!releaseCartAd) throw new NotFoundException();
 
-    if (!user.administrator && releaseCartAd.postedBy.id !== user.id) {
-      throw new ForbiddenException();
-    }
-
     return releaseCartAd;
   }
 

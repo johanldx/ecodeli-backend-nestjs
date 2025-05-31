@@ -70,7 +70,7 @@ export class ConversationsService {
     return (
       this.repo
         .createQueryBuilder('conv')
-        .leftJoin('conv.userFrom', 'userFrom')
+        .leftJoinAndSelect('conv.userFrom', 'userFrom')
         .where('userFrom.id = :userId', { userId })
 
         // ShoppingAds → colonne `posted_by`
@@ -95,11 +95,13 @@ export class ConversationsService {
             qb
               .where('conv.ad_type = :del', { del: AdTypes.DeliverySteps })
               .andWhere(
-                `EXISTS(
-            SELECT 1 FROM delivery_ads ad
-            WHERE ad.id = conv.ad_id
-              AND ad.postedById = :userId
-          )`,
+                `EXISTS (
+                  SELECT 1
+                  FROM delivery_steps step
+                  JOIN delivery_ads ad ON ad.id = step.delivery_ad_id
+                  WHERE step.id = conv.ad_id
+                    AND ad.postedById = :userId
+                )`,
                 { userId },
               ),
           ),
@@ -114,7 +116,7 @@ export class ConversationsService {
                 `EXISTS(
             SELECT 1 FROM release_cart_ads ad
             WHERE ad.id = conv.ad_id
-              AND ad.postedById = :userId
+              AND ad.posted_by = :userId
           )`,
                 { userId },
               ),
@@ -125,9 +127,6 @@ export class ConversationsService {
     );
   }
 
-  /**
-   * Même logique : ou bien je suis userFrom, ou bien je suis propriétaire de l’annonce
-   */
   async findOne(id: number, userId: number): Promise<Conversation> {
     const conv = await this.repo.findOne({
       where: { id },

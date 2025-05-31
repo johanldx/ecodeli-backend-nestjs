@@ -13,6 +13,10 @@ export class CreateReleaseCartAdDto {
   @IsString()
   title: string;
 
+  @IsNumber()
+  @Type(() => Number)
+  posted_by: number;
+
   @IsString()
   description: string;
 

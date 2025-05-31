@@ -5,6 +5,7 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/users/user.entity';
@@ -33,8 +34,8 @@ export class ReleaseCartAd {
   })
   id: number;
 
-  @ManyToOne(() => User, (user) => user.releaseCartAds)
-  @ApiProperty({ description: 'The user who posted the ad.' })
+  @ManyToOne(() => User, { eager: true })
+  @JoinColumn({ name: 'posted_by' })
   postedBy: User;
 
   @ManyToOne(() => User, (user) => user.releaseCartAds)

@@ -41,7 +41,7 @@ export class LocationsService {
 
     if (!location) throw new NotFoundException();
 
-    assertUserOwnsResourceOrIsAdmin(user, location.user_id);
+    //assertUserOwnsResourceOrIsAdmin(user, location.user_id);
 
     return location;
   }

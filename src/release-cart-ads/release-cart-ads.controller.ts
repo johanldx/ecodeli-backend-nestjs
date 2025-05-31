@@ -11,6 +11,7 @@ import {
   BadRequestException,
   UploadedFiles,
   UseInterceptors,
+  HttpCode,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -91,9 +92,10 @@ export class ReleaseCartAdsController {
 
   @Delete(':id')
   @ApiResponse({
-    status: 200,
+    status: 204,
     description: 'Release Cart Ad deleted successfully',
   })
+  @HttpCode(204)
   async remove(@Param('id') id: number, @CurrentUser() user: User) {
     return this.releaseCartAdsService.remove(id, user);
   }

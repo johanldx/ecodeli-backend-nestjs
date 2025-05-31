@@ -10,6 +10,7 @@ import {
   ParseIntPipe,
   UploadedFiles,
   UseInterceptors,
+  HttpCode,
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { v4 as uuidv4 } from 'uuid';
@@ -80,6 +81,7 @@ export class PersonalServicesAdsController {
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a personal service ad' })
   @ApiResponse({ status: 200, description: 'Deleted' })
+  @HttpCode(204)
   remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.service.remove(id);
   }

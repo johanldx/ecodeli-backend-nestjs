@@ -7,11 +7,16 @@ import {
   IsOptional,
 } from 'class-validator';
 import { AdStatus, PackageSize } from '../entities/release-cart-ad.entity';
+import { Type } from 'class-transformer';
 
 export class UpdateReleaseCartAdDto {
   @IsOptional()
   @IsString()
   title?: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  posted_by?: number;
 
   @IsOptional()
   @IsString()

@@ -34,7 +34,7 @@ export class DeliveryStep {
     onDelete: 'CASCADE',
     eager: true,
   })
-  @JoinColumn()
+  @JoinColumn({ name: 'delivery_ad_id' })
   deliveryAd: DeliveryAd;
 
   @Column()
