@@ -80,7 +80,6 @@ import { WalletsModule } from './wallets/wallets.module';
     AdPaymentsModule,
     WalletTransactionsModule,
     WalletsModule,
-    // StripeModule,
   ],
   controllers: [AppController],
   providers: [
