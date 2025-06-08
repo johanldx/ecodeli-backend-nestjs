@@ -7,6 +7,9 @@ export class PersonalServiceTypeAuthorizationDto {
   @ApiProperty()
   personalServiceTypeId: number;
 
+  @ApiProperty()
+  price: number;
+
   @ApiProperty({ type: String, format: 'date-time' })
   createdAt: Date;
 

@@ -21,6 +21,10 @@ export class PersonalServiceType {
   @OneToMany(
     () => PersonalServiceTypeAuthorization,
     (auth) => auth.personalServiceType,
+    {
+      cascade: true,
+      onDelete: 'CASCADE',
+    },
   )
   authorizations: PersonalServiceTypeAuthorization[];
 
@@ -29,6 +33,9 @@ export class PersonalServiceType {
 
   @OneToMany(() => PersonalServiceAd, (ad) => ad.type)
   ads: PersonalServiceAd[];
+
+  @Column()
+  price: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

@@ -8,6 +8,7 @@ import {
   Param,
   ParseIntPipe,
   UseGuards,
+  HttpCode,
 } from '@nestjs/common';
 import { PersonalServiceTypesService } from './personal-service-types.service';
 import { CreatePersonalServiceTypeDto } from './dto/create-personal-service-type.dto';
@@ -86,6 +87,7 @@ export class PersonalServiceTypesController {
   @ApiOperation({ summary: 'Delete a personal service type by ID' })
   @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, description: 'Personal service type deleted' })
+  @HttpCode(204)
   remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.service.remove(id);
   }

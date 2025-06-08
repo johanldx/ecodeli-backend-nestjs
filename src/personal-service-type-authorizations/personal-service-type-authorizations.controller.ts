@@ -69,6 +69,19 @@ export class PersonalServiceTypeAuthorizationsController {
     return this.service.findOne(providerId, personalServiceTypeId);
   }
 
+  @Get('by-user/:userId/:personalServiceTypeId')
+  @ApiOperation({ summary: 'Get an authorization by userId and personalServiceTypeId' })
+  @ApiParam({ name: 'userId', type: Number })
+  @ApiParam({ name: 'personalServiceTypeId', type: Number })
+  @ApiResponse({ status: 200, type: PersonalServiceTypeAuthorizationDto })
+  findOneByUserId(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('personalServiceTypeId', ParseIntPipe) personalServiceTypeId: number,
+  ): Promise<PersonalServiceTypeAuthorizationDto> {
+    return this.service.findOneByUserId(userId, personalServiceTypeId);
+  }
+
+
   @Patch(':providerId/:personalServiceTypeId')
   @ApiOperation({ summary: 'Update an authorization' })
   @ApiParam({ name: 'providerId', type: Number })

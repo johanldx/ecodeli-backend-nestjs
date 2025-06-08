@@ -18,6 +18,9 @@ export class CreateConversationDto {
   @Type(() => Number)
   price: number;
 
+  @Type(() => Number)
+  readonly providerScheduleId?: number;
+
   @IsInt()
   @Min(1)
   userFrom: number;

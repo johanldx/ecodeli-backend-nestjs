@@ -8,6 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
+import { ProviderSchedule } from 'src/provider-schedules/provider-schedule.entity';
 
 export enum AdTypes {
   ServiceProvisions = 'ServiceProvisions',
@@ -43,6 +44,13 @@ export class Conversation {
 
   @Column('double')
   price: number;
+
+  @ManyToOne(() => ProviderSchedule, { nullable: true, onDelete: 'SET NULL' })
+  @JoinColumn({ name: 'providerScheduleId' })
+  providerSchedule?: ProviderSchedule;
+
+  @Column({ nullable: true })
+  providerScheduleId?: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

@@ -43,6 +43,9 @@ export class Trader {
   @Column({ type: 'varchar', nullable: true })
   bank_account: string;
 
+  @Column({ default: 0 })
+  reduction_percent: number;
+
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 

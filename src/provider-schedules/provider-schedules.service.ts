@@ -5,10 +5,13 @@ import { ProviderSchedule } from './provider-schedule.entity';
 import { CreateProviderScheduleDto } from './dto/create-provider-schedule.dto';
 import { UpdateProviderScheduleDto } from './dto/update-provider-schedule.dto';
 import { ProviderScheduleDto } from './dto/provider-schedule.dto';
+import { Provider } from 'src/providers/provider.entity';
 
 @Injectable()
 export class ProviderSchedulesService {
   constructor(
+    @InjectRepository(Provider)
+    private readonly providerRepo: Repository<Provider>,
     @InjectRepository(ProviderSchedule)
     private readonly repo: Repository<ProviderSchedule>,
   ) {}
@@ -70,11 +73,41 @@ export class ProviderSchedulesService {
       throw new NotFoundException(`Schedule ${id} not found`);
   }
 
-  async findBetween(start: Date, end: Date): Promise<ProviderScheduleDto[]> {
+  async findFiltered(filters: {
+    start?: Date;
+    end?: Date;
+    providerId?: number; // ATTENTION : ici, c'est en réalité le userId
+    personalServiceTypeId?: number;
+  }): Promise<ProviderScheduleDto[]> {
+    const where: any = {};
+
+    // Étape 1 : Si on a un userId (appelé ici à tort providerId), on retrouve le vrai provider
+    if (filters.providerId) {
+      const provider = await this.providerRepo.findOne({
+        where: { user: { id: filters.providerId } },
+      });
+
+      if (!provider) return [];
+
+      where.provider = { id: provider.id };
+    }
+
+    // Étape 2 : Ajout des autres filtres
+    if (filters.start && filters.end) {
+      where.startTime = Between(filters.start, filters.end);
+    }
+
+    if (filters.personalServiceTypeId) {
+      where.personalServiceType = { id: filters.personalServiceTypeId };
+    }
+
+    // Étape 3 : Requête finale
     const list = await this.repo.find({
-      where: { startTime: Between(start, end) },
+      where,
       relations: ['provider', 'personalServiceType'],
     });
+
     return list.map((e) => this.toDto(e));
   }
+
 }

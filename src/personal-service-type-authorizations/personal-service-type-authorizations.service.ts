@@ -43,6 +43,28 @@ export class PersonalServiceTypeAuthorizationsService {
     return entity;
   }
 
+  async findOneByUserId(
+    userId: number,
+    personalServiceTypeId: number,
+  ): Promise<PersonalServiceTypeAuthorization> {
+    const entity = await this.repo
+      .createQueryBuilder('auth')
+      .leftJoinAndSelect('auth.provider', 'provider')
+      .leftJoin('provider.user', 'user')
+      .where('user.id = :userId', { userId })
+      .andWhere('auth.personalServiceType.id = :serviceTypeId', { serviceTypeId: personalServiceTypeId })
+      .getOne();
+
+    if (!entity) {
+      throw new NotFoundException(
+        `Authorization not found for user=${userId} and serviceType=${personalServiceTypeId}`,
+      );
+    }
+
+    return entity;
+  }
+
+
   async update(
     providerId: number,
     personalServiceTypeId: number,

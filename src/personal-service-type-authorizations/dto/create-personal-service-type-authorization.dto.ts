@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsNotEmpty } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsInt, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreatePersonalServiceTypeAuthorizationDto {
   @ApiProperty({ description: 'ID of the provider' })
@@ -11,4 +12,9 @@ export class CreatePersonalServiceTypeAuthorizationDto {
   @IsInt()
   @IsNotEmpty()
   personalServiceTypeId: number;
+
+  @IsInt()
+  @Type(() => Number)
+  @IsOptional()
+  price: number;
 }

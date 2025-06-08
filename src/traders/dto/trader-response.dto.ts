@@ -46,6 +46,8 @@ export class TraderResponseDto {
   })
   bank_account: string;
 
+  reduction_percent: number;
+
   @ApiProperty({
     description: 'The date when the trader was created',
     example: '2025-03-27T16:18:00.000Z',

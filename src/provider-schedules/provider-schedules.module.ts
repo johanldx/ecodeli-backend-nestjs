@@ -5,10 +5,11 @@ import { ProviderSchedulesService } from './provider-schedules.service';
 import { ProviderSchedulesController } from './provider-schedules.controller';
 import { ProvidersModule } from '../providers/providers.module';
 import { PersonalServiceTypesModule } from '../personal-service-types/personal-service-types.module';
+import { Provider } from 'src/providers/provider.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ProviderSchedule]),
+    TypeOrmModule.forFeature([ProviderSchedule, Provider]),
     ProvidersModule,
     PersonalServiceTypesModule,
   ],

@@ -57,20 +57,19 @@ export class ConversationsService {
     const conv = this.repo.create({
       ...dto,
       userFrom: { id: dto.userFrom },
+      providerSchedule: dto.providerScheduleId
+        ? { id: dto.providerScheduleId }
+        : undefined,
     });
     return this.repo.save(conv);
   }
 
-  /**
-   * Liste toutes les conv auxquelles j'ai accès :
-   * – soit je suis userFrom
-   * – soit je suis propriétaire de l’annonce
-   */
   async findAll(userId: number): Promise<Conversation[]> {
     return (
       this.repo
         .createQueryBuilder('conv')
         .leftJoinAndSelect('conv.userFrom', 'userFrom')
+        .leftJoinAndSelect('conv.providerSchedule', 'providerSchedule')
         .where('userFrom.id = :userId', { userId })
 
         // ShoppingAds → colonne `posted_by`
@@ -148,8 +147,13 @@ export class ConversationsService {
   ): Promise<Conversation> {
     const conv = await this.findOne(id, userId);
     Object.assign(conv, dto);
+
+    if (dto.providerScheduleId !== undefined) {
+      conv.providerScheduleId = dto.providerScheduleId;
+    }
     return this.repo.save(conv);
   }
+
 
   async remove(id: number, userId: number): Promise<void> {
     const conv = await this.findOne(id, userId);

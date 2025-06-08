@@ -41,7 +41,7 @@ export class ProviderSchedulesController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all schedules' })
+  @ApiOperation({ summary: 'Get all schedules with optional filters' })
   @ApiResponse({ status: 200, type: [ProviderScheduleDto] })
   @ApiQuery({
     name: 'start',
@@ -55,14 +55,31 @@ export class ProviderSchedulesController {
     type: String,
     description: 'ISO date end filter',
   })
+  @ApiQuery({
+    name: 'providerId',
+    required: false,
+    type: Number,
+    description: 'ID du provider à filtrer',
+  })
+  @ApiQuery({
+    name: 'personalServiceTypeId',
+    required: false,
+    type: Number,
+    description: 'ID du type de service à filtrer',
+  })
   findAll(
     @Query('start') start?: string,
     @Query('end') end?: string,
+    @Query('providerId') providerId?: number,
+    @Query('personalServiceTypeId') personalServiceTypeId?: number,
   ): Promise<ProviderScheduleDto[]> {
-    if (start && end) {
-      return this.service.findBetween(new Date(start), new Date(end));
-    }
-    return this.service.findAll();
+    const filters = {
+      start: start ? new Date(start) : undefined,
+      end: end ? new Date(end) : undefined,
+      providerId,
+      personalServiceTypeId,
+    };
+    return this.service.findFiltered(filters);
   }
 
   @Get(':id')

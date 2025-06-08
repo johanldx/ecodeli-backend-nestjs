@@ -5,6 +5,7 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  Column,
 } from 'typeorm';
 import { Provider } from '../providers/provider.entity';
 import { PersonalServiceType } from '../personal-service-types/personal-service-type.entity';
@@ -20,6 +21,9 @@ export class PersonalServiceTypeAuthorization {
   @ManyToOne(
     () => Provider,
     (provider) => provider.personalServiceTypeAuthorizations,
+    {
+      onDelete: 'CASCADE',
+    },
   )
   @JoinColumn({ name: 'provider_id' })
   provider: Provider;
@@ -30,6 +34,9 @@ export class PersonalServiceTypeAuthorization {
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
+
+  @Column()
+  price: number;
 
   @UpdateDateColumn({ name: 'edited_at' })
   editedAt: Date;

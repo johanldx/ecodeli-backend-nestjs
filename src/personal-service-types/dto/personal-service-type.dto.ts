@@ -7,6 +7,9 @@ export class PersonalServiceTypeDto {
   @ApiProperty()
   name: string;
 
+  @ApiProperty()
+  price: number;
+
   @ApiProperty({
     type: String,
     format: 'date-time',

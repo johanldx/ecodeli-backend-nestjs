@@ -25,6 +25,11 @@ export class CreateTraderDto {
   @IsOptional()
   identity_card_document: string;
 
+  @IsInt()
+  @Type(() => Number)
+  @IsOptional()
+  reduction_percent: number;
+
   @ApiProperty({
     description: 'URL to business document stored in S3',
     required: true,
