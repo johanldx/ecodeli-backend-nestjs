@@ -11,7 +11,6 @@ import { User } from 'src/users/user.entity';
 import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity';
 import { Location } from 'src/locations/entities/location.entity';
 
-// Enum DeliveryStepStatus directement dans ce fichier
 export enum DeliveryStepStatus {
   PENDING = 'pending',
   IN_PROGRESS = 'in_progress',

@@ -52,7 +52,9 @@ export class PersonalServiceTypeAuthorizationsService {
       .leftJoinAndSelect('auth.provider', 'provider')
       .leftJoin('provider.user', 'user')
       .where('user.id = :userId', { userId })
-      .andWhere('auth.personalServiceType.id = :serviceTypeId', { serviceTypeId: personalServiceTypeId })
+      .andWhere('auth.personalServiceType.id = :serviceTypeId', {
+        serviceTypeId: personalServiceTypeId,
+      })
       .getOne();
 
     if (!entity) {
@@ -63,7 +65,6 @@ export class PersonalServiceTypeAuthorizationsService {
 
     return entity;
   }
-
 
   async update(
     providerId: number,

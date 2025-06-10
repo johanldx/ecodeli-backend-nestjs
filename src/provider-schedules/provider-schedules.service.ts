@@ -109,5 +109,4 @@ export class ProviderSchedulesService {
 
     return list.map((e) => this.toDto(e));
   }
-
 }

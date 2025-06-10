@@ -34,6 +34,8 @@ import { ProviderSchedulesModule } from './provider-schedules/provider-schedules
 import { AdPaymentsModule } from './ad-payments/ad-payments.module';
 import { WalletTransactionsModule } from './wallet-transactions/wallet-transactions.module';
 import { WalletsModule } from './wallets/wallets.module';
+import { MobileModule } from './mobile/mobile.module';
+import { StripeModule } from './stripe/stripe.module';
 
 @Module({
   imports: [
@@ -80,6 +82,8 @@ import { WalletsModule } from './wallets/wallets.module';
     AdPaymentsModule,
     WalletTransactionsModule,
     WalletsModule,
+    MobileModule,
+    StripeModule,
   ],
   controllers: [AppController],
   providers: [

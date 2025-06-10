@@ -154,7 +154,6 @@ export class ConversationsService {
     return this.repo.save(conv);
   }
 
-
   async remove(id: number, userId: number): Promise<void> {
     const conv = await this.findOne(id, userId);
     await this.repo.delete(conv.id);
