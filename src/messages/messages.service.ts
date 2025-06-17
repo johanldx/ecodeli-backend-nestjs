@@ -15,11 +15,11 @@ export class MessagesService {
     private readonly repo: Repository<Message>,
   ) {}
 
-  async create(dto: CreateMessageDto, userId: number): Promise<Message> {
+  async create(dto: CreateMessageDto, userId?: number): Promise<Message> {
     const msg = this.repo.create({
       content: dto.content,
       conversation: { id: dto.conversationId } as any,
-      sender: { id: userId } as any,
+      sender: userId ? ({ id: userId } as any) : undefined,
     });
     return this.repo.save(msg);
   }

@@ -30,6 +30,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  stripe_id: string | null;
+
   @Column({ default: true })
   active: boolean;
 

@@ -5,13 +5,26 @@ import { StripeController } from './stripe.controller';
 import { User } from 'src/users/user.entity';
 import { Conversation } from 'src/conversations/entities/conversation.entity';
 import { AdPayment } from 'src/ad-payments/entities/ad-payment.entity';
+import { ShoppingAd } from 'src/shopping-ads/entities/shopping-ads.entity';
+import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity';
+import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
+import { PersonalServiceAd } from 'src/personal-services-ads/personal-service-ad.entity';
+import { Message } from 'src/messages/entities/message.entity';
+import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       Conversation,
       AdPayment,
-      User
+      User,
+      ShoppingAd,
+      DeliveryAd,
+      DeliveryStep,
+      DeliveryAd,
+      PersonalServiceAd,
+      Message,
+      ReleaseCartAd
     ]),
   ],
   controllers: [StripeController],
