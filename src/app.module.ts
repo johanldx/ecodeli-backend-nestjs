@@ -24,7 +24,6 @@ import { ReleaseCartAdsModule } from './release-cart-ads/release-cart-ads.module
 import { ShoppingAdsModule } from './shopping-ads/shopping-ads.module';
 import { ProvidersModule } from './providers/providers.module';
 import { RoutesModule } from './routes/routes.module';
-// import { StripeModule } from './stripe/stripe.module';
 import { ConversationsModule } from './conversations/conversations.module';
 import { MessagesModule } from './messages/messages.module';
 import { PersonalServiceTypesModule } from './personal-service-types/personal-service-types.module';
@@ -36,6 +35,7 @@ import { WalletTransactionsModule } from './wallet-transactions/wallet-transacti
 import { WalletsModule } from './wallets/wallets.module';
 import { MobileModule } from './mobile/mobile.module';
 import { StripeModule } from './stripe/stripe.module';
+import { OrderTrackingModule } from './order-tracking/order-tracking.module';
 
 @Module({
   imports: [
@@ -84,6 +84,7 @@ import { StripeModule } from './stripe/stripe.module';
     WalletsModule,
     MobileModule,
     StripeModule,
+    OrderTrackingModule,
   ],
   controllers: [AppController],
   providers: [

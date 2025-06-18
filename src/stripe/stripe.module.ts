@@ -11,6 +11,9 @@ import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
 import { PersonalServiceAd } from 'src/personal-services-ads/personal-service-ad.entity';
 import { Message } from 'src/messages/entities/message.entity';
 import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.entity';
+import { EmailModule } from 'src/email/email.module';
+import { AdPaymentsModule } from 'src/ad-payments/ad-payments.module';
+import { WalletsModule } from '../wallets/wallets.module';
 
 @Module({
   imports: [
@@ -26,6 +29,9 @@ import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.ent
       Message,
       ReleaseCartAd
     ]),
+    EmailModule,
+    AdPaymentsModule,
+    WalletsModule
   ],
   controllers: [StripeController],
   providers: [StripeService],

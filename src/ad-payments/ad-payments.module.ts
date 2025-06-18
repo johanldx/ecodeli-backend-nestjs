@@ -5,9 +5,13 @@ import { WalletTransaction } from '../wallet-transactions/entities/wallet-transa
 import { Wallet } from '../wallets/entities/wallet.entity';
 import { AdPaymentsService } from './ad-payments.service';
 import { AdPaymentsController } from './ad-payments.controller';
+import { WalletsModule } from '../wallets/wallets.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AdPayment, WalletTransaction, Wallet])],
+  imports: [
+    TypeOrmModule.forFeature([AdPayment, WalletTransaction, Wallet]),
+    WalletsModule,
+  ],
   controllers: [AdPaymentsController],
   providers: [AdPaymentsService],
 })

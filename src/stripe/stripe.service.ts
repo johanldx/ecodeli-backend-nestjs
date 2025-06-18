@@ -14,6 +14,8 @@ import { ShoppingAd } from 'src/shopping-ads/entities/shopping-ads.entity';
 import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.entity';
 import { PersonalServiceAd } from 'src/personal-services-ads/personal-service-ad.entity';
 import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
+import { EmailService } from '../email/email.service';
+import { WalletsService } from '../wallets/wallets.service';
 
 @Injectable()
 export class StripeService {
@@ -45,6 +47,9 @@ constructor(
 
   @InjectRepository(PersonalServiceAd)
   private readonly personalServiceRepo: Repository<PersonalServiceAd>,
+
+  private readonly emailService: EmailService,
+  private readonly walletsService: WalletsService,
 
 ) {
   const key = this.configService.get<string>('STRIPE_SECRET_KEY');
@@ -198,14 +203,25 @@ constructor(
       userToUse = conversation.userFrom;
     }
 
-    let payment = this.paymentRepo.create({
-      user: userToUse,
-      amount: conversation.price,
-      payment_type: conversation.adType as unknown as PaymentTypes,
-      reference_id: conversation.adId,
-      status: PaymentStatus.PENDING,
+    // Création du paiement en pending uniquement s'il n'existe pas déjà
+    let payment = await this.paymentRepo.findOne({
+      where: { reference_id: conversation.adId, payment_type: conversation.adType as any }
     });
-    await this.paymentRepo.save(payment);
+    if (!payment) {
+      payment = this.paymentRepo.create({
+        user: userToUse,
+        amount: conversation.price,
+        payment_type: conversation.adType as any,
+        reference_id: conversation.adId,
+        status: PaymentStatus.PENDING,
+      });
+      await this.paymentRepo.save(payment);
+
+      // Ajout au pending du wallet
+      if (payment.user) {
+        await this.walletsService.addPendingAmount(payment.user.id, payment.amount);
+      }
+    }
 
     conversation.status = ConversationStatus.Ongoing;
     await this.conversationRepo.save(conversation);
@@ -239,6 +255,49 @@ constructor(
       ad: adType === 'personal_service' ? undefined : ad,
       message,
     });
+
+    // Après la modification des entités, envoi du mail de tracking
+    try {
+      // LOG: Affiche le contenu de ad.postedBy ou ad.deliveryAd.postedBy pour debug
+      console.log('[Stripe][DEBUG] ad:', ad);
+      if (ad?.postedBy) {
+        console.log('[Stripe][DEBUG] ad.postedBy:', ad.postedBy);
+      }
+      if (ad?.deliveryAd?.postedBy) {
+        console.log('[Stripe][DEBUG] ad.deliveryAd.postedBy:', ad.deliveryAd.postedBy);
+      }
+      // Récupération du propriétaire de l'annonce (celui qui paye)
+      let recipientEmail = '';
+      let recipientFirstName = '';
+      if (ad) {
+        if (ad.postedBy) {
+          recipientEmail = ad.postedBy.email;
+          recipientFirstName = ad.postedBy.first_name || '';
+        } else if (ad.deliveryAd && ad.deliveryAd.postedBy) {
+          recipientEmail = ad.deliveryAd.postedBy.email;
+          recipientFirstName = ad.deliveryAd.postedBy.first_name || '';
+        }
+      }
+      if (recipientEmail) {
+        const frontendUrl = this.configService.get<string>('FRONDEND_URL');
+        const trackingUrl = `${frontendUrl}/track?email=${encodeURIComponent(recipientEmail)}&ref=${conversation.id}`;
+        await this.emailService.sendEmail(
+          recipientEmail,
+          'Votre paiement a été validé - Suivi de commande EcoDeli',
+          'Votre paiement a bien été validé !',
+          `<p><a href="${trackingUrl}" style="background:#0C392C;color:#fff;padding:10px 20px;border-radius:5px;text-decoration:none;">Suivre ma commande</a></p>
+          <p>Ou bien copiez ce lien dans votre navigateur :<br><a href="${trackingUrl}">${trackingUrl}</a></p>
+          <hr style='margin:24px 0;'>
+          <div style='color:#0C392C;'>
+            <b>Suivi de votre commande</b><br>
+            Email : ${recipientEmail}<br>
+            Référence : ${conversation.id}
+          </div>`
+        );
+      }
+    } catch (e) {
+      console.error('[Stripe] Erreur lors de l\'envoi du mail de tracking :', e);
+    }
   }
 
   private async handlePaymentFailure(event: any) {
@@ -271,21 +330,25 @@ constructor(
       case 'ShoppingAds':
         ad = await this.shoppingRepo.findOne({
           where: { id: adId },
+          relations: ['postedBy'],
         });
         break;
       case 'DeliverySteps':
         ad = await this.deliveryRepo.findOne({
           where: { id: adId },
+          relations: ['deliveryAd', 'deliveryAd.postedBy'],
         });
         break;
       case 'ReleaseCartAds':
         ad = await this.releaseRepo.findOne({
           where: { id: adId },
+          relations: ['postedBy'],
         });
         break;
       case 'personal_service':
         ad = await this.personalServiceRepo.findOne({
           where: { id: adId },
+          relations: ['postedBy'],
         });
         break;
       default:

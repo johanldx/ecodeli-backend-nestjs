@@ -13,6 +13,7 @@ import { Wallet } from '../wallets/entities/wallet.entity';
 import { WalletTransaction } from '../wallet-transactions/entities/wallet-transaction.entity';
 import { User } from 'src/users/user.entity';
 import { WalletTransactionTypes } from 'src/wallet-transactions/entities/wallet-transaction-types.enum';
+import { WalletsService } from '../wallets/wallets.service';
 
 @Injectable()
 export class AdPaymentsService {
@@ -25,6 +26,8 @@ export class AdPaymentsService {
 
     @InjectRepository(WalletTransaction)
     private transactionRepo: Repository<WalletTransaction>,
+
+    private walletsService: WalletsService,
   ) {}
 
   async create(createDto: CreateAdPaymentDto, user: User) {
@@ -49,8 +52,7 @@ export class AdPaymentsService {
     });
     await this.transactionRepo.save(transaction);
 
-    wallet.amout_pending += createDto.amount;
-    await this.walletRepo.save(wallet);
+    await this.walletsService.addPendingAmount(user.id, createDto.amount);
 
     return payment;
   }
@@ -73,11 +75,6 @@ export class AdPaymentsService {
     });
     if (!payment) throw new NotFoundException('Payment not found');
 
-    const wallet = await this.walletRepo.findOne({
-      where: { user: { id: user.id } },
-    });
-    if (!wallet) throw new NotFoundException('Wallet not found');
-
     const oldStatus = payment.status;
 
     Object.assign(payment, updateDto);
@@ -87,9 +84,7 @@ export class AdPaymentsService {
       oldStatus !== PaymentStatus.COMPLETED &&
       payment.status === PaymentStatus.COMPLETED
     ) {
-      wallet.amout_pending -= payment.amount;
-      wallet.amout_available += payment.amount;
-      await this.walletRepo.save(wallet);
+      await this.walletsService.movePendingToAvailable(user.id, payment.amount);
     }
 
     return payment;
