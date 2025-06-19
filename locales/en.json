@@ -593,6 +593,11 @@
       "wallet_delete": "Delete Wallet",
       "cancel_delete": "Cancel",
       "delete_confirmation": "Are you sure you want to delete the wallet of"
+    },
+    "access_denied": {
+      "title": "Access Denied",
+      "message": "You don't have the necessary permissions to access this section. Only administrators can view the admin panel.",
+      "back_to_auth": "Back to login page"
     }
   },
   "api_responses": {

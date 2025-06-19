@@ -338,6 +338,16 @@ export class AuthService {
   }
 
   async hashPassword(password: string): Promise<string> {
-    return await bcrypt.hash(password, 10);
+    return bcrypt.hash(password, 10);
+  }
+
+  async checkAdminRights(user: User) {
+    if (!user.administrator) {
+      throw new ForbiddenException('You must be an administrator to access this resource');
+    }
+    return { 
+      isAdmin: true, 
+      message: 'User has administrator rights' 
+    };
   }
 }

@@ -23,6 +23,22 @@ export class WalletsService {
     return wallet;
   }
 
+  async updateWallet(id: number, updateData: { amout_available?: number; amout_pending?: number }): Promise<Wallet> {
+    const wallet = await this.walletRepo.findOne({
+      where: { id },
+    });
+    if (!wallet) throw new NotFoundException('Wallet not found');
+    
+    if (updateData.amout_available !== undefined) {
+      wallet.amout_available = updateData.amout_available;
+    }
+    if (updateData.amout_pending !== undefined) {
+      wallet.amout_pending = updateData.amout_pending;
+    }
+    
+    return this.walletRepo.save(wallet);
+  }
+
   async save(wallet: Wallet): Promise<Wallet> {
     return this.walletRepo.save(wallet);
   }

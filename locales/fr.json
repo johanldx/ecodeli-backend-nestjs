@@ -640,6 +640,11 @@
       "wallet_delete": "Supprimer le portefeuille",
       "cancel_delete": "Annuler",
       "delete_confirmation": "Êtes-vous sûr de vouloir supprimer le portefeuille de"
+    },
+    "access_denied": {
+      "title": "Accès refusé",
+      "message": "Vous n'avez pas les permissions nécessaires pour accéder à cette section. Seuls les administrateurs peuvent consulter le panneau d'administration.",
+      "back_to_auth": "Retour à la page de connexion"
     }
   },
   "track": {

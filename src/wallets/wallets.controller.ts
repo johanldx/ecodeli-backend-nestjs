@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Patch, Param, Body, UseGuards } from '@nestjs/common';
 import { WalletsService } from './wallets.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
@@ -22,5 +22,11 @@ export class WalletsController {
   @Get('/all')
   findAllWallets() {
     return this.walletsService.findAll();
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Patch('/:id')
+  updateWallet(@Param('id') id: string, @Body() updateData: { amout_available?: number; amout_pending?: number }) {
+    return this.walletsService.updateWallet(parseInt(id), updateData);
   }
 }

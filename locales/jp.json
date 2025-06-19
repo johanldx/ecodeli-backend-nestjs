@@ -608,7 +608,12 @@
       "wallet_modify": "ウォレット修正",
       "wallet_delete": "ウォレット削除",
       "cancel_delete": "キャンセル",
-      "delete_confirmation": "ウォレットを削除してもよろしいですか"
+      "delete_confirmation": "ウォレットを削除してもよろしいですか",
+      "access_denied": {
+        "title": "アクセス拒否",
+        "message": "このセクションにアクセスするための必要な権限がありません。管理者のみが管理パネルを表示できます。",
+        "back_to_auth": "ログインページに戻る"
+      }
     }
   },
   "api_responses": {

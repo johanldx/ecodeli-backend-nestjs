@@ -174,4 +174,13 @@ export class AuthController {
   async getMyProvider(@CurrentUser() user: User) {
     return this.providersService.findByUserId(user.id);
   }
+
+  @Get('check-admin')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Check if current user has admin rights' })
+  @ApiResponse({ status: 200, description: 'Admin rights check result' })
+  @ApiResponse({ status: 403, description: 'User is not an administrator' })
+  async checkAdminRights(@CurrentUser() user: User) {
+    return this.authService.checkAdminRights(user);
+  }
 }
