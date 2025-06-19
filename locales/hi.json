@@ -518,9 +518,13 @@
   },
   "admin": {
     "global": {
-    "users_title": "उपयोगकर्ता",
-    "addresses_title": "पते"
-  },
+      "tab_title": "Ecodeli | भाषा प्रबंधन",
+      "users_title": "उपयोगकर्ता",
+      "addresses_title": "पते",
+      "langs_title": "भाषाएं",
+      "ads_title": "विज्ञापन",
+      "wallets_title": "वॉलेट"
+    },
     "users": {
       "tab_title": "इकोडेली | उपयोगकर्ता प्रबंधन",
       "users_title": "उपयोगकर्ता",
@@ -571,6 +575,29 @@
       "none_validated": "सत्यापित नहीं किया गया",
       "pages": "पृष्ठ",
        "on": "पर"
+    },
+    "langs": {
+      "tab_title": "Ecodeli | भाषा प्रबंधन"
+    },
+    "wallets": {
+      "tab_title": "Ecodeli | वॉलेट प्रबंधन",
+      "wallets_title": "इलेक्ट्रॉनिक वॉलेट",
+      "search_bar": "खोजें...",
+      "user_name": "उपयोगकर्ता",
+      "user_email": "ईमेल",
+      "amount_available": "उपलब्ध राशि",
+      "amount_pending": "लंबित राशि",
+      "creation_date": "बनाने की तारीख",
+      "last_update": "अंतिम अपडेट",
+      "actions": "कार्रवाई",
+      "modify": "संशोधित करें",
+      "cancel": "हटाएं",
+      "close_button": "बंद करें",
+      "record_button": "सहेजें",
+      "wallet_modify": "वॉलेट संशोधित करें",
+      "wallet_delete": "वॉलेट हटाएं",
+      "cancel_delete": "रद्द करें",
+      "delete_confirmation": "क्या आप वाकई इस वॉलेट को हटाना चाहते हैं"
     }
   },
   "api_responses": {

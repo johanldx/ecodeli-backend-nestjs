@@ -11,6 +11,7 @@ import { EmailModule } from '../email/email.module';
 import { OrderTrackingController } from './order-tracking.controller';
 import { OrderTrackingService } from './order-tracking.service';
 import { WalletsModule } from '../wallets/wallets.module';
+import { RatingsModule } from '../ratings/ratings.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { WalletsModule } from '../wallets/wallets.module';
     ]),
     EmailModule,
     WalletsModule,
+    RatingsModule,
   ],
   controllers: [OrderTrackingController],
   providers: [OrderTrackingService],

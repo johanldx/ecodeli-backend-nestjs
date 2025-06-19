@@ -11,6 +11,7 @@ import { UpdateConversationDto } from './dto/update-conversation.dto';
 import { ShoppingAd } from 'src/shopping-ads/entities/shopping-ads.entity';
 import { DeliveryAd } from 'src/delivery-ads/entities/delivery-ads.entity';
 import { CreateConversationDto } from './dto/create-conversation.dto';
+import { PersonalServiceAd } from 'src/personal-services-ads/personal-service-ad.entity';
 
 @Injectable()
 export class ConversationsService {
@@ -26,6 +27,9 @@ export class ConversationsService {
 
     @InjectRepository(ReleaseCartAd)
     private readonly releaseRepo: Repository<ReleaseCartAd>,
+
+    @InjectRepository(PersonalServiceAd)
+    private readonly personalServiceRepo: Repository<PersonalServiceAd>,
   ) {}
 
   /**
@@ -53,7 +57,34 @@ export class ConversationsService {
     }
   }
 
+  /**
+   * Vérifie si une conversation existe déjà pour cette annonce et cet utilisateur
+   * Retourne true si une conversation existe déjà
+   */
+  private async conversationExists(
+    adType: AdTypes,
+    adId: number,
+    userId: number,
+  ): Promise<boolean> {
+    const existingConversation = await this.repo.findOne({
+      where: {
+        adType,
+        adId,
+        userFrom: { id: userId },
+      },
+    });
+    return !!existingConversation;
+  }
+
   async create(dto: CreateConversationDto): Promise<Conversation> {
+    // Vérifier si une conversation existe déjà pour cette annonce (sauf pour ServiceProvisions)
+    if (dto.adType !== AdTypes.ServiceProvisions) {
+      const exists = await this.conversationExists(dto.adType, dto.adId, dto.userFrom);
+      if (exists) {
+        throw new ForbiddenException('Une conversation existe déjà pour cette annonce');
+      }
+    }
+
     const conv = this.repo.create({
       ...dto,
       userFrom: { id: dto.userFrom },
@@ -151,6 +182,7 @@ export class ConversationsService {
     if (dto.providerScheduleId !== undefined) {
       conv.providerScheduleId = dto.providerScheduleId;
     }
+
     return this.repo.save(conv);
   }
 

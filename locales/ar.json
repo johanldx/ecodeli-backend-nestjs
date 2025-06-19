@@ -514,8 +514,12 @@
 
     "admin": {
       "global": {
+        "tab_title": "Ecodeli | إدارة اللغات",
         "users_title": "المستخدمين",
-        "addresses_title": "العناوين"
+        "addresses_title": "العناوين",
+        "langs_title": "اللغات",
+        "ads_title": "الإعلانات",
+        "wallets_title": "المحافظ"
       },
      "users": {
       "tab_title": "إيكوديلي | إدارة المستخدمين",
@@ -605,5 +609,28 @@
         "user_not_found": "المستخدم غير موجود."
       }
     }
+  },
+  "langs": {
+    "tab_title": "Ecodeli | إدارة اللغات"
+  },
+  "wallets": {
+    "tab_title": "Ecodeli | إدارة المحافظ الإلكترونية",
+    "wallets_title": "المحافظ الإلكترونية",
+    "search_bar": "البحث...",
+    "user_name": "المستخدم",
+    "user_email": "البريد الإلكتروني",
+    "amount_available": "المبلغ المتاح",
+    "amount_pending": "المبلغ المعلق",
+    "creation_date": "تاريخ الإنشاء",
+    "last_update": "آخر تحديث",
+    "actions": "الإجراءات",
+    "modify": "تعديل",
+    "cancel": "حذف",
+    "close_button": "إغلاق",
+    "record_button": "حفظ",
+    "wallet_modify": "تعديل المحفظة",
+    "wallet_delete": "حذف المحفظة",
+    "cancel_delete": "إلغاء",
+    "delete_confirmation": "هل أنت متأكد من أنك تريد حذف محفظة"
   }
 }

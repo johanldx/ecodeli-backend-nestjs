@@ -195,37 +195,49 @@ constructor(
 
     let userToUse;
     if (conversation.adType === 'ServiceProvisions') {
-      userToUse = await this.personalServiceRepo.findOne({
+      const personalServiceAd = await this.personalServiceRepo.findOne({
         where: { id: conversation.adId },
         relations: ['postedBy'],
       });
+      userToUse = personalServiceAd?.postedBy;
     } else {
       userToUse = conversation.userFrom;
     }
 
-    // Création du paiement en pending uniquement s'il n'existe pas déjà
-    let payment = await this.paymentRepo.findOne({
-      where: { reference_id: conversation.adId, payment_type: conversation.adType as any }
+    // Création du paiement en pending - TOUJOURS créer un nouveau paiement pour chaque conversation
+    const payment = this.paymentRepo.create({
+      user: userToUse,
+      amount: conversation.price,
+      payment_type: conversation.adType as any,
+      reference_id: conversation.adId,
+      status: PaymentStatus.PENDING,
     });
-    if (!payment) {
-      payment = this.paymentRepo.create({
-        user: userToUse,
-        amount: conversation.price,
-        payment_type: conversation.adType as any,
-        reference_id: conversation.adId,
-        status: PaymentStatus.PENDING,
-      });
-      await this.paymentRepo.save(payment);
+    await this.paymentRepo.save(payment);
 
-      // Ajout au pending du wallet
-      if (payment.user) {
-        await this.walletsService.addPendingAmount(payment.user.id, payment.amount);
-      }
+    // Ajout au pending du wallet
+    if (payment.user) {
+      await this.walletsService.addPendingAmount(payment.user.id, payment.amount);
     }
 
-    conversation.status = ConversationStatus.Ongoing;
-    await this.conversationRepo.save(conversation);
-    console.log('[Stripe] Conversation mise à jour:', conversation.id, 'status:', conversation.status);
+    // Pour les ServiceProvisions : garder la conversation en pending, ne pas toucher à l'annonce
+    if (conversation.adType === 'ServiceProvisions') {
+      conversation.status = ConversationStatus.Pending;
+      await this.conversationRepo.save(conversation);
+      console.log('[Stripe] ServiceProvisions - Conversation en pending pour validation manuelle');
+    } else {
+      // Pour les autres types : mettre la conversation en ongoing et l'annonce en 'in_progress'
+      conversation.status = ConversationStatus.Ongoing;
+      await this.conversationRepo.save(conversation);
+      
+      const adId = Number(session.metadata.adId);
+      const adType = session.metadata.adType;
+      const ad = await this.getAdById(adId, adType);
+      if (ad) {
+        ad.status = 'in_progress';
+        await this.saveAd(ad, adType);
+        console.log('[Stripe] Statut de l\'annonce mis à jour:', adId, 'status:', ad.status);
+      }
+    }
 
     const messageDto: any = {
       conversation: conversation.id,
@@ -235,29 +247,18 @@ constructor(
     await this.messageRepo.save(message);
     console.log('[Stripe] Message de succès créé pour la conversation:', conversation.id);
 
-    const adId = Number(session.metadata.adId);
-    const adType = session.metadata.adType;
-    const ad = await this.getAdById(adId, adType);
-    console.log('[Stripe] Annonce récupérée:', adId, 'type:', adType);
-
-    if (adType === 'personal_service') {
-      conversation.status = ConversationStatus.Completed;
-      await this.conversationRepo.save(conversation);
-      console.log('[Stripe] Conversation complétée pour personal_service:', conversation.id);
-    } else {
-      ad.status = 'in_progress';
-      await this.saveAd(ad, adType);
-      console.log('[Stripe] Statut de l\'annonce mis à jour:', adId, 'status:', ad.status);
-    }
-
     console.log('[Stripe] Entités modifiées:', {
       conversation,
-      ad: adType === 'personal_service' ? undefined : ad,
+      payment,
       message,
     });
 
     // Après la modification des entités, envoi du mail de tracking
     try {
+      const adId = Number(session.metadata.adId);
+      const adType = session.metadata.adType;
+      const ad = await this.getAdById(adId, adType);
+      
       // LOG: Affiche le contenu de ad.postedBy ou ad.deliveryAd.postedBy pour debug
       console.log('[Stripe][DEBUG] ad:', ad);
       if (ad?.postedBy) {
@@ -266,18 +267,43 @@ constructor(
       if (ad?.deliveryAd?.postedBy) {
         console.log('[Stripe][DEBUG] ad.deliveryAd.postedBy:', ad.deliveryAd.postedBy);
       }
-      // Récupération du propriétaire de l'annonce (celui qui paye)
+      
+      // Récupération du destinataire selon la logique métier
       let recipientEmail = '';
       let recipientFirstName = '';
+      
       if (ad) {
-        if (ad.postedBy) {
-          recipientEmail = ad.postedBy.email;
-          recipientFirstName = ad.postedBy.first_name || '';
-        } else if (ad.deliveryAd && ad.deliveryAd.postedBy) {
-          recipientEmail = ad.deliveryAd.postedBy.email;
-          recipientFirstName = ad.deliveryAd.postedBy.first_name || '';
+        switch (adType) {
+          case 'ShoppingAds':
+          case 'DeliverySteps':
+            // Celui qui a créé l'annonce reçoit le mail
+            if (ad.postedBy) {
+              recipientEmail = ad.postedBy.email;
+              recipientFirstName = ad.postedBy.first_name || '';
+            } else if (ad.deliveryAd && ad.deliveryAd.postedBy) {
+              recipientEmail = ad.deliveryAd.postedBy.email;
+              recipientFirstName = ad.deliveryAd.postedBy.first_name || '';
+            }
+            break;
+            
+          case 'ReleaseCartAds':
+            // Le client de l'email relié à l'annonce reçoit le mail
+            if (conversation.userFrom) {
+              recipientEmail = conversation.userFrom.email;
+              recipientFirstName = conversation.userFrom.first_name || '';
+            }
+            break;
+            
+          case 'ServiceProvisions':
+            // Le userFrom sur la conversation reçoit le mail
+            if (conversation.userFrom) {
+              recipientEmail = conversation.userFrom.email;
+              recipientFirstName = conversation.userFrom.first_name || '';
+            }
+            break;
         }
       }
+      
       if (recipientEmail) {
         const frontendUrl = this.configService.get<string>('FRONDEND_URL');
         const trackingUrl = `${frontendUrl}/track?email=${encodeURIComponent(recipientEmail)}&ref=${conversation.id}`;
@@ -345,7 +371,7 @@ constructor(
           relations: ['postedBy'],
         });
         break;
-      case 'personal_service':
+      case 'ServiceProvisions':
         ad = await this.personalServiceRepo.findOne({
           where: { id: adId },
           relations: ['postedBy'],
@@ -369,7 +395,7 @@ constructor(
       case 'ReleaseCartAds':
         ad.status = 'in_progress';
         break;
-      case 'personal_service':
+      case 'ServiceProvisions':
         break;
       default:
         throw new Error('Type d\'annonce inconnu');
@@ -386,7 +412,7 @@ constructor(
       case 'ReleaseCartAds':
         await this.releaseRepo.save(ad);
         break;
-      case 'personal_service':
+      case 'ServiceProvisions':
         break;
       default:
         throw new Error('Type d\'annonce inconnu');

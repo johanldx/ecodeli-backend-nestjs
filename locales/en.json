@@ -513,9 +513,13 @@
   },
   "admin": {
     "global": {
-    "users_title": "Users",
-    "addresses_title": "Addresses"
-  },
+      "tab_title": "Ecodeli | Language Management",
+      "users_title": "Users",
+      "addresses_title": "Addresses",
+      "langs_title": "Languages",
+      "ads_title": "Ads",
+      "wallets_title": "Wallets"
+    },
     "users": {
       "tab_title": "Ecodeli | User Management",
       "users_title": "Users",
@@ -566,6 +570,29 @@
       "none_validated": "Not validated",
       "pages": "Page",
       "on": "on"
+    },
+    "langs": {
+      "tab_title": "Ecodeli | Language Management"
+    },
+    "wallets": {
+      "tab_title": "Ecodeli | Wallet Management",
+      "wallets_title": "Electronic Wallets",
+      "search_bar": "Search...",
+      "user_name": "User",
+      "user_email": "Email",
+      "amount_available": "Available Amount",
+      "amount_pending": "Pending Amount",
+      "creation_date": "Creation Date",
+      "last_update": "Last Update",
+      "actions": "Actions",
+      "modify": "Modify",
+      "cancel": "Delete",
+      "close_button": "Close",
+      "record_button": "Save",
+      "wallet_modify": "Modify Wallet",
+      "wallet_delete": "Delete Wallet",
+      "cancel_delete": "Cancel",
+      "delete_confirmation": "Are you sure you want to delete the wallet of"
     }
   },
   "api_responses": {

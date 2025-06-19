@@ -11,6 +11,7 @@ import { User } from '../users/user.entity';
 import { EmailService } from '../email/email.service';
 import { PaymentStatus } from '../ad-payments/entities/payment.enums';
 import { WalletsService } from '../wallets/wallets.service';
+import { RatingsService } from '../ratings/ratings.service';
 
 @Injectable()
 export class OrderTrackingService {
@@ -31,6 +32,7 @@ export class OrderTrackingService {
     private userRepo: Repository<User>,
     private emailService: EmailService,
     private walletsService: WalletsService,
+    private ratingsService: RatingsService,
   ) {}
 
   async getOrderTracking(email: string, conversationId: number) {
@@ -70,8 +72,12 @@ export class OrderTrackingService {
   }
 
   async validateOrder(email: string, conversationId: number) {
-    const conversation = await this.conversationRepo.findOne({ where: { id: conversationId }, relations: ['userFrom'] });
+    const conversation = await this.conversationRepo.findOne({ 
+      where: { id: conversationId }, 
+      relations: ['userFrom'] 
+    });
     if (!conversation) throw new NotFoundException('Conversation introuvable');
+    
     // Récupération de l'annonce
     let ad: any;
     switch (conversation.adType) {
@@ -103,26 +109,82 @@ export class OrderTrackingService {
       }
     }
 
-    // Statut completed
+    // Statut completed pour la conversation
     conversation.status = ConversationStatus.Completed;
     await this.conversationRepo.save(conversation);
-    if (ad && ad.status !== undefined) {
+    
+    // Mise à jour du statut de l'annonce (sauf pour ServiceProvisions)
+    if (ad && ad.status !== undefined && conversation.adType !== AdTypes.ServiceProvisions) {
       ad.status = 'completed';
       if (conversation.adType === AdTypes.ShoppingAds) await this.shoppingRepo.save(ad);
       if (conversation.adType === AdTypes.DeliverySteps) await this.deliveryRepo.save(ad);
       if (conversation.adType === AdTypes.ReleaseCartAds) await this.releaseRepo.save(ad);
-      if (conversation.adType === AdTypes.ServiceProvisions) await this.personalServiceRepo.save(ad);
     }
+    // Pour ServiceProvisions : on ne touche pas au statut de l'annonce
 
     // Envoi d'email de notification
     if (payment && payment.user) {
       const adName = ad?.title || ad?.name || `Annonce #${ad?.id}` || 'Votre annonce';
-      await this.emailService.sendEmail(
-        payment.user.email,
-        'Paiement validé - EcoDeli',
-        'Paiement validé avec succès',
-        `Félicitations ! Votre paiement de ${payment.amount}€ pour "${adName}" (conversation #${conversation.id}) a été validé avec succès. L'argent a été transféré sur votre compte.`
-      );
+      
+      // Déterminer le destinataire selon la logique métier
+      let recipientEmail = '';
+      let recipientName = '';
+      
+      switch (conversation.adType) {
+        case AdTypes.ShoppingAds:
+        case AdTypes.DeliverySteps:
+        case AdTypes.ReleaseCartAds:
+          // Le userFrom reçoit le mail
+          if (conversation.userFrom) {
+            recipientEmail = conversation.userFrom.email;
+            recipientName = `${conversation.userFrom.first_name} ${conversation.userFrom.last_name}`;
+          }
+          break;
+          
+        case AdTypes.ServiceProvisions:
+          // Celui qui a créé l'annonce reçoit le mail
+          if (ad?.postedBy) {
+            recipientEmail = ad.postedBy.email;
+            recipientName = `${ad.postedBy.first_name} ${ad.postedBy.last_name}`;
+          }
+          break;
+      }
+      
+      if (recipientEmail) {
+        await this.emailService.sendEmail(
+          recipientEmail,
+          'Paiement validé - EcoDeli',
+          'Paiement validé avec succès',
+          `Félicitations ${recipientName} ! Votre paiement de ${payment.amount}€ pour "${adName}" (conversation #${conversation.id}) a été validé avec succès. L'argent a été transféré sur votre compte.`
+        );
+      }
+    }
+
+    // Pour les ServiceProvisions, créer une entrée de rating et envoyer l'email de rating
+    if (conversation.adType === AdTypes.ServiceProvisions && conversation.userFrom && ad?.postedBy) {
+      console.log('[Rating] Création de l\'entrée de rating pour conversation:', conversation.id);
+      
+      try {
+        const ratingEntry = await this.ratingsService.createRatingEntry(
+          ad.postedBy.id, // providerId
+          conversation.userFrom.id, // raterId (le client)
+          conversation.id, // conversationId
+        );
+
+        console.log('[Rating] Entrée de rating créée avec token:', ratingEntry.token);
+
+        // Envoyer l'email de rating au client
+        await this.emailService.sendRatingEmail(
+          conversation.userFrom.email,
+          ad.postedBy.first_name + ' ' + ad.postedBy.last_name,
+          ad.title,
+          ratingEntry.token
+        );
+        
+        console.log('[Rating] Email de rating envoyé avec succès à:', conversation.userFrom.email);
+      } catch (error) {
+        console.error('[Rating] Erreur lors de la création du rating:', error);
+      }
     }
 
     return { success: true };

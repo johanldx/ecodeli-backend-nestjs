@@ -25,8 +25,8 @@
         },
         "errors": {
           "400": {
-            "message": "Oups ! Quelque chose cloche dans votre demande. On vous aide à recoller l’étiquette ?",
-            "action_label": "Revenir à l’accueil",
+            "message": "Oups ! Quelque chose cloche dans votre demande. On vous aide à recoller l'étiquette ?",
+            "action_label": "Revenir à l'accueil",
             "action_href": "/"
           },
           "401": {
@@ -35,13 +35,13 @@
             "action_href": "/login"
           },
           "403": {
-            "message": "Cette route est réservée. Vous n’avez pas encore les accès pour livrer ici.",
+            "message": "Cette route est réservée. Vous n'avez pas encore les accès pour livrer ici.",
             "action_label": "Retour",
             "action_href": "/"
           },
           "404": {
             "message": "Page introuvable. Le colis a peut-être pris un raccourci… ou une mauvaise direction.",
-            "action_label": "Retour à l’accueil",
+            "action_label": "Retour à l'accueil",
             "action_href": "/"
           },
           "408": {
@@ -51,17 +51,17 @@
           },
           "409": {
             "message": "Un petit embouteillage : une autre action est déjà en cours. Revenez dans un instant.",
-            "action_label": "Revenir à l’accueil",
+            "action_label": "Revenir à l'accueil",
             "action_href": "/"
           },
           "410": {
-            "message": "Ce contenu a quitté l’entrepôt. Il n’est plus disponible à la livraison.",
+            "message": "Ce contenu a quitté l'entrepôt. Il n'est plus disponible à la livraison.",
             "action_label": "Voir les annonces",
             "action_href": "/"
           },
           "418": {
             "message": "Je suis une théière. Et je ne peux pas livrer de colis ☕",
-            "action_label": "Retour à l’accueil",
+            "action_label": "Retour à l'accueil",
             "action_href": "/"
           },
           "429": {
@@ -70,8 +70,8 @@
             "action_href": "reload"
           },
           "500": {
-            "message": "Quelque chose s’est mal passé. Nos livreurs techniques sont sur le coup.",
-            "action_label": "Retour à l’accueil",
+            "message": "Quelque chose s'est mal passé. Nos livreurs techniques sont sur le coup.",
+            "action_label": "Retour à l'accueil",
             "action_href": "/"
           },
           "502": {
@@ -81,7 +81,7 @@
           },
           "503": {
             "message": "Pause éco-responsable… Le service revient très bientôt !",
-            "action_label": "Retour à l’accueil",
+            "action_label": "Retour à l'accueil",
             "action_href": "/"
           },
           "504": {
@@ -107,7 +107,7 @@
             },
             "personal_services": {
               "title": "Services à la personne",
-              "description": "Trouvez des personnes fiables pour des missions locales : livraisons ponctuelles, courses, trajets quotidiens. L’avenir du transport repose sur l’entraide locale, plus économique, plus humain et éthique."
+              "description": "Trouvez des personnes fiables pour des missions locales : livraisons ponctuelles, courses, trajets quotidiens. L'avenir du transport repose sur l'entraide locale, plus économique, plus humain et éthique."
             },
             "product_repatriation": {
               "title": "Achats et rapatriement de produits",
@@ -120,15 +120,15 @@
           }
         },
         "faq_section": {
-          "title": "Vous vous posez des questions ? C’est normal !",
+          "title": "Vous vous posez des questions ? C'est normal !",
           "questions": {
             "what_is_ecodeli": {
-              "question": "Qu’est-ce qu’EcoDeli et comment ça fonctionne ?",
+              "question": "Qu'est-ce qu'EcoDeli et comment ça fonctionne ?",
               "answer": "EcoDeli est une plateforme de crowdshipping qui connecte des expéditeurs avec des voyageurs ou conducteurs prêts à transporter leurs colis lors de trajets déjà prévus, réduisant ainsi l'impact écologique. Les utilisateurs publient une annonce, suivent le colis en temps réel et bénéficient d'une livraison sécurisée grâce à l'assurance proposée par EcoDeli."
             },
             "become_delivery_person": {
               "question": "Comment puis-je devenir livreur sur EcoDeli ?",
-              "answer": "Pour devenir livreur, il vous suffit de créer un compte sur EcoDeli, puis de consulter les annonces disponibles autour de vous. Une fois une annonce sélectionnée, vous pouvez proposer votre trajet et convenir des modalités avec l’expéditeur. C’est simple, rapide et sans engagement."
+              "answer": "Pour devenir livreur, il vous suffit de créer un compte sur EcoDeli, puis de consulter les annonces disponibles autour de vous. Une fois une annonce sélectionnée, vous pouvez proposer votre trajet et convenir des modalités avec l'expéditeur. C'est simple, rapide et sans engagement."
             },
             "delivery_security": {
               "question": "Les livraisons sont-elles sécurisées et assurées ?",
@@ -140,26 +140,26 @@
       "legal_mentions": {
         "tab_title": "Ecodeli | Mentions légales",
         "title": "Mentions légales",
-        "intro": "Conformément aux dispositions légales applicables, vous trouverez ci-dessous les informations relatives à l’éditeur du site, à la politique de confidentialité, aux conditions générales, ainsi qu’une note importante sur le caractère fictif du projet.",
+        "intro": "Conformément aux dispositions légales applicables, vous trouverez ci-dessous les informations relatives à l'éditeur du site, à la politique de confidentialité, aux conditions générales, ainsi qu'une note importante sur le caractère fictif du projet.",
         "legal_notice": {
           "title": "Mentions légales",
-          "content": "Le présent site est édité par une personne physique dans le cadre d’un projet académique à l’ESGI (École Supérieure de Génie Informatique).<br><br><strong>Identité de l’éditeur :</strong><br>Noms : Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Adresse : 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email : ecodeli.fr@gmail.com<br>Téléphone : non communiqué<br><br><strong>Propriété intellectuelle :</strong><br>Les images, illustrations et photographies utilisées sur ce site sont soit libres de droits, soit utilisées avec autorisation. Leur propriété intellectuelle est respectée et indiquée lorsque nécessaire.<br>Les textes rédigés proviennent de l’équipe projet. Toute citation externe est attribuée à son auteur ou à la source d’origine.<br><br><strong>Hébergement :</strong><br>Nom de l’hébergeur : Guillaume CONSTANTY<br>Raison sociale : particulier<br>Adresse : Avon, France<br>Téléphone : non communiqué"
+          "content": "Le présent site est édité par une personne physique dans le cadre d'un projet académique à l'ESGI (École Supérieure de Génie Informatique).<br><br><strong>Identité de l'éditeur :</strong><br>Noms : Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Adresse : 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email : ecodeli.fr@gmail.com<br>Téléphone : non communiqué<br><br><strong>Propriété intellectuelle :</strong><br>Les images, illustrations et photographies utilisées sur ce site sont soit libres de droits, soit utilisées avec autorisation. Leur propriété intellectuelle est respectée et indiquée lorsque nécessaire.<br>Les textes rédigés proviennent de l'équipe projet. Toute citation externe est attribuée à son auteur ou à la source d'origine.<br><br><strong>Hébergement :</strong><br>Nom de l'hébergeur : Guillaume CONSTANTY<br>Raison sociale : particulier<br>Adresse : Avon, France<br>Téléphone : non communiqué"
         },
         "privacy_policy": {
           "title": "Politique de confidentialité et cookies",
-          "content": "EcoDeli accorde une grande importance à la protection de votre vie privée.<br><br>Aucune donnée personnelle n’est collectée sans votre consentement. Le site utilise Matomo, un outil de mesure d’audience respectueux de la vie privée, configuré sans cookies et sans collecte de données personnelles identifiables.<br><br><strong>Technologies utilisées sur ce site :</strong><br><ul><li>Svelte : framework frontend</li><li>TailwindCSS et DaisyUI : bibliothèques d’interface</li><li>FontShare : polices libres de droits</li></ul><br>Aucune donnée n’est partagée avec des tiers, et aucune publicité n’est diffusée.<br><br>Vous pouvez demander la suppression de toute donnée vous concernant en contactant l’équipe projet."
+          "content": "EcoDeli accorde une grande importance à la protection de votre vie privée.<br><br>Aucune donnée personnelle n'est collectée sans votre consentement. Le site utilise Matomo, un outil de mesure d'audience respectueux de la vie privée, configuré sans cookies et sans collecte de données personnelles identifiables.<br><br><strong>Technologies utilisées sur ce site :</strong><br><ul><li>Svelte : framework frontend</li><li>TailwindCSS et DaisyUI : bibliothèques d'interface</li><li>FontShare : polices libres de droits</li></ul><br>Aucune donnée n'est partagée avec des tiers, et aucune publicité n'est diffusée.<br><br>Vous pouvez demander la suppression de toute donnée vous concernant en contactant l'équipe projet."
         },
         "terms_of_use": {
-          "title": "Conditions Générales d’Utilisation (CGU)",
-          "content": "L’accès et l’utilisation du site <strong>EcoDeli</strong> sont réservés à un usage strictement personnel, dans le cadre de la consultation du projet. Toute utilisation à des fins commerciales ou professionnelles est interdite.<br><br>L’utilisateur s’engage à utiliser le site dans le respect de la législation française en vigueur.<br><br>Le site étant fictif, certaines fonctionnalités peuvent être inopérantes ou simulées à des fins pédagogiques.<br><br>Les auteurs déclinent toute responsabilité quant à l’usage des informations présentées sur ce site."
+          "title": "Conditions Générales d'Utilisation (CGU)",
+          "content": "L'accès et l'utilisation du site <strong>EcoDeli</strong> sont réservés à un usage strictement personnel, dans le cadre de la consultation du projet. Toute utilisation à des fins commerciales ou professionnelles est interdite.<br><br>L'utilisateur s'engage à utiliser le site dans le respect de la législation française en vigueur.<br><br>Le site étant fictif, certaines fonctionnalités peuvent être inopérantes ou simulées à des fins pédagogiques.<br><br>Les auteurs déclinent toute responsabilité quant à l'usage des informations présentées sur ce site."
         },
         "terms_of_sale": {
           "title": "Conditions Générales de Vente (CGV)",
-          "content": "Aucune vente réelle n’est effectuée sur cette plateforme.<br><br>Les <strong>Conditions Générales de Vente</strong> sont présentes uniquement à titre illustratif dans le cadre du projet de simulation.<br><br>Aucun paiement, produit ou service ne sera réellement délivré via EcoDeli.<br><br>Toute référence à une transaction, un prix ou une commande est fictive et sans effet contractuel.<br><br>L’utilisateur est informé que le site ne propose aucun service marchand."
+          "content": "Aucune vente réelle n'est effectuée sur cette plateforme.<br><br>Les <strong>Conditions Générales de Vente</strong> sont présentes uniquement à titre illustratif dans le cadre du projet de simulation.<br><br>Aucun paiement, produit ou service ne sera réellement délivré via EcoDeli.<br><br>Toute référence à une transaction, un prix ou une commande est fictive et sans effet contractuel.<br><br>L'utilisateur est informé que le site ne propose aucun service marchand."
         },
         "disclaimer": {
           "title": "Avertissement - Projet fictif",
-          "content": "<strong>EcoDeli</strong> est un projet pédagogique fictif développé par des étudiants de l’ESGI dans le cadre de leur année académique.<br><br>Il ne s’agit pas d’une entreprise réelle, et aucun service de livraison ou d’intermédiation n’est effectivement proposé.<br><br>Toutes les données affichées (annonces, profils, trajets, etc.) sont simulées.<br><br>L’objectif de ce projet est de démontrer des compétences techniques en développement web, UX/UI, gestion de projet et déploiement d’applications modernes.<br><br>Toute ressemblance avec des services existants est purement fortuite."
+          "content": "<strong>EcoDeli</strong> est un projet pédagogique fictif développé par des étudiants de l'ESGI dans le cadre de leur année académique.<br><br>Il ne s'agit pas d'une entreprise réelle, et aucun service de livraison ou d'intermédiation n'est effectivement proposé.<br><br>Toutes les données affichées (annonces, profils, trajets, etc.) sont simulées.<br><br>L'objectif de ce projet est de démontrer des compétences techniques en développement web, UX/UI, gestion de projet et déploiement d'applications modernes.<br><br>Toute ressemblance avec des services existants est purement fortuite."
         }
       }
     },
@@ -519,7 +519,7 @@
         "actions": {
           "delete_account": "Supprimer mon compte",
           "personal_info": "Mes informations personnelles",
-          "return_to_app_link": "Retour à l’application"
+          "return_to_app_link": "Retour à l'application"
         }
       },
       "admin_login": {
@@ -533,9 +533,12 @@
     },
     "admin": {
       "global": {
-        "users_title": "Utilisateurs",
-        "addresses_title": "Adresses",
-        "langs_title": "Langues"
+        "tab_title": "Ecodeli | Language Management",
+        "users_title": "Users",
+        "addresses_title": "Addresses",
+        "langs_title": "Languages",
+        "ads_title": "Ads",
+        "wallets_title": "Wallets"
       },
       "users": {
         "tab_title": "Ecodeli | Gestion des utilisateurs",
@@ -592,7 +595,27 @@
         "tab_title": "Ecodeli | Gestion des adresses"
       },
       "langs": {
-        "tab_title": "Ecodeli | Gestion des langues"
+        "tab_title": "Ecodeli | Language Management"
+      },
+      "wallets": {
+        "tab_title": "Ecodeli | Wallet Management",
+        "wallets_title": "Electronic Wallets",
+        "search_bar": "Search...",
+        "user_name": "User",
+        "user_email": "Email",
+        "amount_available": "Available Amount",
+        "amount_pending": "Pending Amount",
+        "creation_date": "Creation Date",
+        "last_update": "Last Update",
+        "actions": "Actions",
+        "modify": "Modify",
+        "cancel": "Delete",
+        "close_button": "Close",
+        "record_button": "Save",
+        "wallet_modify": "Modify Wallet",
+        "wallet_delete": "Delete Wallet",
+        "cancel_delete": "Cancel",
+        "delete_confirmation": "Are you sure you want to delete the wallet of"
       }
     },
     "track": {

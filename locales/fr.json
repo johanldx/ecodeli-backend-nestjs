@@ -557,7 +557,8 @@
       "users_title": "Utilisateurs",
       "addresses_title": "Adresses",
       "langs_title": "Langues",
-      "ads_title": "Annonces"
+      "ads_title": "Annonces",
+      "wallets_title": "Portefeuilles"
     },
     "ads": {
       "tab_title": "Ecodeli | Gestion des annonces",
@@ -619,6 +620,26 @@
     },
     "langs": {
       "tab_title": "Ecodeli | Gestion des langues"
+    },
+    "wallets": {
+      "tab_title": "Ecodeli | Gestion des portefeuilles",
+      "wallets_title": "Portefeuilles électroniques",
+      "search_bar": "Rechercher...",
+      "user_name": "Utilisateur",
+      "user_email": "Email",
+      "amount_available": "Montant disponible",
+      "amount_pending": "Montant en attente",
+      "creation_date": "Date de création",
+      "last_update": "Dernière modification",
+      "actions": "Actions",
+      "modify": "Modifier",
+      "cancel": "Supprimer",
+      "close_button": "Fermer",
+      "record_button": "Enregistrer",
+      "wallet_modify": "Modifier le portefeuille",
+      "wallet_delete": "Supprimer le portefeuille",
+      "cancel_delete": "Annuler",
+      "delete_confirmation": "Êtes-vous sûr de vouloir supprimer le portefeuille de"
     }
   },
   "track": {
@@ -644,6 +665,38 @@
     "error": {
       "tracking_failed": "Erreur lors du suivi. Veuillez réessayer.",
       "validation_failed": "Erreur lors de la validation."
+    }
+  },
+  "rate": {
+    "tab_title": "Ecodeli | Notez votre prestataire",
+    "title": "Notez votre prestataire",
+    "subtitle": "Comment s'est passée votre prestation avec {providerName} ?",
+    "stars": {
+      "1": "Très déçu",
+      "2": "Déçu", 
+      "3": "Moyen",
+      "4": "Satisfait",
+      "5": "Très satisfait"
+    },
+    "comment": {
+      "label": "Commentaire (optionnel)",
+      "placeholder": "Partagez votre expérience..."
+    },
+    "submit": {
+      "button": "Envoyer ma note",
+      "loading": "Envoi..."
+    },
+    "errors": {
+      "missing_token": "Token manquant",
+      "already_submitted": "Cette évaluation a déjà été soumise",
+      "invalid_token": "Token invalide ou expiré",
+      "submission_error": "Erreur lors de la soumission de votre évaluation"
+    },
+    "success": {
+      "title": "Merci pour votre avis !",
+      "message": "Votre évaluation a été enregistrée avec succès. Elle aidera d'autres utilisateurs à choisir leurs prestataires.",
+      "redirect_message": "Vous allez être redirigé vers l'accueil dans quelques secondes...",
+      "back_button": "Retour à l'accueil"
     }
   },
   "api_responses": {

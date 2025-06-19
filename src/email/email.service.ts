@@ -80,4 +80,31 @@ export class EmailService {
       return { success: false, error: error.message };
     }
   }
+
+  async sendRatingEmail(to: string, providerName: string, serviceTitle: string, token: string) {
+    console.log('[Email] Envoi email de rating:', { to, providerName, serviceTitle, token });
+    
+    const frontendUrl = this.configService.get<string>('FRONDEND_URL');
+    const ratingUrl = `${frontendUrl}/rate?token=${token}`;
+    
+    const subject = 'Notez votre prestataire EcoDeli';
+    const title = 'Votre avis nous intéresse !';
+    const content = `
+      <p>Votre service "${serviceTitle}" avec ${providerName} a été complété avec succès.</p>
+      <p>Nous aimerions connaître votre avis sur cette prestation pour améliorer nos services.</p>
+      <p style="text-align: center; margin: 30px 0;">
+        <a href="${ratingUrl}" style="background-color: #0C392C; color: #FEFCF3; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+          Noter la prestation
+        </a>
+      </p>
+      <p><small>Ce lien est unique et ne peut être utilisé qu'une seule fois.</small></p>
+    `;
+
+    console.log('[Email] URL de rating générée:', ratingUrl);
+    
+    const result = await this.sendEmail(to, subject, title, content);
+    console.log('[Email] Résultat envoi email:', result);
+    
+    return result;
+  }
 }

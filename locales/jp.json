@@ -528,8 +528,12 @@
   },
   "admin": {
     "global": {
+      "tab_title": "Ecodeli | 言語管理",
       "users_title": "ユーザー",
-      "addresses_title": "住所"
+      "addresses_title": "住所",
+      "langs_title": "言語",
+      "ads_title": "広告",
+      "wallets_title": "ウォレット"
     },
     "users": {
       "tab_title": "エコデリ | ユーザー管理",
@@ -582,6 +586,29 @@
       "pages": "ページ",
       "on": "上"
       
+    },
+    "langs": {
+      "tab_title": "Ecodeli | 言語管理"
+    },
+    "wallets": {
+      "tab_title": "Ecodeli | ウォレット管理",
+      "wallets_title": "電子ウォレット",
+      "search_bar": "検索...",
+      "user_name": "ユーザー",
+      "user_email": "メール",
+      "amount_available": "利用可能金額",
+      "amount_pending": "保留中金額",
+      "creation_date": "作成日",
+      "last_update": "最終更新",
+      "actions": "アクション",
+      "modify": "修正",
+      "cancel": "削除",
+      "close_button": "閉じる",
+      "record_button": "保存",
+      "wallet_modify": "ウォレット修正",
+      "wallet_delete": "ウォレット削除",
+      "cancel_delete": "キャンセル",
+      "delete_confirmation": "ウォレットを削除してもよろしいですか"
     }
   },
   "api_responses": {

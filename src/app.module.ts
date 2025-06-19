@@ -36,6 +36,7 @@ import { WalletsModule } from './wallets/wallets.module';
 import { MobileModule } from './mobile/mobile.module';
 import { StripeModule } from './stripe/stripe.module';
 import { OrderTrackingModule } from './order-tracking/order-tracking.module';
+import { RatingsModule } from './ratings/ratings.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { OrderTrackingModule } from './order-tracking/order-tracking.module';
         synchronize: true, // ⚠️ À désactiver en production
       }),
     }),
+    TypeOrmModule.forFeature([User]),
     I18nModule,
     EmailModule,
     UsersModule,
@@ -85,6 +87,7 @@ import { OrderTrackingModule } from './order-tracking/order-tracking.module';
     MobileModule,
     StripeModule,
     OrderTrackingModule,
+    RatingsModule,
   ],
   controllers: [AppController],
   providers: [
