@@ -98,4 +98,8 @@ export class AdPaymentsService {
     await this.adPaymentRepo.remove(payment);
     return { deleted: true };
   }
+
+  async findAllAdmin() {
+    return this.adPaymentRepo.find({ relations: ['user'] });
+  }
 }

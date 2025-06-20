@@ -648,10 +648,16 @@
       "on": "sur"
     },
     "addresses": {
-      "tab_title": "Ecodeli | Gestion des adresses"
+      "tab_title": "Gestion des adresses"
     },
     "langs": {
-      "tab_title": "Ecodeli | Gestion des langues"
+      "tab_title": "Gestion des langues"
+    },
+    "pro": {
+      "tab_title": "Gestion des professionnels"
+    },
+    "ad-payments": {
+      "tab_title": "Paiements"
     },
     "wallets": {
       "tab_title": "Ecodeli | Gestion des portefeuilles",
@@ -680,6 +686,9 @@
     },
     "invoices": {
       "tab_title": "Ecodeli | Factures (admin)"
+    },
+    "ads-management": {
+      "tab_title": "Gestion des annonces"
     }
   },
   "track": {

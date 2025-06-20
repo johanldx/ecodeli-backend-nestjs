@@ -16,6 +16,7 @@ import { UpdateAdPaymentDto } from './dto/update-ad-payment.dto';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { User } from 'src/users/user.entity';
+import { AdminGuard } from 'src/auth/guards/admin.guard';
 
 @ApiTags('Ad Payments')
 @ApiBearerAuth()
@@ -23,6 +24,12 @@ import { User } from 'src/users/user.entity';
 @Controller('ad-payments')
 export class AdPaymentsController {
   constructor(private readonly adPaymentsService: AdPaymentsService) {}
+
+  @Get('admin')
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  findAllAdmin(@CurrentUser() user: User) {
+    return this.adPaymentsService.findAllAdmin();
+  }
 
   @Post()
   create(
