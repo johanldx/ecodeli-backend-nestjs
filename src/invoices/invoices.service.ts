@@ -12,6 +12,7 @@ import { AdPayment } from '../ad-payments/entities/ad-payment.entity';
 import { PaymentStatus } from '../ad-payments/entities/payment.enums';
 import { Provider } from '../providers/provider.entity';
 import { User } from '../users/user.entity';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class InvoicesService {
@@ -29,6 +30,7 @@ export class InvoicesService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     private storageService: StorageService,
+    private emailService: EmailService,
   ) {}
 
   async create(
@@ -150,6 +152,32 @@ export class InvoicesService {
     invoiceEntity.documentUrl = documentUrl;
     await this.invoiceRepository.save(invoiceEntity);
     this.logger.log(`[SUCCESS] Invoice #${invoiceEntity.id} updated with S3 URL.`);
+
+    const totalAmount = invoiceEntity.lines.reduce((sum, line) => sum + line.amount, 0);
+    const formattedAmount = this.formatCurrency(totalAmount);
+
+    try {
+      const providerEmail = provider.user.email;
+      const subject = 'Votre relevé de paiement Ecodeli est disponible';
+      const title = 'Nouveau relevé de paiement';
+      const content = `
+        <p>Votre relevé de paiement pour la période est désormais disponible dans votre espace personnel.</p>
+        <p>Le montant total versé pour cette période est de <strong>${formattedAmount}</strong>.</p>
+        <p>Vous pouvez consulter le détail et télécharger votre document en cliquant sur le bouton ci-dessous :</p>
+        <p style="text-align: center; margin: 30px 0;">
+          <a href="${invoiceEntity.documentUrl}" style="background-color: #0C392C; color: #FEFCF3; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+            Consulter mon relevé
+          </a>
+        </p>
+        <p>Vous pouvez également retrouver ce document dans votre espace prestataire.</p>
+      `;
+
+      await this.emailService.sendEmail(providerEmail, subject, title, content);
+      this.logger.log(`Sent payment statement email to ${providerEmail} for invoice #${invoiceEntity.id}.`);
+    } catch (error) {
+      this.logger.error(`Failed to send email for invoice #${invoiceEntity.id} to ${provider.user.email}`, error);
+    }
+    
     return invoiceEntity;
   }
 

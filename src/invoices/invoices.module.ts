@@ -10,6 +10,7 @@ import { ProvidersModule } from '../providers/providers.module';
 import { AdPayment } from '../ad-payments/entities/ad-payment.entity';
 import { Provider } from '../providers/provider.entity';
 import { User } from '../users/user.entity';
+import { EmailModule } from '../email/email.module';
 
 @Module({
   imports: [
@@ -18,8 +19,10 @@ import { User } from '../users/user.entity';
     AdPaymentsModule,
     UsersModule,
     ProvidersModule,
+    EmailModule,
   ],
   controllers: [InvoicesController],
   providers: [InvoicesService],
+  exports: [InvoicesService],
 })
 export class InvoicesModule {}

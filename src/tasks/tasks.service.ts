@@ -1,14 +1,20 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { Cron } from '@nestjs/schedule';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import * as cron from 'node-cron';
 import { InvoicesService } from '../invoices/invoices.service';
 
 @Injectable()
-export class TasksService {
+export class TasksService implements OnModuleInit {
   private readonly logger = new Logger(TasksService.name);
 
   constructor(private readonly invoicesService: InvoicesService) {}
 
-  @Cron('0 0 1 * *') // Se déclenche à minuit le 1er jour de chaque mois
+  onModuleInit() {
+    // Se déclenche à minuit le 1er jour de chaque mois
+    cron.schedule('0 0 1 * *', () => {
+      this.handleMonthlyInvoiceGeneration();
+    });
+  }
+
   async handleMonthlyInvoiceGeneration() {
     this.logger.log('Starting monthly invoice generation cron job...');
     const now = new Date();
