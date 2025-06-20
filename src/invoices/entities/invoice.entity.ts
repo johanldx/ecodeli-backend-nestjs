@@ -4,6 +4,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 export enum InvoiceStatus {
@@ -38,4 +41,38 @@ export class Invoice {
 
   @Column()
   userId: number;
+
+  @OneToMany(() => InvoiceLine, (line) => line.invoice, { cascade: true })
+  lines: InvoiceLine[];
+}
+
+@Entity()
+export class InvoiceLine {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToOne(() => Invoice, (invoice) => invoice.lines, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'invoiceId' })
+  invoice: Invoice;
+
+  @Column()
+  invoiceId: number;
+
+  @Column()
+  adPaymentId: number;
+
+  @Column()
+  adType: string;
+
+  @Column()
+  adReference: string;
+
+  @Column('float')
+  amount: number;
+
+  @Column({ nullable: true })
+  description: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }

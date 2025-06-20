@@ -93,7 +93,7 @@
       }
     },
     "index": {
-      "tab_title": "Ecodeli | La livraison éco-responsable, à portée de tous.",
+      "tab_title": "Ecodeli | Accueil",
       "hero_section": {
         "title": "La livraison éco-responsable, à portée de tous.",
         "subtitle": "EcoDeli est une plateforme de covoiturage qui connecte les particuliers avec des livraisons écologiques et solidaires. En partageant leurs trajets, les utilisateurs peuvent expédier ou transporter des colis à moindre coût tout en favorisant leur empreinte carbone et le lien social.",
@@ -203,6 +203,9 @@
           "transfer_bank_account": "Transférer vers mon compte bancaire",
           "available": "Disponible",
           "pending": "En attente"
+        },
+        "chat": {
+          "tab_title": "Ecodeli | Messagerie client"
         }
       },
       "addresses": {
@@ -251,15 +254,14 @@
         "add_a_step": "Ajouter une étape",
         "cancel": "Annuler",
         "arrival": "Arrivée"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Messagerie client"
       }
     },
     "delivery": {
       "account": {
-        "tab_title": "Ecodeli | Mon compte livreur",
-        "title": "Mon compte livreur",
-        "manage_supporting_documents": "Gérer mes pièces justificatifs",
-        "manage_global_account": "Gérer mon compte global",
-        "manage_addresses": "Gérer mes adresses"
+        "tab_title": "Ecodeli | Mon compte livreur"
       },
       "my_electronic_wallet": {
         "tab_title": "Ecodeli | Mon portefeuille électronique",
@@ -312,7 +314,8 @@
         "manage_my_documents": "Gérer mes pièces justificatifs",
         "manage_global_account": "Gérer mon compte global",
         "manage_addresses": "Gérer mes adresses",
-        "manage_my_profil": "Gérer mon profil"
+        "manage_my_profil": "Gérer mon profil",
+        "tab_title": "Ecodeli | Mon compte prestataire"
       },
       "income": {
         "title": "Mes revenus du mois",
@@ -321,8 +324,8 @@
         "valid": "Valider"
       },
       "service": {
-        "tab_title": "Ecodeli | Mes services",
-        "title": "Mes services accréditées",
+        "tab_title": "Ecodeli | Mes services accrédités",
+        "title": "Mes services accrédités",
         "transport": "Transport de personnes",
         "gardening": "Jardinage",
         "childcare": "Garde d'enfants",
@@ -369,6 +372,9 @@
         "saturday": "Samedi",
         "sunday": "Dimanche",
         "week": "Semaine"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Messagerie prestataire"
       }
     },
     "traders": {
@@ -393,7 +399,7 @@
         "title": "Mes factures"
       },
       "addresses": {
-        "tab_title": "Ecodeli | Mes adresses",
+        "tab_title": "Ecodeli | Mes adresses commerçant",
         "title": "Mes adresses",
         "name": "Nom",
         "address": "Adresse",
@@ -426,7 +432,8 @@
         "add": "Ajouter",
         "desired_delivery_date": "Date de livraison souhaitée",
         "package_size": "Taille du colis",
-        "total_price_offer": "Prix total proposé"
+        "total_price_offer": "Prix total proposé",
+        "tab_title": "Ecodeli | Annonces traders"
       },
       "contact": {
         "mail": "Email du client",
@@ -434,12 +441,30 @@
         "arrival": "Arrivée",
         "first_address": "Première adresse",
         "second_address": "Deuxième adresse"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Messagerie commerçant"
+      }
+    },
+    "chat": {
+      "tab_title": "Ecodeli | Messagerie client"
+    },
+    "delivery-persons": {
+      "chat": {
+        "tab_title": "Ecodeli | Messagerie livreur"
+      },
+      "deliveries": {
+        "tab_title": "Ecodeli | Mes trajets livreur"
+      },
+      "discover": {
+        "tab_title": "Ecodeli | Découvrir (livreur)"
       }
     }
   },
   "auth": {
     "login": {
       "title": "Se connecter",
+      "tab_title": "Connexion",
       "email_placeholder": "Adresse e-mail",
       "password_placeholder": "Mot de passe",
       "button": "Connexion",
@@ -448,6 +473,7 @@
     },
     "register": {
       "title": "S'inscrire",
+      "tab_title": "Inscription",
       "first_name_placeholder": "Prénom",
       "last_name_placeholder": "Nom",
       "email_placeholder": "Adresse e-mail",
@@ -457,12 +483,17 @@
     },
     "forgot_password": {
       "title": "Mot de passe oublié",
+      "tab_title": "Mot de passe oublié",
       "email_placeholder": "Adresse e-mail",
       "button": "Envoyer un e-mail",
       "login_link": "Retour à la connexion"
     },
+    "reset_password": {
+      "tab_title": "Réinitialisation du mot de passe"
+    },
     "space": {
       "title": "Bonjour {name} !",
+      "tab_title": "Espace personnel",
       "options": {
         "client_link": "Espace client",
         "delivery_link": "Espace livreur",
@@ -525,6 +556,7 @@
     },
     "account": {
       "title": "Mon compte",
+      "tab_title": "Mon compte",
       "profile": {
         "first_name_placeholder": "Prénom",
         "last_name_placeholder": "Nom",
@@ -645,6 +677,9 @@
       "title": "Accès refusé",
       "message": "Vous n'avez pas les permissions nécessaires pour accéder à cette section. Seuls les administrateurs peuvent consulter le panneau d'administration.",
       "back_to_auth": "Retour à la page de connexion"
+    },
+    "invoices": {
+      "tab_title": "Ecodeli | Factures (admin)"
     }
   },
   "track": {
@@ -673,7 +708,7 @@
     }
   },
   "rate": {
-    "tab_title": "Ecodeli | Notez votre prestataire",
+    "tab_title": "Ecodeli | Noter un prestataire",
     "title": "Notez votre prestataire",
     "subtitle": "Comment s'est passée votre prestation avec {providerName} ?",
     "stars": {
@@ -701,7 +736,8 @@
       "title": "Merci pour votre avis !",
       "message": "Votre évaluation a été enregistrée avec succès. Elle aidera d'autres utilisateurs à choisir leurs prestataires.",
       "redirect_message": "Vous allez être redirigé vers l'accueil dans quelques secondes...",
-      "back_button": "Retour à l'accueil"
+      "back_button": "Retour à l'accueil",
+      "tab_title": "Ecodeli | Merci pour votre avis !"
     }
   },
   "api_responses": {

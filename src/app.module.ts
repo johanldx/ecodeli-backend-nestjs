@@ -37,6 +37,11 @@ import { MobileModule } from './mobile/mobile.module';
 import { StripeModule } from './stripe/stripe.module';
 import { OrderTrackingModule } from './order-tracking/order-tracking.module';
 import { RatingsModule } from './ratings/ratings.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { join } from 'path';
+import { TasksModule } from './tasks/tasks.module';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -88,6 +93,18 @@ import { RatingsModule } from './ratings/ratings.module';
     StripeModule,
     OrderTrackingModule,
     RatingsModule,
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60,
+        limit: 10,
+      },
+    ]),
+    ScheduleModule.forRoot(),
+    TasksModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: '/public/',
+    }),
   ],
   controllers: [AppController],
   providers: [
