@@ -625,6 +625,22 @@
         "email_placeholder": "E-mail",
         "ref_placeholder": "Référence",
         "button": "Afficher"
+      },
+      "details": {
+        "title": "Détails de la commande",
+        "status_ad": "Statut de l'annonce",
+        "status_conversation": "Statut de la conversation",
+        "status_payment": "Statut du paiement",
+        "validate_button": "Valider la réception",
+        "validated": "Commande validée et terminée !"
+      },
+      "success": {
+        "tracking_fetched": "Suivi récupéré avec succès.",
+        "order_validated": "Commande validée avec succès !"
+      },
+      "error": {
+        "tracking_failed": "Erreur lors du suivi. Veuillez réessayer.",
+        "validation_failed": "Erreur lors de la validation."
       }
     },
     "api_responses": {

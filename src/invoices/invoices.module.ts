@@ -11,6 +11,7 @@ import { AdPayment } from '../ad-payments/entities/ad-payment.entity';
 import { Provider } from '../providers/provider.entity';
 import { User } from '../users/user.entity';
 import { EmailModule } from '../email/email.module';
+import { WalletTransactionsModule } from '../wallet-transactions/wallet-transactions.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { EmailModule } from '../email/email.module';
     UsersModule,
     ProvidersModule,
     EmailModule,
+    WalletTransactionsModule,
   ],
   controllers: [InvoicesController],
   providers: [InvoicesService],

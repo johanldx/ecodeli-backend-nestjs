@@ -616,6 +616,31 @@
       }
     }
   },
+  "track": {
+    "tab_title": "Ecodeli | 注文追跡",
+    "form": {
+      "title": "注文追跡",
+      "email_placeholder": "メール",
+      "ref_placeholder": "注文参照",
+      "button": "表示"
+    },
+    "details": {
+      "title": "注文詳細",
+      "status_ad": "広告の状態",
+      "status_conversation": "会話の状態",
+      "status_payment": "支払いの状態",
+      "validate_button": "受取確認",
+      "validated": "注文が確認され完了しました！"
+    },
+    "success": {
+      "tracking_fetched": "追跡が正常に取得されました。",
+      "order_validated": "注文が正常に確認されました！"
+    },
+    "error": {
+      "tracking_failed": "追跡中にエラーが発生しました。再試行してください。",
+      "validation_failed": "確認中にエラーが発生しました。"
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {

@@ -225,8 +225,8 @@ constructor(
       await this.conversationRepo.save(conversation);
       console.log('[Stripe] ServiceProvisions - Conversation en pending pour validation manuelle');
     } else {
-      // Pour les autres types : mettre la conversation en ongoing et l'annonce en 'in_progress'
-      conversation.status = ConversationStatus.Ongoing;
+      // Pour les autres types : mettre la conversation en pending et l'annonce en 'in_progress'
+      conversation.status = ConversationStatus.Pending;
       await this.conversationRepo.save(conversation);
       
       const adId = Number(session.metadata.adId);

@@ -605,6 +605,31 @@
       "back_to_auth": "लॉगिन पेज पर वापस जाएं"
     }
   },
+  "track": {
+    "tab_title": "Ecodeli | ऑर्डर ट्रैकिंग",
+    "form": {
+      "title": "ऑर्डर ट्रैकिंग",
+      "email_placeholder": "ईमेल",
+      "ref_placeholder": "ऑर्डर संदर्भ",
+      "button": "दिखाएं"
+    },
+    "details": {
+      "title": "ऑर्डर विवरण",
+      "status_ad": "विज्ञापन की स्थिति",
+      "status_conversation": "बातचीत की स्थिति",
+      "status_payment": "भुगतान की स्थिति",
+      "validate_button": "प्राप्ति सत्यापित करें",
+      "validated": "ऑर्डर सत्यापित और पूरा हुआ!"
+    },
+    "success": {
+      "tracking_fetched": "ट्रैकिंग सफलतापूर्वक प्राप्त की गई।",
+      "order_validated": "ऑर्डर सफलतापूर्वक सत्यापित किया गया!"
+    },
+    "error": {
+      "tracking_failed": "ट्रैकिंग के दौरान त्रुटि। कृपया पुनः प्रयास करें।",
+      "validation_failed": "सत्यापन के दौरान त्रुटि।"
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {

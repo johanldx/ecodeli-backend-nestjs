@@ -21,4 +21,9 @@ export class RatingsController {
   async getRatingByToken(@Param('token') token: string) {
     return this.ratingsService.getRatingByToken(token);
   }
+
+  @Get('admin/all')
+  async getAllRatingsForAdmin() {
+    return this.ratingsService.getAllRatingsForAdmin();
+  }
 } 

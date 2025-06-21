@@ -600,6 +600,31 @@
       "back_to_auth": "Back to login page"
     }
   },
+  "track": {
+    "tab_title": "Ecodeli | Order Tracking",
+    "form": {
+      "title": "Order Tracking",
+      "email_placeholder": "Email",
+      "ref_placeholder": "Order Reference",
+      "button": "Show"
+    },
+    "details": {
+      "title": "Order Details",
+      "status_ad": "Ad Status",
+      "status_conversation": "Conversation Status",
+      "status_payment": "Payment Status",
+      "validate_button": "Validate Reception",
+      "validated": "Order validated and completed!"
+    },
+    "success": {
+      "tracking_fetched": "Tracking retrieved successfully.",
+      "order_validated": "Order validated successfully!"
+    },
+    "error": {
+      "tracking_failed": "Error during tracking. Please try again.",
+      "validation_failed": "Error during validation."
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {

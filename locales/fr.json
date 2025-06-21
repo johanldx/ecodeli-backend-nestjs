@@ -689,6 +689,25 @@
     },
     "ads-management": {
       "tab_title": "Gestion des annonces"
+    },
+    "ratings": {
+      "tab_title": "Ecodeli | Gestion des avis des prestataires",
+      "title": "Gestion des avis des prestataires",
+      "subtitle": "Consultez et gérez les évaluations des prestataires",
+      "provider": "Prestataire",
+      "average_rating": "Note moyenne",
+      "number_ratings": "Nombre d'avis",
+      "actions": "Actions",
+      "view_ratings": "Voir les avis",
+      "hide_ratings": "Masquer",
+      "rating_details": "Détail des avis",
+      "no_comment": "Aucun commentaire",
+      "rated_by": "Évalué par",
+      "service": "Service",
+      "legend": "Légende",
+      "legend_low_rating": "Les prestataires avec une note moyenne inférieure à 2 étoiles sont affichés en rouge",
+      "legend_view_details": "Cliquez sur \"Voir les avis\" pour consulter le détail des évaluations",
+      "no_ratings": "Aucun avis trouvé"
     }
   },
   "track": {

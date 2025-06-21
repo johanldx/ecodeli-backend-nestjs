@@ -13,6 +13,8 @@ import { PaymentStatus } from '../ad-payments/entities/payment.enums';
 import { Provider } from '../providers/provider.entity';
 import { User } from '../users/user.entity';
 import { EmailService } from '../email/email.service';
+import { WalletTransactionsService } from '../wallet-transactions/wallet-transactions.service';
+import { WalletTransactionTypes } from '../wallet-transactions/entities/wallet-transaction-types.enum';
 
 @Injectable()
 export class InvoicesService {
@@ -31,6 +33,7 @@ export class InvoicesService {
     private userRepository: Repository<User>,
     private storageService: StorageService,
     private emailService: EmailService,
+    private walletsService: WalletTransactionsService,
   ) {}
 
   async create(
@@ -155,6 +158,22 @@ export class InvoicesService {
 
     const totalAmount = invoiceEntity.lines.reduce((sum, line) => sum + line.amount, 0);
     const formattedAmount = this.formatCurrency(totalAmount);
+
+    // Retirer l'argent du wallet du prestataire
+    try {
+      await this.walletsService.create(
+        {
+          amount: totalAmount,
+          type: WalletTransactionTypes.WITHDRAWAL,
+          is_available: true
+        },
+        provider.user
+      );
+      this.logger.log(`Successfully withdrew ${formattedAmount} from provider #${providerId} wallet for invoice #${invoiceEntity.id}`);
+    } catch (error) {
+      this.logger.error(`Failed to withdraw money from provider #${providerId} wallet for invoice #${invoiceEntity.id}`, error);
+      throw new Error(`Impossible de retirer l'argent du wallet du prestataire: ${error.message}`);
+    }
 
     try {
       const providerEmail = provider.user.email;

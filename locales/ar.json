@@ -573,6 +573,31 @@
       "on": "على"
     }
   },
+  "track": {
+    "tab_title": "Ecodeli | تتبع الطلب",
+    "form": {
+      "title": "تتبع الطلب",
+      "email_placeholder": "البريد الإلكتروني",
+      "ref_placeholder": "مرجع الطلب",
+      "button": "عرض"
+    },
+    "details": {
+      "title": "تفاصيل الطلب",
+      "status_ad": "حالة الإعلان",
+      "status_conversation": "حالة المحادثة",
+      "status_payment": "حالة الدفع",
+      "validate_button": "التحقق من الاستلام",
+      "validated": "تم التحقق من الطلب وإكماله!"
+    },
+    "success": {
+      "tracking_fetched": "تم استرجاع التتبع بنجاح.",
+      "order_validated": "تم التحقق من الطلب بنجاح!"
+    },
+    "error": {
+      "tracking_failed": "خطأ أثناء التتبع. يرجى المحاولة مرة أخرى.",
+      "validation_failed": "خطأ أثناء التحقق."
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {
