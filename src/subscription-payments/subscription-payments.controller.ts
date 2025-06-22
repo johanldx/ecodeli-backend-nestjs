@@ -61,6 +61,16 @@ export class SubscriptionPaymentsController {
     return this.subscriptionPaymentsService.findMine(user.id);
   }
 
+  @Get('/user/:userId')
+  @ApiResponse({
+    status: 200,
+    description: 'Returns subscription payments for a specific user',
+    type: [SubscriptionPaymentResponseDto],
+  })
+  async findForUser(@Param('userId') userId: number) {
+    return this.subscriptionPaymentsService.findForUser(userId);
+  }
+
   @Get(':id')
   @ApiResponse({
     status: 200,

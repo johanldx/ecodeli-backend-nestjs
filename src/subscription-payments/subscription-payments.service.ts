@@ -41,6 +41,15 @@ export class SubscriptionPaymentsService {
     return this.subscriptionPaymentRepo.find({
       where: { user: { id: userId } },
       order: { createdAt: 'DESC' },
+      relations: ['subscription'],
+    });
+  }
+
+  async findForUser(userId: number): Promise<SubscriptionPayment[]> {
+    return this.subscriptionPaymentRepo.find({
+      where: { user: { id: userId } },
+      order: { createdAt: 'DESC' },
+      relations: ['subscription'],
     });
   }
 

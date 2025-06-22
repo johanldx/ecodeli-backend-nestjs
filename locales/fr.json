@@ -381,9 +381,12 @@
       "account": {
         "tab_title": "Ecodeli | Mon compte commerçant",
         "title": "Mon compte commerçant",
-        "manage_my_documents": "Gérer mes pièces justificatifs",
+        "manage_my_documents": "Gérer mes pièces justificatives",
         "manage_global_account": "Gérer mon compte global",
-        "manage_my_addresses": "Gérer mes adresses"
+        "manage_my_addresses": "Gérer mes adresses",
+        "reduction_title": "Ma réduction de partenaire",
+        "standard_rate": "Tarif de livraison standard",
+        "reduction_rate": "Réduction de {percent}%"
       },
       "samples": {
         "title": "Mes prélèvements SEPA",
@@ -499,7 +502,8 @@
         "delivery_link": "Espace livreur",
         "merchant_link": "Espace commerçant",
         "service_provider_link": "Espace prestataire",
-        "account_link": "Mon compte"
+        "account_link": "Mon compte",
+        "admin_link": "Administration"
       },
       "logout": "Déconnexion"
     },
@@ -622,6 +626,7 @@
       "create_it": "Crée le",
       "proof_of_activity": "Justificatif d'activité",
       "certification_document": "Document de certification",
+      "reduction_percent": "Réduction",
       "user_modify": "Modifier l'utilisateur",
       "active": "Actif",
       "verify": "Vérifié",
@@ -645,7 +650,10 @@
       "rejected": "Rejeté",
       "none_validated": "Non validé",
       "pages": "Page",
-      "on": "sur"
+      "on": "sur",
+      "subscription": "Abonnement",
+      "history": "Historique",
+      "payment_history_title": "Historique des paiements"
     },
     "addresses": {
       "tab_title": "Gestion des adresses"
@@ -804,5 +812,9 @@
         "user_not_found": "Utilisateur introuvable."
       }
     }
+  },
+  "stripe": {
+    "trader_discount_applied": "Réduction de {percent}% appliquée grâce à votre statut de partenaire !",
+    "trader_discount_info": "Réduction trader {percent}%"
   }
 }

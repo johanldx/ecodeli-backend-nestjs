@@ -32,6 +32,7 @@ import {
   ApiBody,
 } from '@nestjs/swagger';
 import { UpdateDeliveryPersonStatusDto } from 'src/delivery-persons/dto/update-delivery-person-status.dto';
+import { UpdateTraderStatusDto } from './dto/update-trader-status.dto';
 
 @ApiTags('Traders')
 @Controller('traders')
@@ -205,17 +206,17 @@ export class TradersController {
 
   @Patch(':id/status')
   @UseGuards(JwtAuthGuard)
-  @ApiOperation({ summary: 'Manually update the validation status' })
+  @ApiOperation({ summary: 'Manually update the validation status and reduction' })
   @ApiResponse({
     status: 200,
-    description: 'Status updated successfully',
+    description: 'Status and reduction updated successfully',
     type: TraderResponseDto,
   })
   @ApiResponse({ status: 404, description: 'Trader not found' })
   updateStatus(
     @Param('id', ParseIntPipe) id: number,
-    @Body() dto: UpdateDeliveryPersonStatusDto,
+    @Body() dto: UpdateTraderStatusDto,
   ) {
-    return this.service.updateStatus(id, dto.status);
+    return this.service.updateStatus(id, dto.status, dto.reduction_percent);
   }
 }

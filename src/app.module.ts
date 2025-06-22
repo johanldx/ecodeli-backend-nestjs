@@ -41,6 +41,8 @@ import { join } from 'path';
 import { TasksModule } from './tasks/tasks.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { HttpModule } from '@nestjs/axios';
+import { Co2CalculatorModule } from './co2-calculator/co2-calculator.module';
 
 @Module({
   imports: [
@@ -103,6 +105,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       rootPath: join(__dirname, '..', 'public'),
       serveRoot: '/public/',
     }),
+    HttpModule,
+    Co2CalculatorModule,
   ],
   controllers: [AppController],
   providers: [

@@ -7,6 +7,10 @@ import * as bodyParser from 'body-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Configuration générale pour le parsing JSON
+  app.use(bodyParser.json());
+  
+  // Configuration spéciale pour Stripe webhook
   app.use('/stripe/webhook', bodyParser.raw({ type: 'application/json' }));
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));

@@ -6,12 +6,14 @@ import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private readonly subscriptionsService: SubscriptionsService,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<UserResponseDto> {
@@ -22,11 +24,17 @@ export class UsersService {
       password: hashedPassword,
     });
     await this.userRepository.save(user);
+    
+    // Assigner le plan Starter par défaut au nouvel utilisateur
+    await this.subscriptionsService.assignDefaultSubscription(user.id);
+    
     return this.toResponseDto(user);
   }
 
-  async findAll(): Promise<UserResponseDto[]> {
-    const users = await this.userRepository.find();
+  async findAll(): Promise<any[]> {
+    const users = await this.userRepository.find({
+      relations: ['currentSubscription'],
+    });
     return users.map((user) => this.toResponseDto(user));
   }
 

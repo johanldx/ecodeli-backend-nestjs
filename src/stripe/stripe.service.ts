@@ -16,6 +16,9 @@ import { PersonalServiceAd } from 'src/personal-services-ads/personal-service-ad
 import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
 import { EmailService } from '../email/email.service';
 import { WalletsService } from '../wallets/wallets.service';
+import { SubscriptionPayment } from '../subscription-payments/entities/subscription-payment.entity';
+import { Subscription } from '../subscriptions/entities/subscriptions.entity';
+import { Trader } from 'src/traders/trader.entity';
 
 @Injectable()
 export class StripeService {
@@ -48,6 +51,15 @@ constructor(
   @InjectRepository(PersonalServiceAd)
   private readonly personalServiceRepo: Repository<PersonalServiceAd>,
 
+  @InjectRepository(Trader)
+  private readonly traderRepo: Repository<Trader>,
+
+  @InjectRepository(SubscriptionPayment)
+  private readonly subscriptionPaymentRepo: Repository<SubscriptionPayment>,
+
+  @InjectRepository(Subscription)
+  private readonly subscriptionRepo: Repository<Subscription>,
+
   private readonly emailService: EmailService,
   private readonly walletsService: WalletsService,
 
@@ -57,7 +69,139 @@ constructor(
   this.stripe = new Stripe(key, { apiVersion: '2025-05-28.basil' });
 }
 
-  async createStripeCustomer(userId: number) {
+  // Méthodes pour les abonnements
+  async createProduct(data: { name: string; description: string }): Promise<Stripe.Product> {
+    return this.stripe.products.create({
+      name: data.name,
+      description: data.description,
+    });
+  }
+
+  async listProducts(): Promise<Stripe.Product[]> {
+    const products = await this.stripe.products.list({ limit: 100 });
+    return products.data;
+  }
+
+  async listPrices(): Promise<Stripe.Price[]> {
+    const prices = await this.stripe.prices.list({ limit: 100 });
+    return prices.data;
+  }
+
+  async updateProduct(productId: string, data: { name?: string; description?: string }): Promise<Stripe.Product> {
+    return this.stripe.products.update(productId, data);
+  }
+
+  async createPrice(data: {
+    product: string;
+    unit_amount: number;
+    currency: string;
+    recurring?: { interval: 'day' | 'week' | 'month' | 'year' };
+  }): Promise<Stripe.Price> {
+    return this.stripe.prices.create(data);
+  }
+
+  async createCustomerPortalSession(customerId: string, returnUrl: string): Promise<Stripe.BillingPortal.Session> {
+    return this.stripe.billingPortal.sessions.create({
+      customer: customerId,
+      return_url: returnUrl,
+      configuration: undefined,
+    });
+  }
+
+  async createSubscriptionCheckoutSession(
+    userId: number,
+    priceId: string,
+    successUrl: string,
+    cancelUrl: string,
+  ): Promise<{ url: string }> {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new BadRequestException('Utilisateur introuvable');
+
+    if (!user.stripe_id) {
+      this.createStripeCustomer(user.id);
+    }
+
+    // Si l'utilisateur a déjà un abonnement actif, rediriger vers le portail
+    if (user.subscription_stripe_id) {
+      const session = await this.stripe.billingPortal.sessions.create({
+        customer: user.stripe_id || '',
+        return_url: successUrl,
+        configuration: undefined,
+      });
+      return { url: session.url || '' };
+    }
+
+    // Sinon, créer une nouvelle session de checkout
+    const session = await this.stripe.checkout.sessions.create({
+      mode: 'subscription',
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      customer: user.stripe_id || undefined,
+      metadata: {
+        userId: String(userId),
+      },
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+    });
+
+    return { url: session.url || '' };
+  }
+
+  async createSubscriptionChangeSession(
+    userId: number,
+    priceId: string,
+    returnUrl: string,
+  ): Promise<{ url: string }> {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new BadRequestException('Utilisateur introuvable');
+
+    if (!user.subscription_stripe_id) {
+      throw new BadRequestException('Aucun abonnement actif à modifier');
+    }
+
+    // Créer une session de modification d'abonnement
+    const session = await this.stripe.billingPortal.sessions.create({
+      customer: user.stripe_id || '',
+      return_url: returnUrl,
+      configuration: undefined,
+    });
+
+    return { url: session.url || '' };
+  }
+
+  async changeSubscription(
+    userId: number,
+    newPriceId: string,
+  ): Promise<void> {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) throw new BadRequestException('Utilisateur introuvable');
+
+    if (!user.subscription_stripe_id) {
+      throw new BadRequestException('Aucun abonnement actif à modifier');
+    }
+
+    // Récupérer l'abonnement Stripe actuel
+    const subscription = await this.stripe.subscriptions.retrieve(user.subscription_stripe_id);
+    
+    // Créer un nouvel item pour le nouveau prix
+    const newItem = {
+      id: subscription.items.data[0].id,
+      price: newPriceId,
+    };
+
+    // Mettre à jour l'abonnement avec le nouveau prix
+    await this.stripe.subscriptions.update(user.subscription_stripe_id, {
+      items: [newItem],
+      proration_behavior: 'create_prorations',
+    });
+  }
+
+  async createStripeCustomer(userId: number): Promise<string> {
     const user = await this.userRepo.findOne({ where: { id: userId } });
     if (!user) throw new BadRequestException('Utilisateur introuvable');
 
@@ -79,21 +223,79 @@ constructor(
     return customer.id;
   }
 
-  async createCheckoutSession(conversationId: number, userId: number, url: string) {
+  async createCheckoutSession(
+    conversationId: number,
+    userId: number,
+    url: string,
+  ): Promise<{ url: string; discountMessage: string }> {
     const conv = await this.conversationRepo.findOne({
       where: { id: conversationId },
     });
-    if (!conv)
-      throw new BadRequestException('Conversation introuvable');
+    if (!conv) throw new BadRequestException('Conversation introuvable');
     if (!conv.price || conv.price <= 0)
       throw new BadRequestException('Prix invalide pour cette conversation');
 
-    const user = await this.userRepo.findOne({ where: { id: userId } });
-    if (!user)
-      throw new BadRequestException('Utilisateur introuvable');
+    const user = await this.userRepo.findOne({
+      where: { id: userId },
+      relations: ['currentSubscription'],
+    });
+    if (!user) throw new BadRequestException('Utilisateur introuvable');
 
     if (!user.stripe_id) {
       this.createStripeCustomer(user.id);
+    }
+
+    let price = conv.price;
+    let discountAppliedInfo = '';
+    let discountMessage = '';
+
+    // Réduction d'abonnement pour DeliverySteps
+    if (conv.adType === 'DeliverySteps' && user.currentSubscription) {
+      const subName = user.currentSubscription.name;
+      let discountPercentage = 0;
+
+      if (subName === 'Starter') {
+        discountPercentage = 0.05;
+        discountAppliedInfo = ' (Réduction Starter 5%)';
+      } else if (subName === 'Premium') {
+        discountPercentage = 0.09;
+        discountAppliedInfo = ' (Réduction Premium 9%)';
+      } else if (subName === 'Free') {
+        const potentialSaving = conv.price * 0.09; // Premium discount
+        discountMessage = `Passez au Premium et économisez ${potentialSaving.toFixed(2)}€ sur cette transaction !`;
+      }
+
+      if (discountPercentage > 0) {
+        price = price * (1 - discountPercentage);
+      }
+    }
+
+    // Réduction trader pour ReleaseCartAd
+    if (conv.adType === 'ReleaseCartAds') {
+      // Récupérer l'annonce pour obtenir l'utilisateur qui l'a postée
+      const releaseCartAd = await this.releaseRepo.findOne({
+        where: { id: conv.adId },
+        relations: ['postedBy'],
+      });
+
+      if (releaseCartAd && releaseCartAd.postedBy) {
+        // Vérifier si l'utilisateur qui a posté l'annonce est un trader avec une réduction
+        const trader = await this.traderRepo.findOne({
+          where: { user: { id: releaseCartAd.postedBy.id } },
+        });
+
+        if (trader && trader.reduction_percent > 0) {
+          const traderDiscountPercentage = trader.reduction_percent / 100;
+          const originalPrice = price;
+          price = price * (1 - traderDiscountPercentage);
+          discountAppliedInfo = ` (Réduction commerçant ${trader.reduction_percent}%)`;
+          
+          // Ajouter un message informatif sur la réduction
+          if (!discountMessage) {
+            discountMessage = `Réduction de ${trader.reduction_percent}% appliquée grâce à votre statut de partenaire !`;
+          }
+        }
+      }
     }
 
     let additionalPrice = 0;
@@ -113,24 +315,24 @@ constructor(
 
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
-      price_data: {
-        currency: 'eur',
-        product_data: {
-        name: `Paiement Ecodeli - ${conv.adType}`,
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: `Paiement Ecodeli - ${conv.adType}${discountAppliedInfo}`,
+          },
+          unit_amount: Math.round(price * 100),
         },
-        unit_amount: Math.round(conv.price * 100),
-      },
-      quantity: 1,
+        quantity: 1,
       },
       {
-      price_data: {
-        currency: 'eur',
-        product_data: {
-        name: `Frais de services`,
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: `Frais de services`,
+          },
+          unit_amount: Math.round(conv.price * 100 * 0.05),
         },
-        unit_amount: Math.round(conv.price * 100 * 0.05),
-      },
-      quantity: 1,
+        quantity: 1,
       },
     ];
 
@@ -158,26 +360,237 @@ constructor(
       adType: conv.adType,
       userId: String(userId),
       },
-      success_url: url + "&payment=sucess",
-      cancel_url: url + "&payment=cancel",
+      success_url: url + '&payment=sucess',
+      cancel_url: url + '&payment=cancel',
     });
 
-    return { url: session.url };
+    return { url: session.url ?? '', discountMessage };
   }
 
   async handleEvent(event: any) {
     if (!event || !event.type) {
-      console.error('L\'événement ne contient pas de type valide.');
+      console.error("L'événement ne contient pas de type valide.");
       return;
     }
 
+    // Aiguillage des événements de checkout
     if (event.type === 'checkout.session.completed') {
-      console.log('Traitement de checkout.session.completed');
-      await this.handlePaymentSuccess(event);
-    } else if (event.type === 'checkout.session.failed') {
-      await this.handlePaymentFailure(event);
-    } else {
-      console.log(`Événement non pris en charge : ${event.type}`);
+      const session = event.data.object;
+
+      // Si c'est un abonnement, on attend les webhooks dédiés
+      if (session.mode === 'subscription') {
+        console.log('Checkout session pour un abonnement complétée. En attente des webhooks de souscription.');
+        // On ne fait rien ici, car les webhooks `customer.subscription.*` et `invoice.*` vont s'en charger.
+        return;
+      }
+      
+      // Si c'est un paiement unique, on traite le paiement de l'annonce
+      if (session.mode === 'payment') {
+        console.log('Traitement de checkout.session.completed pour un paiement unique.');
+        await this.handlePaymentSuccess(event);
+        return;
+      }
+    }
+
+    // Gestion des autres événements
+    switch (event.type) {
+      case 'checkout.session.failed':
+        await this.handlePaymentFailure(event);
+        break;
+      case 'customer.subscription.created':
+        await this.handleSubscriptionCreated(event);
+        break;
+      case 'customer.subscription.updated':
+        await this.handleSubscriptionUpdated(event);
+        break;
+      case 'customer.subscription.deleted':
+        await this.handleSubscriptionDeleted(event);
+        break;
+      case 'invoice.payment_succeeded':
+        await this.handleSubscriptionPaymentSucceeded(event);
+        break;
+      case 'invoice.payment_failed':
+        await this.handleSubscriptionPaymentFailed(event);
+        break;
+      default:
+        console.log(`Événement non pris en charge : ${event.type}`);
+    }
+  }
+
+  private async handleSubscriptionCreated(event: any) {
+    const subscription = event.data.object;
+    console.log('[Stripe] handleSubscriptionCreated - subscription:', subscription);
+
+    const user = await this.userRepo.findOne({
+      where: { stripe_id: subscription.customer },
+    });
+
+    if (!user) {
+      console.error('[Stripe] Utilisateur non trouvé pour le customer:', subscription.customer);
+      return;
+    }
+
+    // Trouver l'abonnement correspondant
+    const dbSubscription = await this.subscriptionRepo.findOne({
+      where: { stripe_id: subscription.items.data[0].price.id },
+    });
+
+    if (dbSubscription) {
+      // S'assurer qu'il n'y a qu'un seul abonnement actif
+      user.current_subscription_id = dbSubscription.id;
+      user.subscription_stripe_id = subscription.id;
+      user.subscription_end_date = new Date(subscription.current_period_end * 1000);
+      await this.userRepo.save(user);
+
+      // Créer un paiement d'abonnement
+      const subscriptionPayment = this.subscriptionPaymentRepo.create({
+        user: user,
+        subscription: dbSubscription,
+        amount: dbSubscription.price,
+        status: PaymentStatus.COMPLETED,
+      });
+      await this.subscriptionPaymentRepo.save(subscriptionPayment);
+
+      console.log('[Stripe] Abonnement créé pour l\'utilisateur:', user.id);
+    }
+  }
+
+  private async handleSubscriptionUpdated(event: any) {
+    const subscription = event.data.object;
+    console.log('[Stripe] handleSubscriptionUpdated - subscription:', subscription);
+
+    const user = await this.userRepo.findOne({
+      where: { stripe_id: subscription.customer },
+    });
+
+    if (user) {
+      // Mettre à jour la date de fin d'abonnement
+      user.subscription_end_date = new Date(subscription.current_period_end * 1000);
+      
+      // Si l'abonnement a changé de prix, mettre à jour l'abonnement actuel
+      if (subscription.items.data.length > 0) {
+        const newPriceId = subscription.items.data[0].price.id;
+        const newSubscription = await this.subscriptionRepo.findOne({
+          where: { stripe_id: newPriceId },
+        });
+        
+        if (newSubscription && newSubscription.id !== user.current_subscription_id) {
+          user.current_subscription_id = newSubscription.id;
+          
+          // Créer un nouveau paiement pour le changement d'abonnement
+          const subscriptionPayment = this.subscriptionPaymentRepo.create({
+            user: user,
+            subscription: newSubscription,
+            amount: newSubscription.price,
+            status: PaymentStatus.COMPLETED,
+          });
+          await this.subscriptionPaymentRepo.save(subscriptionPayment);
+        }
+      }
+      
+      await this.userRepo.save(user);
+      console.log('[Stripe] Abonnement mis à jour pour l\'utilisateur:', user.id);
+    }
+  }
+
+  private async handleSubscriptionDeleted(event: any) {
+    const subscription = event.data.object;
+    console.log('[Stripe] handleSubscriptionDeleted - subscription:', subscription);
+
+    const user = await this.userRepo.findOne({
+      where: { stripe_id: subscription.customer },
+    });
+
+    if (user) {
+      // Assigner le plan Free par défaut
+      const freePlan = await this.subscriptionRepo.findOne({
+        where: { name: 'Free' },
+      });
+
+      if (freePlan) {
+        user.current_subscription_id = freePlan.id;
+        user.subscription_stripe_id = null;
+        user.subscription_end_date = null;
+        await this.userRepo.save(user);
+        console.log('[Stripe] Utilisateur mis sur le plan Free:', user.id);
+      }
+    }
+  }
+
+  private async handleSubscriptionPaymentSucceeded(event: any) {
+    const invoice = event.data.object;
+    console.log(
+      '[Stripe] handleSubscriptionPaymentSucceeded - invoice:',
+      invoice,
+    );
+
+    if (invoice.subscription) {
+      const user = await this.userRepo.findOne({
+        where: { stripe_id: invoice.customer },
+      });
+
+      if (user) {
+        // The invoice's billing period end is the new subscription end date.
+        // This avoids an extra API call and the typing issue.
+        if (invoice.period_end) {
+          user.subscription_end_date = new Date(invoice.period_end * 1000);
+          await this.userRepo.save(user);
+          console.log(
+            '[Stripe] Date de fin d\'abonnement mise à jour pour l\'utilisateur:',
+            user.id,
+          );
+        }
+
+        const subscription = await this.subscriptionRepo.findOne({
+          where: { stripe_id: invoice.lines.data[0].price.id },
+        });
+
+        if (subscription) {
+          // Créer un paiement d'abonnement
+          const subscriptionPayment = this.subscriptionPaymentRepo.create({
+            user: user,
+            subscription: subscription,
+            amount: subscription.price,
+            status: PaymentStatus.COMPLETED,
+          });
+          await this.subscriptionPaymentRepo.save(subscriptionPayment);
+
+          console.log(
+            '[Stripe] Paiement d\'abonnement enregistré:',
+            subscriptionPayment.id,
+          );
+        }
+      }
+    }
+  }
+
+  private async handleSubscriptionPaymentFailed(event: any) {
+    const invoice = event.data.object;
+    console.log('[Stripe] handleSubscriptionPaymentFailed - invoice:', invoice);
+
+    if (invoice.subscription) {
+      const user = await this.userRepo.findOne({
+        where: { stripe_id: invoice.customer },
+      });
+
+      if (user) {
+        const subscription = await this.subscriptionRepo.findOne({
+          where: { stripe_id: invoice.lines.data[0].price.id },
+        });
+
+        if (subscription) {
+          // Créer un paiement d'abonnement échoué
+          const subscriptionPayment = this.subscriptionPaymentRepo.create({
+            user: user,
+            subscription: subscription,
+            amount: subscription.price,
+            status: PaymentStatus.FAILED,
+          });
+          await this.subscriptionPaymentRepo.save(subscriptionPayment);
+
+          console.log('[Stripe] Paiement d\'abonnement échoué enregistré:', subscriptionPayment.id);
+        }
+      }
     }
   }
 

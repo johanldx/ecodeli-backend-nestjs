@@ -11,9 +11,13 @@ import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
 import { PersonalServiceAd } from 'src/personal-services-ads/personal-service-ad.entity';
 import { Message } from 'src/messages/entities/message.entity';
 import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.entity';
+import { SubscriptionPayment } from 'src/subscription-payments/entities/subscription-payment.entity';
+import { Subscription } from 'src/subscriptions/entities/subscriptions.entity';
+import { Trader } from 'src/traders/trader.entity';
 import { EmailModule } from 'src/email/email.module';
 import { AdPaymentsModule } from 'src/ad-payments/ad-payments.module';
 import { WalletsModule } from '../wallets/wallets.module';
+import { I18nModule } from 'src/i18n/i18n.module';
 
 @Module({
   imports: [
@@ -27,13 +31,18 @@ import { WalletsModule } from '../wallets/wallets.module';
       DeliveryAd,
       PersonalServiceAd,
       Message,
-      ReleaseCartAd
+      ReleaseCartAd,
+      SubscriptionPayment,
+      Subscription,
+      Trader
     ]),
     EmailModule,
     AdPaymentsModule,
-    WalletsModule
+    WalletsModule,
+    I18nModule
   ],
   controllers: [StripeController],
   providers: [StripeService],
+  exports: [StripeService],
 })
 export class StripeModule {}

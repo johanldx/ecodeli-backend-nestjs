@@ -20,7 +20,7 @@ export class ClientsService {
   }
 
   findAll(): Promise<Client[]> {
-    return this.clientRepo.find({ relations: ['user'] });
+    return this.clientRepo.find({ relations: ['user', 'user.currentSubscription'] });
   }
 
   async findOne(id: number): Promise<Client> {

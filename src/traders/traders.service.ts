@@ -41,9 +41,12 @@ export class TradersService {
     return this.repo.save(trader);
   }
 
-  async updateStatus(id: number, status: ValidationStatus): Promise<Trader> {
+  async updateStatus(id: number, status: ValidationStatus, reduction_percent?: number): Promise<Trader> {
     const trader = await this.findOne(id);
     trader.status = status;
+    if (reduction_percent !== undefined) {
+      trader.reduction_percent = reduction_percent;
+    }
     return this.repo.save(trader);
   }
 
