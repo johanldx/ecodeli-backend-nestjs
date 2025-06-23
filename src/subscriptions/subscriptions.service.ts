@@ -201,8 +201,25 @@ export class SubscriptionsService implements OnModuleInit {
       throw new NotFoundException('Utilisateur introuvable');
     }
 
+    // Si l'utilisateur n'a pas d'abonnement, lui assigner le plan Free par défaut
     if (!user.currentSubscription) {
-      return null;
+      await this.assignDefaultSubscription(userId);
+      
+      // Recharger l'utilisateur avec le nouvel abonnement
+      const updatedUser = await this.userRepo.findOne({
+        where: { id: userId },
+        relations: ['currentSubscription'],
+      });
+
+      if (!updatedUser || !updatedUser.currentSubscription) {
+        throw new NotFoundException('Impossible d\'assigner l\'abonnement par défaut');
+      }
+
+      return {
+        subscription: updatedUser.currentSubscription,
+        end_date: updatedUser.subscription_end_date,
+        is_active: true, // Le plan Free est toujours actif
+      };
     }
 
     const is_active =

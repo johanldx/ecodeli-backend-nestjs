@@ -97,7 +97,7 @@ export class StripeController {
 
   @Post('webhook')
   @HttpCode(HttpStatus.OK)
-  async handleStripeWebhook(@Body() payload: any, @Headers('Stripe-Signature') signature: string) {
+  async handleStripeWebhook(@Req() request: any, @Headers('Stripe-Signature') signature: string) {
     // Récupère la clé secrète du webhook
     const endpointSecret = this.configService.get<string>('STRIPE_WEBHOOK_SECRET');
     if (!endpointSecret) {
@@ -107,7 +107,8 @@ export class StripeController {
     let event;
 
     try {
-      event = stripe.webhooks.constructEvent(payload, signature, endpointSecret);
+      // Utiliser le body brut (Buffer) au lieu du body parsé
+      event = stripe.webhooks.constructEvent(request.body, signature, endpointSecret);
     } catch (err) {
       console.log(`Webhook signature verification failed: ${err.message}`);
       return { message: 'Webhook Error: ' + err.message };

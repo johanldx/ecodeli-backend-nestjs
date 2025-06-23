@@ -45,7 +45,10 @@ export class OrderTrackingService {
         ad = await this.shoppingRepo.findOne({ where: { id: conversation.adId }, relations: ['postedBy'] });
         break;
       case AdTypes.DeliverySteps:
-        ad = await this.deliveryRepo.findOne({ where: { id: conversation.adId }, relations: ['postedBy'] });
+        ad = await this.deliveryRepo.findOne({ 
+          where: { id: conversation.adId }, 
+          relations: ['deliveryAd', 'deliveryAd.postedBy'] 
+        });
         break;
       case AdTypes.ReleaseCartAds:
         ad = await this.releaseRepo.findOne({ where: { id: conversation.adId }, relations: ['postedBy'] });
@@ -56,7 +59,29 @@ export class OrderTrackingService {
       default:
         throw new NotFoundException('Type d\'annonce inconnu');
     }
-    if (!ad || !ad.postedBy || ad.postedBy.email !== email) throw new BadRequestException('Email non autorisé');
+    if (!ad) throw new BadRequestException('Email non autorisé');
+    
+    // Vérification de l'autorisation selon le type d'annonce
+    let authorizedUser: User | null = null;
+    switch (conversation.adType) {
+      case AdTypes.ServiceProvisions:
+        // Pour ServiceProvisions : le userFrom (client qui a réservé)
+        authorizedUser = conversation.userFrom;
+        break;
+      case AdTypes.ShoppingAds:
+      case AdTypes.ReleaseCartAds:
+        // Pour les autres types : celui qui a créé l'annonce
+        authorizedUser = ad.postedBy;
+        break;
+      case AdTypes.DeliverySteps:
+        // Pour DeliverySteps : celui qui a créé l'annonce (via deliveryAd)
+        authorizedUser = ad.deliveryAd?.postedBy || null;
+        break;
+    }
+    
+    if (!authorizedUser || authorizedUser.email !== email) {
+      throw new BadRequestException('Email non autorisé');
+    }
 
     // Paiement
     const payment = ad ? await this.paymentRepo.findOne({ where: { reference_id: ad.id, payment_type: conversation.adType as unknown as import('../ad-payments/entities/payment.enums').PaymentTypes } }) : null;
@@ -85,7 +110,10 @@ export class OrderTrackingService {
         ad = await this.shoppingRepo.findOne({ where: { id: conversation.adId }, relations: ['postedBy'] });
         break;
       case AdTypes.DeliverySteps:
-        ad = await this.deliveryRepo.findOne({ where: { id: conversation.adId }, relations: ['postedBy'] });
+        ad = await this.deliveryRepo.findOne({ 
+          where: { id: conversation.adId }, 
+          relations: ['deliveryAd', 'deliveryAd.postedBy'] 
+        });
         break;
       case AdTypes.ReleaseCartAds:
         ad = await this.releaseRepo.findOne({ where: { id: conversation.adId }, relations: ['postedBy'] });
@@ -96,7 +124,29 @@ export class OrderTrackingService {
       default:
         throw new NotFoundException('Type d\'annonce inconnu');
     }
-    if (!ad || !ad.postedBy || ad.postedBy.email !== email) throw new BadRequestException('Email non autorisé');
+    if (!ad) throw new BadRequestException('Email non autorisé');
+    
+    // Vérification de l'autorisation selon le type d'annonce
+    let authorizedUser: User | null = null;
+    switch (conversation.adType) {
+      case AdTypes.ServiceProvisions:
+        // Pour ServiceProvisions : le userFrom (client qui a réservé)
+        authorizedUser = conversation.userFrom;
+        break;
+      case AdTypes.ShoppingAds:
+      case AdTypes.ReleaseCartAds:
+        // Pour les autres types : celui qui a créé l'annonce
+        authorizedUser = ad.postedBy;
+        break;
+      case AdTypes.DeliverySteps:
+        // Pour DeliverySteps : celui qui a créé l'annonce (via deliveryAd)
+        authorizedUser = ad.deliveryAd?.postedBy || null;
+        break;
+    }
+    
+    if (!authorizedUser || authorizedUser.email !== email) {
+      throw new BadRequestException('Email non autorisé');
+    }
 
     // Récupération et mise à jour du paiement
     const payment = ad ? await this.paymentRepo.findOne({ where: { reference_id: ad.id, payment_type: conversation.adType as unknown as import('../ad-payments/entities/payment.enums').PaymentTypes } }) : null;
@@ -126,26 +176,31 @@ export class OrderTrackingService {
     if (payment && payment.user) {
       const adName = ad?.title || ad?.name || `Annonce #${ad?.id}` || 'Votre annonce';
       
-      // Déterminer le destinataire selon la logique métier
+      // Déterminer le destinataire selon le type d'annonce
       let recipientEmail = '';
       let recipientName = '';
       
       switch (conversation.adType) {
-        case AdTypes.ShoppingAds:
-        case AdTypes.DeliverySteps:
-        case AdTypes.ReleaseCartAds:
-          // Le userFrom reçoit le mail
+        case AdTypes.ServiceProvisions:
+          // Pour ServiceProvisions : le userFrom (client qui a réservé)
           if (conversation.userFrom) {
             recipientEmail = conversation.userFrom.email;
             recipientName = `${conversation.userFrom.first_name} ${conversation.userFrom.last_name}`;
           }
           break;
-          
-        case AdTypes.ServiceProvisions:
-          // Celui qui a créé l'annonce reçoit le mail
+        case AdTypes.ShoppingAds:
+        case AdTypes.ReleaseCartAds:
+          // Pour les autres types : celui qui a créé l'annonce
           if (ad?.postedBy) {
             recipientEmail = ad.postedBy.email;
             recipientName = `${ad.postedBy.first_name} ${ad.postedBy.last_name}`;
+          }
+          break;
+        case AdTypes.DeliverySteps:
+          // Pour DeliverySteps : celui qui a créé l'annonce (via deliveryAd)
+          if (ad?.deliveryAd?.postedBy) {
+            recipientEmail = ad.deliveryAd.postedBy.email;
+            recipientName = `${ad.deliveryAd.postedBy.first_name} ${ad.deliveryAd.postedBy.last_name}`;
           }
           break;
       }

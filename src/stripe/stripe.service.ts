@@ -19,6 +19,7 @@ import { WalletsService } from '../wallets/wallets.service';
 import { SubscriptionPayment } from '../subscription-payments/entities/subscription-payment.entity';
 import { Subscription } from '../subscriptions/entities/subscriptions.entity';
 import { Trader } from 'src/traders/trader.entity';
+import { ProviderSchedule, ProviderScheduleStatus } from 'src/provider-schedules/provider-schedule.entity';
 
 @Injectable()
 export class StripeService {
@@ -59,6 +60,9 @@ constructor(
 
   @InjectRepository(Subscription)
   private readonly subscriptionRepo: Repository<Subscription>,
+
+  @InjectRepository(ProviderSchedule)
+  private readonly providerScheduleRepo: Repository<ProviderSchedule>,
 
   private readonly emailService: EmailService,
   private readonly walletsService: WalletsService,
@@ -632,14 +636,27 @@ constructor(
       await this.walletsService.addPendingAmount(payment.user.id, payment.amount);
     }
 
-    // Pour les ServiceProvisions : garder la conversation en pending, ne pas toucher à l'annonce
+    // Pour les ServiceProvisions : mettre la conversation en ongoing et marquer le créneau comme indisponible
     if (conversation.adType === 'ServiceProvisions') {
-      conversation.status = ConversationStatus.Pending;
+      conversation.status = ConversationStatus.Ongoing;
       await this.conversationRepo.save(conversation);
-      console.log('[Stripe] ServiceProvisions - Conversation en pending pour validation manuelle');
+      
+      // Marquer le créneau comme indisponible
+      if (conversation.providerScheduleId) {
+        const schedule = await this.providerScheduleRepo.findOne({
+          where: { id: conversation.providerScheduleId }
+        });
+        if (schedule) {
+          schedule.status = ProviderScheduleStatus.UNAVAILABLE;
+          await this.providerScheduleRepo.save(schedule);
+          console.log('[Stripe] Créneau marqué comme indisponible:', schedule.id);
+        }
+      }
+      
+      console.log('[Stripe] ServiceProvisions - Conversation en ongoing, créneau marqué comme indisponible');
     } else {
-      // Pour les autres types : mettre la conversation en pending et l'annonce en 'in_progress'
-      conversation.status = ConversationStatus.Pending;
+      // Pour les autres types : mettre la conversation en ongoing et l'annonce en 'in_progress'
+      conversation.status = ConversationStatus.Ongoing;
       await this.conversationRepo.save(conversation);
       
       const adId = Number(session.metadata.adId);
@@ -689,6 +706,7 @@ constructor(
         switch (adType) {
           case 'ShoppingAds':
           case 'DeliverySteps':
+          case 'ReleaseCartAds':
             // Celui qui a créé l'annonce reçoit le mail
             if (ad.postedBy) {
               recipientEmail = ad.postedBy.email;
@@ -696,14 +714,6 @@ constructor(
             } else if (ad.deliveryAd && ad.deliveryAd.postedBy) {
               recipientEmail = ad.deliveryAd.postedBy.email;
               recipientFirstName = ad.deliveryAd.postedBy.first_name || '';
-            }
-            break;
-            
-          case 'ReleaseCartAds':
-            // Le client de l'email relié à l'annonce reçoit le mail
-            if (conversation.userFrom) {
-              recipientEmail = conversation.userFrom.email;
-              recipientFirstName = conversation.userFrom.first_name || '';
             }
             break;
             

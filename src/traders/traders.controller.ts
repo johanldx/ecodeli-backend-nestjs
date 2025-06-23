@@ -177,6 +177,26 @@ export class TradersController {
     return this.service.findOne(id);
   }
 
+  @Get(':id/monthly-stats')
+  @ApiOperation({ summary: 'Get trader monthly statistics' })
+  @ApiResponse({
+    status: 200,
+    description: 'Trader monthly statistics',
+    schema: {
+      type: 'object',
+      properties: {
+        totalPaid: { type: 'number' },
+        totalEarned: { type: 'number' },
+        reductionAmount: { type: 'number' }
+      }
+    }
+  })
+  @ApiResponse({ status: 404, description: 'Trader not found' })
+  @UseGuards(JwtAuthGuard)
+  getMonthlyStats(@Param('id', ParseIntPipe) id: number) {
+    return this.service.getMonthlyStats(id);
+  }
+
   @Put(':id')
   @ApiOperation({
     summary: 'Update trader (resets status to pending)',

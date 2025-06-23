@@ -386,7 +386,13 @@
         "manage_my_addresses": "Gérer mes adresses",
         "reduction_title": "Ma réduction de partenaire",
         "standard_rate": "Tarif de livraison standard",
-        "reduction_rate": "Réduction de {percent}%"
+        "reduction_rate": "Réduction de {percent}%",
+        "monthly_stats": {
+          "title": "Statistiques du mois en cours",
+          "total_paid": "Prix sans réduction",
+          "total_earned": "Prix réel payé",
+          "reduction_amount": "Économies réalisées"
+        }
       },
       "samples": {
         "title": "Mes prélèvements SEPA",

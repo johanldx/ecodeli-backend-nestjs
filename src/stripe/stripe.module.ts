@@ -18,6 +18,7 @@ import { EmailModule } from 'src/email/email.module';
 import { AdPaymentsModule } from 'src/ad-payments/ad-payments.module';
 import { WalletsModule } from '../wallets/wallets.module';
 import { I18nModule } from 'src/i18n/i18n.module';
+import { ProviderSchedule } from 'src/provider-schedules/provider-schedule.entity';
 
 @Module({
   imports: [
@@ -34,7 +35,8 @@ import { I18nModule } from 'src/i18n/i18n.module';
       ReleaseCartAd,
       SubscriptionPayment,
       Subscription,
-      Trader
+      Trader,
+      ProviderSchedule
     ]),
     EmailModule,
     AdPaymentsModule,

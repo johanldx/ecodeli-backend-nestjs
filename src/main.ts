@@ -7,11 +7,11 @@ import * as bodyParser from 'body-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Configuration générale pour le parsing JSON
-  app.use(bodyParser.json());
-  
-  // Configuration spéciale pour Stripe webhook
+  // Configuration spéciale pour Stripe webhook (DOIT être avant le parsing JSON global)
   app.use('/stripe/webhook', bodyParser.raw({ type: 'application/json' }));
+  
+  // Configuration générale pour le parsing JSON (après la configuration Stripe)
+  app.use(bodyParser.json());
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
@@ -25,7 +25,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Ecodeli.fr API')
-    .setDescription('Documentation de l’API de Ecodeli.fr')
+    .setDescription('Documentation de l\'API de Ecodeli.fr')
     .setVersion('BETA 0.1')
     .build();
 

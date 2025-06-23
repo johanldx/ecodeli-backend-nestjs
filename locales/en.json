@@ -362,7 +362,16 @@
     "title": "My merchant account",
     "manage_my_documents": "Manage my supporting documents",
     "manage_global_account": "Manage my global account",
-    "manage_my_addresses": "Manage my addresses"
+    "manage_my_addresses": "Manage my addresses",
+    "reduction_title": "My partner discount",
+    "standard_rate": "Standard delivery rate",
+    "reduction_rate": "{percent}% discount",
+    "monthly_stats": {
+      "title": "Current month statistics",
+      "total_paid": "Price without discount",
+      "total_earned": "Actual price paid",
+      "reduction_amount": "Savings made"
+    }
   },
   "samples": {
     "title": "My SEPA debits",

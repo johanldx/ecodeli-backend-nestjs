@@ -360,7 +360,16 @@
           "title": "Mon compte commerçant",
           "manage_my_documents": "Gérer mes pièces justificatifs",
           "manage_global_account": "Gérer mon compte global",
-          "manage_my_addresses": "Gérer mes adresses"
+          "manage_my_addresses": "Gérer mes adresses",
+          "reduction_title": "Ma réduction",
+          "standard_rate": "Tarif standard appliqué",
+          "reduction_rate": "Réduction de {percent}% appliquée",
+          "monthly_stats": {
+            "title": "Statistiques du mois en cours",
+            "total_paid": "Prix sans réduction",
+            "total_earned": "Prix réel payé",
+            "reduction_amount": "Économies réalisées"
+          }
         },
         "samples": {
           "title": "Mes prélèvements SEPA",
