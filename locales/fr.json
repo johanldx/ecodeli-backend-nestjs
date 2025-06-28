@@ -24,6 +24,73 @@
           "track": "Suivi de commande"
         }
       },
+      "common": {
+        "close": "✕",
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "modify": "Modifier",
+        "add": "Ajouter",
+        "update": "Mettre à jour",
+        "confirm": "Confirmer",
+        "save": "Enregistrer",
+        "publish": "Publier",
+        "details": "Détails",
+        "loading": "Chargement...",
+        "error": "Erreur",
+        "success": "Succès",
+        "warning": "Attention",
+        "info": "Information",
+        "no_photo_available": "Aucune photo disponible",
+        "date": "Date",
+        "departure": "Départ",
+        "arrival": "Arrivée",
+        "step": "Étape"
+      },
+      "modals": {
+        "confirm_delete": "Confirmer la suppression",
+        "confirm_delete_message": "Voulez-vous vraiment supprimer cet élément ?",
+        "confirm_delete_address": "Êtes-vous sûr de vouloir supprimer cette adresse ?",
+        "confirm_delete_announcement": "Voulez-vous vraiment supprimer cette annonce ?",
+        "confirm_delete_language": "Êtes-vous sûr de vouloir supprimer la langue « {lang} » ?",
+        "confirm_delete_type": "Confirmer la suppression de « {name} » ?",
+        "yes_delete": "Oui, supprimer"
+      },
+      "forms": {
+        "add_address": "Ajouter une adresse",
+        "modify_address": "Modifier l'adresse",
+        "add_language": "Ajouter une langue",
+        "new_announcement": "Nouvelle annonce",
+        "new_service_announcement": "Nouvelle annonce de prestation",
+        "add_trip": "Ajouter un trajet",
+        "add_trip_button": "Ajouter le trajet",
+        "add_slot": "Ajouter un créneau",
+        "add_element": "Ajouter un élément",
+        "add_step": "Ajouter étape",
+        "modify_type": "Modifier le type",
+        "new_type": "Nouveau type",
+        "delete_type": "Supprimer le type",
+        "shopping_list": "Liste de courses",
+        "delivery_request": "Demande de livraison"
+      },
+      "notifications": {
+        "unauthorized_service": "Vous n'êtes pas autorisé à publier pour cette prestation.",
+        "past_slot_error": "Impossible d'ajouter un créneau dans le passé",
+        "delete_slot_error": "Impossible de supprimer ce créneau",
+        "subscription_error": "Impossible de modifier l'abonnement",
+        "support_contact": "Pour modifier vos pièces justificatives, veuillez contacter le support Ecodeli. Notre équipe vous accompagnera dans cette démarche.",
+        "user_details_error": "Erreur lors de la récupération des détails de l'utilisateur : ",
+        "all_fields_required": "Tous les champs sont obligatoires.",
+        "announcement_created": "Annonce créée avec succès",
+        "announcement_creation_error": "Erreur lors de la création de l'annonce.",
+        "announcement_deleted": "Annonce supprimée avec succès",
+        "announcement_cancelled": "Annonce annulée (des conversations sont en cours)",
+        "announcement_deleted_simple": "Annonce supprimée",
+        "conversation_creation_error": "Erreur lors de la création de la conversation",
+        "payment_session_error": "Erreur lors de la création de la session de paiement.",
+        "location_creation_error": "Erreur lors de la création de la location.",
+        "creation_error": "Erreur lors de la création",
+        "already_contacted": "Vous avez déjà contacté cette annonce"
+      },
       "errors": {
         "400": {
           "message": "Oups ! Quelque chose cloche dans votre demande. On vous aide à recoller l'étiquette ?",
@@ -90,6 +157,10 @@
           "action_label": "Réessayer",
           "action_href": "reload"
         }
+      },
+      "stats": {
+        "in_progress": "annonce{count, plural, =1 {} other {s}} en cours grâce à Ecodeli",
+        "completed": "annonce{count, plural, =1 {} other {s}} terminée{count, plural, =1 {} other {s}} grâce à Ecodeli"
       }
     },
     "index": {
@@ -180,6 +251,22 @@
         "service_link": "Mes services",
         "request_link": "Mes demandes"
       }
+    },
+    "tutorial": {
+      "welcome": "Bienvenue sur votre espace EcoDeli !",
+      "welcome_content": "Suivez ce guide rapide pour découvrir les fonctionnalités principales.",
+      "navigation_menu": "Menu de Navigation",
+      "navigation_content": "Utilisez ce menu pour naviguer entre les différentes sections de votre espace.",
+      "discover_announcements": "Découvrir des annonces",
+      "discover_content": "La section <b>Découvrir</b> vous permet de trouver toutes les annonces disponibles.",
+      "manage_announcements": "Gérer vos annonces",
+      "manage_content": "Dans <b>Mes annonces</b>, vous pouvez créer et gérer toutes les annonces que vous publiez.",
+      "instant_messaging": "Messagerie instantanée",
+      "messaging_content": "La section <b>Messages</b> contient toutes vos conversations avec les autres utilisateurs.",
+      "account_management": "Gestion du compte",
+      "account_content": "Dans <b>Mon compte</b>, vous pouvez gérer vos informations, votre portefeuille et vos abonnements.",
+      "ready": "Vous êtes prêt !",
+      "ready_content": "Vous pouvez maintenant explorer la plateforme. Vous pouvez revoir ce tutoriel à tout moment depuis la page \"Mon compte\"."
     },
     "clients": {
       "account": {
@@ -311,7 +398,7 @@
       "tab_title": "Ecodeli | Mon profil",
       "account": {
         "title": "Mon compte commerçant",
-        "manage_my_documents": "Gérer mes pièces justificatifs",
+        "manage_my_documents": "Gérer mes pièces justificatives",
         "manage_global_account": "Gérer mon compte global",
         "manage_addresses": "Gérer mes adresses",
         "manage_my_profil": "Gérer mon profil",
@@ -375,98 +462,118 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Messagerie prestataire"
+      },
+      "samples": {
+        "title": "Mes échantillons",
+        "amount_billed_month": "Montant facturé ce mois-ci",
+        "manage_samples": "Gérer mes échantillons"
+      },
+      "pricing": {
+        "title": "Tarification",
+        "customer_contact": "Contacter le service client"
       }
     },
     "traders": {
+      "requests": {
+        "tab_title": "Ecodeli | Annonces Traders",
+        "title": "Annonces Traders",
+        "new_announcement": "Nouvelle annonce",
+        "no_photo": "Aucune photo",
+        "cart_release": "Lacher de chariot",
+        "client": "Client",
+        "departure": "Départ",
+        "arrival": "Arrivée",
+        "delete": "Supprimer",
+        "modal": {
+          "title": "Nouvelle annonce",
+          "title_label": "Titre",
+          "description_label": "Description",
+          "package_size_label": "Taille du colis",
+          "price_label": "Prix (€)",
+          "price_advice": "Conseil : 1€ du km",
+          "client_email_label": "Email client",
+          "departure_location_label": "Lieu de départ",
+          "arrival_location_label": "Lieu d'arrivée",
+          "images_label": "Images",
+          "choose": "Choisir",
+          "cancel": "Annuler",
+          "create": "Créer"
+        },
+        "delete_modal": {
+          "title": "Supprimer l'annonce ?",
+          "cancel": "Annuler",
+          "delete": "Supprimer"
+        },
+        "notifications": {
+          "all_fields_required": "Tous les champs obligatoires doivent être remplis",
+          "invalid_email": "Email invalide",
+          "user_not_authenticated": "Utilisateur non authentifié",
+          "announcement_created": "Annonce trader créée",
+          "announcement_deleted": "Annonce supprimée"
+        },
+        "status": {
+          "pending": "En attente",
+          "in_progress": "En cours",
+          "completed": "Terminée",
+          "cancelled": "Annulée",
+          "payment_pending": "En attente de paiement",
+          "paid": "Payé",
+          "failed": "Échec"
+        }
+      },
       "account": {
-        "tab_title": "Ecodeli | Mon compte commerçant",
-        "title": "Mon compte commerçant",
+        "tab_title": "Ecodeli | Mon compte trader",
+        "title": "Mon compte trader",
         "manage_my_documents": "Gérer mes pièces justificatives",
         "manage_global_account": "Gérer mon compte global",
         "manage_my_addresses": "Gérer mes adresses",
-        "reduction_title": "Ma réduction de partenaire",
-        "standard_rate": "Tarif de livraison standard",
-        "reduction_rate": "Réduction de {percent}%",
+        "reduction_title": "Ma réduction partenaire",
+        "standard_rate": "Tarif standard appliqué",
+        "reduction_rate": "Réduction de {percent}% appliquée sur vos transactions",
         "monthly_stats": {
-          "title": "Statistiques du mois en cours",
-          "total_paid": "Prix sans réduction",
-          "total_earned": "Prix réel payé",
-          "reduction_amount": "Économies réalisées"
+          "title": "Statistiques mensuelles",
+          "total_earned": "Total gagné"
         }
       },
-      "samples": {
-        "title": "Mes prélèvements SEPA",
-        "amount_billed_month": "Montant facturé ce mois-ci",
-        "manage_samples": "Gérer mes prélèvements"
-      },
-      "pricing": {
-        "title": "Tarification spéciale",
-        "customer_service": "Vous pouvez contacter le service client pour toute demande.",
-        "customer_contact": "Contacter le service client"
-      },
-      "invoice": {
-        "title": "Mes factures"
-      },
       "addresses": {
-        "tab_title": "Ecodeli | Mes adresses commerçant",
-        "title": "Mes adresses",
-        "name": "Nom",
-        "address": "Adresse",
-        "postal_code": "Code postal",
-        "city": "Ville",
-        "country": "Pays",
-        "modify": "Modifier",
-        "delete_address": "Supprimer",
-        "add_address": "Ajouter une adresse"
-      },
-      "my_requests": {
-        "tab_title": "Ecodeli | Mes demandes",
-        "title": "Mes demandes",
-        "modify": "Modifier",
-        "cancel": "Annuler",
-        "details": "Détails",
-        "add_new_announce": "Ajouter une nouvelle annonce"
-      },
-      "new_request": {
-        "tab_title": "Ecodeli | Nouvelle demande",
-        "title": "Nouvelle demande",
-        "add": "Ajouter",
-        "cancel": "Annuler",
-        "announce": "Annonce de livraison"
-      },
-      "requests": {
-        "title": "Titre",
-        "address": "Adresse",
-        "picture": "Photo",
-        "add": "Ajouter",
-        "desired_delivery_date": "Date de livraison souhaitée",
-        "package_size": "Taille du colis",
-        "total_price_offer": "Prix total proposé",
-        "tab_title": "Ecodeli | Annonces traders"
-      },
-      "contact": {
-        "mail": "Email du client",
-        "departure": "Départ",
-        "arrival": "Arrivée",
-        "first_address": "Première adresse",
-        "second_address": "Deuxième adresse"
+        "tab_title": "Ecodeli | Mes adresses trader"
       },
       "chat": {
-        "tab_title": "Ecodeli | Messagerie commerçant"
+        "tab_title": "Ecodeli | Messagerie trader"
+      },
+      "pricing": {
+        "title": "Tarification",
+        "customer_contact": "Contacter le service client"
       }
     },
     "chat": {
       "tab_title": "Ecodeli | Messagerie client"
     },
     "delivery-persons": {
+      "discover": {
+        "tab_title": "Ecodeli | Découvrir - Livreur",
+        "title": "Découvrir des annonces",
+        "all_services": "Tous les services",
+        "delivery": "Livraison",
+        "shopping": "Courses",
+        "contact": "Contacter",
+        "details": "Détails",
+        "city": "Ville",
+        "notifications": {
+          "conversation_creation_error": "Erreur lors de la création de la conversation"
+        }
+      },
+      "account": {
+        "tab_title": "Ecodeli | Mon compte livreur"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes adresses livreur"
+      },
       "chat": {
         "tab_title": "Ecodeli | Messagerie livreur"
       },
-      "deliveries": {
-        "tab_title": "Ecodeli | Mes trajets livreur"
-      },
-      "discover": {
-        "tab_title": "Ecodeli | Découvrir (livreur)"
+      "schedule": {
+        "tab_title": "Ecodeli | Mon planning livreur"
       }
     }
   },
@@ -600,7 +707,14 @@
       "addresses_title": "Adresses",
       "langs_title": "Langues",
       "ads_title": "Annonces",
-      "wallets_title": "Portefeuilles"
+      "wallets_title": "Portefeuilles",
+      "invoices_title": "Factures",
+      "payments_title": "Paiements",
+      "professionals_title": "Professionels",
+      "ratings_title": "Avis des prestataires",
+      "accounting_group": "Comptabilité",
+      "content_group": "Contenus",
+      "users_group": "Utilisateurs"
     },
     "ads": {
       "tab_title": "Ecodeli | Gestion des annonces",
@@ -822,5 +936,46 @@
   "stripe": {
     "trader_discount_applied": "Réduction de {percent}% appliquée grâce à votre statut de partenaire !",
     "trader_discount_info": "Réduction trader {percent}%"
+  },
+  "components": {
+    "onboarding": {
+      "step": "Étape",
+      "of": "sur",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "finish": "Terminer",
+      "skip_tutorial": "Passer le tutoriel"
+    },
+    "co2_calculator": {
+      "title": "Calculateur d'économies CO₂",
+      "description": "Calculez combien de CO₂ vous économisez en utilisant EcoDeli !",
+      "departure_address": "Adresse de départ",
+      "arrival_address": "Adresse d'arrivée",
+      "choose_address": "Choisir une adresse",
+      "calculate": "Calculer",
+      "calculating": "Calcul de votre bonne action en cours...",
+      "savings_achieved": "🌱 Économies réalisées",
+      "per_kilometer": "Par kilomètre",
+      "total_journey": "Total du trajet",
+      "journey_distance": "Trajet de",
+      "kilometers": "km",
+      "thank_planet": "Merci pour la planète ! 🌍",
+      "open_calculator": "Ouvrir le calculateur d'économies CO₂",
+      "notifications": {
+        "select_addresses": "Veuillez sélectionner une adresse de départ et une adresse d'arrivée.",
+        "different_addresses": "Les adresses de départ et d'arrivée doivent être différentes.",
+        "calculation_error": "Une erreur est survenue lors du calcul.",
+        "load_addresses_error": "Impossible de charger les adresses de l'utilisateur."
+      }
+    },
+    "wallet": {
+      "iban_sent_success": "IBAN envoyé avec succès",
+      "iban_validation_error": "Erreur lors de la validation de l'IBAN",
+      "no_amount_available": "Aucun montant disponible à transférer.",
+      "transfer_success": "Montant transféré avec succès",
+      "transfer_error": "Erreur lors du transfert",
+      "unknown_profile": "Type de profil inconnu :",
+      "load_wallet_error": "Erreur lors du chargement du wallet"
+    }
   }
 }

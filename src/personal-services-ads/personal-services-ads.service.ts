@@ -7,6 +7,7 @@ import { UpdatePersonalServiceAdDto } from './dto/update-personal-service-ad.dto
 import { StorageService } from '../storage/storage.service';
 import { PersonalServiceAdDto } from './dto/personal-service-ad.dto';
 import { PersonalServiceType } from 'src/personal-service-types/personal-service-type.entity';
+import { Conversation, AdTypes } from '../conversations/entities/conversation.entity';
 
 @Injectable()
 export class PersonalServicesAdsService {
@@ -15,6 +16,8 @@ export class PersonalServicesAdsService {
     private readonly adRepo: Repository<PersonalServiceAd>,
     @InjectRepository(PersonalServiceType)
     private readonly typeRepo: Repository<PersonalServiceType>,
+    @InjectRepository(Conversation)
+    private readonly conversationRepo: Repository<Conversation>,
     private readonly storageService: StorageService,
   ) {}
 
@@ -58,7 +61,7 @@ export class PersonalServicesAdsService {
       title: dto.title,
       description: dto.description,
       postedBy: { id: userId } as any,
-      type, // 👈 ajoute l’objet complet ici
+      type, // 👈 ajoute l'objet complet ici
       imageUrls: urls,
       status: AdStatus.PENDING,
     });
@@ -88,10 +91,32 @@ export class PersonalServicesAdsService {
     return this.toDto(updated);
   }
 
-  async remove(id: number): Promise<void> {
-    const res = await this.adRepo.delete(id);
-    if (res.affected === 0) {
-      throw new NotFoundException(`Ad with id ${id} not found`);
+  async remove(id: number): Promise<{ action: 'deleted' | 'cancelled' }> {
+    // Vérifier s'il y a des conversations liées à cette annonce
+    const hasConversations = await this.conversationRepo.findOne({
+      where: {
+        adType: AdTypes.ServiceProvisions,
+        adId: id
+      }
+    });
+
+    if (hasConversations) {
+      // S'il y a des conversations, mettre l'annonce au statut "cancelled"
+      const ad = await this.adRepo.findOne({ where: { id } });
+      if (!ad) {
+        throw new NotFoundException(`Ad with id ${id} not found`);
+      }
+      
+      ad.status = AdStatus.CANCELLED;
+      await this.adRepo.save(ad);
+      return { action: 'cancelled' };
+    } else {
+      // S'il n'y a pas de conversations, supprimer l'annonce
+      const res = await this.adRepo.delete(id);
+      if (res.affected === 0) {
+        throw new NotFoundException(`Ad with id ${id} not found`);
+      }
+      return { action: 'deleted' };
     }
   }
 }

@@ -86,16 +86,12 @@ export class RatingsService {
       }
 
       const providerEmail = rating.provider.email;
-      const providerName = `${rating.provider.first_name} ${rating.provider.last_name}`;
-      const raterName = `${rating.rater?.first_name} ${rating.rater?.last_name}`;
       const serviceTitle = rating.conversation?.adType === 'ServiceProvisions' ? 'Votre service' : 'Votre annonce';
       
       const subject = 'Nouvelle évaluation reçue - EcoDeli';
       const title = 'Vous avez reçu une nouvelle évaluation !';
       
-      // Construire le contenu de l'email
       let content = `
-        <p>Bonjour ${providerName},</p>
         <p>Vous avez reçu une nouvelle évaluation pour ${serviceTitle}.</p>
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="margin-top: 0; color: #0C392C;">Détails de l'évaluation :</h3>

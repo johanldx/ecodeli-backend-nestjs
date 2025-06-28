@@ -80,9 +80,8 @@ export class PersonalServicesAdsController {
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a personal service ad' })
-  @ApiResponse({ status: 200, description: 'Deleted' })
-  @HttpCode(204)
-  remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
+  @ApiResponse({ status: 200, description: 'Deleted or cancelled' })
+  remove(@Param('id', ParseIntPipe) id: number): Promise<{ action: 'deleted' | 'cancelled' }> {
     return this.service.remove(id);
   }
 }

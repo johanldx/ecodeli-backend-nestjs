@@ -103,6 +103,22 @@ export class ConversationsService {
         .leftJoinAndSelect('conv.providerSchedule', 'providerSchedule')
         .where('userFrom.id = :userId', { userId })
 
+        // ServiceProvisions → colonne `posted_by` dans personal_service_ads
+        .orWhere(
+          new Brackets((qb) =>
+            qb
+              .where('conv.ad_type = :service', { service: AdTypes.ServiceProvisions })
+              .andWhere(
+                `EXISTS(
+            SELECT 1 FROM personal_service_ads ad
+            WHERE ad.id = conv.ad_id
+              AND ad.posted_by = :userId
+          )`,
+                { userId },
+              ),
+          ),
+        )
+
         // ShoppingAds → colonne `posted_by`
         .orWhere(
           new Brackets((qb) =>

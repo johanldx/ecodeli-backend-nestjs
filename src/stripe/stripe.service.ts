@@ -311,7 +311,7 @@ constructor(
       relations: ['arrivalLocation'],
       });
 
-      if (deliveryStep && deliveryStep.arrivalLocation && deliveryStep.arrivalLocation.price) {
+      if (deliveryStep && deliveryStep.arrivalLocation && deliveryStep.arrivalLocation.price && deliveryStep.arrivalLocation.price > 0) {
       additionalPrice = deliveryStep.arrivalLocation.price;
       additionalName = deliveryStep.arrivalLocation.name + ' (' + deliveryStep.arrivalLocation.city + ')';
       }

@@ -1,162 +1,237 @@
 {
   "landing": {
     "global": {
+      "tab_message": "Ecodeli | Come back, we miss you!",
       "header": {
-        "top_notice": "EcoDeli offers eco-friendly and community-based delivery. Find deliveries near you!",
+        "top_notice": "EcoDeli offers you eco-responsible and solidarity delivery. Find deliveries near you!",
         "menu": {
           "register": "Sign up",
           "login": "Log in"
         }
       },
       "footer": {
-        "title": "Eco-friendly, practical, and community-based delivery.",
-        "cta_button": "View listings",
+        "title": "Eco-responsible, practical and solidarity delivery.",
+        "cta_button": "View announcements",
         "company_info": {
           "address": "110 Rue de Flandre",
           "postal_code": "75019 Paris"
         },
         "menu": {
-          "private_space": "Personal space",
+          "private_space": "Private space",
           "business_space": "Business space",
           "legal_mentions": "Legal notices",
-          "admin": "Administration"
+          "admin": "Administration",
+          "track": "Order tracking"
         }
+      },
+      "common": {
+        "close": "✕",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "modify": "Modify",
+        "add": "Add",
+        "update": "Update",
+        "confirm": "Confirm",
+        "save": "Save",
+        "publish": "Publish",
+        "details": "Details",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "warning": "Warning",
+        "info": "Information",
+        "no_photo_available": "No photo available",
+        "date": "Date",
+        "departure": "Departure",
+        "arrival": "Arrival",
+        "step": "Step"
+      },
+      "modals": {
+        "confirm_delete": "Confirm deletion",
+        "confirm_delete_message": "Do you really want to delete this item?",
+        "confirm_delete_address": "Are you sure you want to delete this address?",
+        "confirm_delete_announcement": "Do you really want to delete this announcement?",
+        "confirm_delete_language": "Are you sure you want to delete the language \"{lang}\"?",
+        "confirm_delete_type": "Confirm deletion of \"{name}\"?",
+        "yes_delete": "Yes, delete"
+      },
+      "forms": {
+        "add_address": "Add an address",
+        "modify_address": "Modify address",
+        "add_language": "Add a language",
+        "new_announcement": "New announcement",
+        "new_service_announcement": "New service announcement",
+        "add_trip": "Add a trip",
+        "add_trip_button": "Add trip",
+        "add_slot": "Add a slot",
+        "add_element": "Add an element",
+        "add_step": "Add step",
+        "modify_type": "Modify type",
+        "new_type": "New type",
+        "delete_type": "Delete type",
+        "shopping_list": "Shopping list",
+        "delivery_request": "Delivery request"
+      },
+      "notifications": {
+        "unauthorized_service": "You are not authorized to publish for this service.",
+        "past_slot_error": "Cannot add a slot in the past",
+        "delete_slot_error": "Cannot delete this slot",
+        "subscription_error": "Cannot modify subscription",
+        "support_contact": "To modify your supporting documents, please contact EcoDeli support. Our team will assist you in this process.",
+        "user_details_error": "Error retrieving user details: ",
+        "all_fields_required": "All fields are required.",
+        "announcement_created": "Announcement created successfully",
+        "announcement_creation_error": "Error creating announcement.",
+        "announcement_deleted": "Announcement deleted successfully",
+        "announcement_cancelled": "Announcement cancelled (conversations are in progress)",
+        "announcement_deleted_simple": "Announcement deleted",
+        "conversation_creation_error": "Error creating conversation",
+        "payment_session_error": "Error creating payment session.",
+        "location_creation_error": "Error creating location.",
+        "creation_error": "Error during creation",
+        "already_contacted": "You have already contacted this announcement"
       },
       "errors": {
         "400": {
-          "message": "Oops! Something's wrong with your request. Need help fixing the label?",
-          "action_label": "Return to homepage",
+          "message": "Oops! Something's wrong with your request. Need help sticking the label back on?",
+          "action_label": "Return to home",
           "action_href": "/"
         },
         "401": {
-          "message": "You must be logged in to continue. No ride without a driver 😉",
+          "message": "You must be logged in to continue. No journey without a driver 😉",
           "action_label": "Log in",
           "action_href": "/login"
         },
         "403": {
-          "message": "This route is restricted. You don't have access to deliver here yet.",
-          "action_label": "Go back",
+          "message": "This route is reserved. You don't have access yet to deliver here.",
+          "action_label": "Back",
           "action_href": "/"
         },
         "404": {
-          "message": "Page not found. The package might have taken a shortcut… or the wrong direction.",
-          "action_label": "Return to homepage",
+          "message": "Page not found. The package may have taken a shortcut... or the wrong direction.",
+          "action_label": "Return to home",
           "action_href": "/"
         },
         "408": {
-          "message": "Loading took too long. The platform waited, but time flew by like a cargo bike!",
+          "message": "Too long to load. The platform was waiting, but time flew like a cargo bike!",
           "action_label": "Try again",
           "action_href": "reload"
         },
         "409": {
           "message": "A small traffic jam: another action is already in progress. Come back in a moment.",
-          "action_label": "Return to homepage",
+          "action_label": "Return to home",
           "action_href": "/"
         },
         "410": {
           "message": "This content has left the warehouse. It's no longer available for delivery.",
-          "action_label": "View listings",
+          "action_label": "View announcements",
           "action_href": "/"
         },
         "418": {
           "message": "I'm a teapot. And I can't deliver packages ☕",
-          "action_label": "Return to homepage",
+          "action_label": "Return to home",
           "action_href": "/"
         },
         "429": {
-          "message": "You're going a bit too fast! Let us catch our breath between trips.",
+          "message": "You're going a bit too fast! Let us breathe between two errands.",
           "action_label": "Wait and try again",
           "action_href": "reload"
         },
         "500": {
-          "message": "Something went wrong. Our technical team is on it.",
-          "action_label": "Return to homepage",
+          "message": "Something went wrong. Our technical delivery drivers are on it.",
+          "action_label": "Return to home",
           "action_href": "/"
         },
         "502": {
-          "message": "The communication relay is down. The connection with the server failed.",
+          "message": "The communication relay is cut off. The connection with the server failed.",
           "action_label": "Try again",
           "action_href": "reload"
         },
         "503": {
-          "message": "Eco-friendly break… Service will be back soon!",
-          "action_label": "Return to homepage",
+          "message": "Eco-responsible break... Service will be back very soon!",
+          "action_label": "Return to home",
           "action_href": "/"
         },
         "504": {
-          "message": "Response time exceeded. Even the fastest can run out of steam.",
+          "message": "Response time exceeded. Even the fastest can have a flat tire.",
           "action_label": "Try again",
           "action_href": "reload"
         }
+      },
+      "stats": {
+        "in_progress": "announcement{count, plural, =1 {} other {s}} in progress thanks to Ecodeli",
+        "completed": "announcement{count, plural, =1 {} other {s}} completed{count, plural, =1 {} other {s}} thanks to Ecodeli"
       }
     },
     "index": {
+      "tab_title": "Ecodeli | Home",
       "hero_section": {
-        "title": "Eco-friendly delivery, within everyone's reach.",
-        "subtitle": "EcoDeli is a ride-sharing platform that connects individuals with eco-friendly and community-based deliveries. By sharing their trips, users can send or transport packages at a lower cost while reducing their carbon footprint and fostering social connections.",
-        "cta_button": "View listings"
+        "title": "Eco-responsible delivery, within everyone's reach.",
+        "subtitle": "EcoDeli is a carpooling platform that connects individuals with eco-friendly and solidarity deliveries. By sharing their journeys, users can ship or transport packages at lower cost while promoting their carbon footprint and social connection.",
+        "cta_button": "View announcements"
       },
       "features_section": {
         "title": "Together, let's deliver greener.",
         "features": {
           "collaborative_delivery": {
             "title": "Collaborative package delivery",
-            "description": "We help reduce carbon emissions by promoting collaborative transport of goods. EcoDeli facilitates connections between senders and carriers for a greener service."
+            "description": "We help reduce carbon footprint by promoting collaborative transport of goods. EcoDeli facilitates connections between shippers and carriers for a greener service."
           },
           "personal_services": {
             "title": "Personal services",
-            "description": "Find reliable people for local tasks: occasional deliveries, errands, daily commutes. The future of transport relies on local mutual aid—more economical, humane, and ethical."
+            "description": "Find reliable people for local missions: occasional deliveries, shopping, daily trips. The future of transport relies on local mutual aid, more economical, more human and ethical."
           },
           "product_repatriation": {
-            "title": "Purchases and product repatriation",
-            "description": "Buy or pick up items and groceries locally, hassle-free, while traveling smarter."
+            "title": "Product purchases and repatriation",
+            "description": "Buy or collect items and provisions locally, without constraints, by traveling more intelligently."
           },
           "chariot_rental": {
-            "title": "Cart sharing",
-            "description": "EcoDeli encourages useful and flexible cart exchanges between individuals, made available in key areas."
+            "title": "Cart release",
+            "description": "EcoDeli encourages useful and flexible cart exchange between individuals, made available in key areas."
           }
         }
       },
       "faq_section": {
-        "title": "Got questions? That's normal!",
+        "title": "Do you have questions? That's normal!",
         "questions": {
           "what_is_ecodeli": {
             "question": "What is EcoDeli and how does it work?",
-            "answer": "EcoDeli is a crowdshipping platform that connects senders with travelers or drivers willing to transport their packages during planned trips, reducing environmental impact. Users post a listing, track the package in real-time, and benefit from secure delivery thanks to the insurance offered by EcoDeli."
+            "answer": "EcoDeli is a crowdshipping platform that connects shippers with travelers or drivers ready to transport their packages during already planned trips, thus reducing ecological impact. Users post an announcement, track the package in real time and benefit from secure delivery thanks to insurance offered by EcoDeli."
           },
           "become_delivery_person": {
             "question": "How can I become a delivery person on EcoDeli?",
-            "answer": "To become a delivery person, simply create an account on EcoDeli, then browse available listings near you. Once you select a listing, you can propose your trip and agree on terms with the sender. It's simple, quick, and commitment-free."
+            "answer": "To become a delivery person, simply create an account on EcoDeli, then browse available announcements around you. Once an announcement is selected, you can propose your trip and agree on terms with the shipper. It's simple, fast and without commitment."
           },
           "delivery_security": {
             "question": "Are deliveries secure and insured?",
-            "answer": "Yes, EcoDeli implements several measures to ensure delivery security. Profiles are verified, exchanges are secured via the platform, and we encourage users to leave reviews to build trust. Insurance may also be offered for certain packages based on their value."
+            "answer": "Yes, EcoDeli implements several measures to ensure delivery security. Profiles are verified, exchanges are secured via the platform, and we encourage users to leave reviews to strengthen trust. Insurance can also be offered for certain packages according to their value."
           }
         }
       }
     },
     "legal_mentions": {
+      "tab_title": "Ecodeli | Legal notices",
       "title": "Legal notices",
-      "intro": "In accordance with applicable legal provisions, you will find below information about the site's publisher, privacy policy, terms and conditions, as well as an important note about the fictional nature of the project.",
+      "intro": "In accordance with applicable legal provisions, you will find below information relating to the site publisher, privacy policy, general terms and conditions, as well as an important note on the fictional nature of the project.",
       "legal_notice": {
         "title": "Legal notices",
-        "content": "This site is published by an individual as part of an academic project at ESGI (École Supérieure de Génie Informatique).<br><br><strong>Publisher's identity:</strong><br>Names: Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Address: 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email: ecodeli.fr@gmail.com<br>Phone: not provided<br><br><strong>Intellectual property:</strong><br>The images, illustrations, and photographs used on this site are either royalty-free or used with permission. Their intellectual property is respected and credited when necessary.<br>The written texts come from the project team. Any external quote is attributed to its author or original source.<br><br><strong>Hosting:</strong><br>Host name: Guillaume CONSTANTY<br>Legal entity: individual<br>Address: Avon, France<br>Phone: not provided"
+        "content": "This site is published by an individual as part of an academic project at ESGI (École Supérieure de Génie Informatique).<br><br><strong>Publisher identity:</strong><br>Names: Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Address: 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email: ecodeli.fr@gmail.com<br>Phone: not disclosed<br><br><strong>Intellectual property:</strong><br>The images, illustrations and photographs used on this site are either free of rights or used with permission. Their intellectual property is respected and indicated when necessary.<br>The written texts come from the project team. Any external quote is attributed to its author or original source.<br><br><strong>Hosting:</strong><br>Host name: Guillaume CONSTANTY<br>Legal entity: individual<br>Address: Avon, France<br>Phone: not disclosed"
       },
       "privacy_policy": {
         "title": "Privacy policy and cookies",
-        "content": "EcoDeli places great importance on protecting your privacy.<br><br>No personal data is collected without your consent. The site uses Matomo, a privacy-respecting audience measurement tool, configured without cookies and without collecting identifiable personal data.<br><br><strong>Technologies used on this site:</strong><br><ul><li>Svelte: frontend framework</li><li>TailwindCSS and DaisyUI: interface libraries</li><li>FontShare: royalty-free fonts</li></ul><br>No data is shared with third parties, and no advertising is displayed.<br><br>You can request the deletion of any data concerning you by contacting the project team."
+        "content": "EcoDeli places great importance on protecting your privacy.<br><br>No personal data is collected without your consent. The site uses Matomo, a privacy-respecting audience measurement tool, configured without cookies and without collecting identifiable personal data.<br><br><strong>Technologies used on this site:</strong><br><ul><li>Svelte: frontend framework</li><li>TailwindCSS and DaisyUI: interface libraries</li><li>FontShare: free fonts</li></ul><br>No data is shared with third parties, and no advertising is broadcast.<br><br>You can request deletion of any data concerning you by contacting the project team."
       },
       "terms_of_use": {
-        "title": "Terms of Use (ToU)",
-        "content": "Access to and use of the <strong>EcoDeli</strong> site are strictly reserved for personal use, within the scope of consulting the project. Any commercial or professional use is prohibited.<br><br>The user agrees to use the site in compliance with current French legislation.<br><br>As the site is fictional, some features may be non-functional or simulated for educational purposes.<br><br>The authors disclaim any responsibility for the use of the information presented on this site."
+        "title": "General Terms of Use (GTU)",
+        "content": "Access to and use of the <strong>EcoDeli</strong> site is reserved for strictly personal use, within the framework of project consultation. Any use for commercial or professional purposes is prohibited.<br><br>The user undertakes to use the site in compliance with current French legislation.<br><br>As the site is fictional, certain features may be inoperative or simulated for educational purposes.<br><br>The authors decline any responsibility regarding the use of information presented on this site."
       },
       "terms_of_sale": {
         "title": "General Terms of Sale (GTS)",
-        "content": "No actual sales are conducted on this platform.<br><br>The <strong>General Terms of Sale</strong> are present solely for illustrative purposes as part of the simulation project.<br><br>No payment, product, or service will actually be delivered via EcoDeli.<br><br>Any reference to a transaction, price, or order is fictional and has no contractual effect.<br><br>The user is informed that the site does not offer any commercial services."
+        "content": "No real sale is made on this platform.<br><br>The <strong>General Terms of Sale</strong> are present only for illustrative purposes as part of the simulation project.<br><br>No payment, product or service will actually be delivered via EcoDeli.<br><br>Any reference to a transaction, price or order is fictional and has no contractual effect.<br><br>The user is informed that the site does not offer any commercial service."
       },
       "disclaimer": {
-        "title": "Disclaimer - Fictional project",
-        "content": "<strong>EcoDeli</strong> is a fictional educational project developed by ESGI students as part of their academic year.<br><br>This is not a real company, and no delivery or intermediation services are actually offered.<br><br>All displayed data (listings, profiles, trips, etc.) are simulated.<br><br>The goal of this project is to demonstrate technical skills in web development, UX/UI, project management, and deployment of modern applications.<br><br>Any resemblance to existing services is purely coincidental."
+        "title": "Warning - Fictional project",
+        "content": "<strong>EcoDeli</strong> is a fictional educational project developed by ESGI students as part of their academic year.<br><br>This is not a real company, and no delivery or intermediation service is actually offered.<br><br>All displayed data (announcements, profiles, trips, etc.) are simulated.<br><br>The objective of this project is to demonstrate technical skills in web development, UX/UI, project management and deployment of modern applications.<br><br>Any resemblance to existing services is purely coincidental."
       }
     }
   },
@@ -169,7 +244,7 @@
         "logout_link": "Logout",
         "discover_link": "Discover",
         "discussion_link": "My conversations",
-        "announces_link": "My ads",
+        "announces_link": "My announcements",
         "addresses_link": "My addresses",
         "delivery_link": "My deliveries",
         "schedule_link": "My schedule",
@@ -177,80 +252,106 @@
         "request_link": "My requests"
       }
     },
+    "tutorial": {
+      "welcome": "Welcome to your EcoDeli space!",
+      "welcome_content": "Follow this quick guide to discover the main features.",
+      "navigation_menu": "Navigation Menu",
+      "navigation_content": "Use this menu to navigate between different sections of your space.",
+      "discover_announcements": "Discover announcements",
+      "discover_content": "The <b>Discover</b> section allows you to find all available announcements.",
+      "manage_announcements": "Manage your announcements",
+      "manage_content": "In <b>My announcements</b>, you can create and manage all announcements you publish.",
+      "instant_messaging": "Instant messaging",
+      "messaging_content": "The <b>Messages</b> section contains all your conversations with other users.",
+      "account_management": "Account management",
+      "account_content": "In <b>My account</b>, you can manage your information, wallet and subscriptions.",
+      "ready": "You're ready!",
+      "ready_content": "You can now explore the platform. You can review this tutorial at any time from the \"My account\" page."
+    },
     "clients": {
-      "account":{
+      "account": {
+        "tab_title": "Ecodeli | My client account",
         "my_account": {
-          "title":"My client account",
-          "my_sub":"My subscription",
-          "sub_status_premium":"Premium",
-          "sub_status_basic":"Basic",
-          "sub_status_pro":"Pro",
-          "manage":"Manage",
-          "manage_global_account":"Manage my global account",
-          "manage_addresses":"Manage my addresses"
-                 },
+          "title": "My client account",
+          "my_sub": "My subscription",
+          "sub_status_premium": "Premium",
+          "sub_status_basic": "Basic",
+          "sub_status_pro": "Pro",
+          "manage": "Manage",
+          "manage_global_account": "Manage my global account",
+          "manage_addresses": "Manage my addresses"
+        },
         "my_electronic_wallet": {
-          "title":"My electronic wallet",
-          "amount_available":"Available amount",
-          "amount_pending":"Pending amount",
-          "to_validate":"Validate",
-          "iban":"My IBAN",
-          "transfer_bank_account":"Transfer to my bank account" 
+          "title": "My electronic wallet",
+          "amount_available": "Available amount",
+          "amount_pending": "Pending amount",
+          "to_validate": "Validate",
+          "iban": "My IBAN (*****)",
+          "transfer_bank_account": "Transfer to my bank account",
+          "available": "Available",
+          "pending": "Pending"
+        },
+        "chat": {
+          "tab_title": "Ecodeli | Client messaging"
         }
       },
-        "addresses": {
-      "title": "My addresses",
-      "name": "Name",
-      "address": "Address",
-      "postal_code": "Postal Code",
-      "city": "City",
-      "country": "Country",
-      "modify": "Edit",
-      "delete_address": "Delete",
-      "add_address": "Add an address"
-  },
-  "ads": {
-  "title": "My listings",
-  "modify": "Edit",
-  "cancel": "Cancel",
-  "details": "Details",
-  "add_new_adds": "Add a new listing"
-},
-  "discover": {
-    "all_services": "All services",
-    "taxi": "Taxi",
-    "gardening": "Gardening",
-    "childcare": "Childcare",
-    "professional_service_provider": "Professional Service Provider",
-    "contact": "Contact",
-    "details": "Details"
-  },
-  "new-ads": {
-  "main_title": "New listing",
-  "delivery_announcement": "Delivery announcement",
-  "title": "Title",
-  "address": "Address",
-  "picture": "Photo",
-  "add_picture": "Add",
-  "desired_delivery_date": "Desired delivery date",
-  "package_size": "Package size",
-  "total_price_offer": "Total price offer",
-  "departure": "Departure",
-  "add_a_step": "Add a step",
-  "cancel": "Cancel",
-  "arrival": "Arrival"
-  
-
-  }
+      "addresses": {
+        "tab_title": "Ecodeli | My addresses",
+        "title": "My addresses",
+        "name": "Name",
+        "address": "Address",
+        "postal_code": "Postal code",
+        "city": "City",
+        "country": "Country",
+        "modify": "Modify",
+        "delete_address": "Delete",
+        "add_address": "Add an address"
+      },
+      "ads": {
+        "tab_title": "Ecodeli | My announcements",
+        "title": "My announcements",
+        "modify": "Modify",
+        "cancel": "Cancel",
+        "details": "Details",
+        "add_new_ads": "Add a new announcement"
+      },
+      "discover": {
+        "tab_title": "Ecodeli | Discover",
+        "all_services": "All services",
+        "taxi": "Taxi",
+        "gardening": "Gardening",
+        "childcare": "Childcare",
+        "professional_service_provider": "Pro Provider",
+        "contact": "Contact",
+        "details": "Details",
+        "city": "City"
+      },
+      "new-ads": {
+        "tab_title": "Ecodeli | New announcement",
+        "main_title": "New announcement",
+        "delivery_announcement": "Delivery announcement",
+        "title": "Title",
+        "address": "Address",
+        "picture": "Photo",
+        "add_picture": "Add",
+        "desired_delivery_date": "Desired delivery date",
+        "package_size": "Package size",
+        "total_price_offer": "Total price offered",
+        "departure": "Departure",
+        "add_a_step": "Add a step",
+        "cancel": "Cancel",
+        "arrival": "Arrival"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Client messaging"
+      }
     },
     "delivery": {
       "account": {
-        "title": "My delivery account",
-        "manage_supporting_documents": "Manage supporting documents",
-        "manage_global_account": "Manage global account",
-        "manage_addresses": "Manage my addresses"
+        "tab_title": "Ecodeli | My delivery person account"
       },
       "my_electronic_wallet": {
+        "tab_title": "Ecodeli | My electronic wallet",
         "title": "My electronic wallet",
         "amount_available": "Available amount",
         "amount_pending": "Pending amount",
@@ -263,175 +364,199 @@
         "confirmation": "Confirmation"
       },
       "addresses": {
+        "tab_title": "Ecodeli | My addresses",
         "title": "My addresses",
         "name": "Name",
         "address": "Address",
         "postal_code": "Postal code",
         "city": "City",
         "country": "Country",
-        "modify": "Edit",
+        "modify": "Modify",
         "delete_address": "Delete",
-        "add_address": "Add address"
+        "add_address": "Add an address"
       },
       "announce": {
-    "all_services": "All services",
-    "transport": "Transport",
-    "delivery": "Delivery",
-    "city": "City",
-    "individual": "Individual",
-    "contact": "Contact",
-    "details": "Details"
-  },
-  "my_planned_trips": {
-    "title": "My planned trips",
-    "departure": "Departure city",
-    "arrival": "Arrival city",
-    "date": "Day",
-    "modify": "Edit",
-    "cancel": "Cancel"
-  }
-    
-    
-
+        "all_services": "All services",
+        "transport": "Transport",
+        "delivery": "Delivery",
+        "city": "City",
+        "individual": "Individual",
+        "contact": "Contact",
+        "details": "Details"
+      },
+      "my_planned_trips": {
+        "tab_title": "Ecodeli | My planned trips",
+        "title": "My planned trips",
+        "departure": "Departure city",
+        "arrival": "Arrival city",
+        "date": "Day",
+        "modify": "Modify",
+        "cancel": "Cancel"
+      }
     },
     "providers": {
+      "tab_title": "Ecodeli | My profile",
       "account": {
-    "title": "My Merchant Account",
-    "manage_my_documents": "Manage my supporting documents",
-    "manage_global_account": "Manage my global account",
-    "manage_addresses": "Manage my addresses",
-    "manage_my_profil": "Manage my profile"
-  },
-  "income": {
-    "title": "My monthly income",
-    "amount_raised_month": "Amount raised this month",
-    "iban": "My IBAN",
-    "valid": "Validate"
-  },
-  "service": {
-    "title": "My accredited services",
-    "transport": "Passenger transport",
-    "gardening": "Gardening",
-    "childcare": "Childcare",
-    "request": "You can contact customer service for any request",
-    "customer_service": "Contact customer service"
-  },
-  "invoice": {
-    "title": "My invoices"
-  },
-  "addresses": {
-    "title": "My addresses",
-    "name": "Name",
-    "address": "Address",
-    "postal_code": "Postal code",
-    "city": "City",
-    "country": "Country",
-    "modify": "Edit",
-    "delete_address": "Delete",
-    "add_address": "Add an address"
-  },
-  "my_announces": {
-    "title": "My ads",
-    "modify": "Edit",
-    "cancel": "Cancel",
-    "details": "Details",
-    "add_new_ads": "Add a new ad"
-  },
-  "calendar": {
-    "add": "Add",
-    "time": "Time",
-    "title": "Title",
-    "cancel": "Cancel",
-    "day": "Day",
-    "place": "Location (optional)",
-    "special": "Special",
-    "title_meeting": "New appointment",
-    "monday": "Monday",
-    "tuesday": "Tuesday",
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday",
-    "saturday": "Saturday",
-    "sunday": "Sunday",
-    "week": "Week"
-  }
-
+        "title": "My merchant account",
+        "manage_my_documents": "Manage my supporting documents",
+        "manage_global_account": "Manage my global account",
+        "manage_addresses": "Manage my addresses",
+        "manage_my_profil": "Manage my profile",
+        "tab_title": "Ecodeli | My provider account"
+      },
+      "income": {
+        "title": "My monthly income",
+        "amount_raised_month": "Amount raised this month",
+        "iban": "My IBAN",
+        "valid": "Validate"
+      },
+      "service": {
+        "tab_title": "Ecodeli | My accredited services",
+        "title": "My accredited services",
+        "transport": "People transport",
+        "gardening": "Gardening",
+        "childcare": "Childcare",
+        "request": "You can contact customer service for any request",
+        "customer_service": "Contact customer service"
+      },
+      "invoice": {
+        "title": "My Invoices"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | My addresses",
+        "title": "My addresses",
+        "name": "Name",
+        "address": "Address",
+        "postal_code": "Postal code",
+        "city": "City",
+        "country": "Country",
+        "modify": "Modify",
+        "delete_address": "Delete",
+        "add_address": "Add an address"
+      },
+      "my_announces": {
+        "title": "My announcements",
+        "modify": "Modify",
+        "cancel": "Cancel",
+        "details": "Details",
+        "add_new_ads": "Add a new announcement"
+      },
+      "calendar": {
+        "tab_title": "Ecodeli | My schedule",
+        "add": "Add",
+        "time": "Time",
+        "title": "Title",
+        "cancel": "Cancel",
+        "day": "Day",
+        "place": "Place (optional)",
+        "special": "Special",
+        "title_meeting": "New appointment",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+        "week": "Week"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Provider messaging"
+      }
     },
     "traders": {
+      "requests": {
+        "tab_title": "Ecodeli | Trader Announcements",
+        "title": "Trader Announcements",
+        "new_announcement": "New announcement",
+        "no_photo": "No photo",
+        "cart_release": "Cart release",
+        "client": "Client",
+        "departure": "Departure",
+        "arrival": "Arrival",
+        "delete": "Delete",
+        "modal": {
+          "title": "New announcement",
+          "title_label": "Title",
+          "description_label": "Description",
+          "package_size_label": "Package size",
+          "price_label": "Price (€)",
+          "price_advice": "Tip: €1 per km",
+          "client_email_label": "Client email",
+          "departure_location_label": "Departure location",
+          "arrival_location_label": "Arrival location",
+          "images_label": "Images",
+          "choose": "Choose",
+          "cancel": "Cancel",
+          "create": "Create"
+        },
+        "delete_modal": {
+          "title": "Delete announcement?",
+          "cancel": "Cancel",
+          "delete": "Delete"
+        },
+        "notifications": {
+          "all_fields_required": "All required fields must be filled in",
+          "invalid_email": "Invalid email",
+          "user_not_authenticated": "User not authenticated",
+          "announcement_created": "Trader announcement created",
+          "announcement_deleted": "Announcement deleted"
+        },
+        "status": {
+          "pending": "Pending",
+          "in_progress": "In progress",
+          "completed": "Completed",
+          "cancelled": "Cancelled",
+          "payment_pending": "Payment pending",
+          "paid": "Paid",
+          "failed": "Failed"
+        }
+      },
       "account": {
-    "title": "My merchant account",
-    "manage_my_documents": "Manage my supporting documents",
-    "manage_global_account": "Manage my global account",
-    "manage_my_addresses": "Manage my addresses",
-    "reduction_title": "My partner discount",
-    "standard_rate": "Standard delivery rate",
-    "reduction_rate": "{percent}% discount",
-    "monthly_stats": {
-      "title": "Current month statistics",
-      "total_paid": "Price without discount",
-      "total_earned": "Actual price paid",
-      "reduction_amount": "Savings made"
-    }
-  },
-  "samples": {
-    "title": "My SEPA debits",
-    "amount_billed_month": "Amount billed this month",
-    "manage_samples": "Manage my debits"
-  },
-  "pricing": {
-    "title": "Special pricing",
-    "customer_service": "You can contact customer service for any request.",
-    "customer_contact": "Contact customer service"
-  },
-  "invoice": {
-    "title": "My invoices"
-  },
-  "addresses": {
-    "title": "My addresses",
-    "name": "Name",
-    "address": "Address",
-    "postal_code": "Postal code",
-    "city": "City",
-    "country": "Country",
-    "modify": "Edit",
-    "delete_address": "Delete",
-    "add_address": "Add an address"
-  },
-  "my_requests": {
-    "title": "My requests",
-    "modify": "Edit",
-    "cancel": "Cancel",
-    "details": "Details",
-    "add_new_announce": "Add a new ad"
-  },
-  "new_request": {
-    "title": "New request",
-    "add": "Add",
-    "cancel": "Cancel",
-    "announce": "Delivery ad"
-  },
-  "requests": {
-    "title": "Title",
-    "address": "Address",
-    "picture": "Photo",
-    "add": "Add",
-    "desired_delivery_date": "Desired delivery date",
-    "package_size": "Package size",
-    "total_price_offer": "Total price offered"
-  },
-  "contact": {
-    "mail": "Customer's email",
-    "departure": "Departure",
-    "arrival": "Arrival",
-    "first_address": "First address",
-    "second_address": "Second address"
-  }
-      
+        "tab_title": "Ecodeli | My trader account"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | My trader addresses"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Trader messaging"
+      }
+    },
+    "chat": {
+      "tab_title": "Ecodeli | Client messaging"
+    },
+    "delivery-persons": {
+      "discover": {
+        "tab_title": "Ecodeli | Discover - Delivery person",
+        "title": "Discover announcements",
+        "all_services": "All services",
+        "delivery": "Delivery",
+        "shopping": "Shopping",
+        "contact": "Contact",
+        "details": "Details",
+        "city": "City",
+        "notifications": {
+          "conversation_creation_error": "Error creating conversation"
+        }
+      },
+      "account": {
+        "tab_title": "Ecodeli | My delivery person account"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | My delivery person addresses"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Delivery person messaging"
+      },
+      "schedule": {
+        "tab_title": "Ecodeli | My delivery person schedule"
+      }
     }
   },
   "auth": {
     "login": {
       "title": "Log in",
+      "tab_title": "Login",
       "email_placeholder": "Email address",
       "password_placeholder": "Password",
       "button": "Login",
@@ -440,60 +565,91 @@
     },
     "register": {
       "title": "Sign up",
+      "tab_title": "Registration",
       "first_name_placeholder": "First name",
       "last_name_placeholder": "Last name",
       "email_placeholder": "Email address",
       "password_placeholder": "Password",
-      "button": "Register",
+      "button": "Registration",
       "login_link": "Log in"
     },
     "forgot_password": {
       "title": "Forgot password",
+      "tab_title": "Forgot password",
       "email_placeholder": "Email address",
       "button": "Send email",
       "login_link": "Back to login"
     },
+    "reset_password": {
+      "tab_title": "Password reset"
+    },
     "space": {
       "title": "Hello {name}!",
+      "tab_title": "Personal space",
       "options": {
         "client_link": "Client space",
-        "delivery_link": "Delivery space",
+        "delivery_link": "Delivery person space",
         "merchant_link": "Merchant space",
         "service_provider_link": "Service provider space",
-        "account_link": "My account"
+        "account_link": "My account",
+        "admin_link": "Administration"
       },
       "logout": "Logout"
     },
     "space_validation": {
       "clients": {
         "title": "Become a client",
-        "subtitle": "Watch the tutorial to discover how EcoDeli works!",
+        "subtitle": "Watch the tutorial to discover how Ecodeli works!",
         "button": "Become a client",
-        "rejected": "Your previous request was rejected; you must submit a new one.",
+        "rejected": "Your previous request was rejected, you must make a new request.",
         "not_found": "You don't have a client profile."
       },
       "delivery-persons": {
         "title": "Become a delivery person",
-        "subtitle": "Submit your application to become an EcoDeli delivery person!",
+        "subtitle": "Submit your application to become an Ecodeli delivery person!",
         "button": "Send request",
-        "rejected": "Your previous request was rejected; you must submit a new one.",
-        "not_found": "You don't have a delivery profile."
+        "rejected": "Your previous request was rejected, you must make a new request.",
+        "not_found": "You don't have a delivery person profile.",
+        "form": {
+          "1": "IBAN",
+          "2": "ID card (PDF, JPG, PNG)",
+          "3": "Driver's license (PDF, JPG, PNG)"
+        }
       },
       "traders": {
         "title": "Become a merchant",
-        "subtitle": "Submit your application to become a merchant on EcoDeli!",
+        "subtitle": "Submit your application to become a merchant on Ecodeli!",
         "button": "Send request",
-        "rejected": "Your previous request was rejected; you must submit a new one.",
-        "not_found": "You don't have a merchant profile."
+        "rejected": "Your previous request was rejected, you must make a new request.",
+        "not_found": "You don't have a merchant profile.",
+        "form": {
+          "1": "IBAN",
+          "2": "Manager's ID card (PDF, JPG, PNG)",
+          "3": "KBIS extract (PDF, JPG, PNG)"
+        }
+      },
+      "providers": {
+        "title": "Become a provider",
+        "subtitle": "Submit your application to become a provider on Ecodeli!",
+        "button": "Send request",
+        "rejected": "Your previous request was rejected, you must make a new request.",
+        "not_found": "You don't have a provider profile.",
+        "form": {
+          "1": "IBAN",
+          "2": "Manager's ID card (PDF, JPG, PNG)",
+          "3": "KBIS extract (PDF, JPG, PNG)",
+          "4": "Service certificates (PDF, JPG, PNG)"
+        }
       },
       "pending": {
         "title": "Your request has been received!",
-        "subtitle": "Our team is reviewing your request; you'll receive a response within 72 hours.",
+        "subtitle": "Our teams are studying your request, you will have a response within 72 hours.",
         "back_link": "Back"
       }
     },
     "account": {
       "title": "My account",
+      "tab_title": "My account",
       "profile": {
         "first_name_placeholder": "First name",
         "last_name_placeholder": "Last name",
@@ -508,7 +664,7 @@
       "actions": {
         "delete_account": "Delete my account",
         "personal_info": "My personal information",
-        "return_to_app_link": "Back to the app"
+        "return_to_app_link": "Return to application"
       }
     },
     "admin_login": {
@@ -522,107 +678,156 @@
   },
   "admin": {
     "global": {
-      "tab_title": "Ecodeli | Language Management",
+      "tab_title": "Ecodeli | Language management",
       "users_title": "Users",
       "addresses_title": "Addresses",
       "langs_title": "Languages",
-      "ads_title": "Ads",
-      "wallets_title": "Wallets"
+      "ads_title": "Announcements",
+      "wallets_title": "Wallets",
+      "invoices_title": "Invoices",
+      "payments_title": "Payments",
+      "professionals_title": "Professionals",
+      "ratings_title": "Provider ratings",
+      "accounting_group": "Accounting",
+      "content_group": "Content",
+      "users_group": "Users"
+    },
+    "ads": {
+      "tab_title": "Ecodeli | Announcement management",
+      "ads_title": "Announcements"
     },
     "users": {
-      "tab_title": "Ecodeli | User Management",
+      "tab_title": "Ecodeli | User management",
       "users_title": "Users",
       "providers_title": "Providers",
-      "delivery_persons_title": "Delivery Persons",
-      "traders_title": "Traders",
+      "delivery_persons_title": "Delivery persons",
+      "traders_title": "Merchants",
       "clients_title": "Clients",
       "profiles_title": "Profiles",
       "search_bar": "Search...",
-      "user_name": "Last Name",
-      "user_first_name": "First Name",
+      "user_name": "Name",
+      "user_first_name": "First name",
       "user_email": "Email",
       "status": "Status",
-      "creation_date": "Creation Date",
+      "creation_date": "Creation date",
       "actions": "Actions",
-      "modify": "Edit",
+      "modify": "Modify",
       "cancel": "Delete",
       "next": "Next",
       "previous": "Previous",
       "page": "Page",
-      "card_id": "ID Card",
-      "driving_license": "Driving License",
-      "RIB": "Bank Details (RIB)",
-      "create_it": "Created On",
-      "proof_of_activity": "Proof of Activity",
-      "certification_document": "Certification Document",
-      "user_modify": "Edit User",
+      "card_id": "ID card",
+      "driving_license": "Driver's license",
+      "RIB": "IBAN",
+      "create_it": "Create it",
+      "proof_of_activity": "Activity proof",
+      "certification_document": "Certification document",
+      "reduction_percent": "Reduction",
+      "user_modify": "Modify user",
       "active": "Active",
       "verify": "Verified",
       "administrator": "Administrator",
       "close_button": "Close",
-      "record_button": "Save",
-      "user_delete": "Delete User",
-      "delete_confirmation": "Are you sure you want to delete",
+      "record_button:": "Save",
+      "user_delete": "Delete user",
+      "delete_confirmation": "Are you sure you want to delete this user?",
       "cancel_delete": "Cancel",
-      "client_delete": "Delete Client",
-      "provider_delete": "Delete Provider",
-      "trader_delete": "Delete Trader",
-      "delivery_delete": "Delete Delivery Person",
-      "supplier_delete": "Delete Supplier",
-      "delivery_status_modify": "Modify Delivery Person Status",
-      "provider_status_modify": "Modify Provider Status",
-      "trader_status_modify": "Modify Trader Status",
-      "client_status_modify": "Modify Client Status",
+      "client_delete": "Delete client",
+      "provider_delete": "Delete provider",
+      "trader_delete": "Delete merchant",
+      "delivery_delete": "Delete delivery person",
+      "supplier_delete": "Delete supplier",
+      "delivery_status_modify": "Modify delivery person status",
+      "provider_status_modify": "Modify provider status",
+      "trader_status_modify": "Modify merchant status",
+      "client_status_modify": "Modify client status",
       "to_validate": "Validate",
       "pending": "Pending",
       "rejected": "Rejected",
       "none_validated": "Not validated",
       "pages": "Page",
-      "on": "on"
+      "on": "of",
+      "subscription": "Subscription",
+      "history": "History",
+      "payment_history_title": "Payment history"
+    },
+    "addresses": {
+      "tab_title": "Address management"
     },
     "langs": {
-      "tab_title": "Ecodeli | Language Management"
+      "tab_title": "Language management"
+    },
+    "pro": {
+      "tab_title": "Professional management"
+    },
+    "ad-payments": {
+      "tab_title": "Payments"
     },
     "wallets": {
-      "tab_title": "Ecodeli | Wallet Management",
-      "wallets_title": "Electronic Wallets",
+      "tab_title": "Ecodeli | Wallet management",
+      "wallets_title": "Electronic wallets",
       "search_bar": "Search...",
       "user_name": "User",
       "user_email": "Email",
-      "amount_available": "Available Amount",
-      "amount_pending": "Pending Amount",
-      "creation_date": "Creation Date",
-      "last_update": "Last Update",
+      "amount_available": "Available amount",
+      "amount_pending": "Pending amount",
+      "creation_date": "Creation date",
+      "last_update": "Last update",
       "actions": "Actions",
       "modify": "Modify",
       "cancel": "Delete",
       "close_button": "Close",
       "record_button": "Save",
-      "wallet_modify": "Modify Wallet",
-      "wallet_delete": "Delete Wallet",
+      "wallet_modify": "Modify wallet",
+      "wallet_delete": "Delete wallet",
       "cancel_delete": "Cancel",
       "delete_confirmation": "Are you sure you want to delete the wallet of"
     },
     "access_denied": {
-      "title": "Access Denied",
+      "title": "Access denied",
       "message": "You don't have the necessary permissions to access this section. Only administrators can view the admin panel.",
       "back_to_auth": "Back to login page"
+    },
+    "invoices": {
+      "tab_title": "Ecodeli | Invoices (admin)"
+    },
+    "ads-management": {
+      "tab_title": "Announcement management"
+    },
+    "ratings": {
+      "tab_title": "Ecodeli | Provider rating management",
+      "title": "Provider rating management",
+      "subtitle": "View and manage provider ratings",
+      "provider": "Provider",
+      "average_rating": "Average rating",
+      "number_ratings": "Number of ratings",
+      "actions": "Actions",
+      "view_ratings": "View ratings",
+      "hide_ratings": "Hide",
+      "rating_details": "Rating details",
+      "no_comment": "No comment",
+      "rated_by": "Rated by",
+      "service": "Service",
+      "legend": "Legend",
+      "legend_low_rating": "Providers with an average rating below 2 stars are displayed in red",
+      "legend_view_details": "Click \"View ratings\" to see rating details",
+      "no_ratings": "No ratings found"
     }
   },
   "track": {
-    "tab_title": "Ecodeli | Order Tracking",
+    "tab_title": "Ecodeli | Order tracking",
     "form": {
-      "title": "Order Tracking",
+      "title": "Order tracking",
       "email_placeholder": "Email",
-      "ref_placeholder": "Order Reference",
-      "button": "Show"
+      "ref_placeholder": "Order reference",
+      "button": "Display"
     },
     "details": {
-      "title": "Order Details",
-      "status_ad": "Ad Status",
-      "status_conversation": "Conversation Status",
-      "status_payment": "Payment Status",
-      "validate_button": "Validate Reception",
+      "title": "Order details",
+      "status_ad": "Announcement status",
+      "status_conversation": "Conversation status",
+      "status_payment": "Payment status",
+      "validate_button": "Validate receipt",
       "validated": "Order validated and completed!"
     },
     "success": {
@@ -634,13 +839,46 @@
       "validation_failed": "Error during validation."
     }
   },
+  "rate": {
+    "tab_title": "Ecodeli | Rate a provider",
+    "title": "Rate your provider",
+    "subtitle": "How was your service with {providerName}?",
+    "stars": {
+      "1": "Very disappointed",
+      "2": "Disappointed",
+      "3": "Average",
+      "4": "Satisfied",
+      "5": "Very satisfied"
+    },
+    "comment": {
+      "label": "Comment (optional)",
+      "placeholder": "Share your experience..."
+    },
+    "submit": {
+      "button": "Send my rating",
+      "loading": "Sending..."
+    },
+    "errors": {
+      "missing_token": "Missing token",
+      "already_submitted": "This rating has already been submitted",
+      "invalid_token": "Invalid or expired token",
+      "submission_error": "Error submitting your rating"
+    },
+    "success": {
+      "title": "Thank you for your review!",
+      "message": "Your rating has been successfully recorded. It will help other users choose their providers.",
+      "redirect_message": "You will be redirected to the home page in a few seconds...",
+      "back_button": "Back to home",
+      "tab_title": "Ecodeli | Thank you for your review!"
+    }
+  },
   "api_responses": {
     "auth": {
       "account": {
         "user_already_exists": "A user with this email already exists",
-        "account_updated": "Account updated successfully.",
-        "password_updated": "Password updated successfully.",
-        "incorrect_new_password": "The password must be at least 8 characters long, including a lowercase letter, an uppercase letter, and a number.",
+        "account_updated": "Account modified successfully.",
+        "password_updated": "Password modified successfully.",
+        "incorrect_new_password": "Password must be at least 8 characters long, including a lowercase, uppercase and number.",
         "incorrect_old_password": "Incorrect old password."
       },
       "login": {
@@ -651,14 +889,14 @@
       "register": {
         "register_successful": "You have been successfully registered",
         "user_already_exists": "A user with this email already exists",
-        "bad_request": "All fields are required. The password must be at least 8 characters long, including a lowercase letter, an uppercase letter, and a number."
+        "bad_request": "All fields are required. Password must be at least 8 characters long, including a lowercase, uppercase and number."
       },
       "forgot_password": {
-        "email_sent": "The reset email has been sent successfully.",
+        "email_sent": "Reset email sent successfully.",
         "account_not_found": "Account not found."
       },
       "reset_password": {
-        "password_updated": "Password updated successfully.",
+        "password_updated": "Password modified successfully.",
         "invalid_token": "Invalid token. Please restart the reset procedure."
       },
       "global": {
@@ -670,5 +908,50 @@
         "user_not_found": "User not found."
       }
     }
+  },
+  "stripe": {
+    "trader_discount_applied": "Discount of {percent}% applied thanks to your partner status!",
+    "trader_discount_info": "Trader discount {percent}%"
+  },
+  "components": {
+    "onboarding": {
+      "step": "Step",
+      "of": "of",
+      "previous": "Previous",
+      "next": "Next",
+      "finish": "Finish",
+      "skip_tutorial": "Skip tutorial"
+    },
+    "co2_calculator": {
+      "title": "CO₂ savings calculator",
+      "description": "Calculate how much CO₂ you save by using EcoDeli!",
+      "departure_address": "Departure address",
+      "arrival_address": "Arrival address",
+      "choose_address": "Choose an address",
+      "calculate": "Calculate",
+      "calculating": "Calculating your good deed...",
+      "savings_achieved": "🌱 Savings achieved",
+      "per_kilometer": "Per kilometer",
+      "total_journey": "Total journey",
+      "journey_distance": "Journey of",
+      "kilometers": "km",
+      "thank_planet": "Thank you for the planet! 🌍",
+      "open_calculator": "Open CO₂ savings calculator",
+      "notifications": {
+        "select_addresses": "Please select a departure and arrival address.",
+        "different_addresses": "Departure and arrival addresses must be different.",
+        "calculation_error": "An error occurred during calculation.",
+        "load_addresses_error": "Unable to load user addresses."
+      }
+    },
+    "wallet": {
+      "iban_sent_success": "IBAN sent successfully",
+      "iban_validation_error": "Error validating IBAN",
+      "no_amount_available": "No amount available to transfer.",
+      "transfer_success": "Amount transferred successfully",
+      "transfer_error": "Error during transfer",
+      "unknown_profile": "Unknown profile type:",
+      "load_wallet_error": "Error loading wallet"
+    }
   }
-}
+} 

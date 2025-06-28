@@ -210,7 +210,7 @@ export class OrderTrackingService {
           recipientEmail,
           'Paiement validé - EcoDeli',
           'Paiement validé avec succès',
-          `Félicitations ${recipientName} ! Votre paiement de ${payment.amount}€ pour "${adName}" (conversation #${conversation.id}) a été validé avec succès. L'argent a été transféré sur votre compte.`
+          `Félicitations ${recipientName} ! Votre paiement de ${payment.amount}€ pour "${adName}" (conversation #${conversation.id}) a été validé avec succès. L'argent a été débité de votre compte.`
         );
       }
     }

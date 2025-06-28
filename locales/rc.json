@@ -1,0 +1,957 @@
+{
+  "landing": {
+    "global": {
+      "tab_message": "Ecodeli | Wesh gros, t'es où ? Reviens, on va livrer des patates !",
+      "header": {
+        "top_notice": "Ici c'est la street, livraison écolo pour les vrais bonhommes, viens gratter un plan !",
+        "menu": {
+          "register": "Inscris-toi, cousin, c'est gratos (ou presque)",
+          "login": "Vas-y, connecte-toi, on va pas t'attendre toute la journée !"
+        }
+      },
+      "footer": {
+        "title": "Livraison écolo, même ta daronne valide !",
+        "cta_button": "Mate les annonces, y'a du lourd",
+        "company_info": {
+          "address": "110 Rue de la Street, Paname City",
+          "postal_code": "75019 Paname, la zone"
+        },
+        "menu": {
+          "private_space": "Coin des vrais (interdit aux boloss)",
+          "business_space": "Coin des boss (costard-cravate only)",
+          "legal_mentions": "Mentions légales, obligé sinon la police débarque",
+          "admin": "Le boss suprême",
+          "track": "Suis ton colis, mais pas trop près"
+        }
+      },
+      "common": {
+        "close": "✕ Ferme ta fenêtre, cousin",
+        "cancel": "Laisse béton, c'est mort",
+        "delete": "Dégage ça, c'est claqué",
+        "modify": "Change le bail, c'est pas ouf",
+        "add": "Rajoute un truc, on s'en fout",
+        "update": "Mets à jour, ou pas",
+        "confirm": "T'es sûr ou t'as peur ?",
+        "save": "Sauvegarde, sinon c'est perdu à jamais",
+        "publish": "Balance ça sur la street",
+        "details": "Les bails chelous",
+        "loading": "Patiente, c'est la fibre d'AliExpress",
+        "error": "Gros bug, appelle un dev (ou pas)",
+        "success": "C'est validé, t'es un champion !",
+        "warning": "Attention, ça sent l'embrouille",
+        "info": "Info, mais on sait pas si c'est vrai",
+        "no_photo_available": "Pas de photo, fallait venir avec ton Kodak",
+        "date": "La date, cousin, pas la meuf",
+        "departure": "Départ, mais reviens hein",
+        "arrival": "Arrivée, enfin si t'y arrives",
+        "step": "Étape, comme à Fort Boyard"
+      },
+      "modals": {
+        "confirm_delete": "T'es sûr de virer ? Après c'est trop tard !",
+        "confirm_delete_message": "T'es chaud pour supprimer ce truc ? On rigole pas !",
+        "confirm_delete_address": "T'es sûr de virer cette adresse, gros ? Ta daronne va pas aimer",
+        "confirm_delete_announcement": "On supprime l'annonce ou tu flippes ?",
+        "confirm_delete_language": "On vire la langue « {lang} » ou tu veux apprendre ?",
+        "confirm_delete_type": "On supprime « {name} » ? RIP",
+        "yes_delete": "Vas-y, dégage tout !"
+      },
+      "forms": {
+        "add_address": "Balance une adresse, même fausse",
+        "modify_address": "Change l'adresse, mets celle de ton ex",
+        "add_language": "Rajoute une langue, même le klingon",
+        "new_announcement": "Nouvelle annonce, fais rêver la street",
+        "new_service_announcement": "Annonce de service, ou de galère",
+        "add_trip": "Ajoute un trajet, même si t'as pas de permis",
+        "add_trip_button": "Ajoute le trajet, on verra après",
+        "add_slot": "Ajoute un créneau, ou pas",
+        "add_element": "Ajoute un truc, n'importe quoi",
+        "add_step": "Ajoute une étape, freestyle",
+        "modify_type": "Change le type, c'est la mode",
+        "new_type": "Nouveau type, cousin, invente un truc",
+        "delete_type": "Vire le type, c'était nul",
+        "shopping_list": "Liste de courses, ramène des chips",
+        "delivery_request": "Demande une livraison, ou un miracle"
+      },
+      "notifications": {
+        "unauthorized_service": "T'as pas le droit, mais tente quand même",
+        "past_slot_error": "Tu peux pas mettre un créneau du passé, Doc Brown",
+        "delete_slot_error": "Impossible de virer ce créneau, c'est la malédiction",
+        "subscription_error": "Touche pas à l'abonnement, c'est sacré",
+        "support_contact": "Pour les papiers, appelle Tata Suzanne",
+        "user_details_error": "Erreur pour choper les infos du gars : c'est la zone",
+        "all_fields_required": "Faut tout remplir, même les cases inutiles",
+        "announcement_created": "Annonce posée, t'es un king !",
+        "announcement_creation_error": "Ça a buggé, c'est la faute à pas de chance",
+        "announcement_deleted": "Annonce virée, c'est la street qui décide",
+        "announcement_cancelled": "Annonce annulée, y'a embrouille",
+        "announcement_deleted_simple": "Annonce supprimée, c'est la vie",
+        "conversation_creation_error": "Erreur pour lancer la discussion, c'est la hess",
+        "payment_session_error": "Problème pour le paiement, va braquer une banque",
+        "location_creation_error": "Erreur pour créer le spot, c'est la banlieue",
+        "creation_error": "Y'a eu un bug à la création, c'est la fatalité",
+        "already_contacted": "T'as déjà parlé sur cette annonce, stalker va !"
+      },
+      "errors": {
+        "400": {
+          "message": "Oula, t'as fait nimp. On t'aide ou tu veux continuer à galérer ?",
+          "action_label": "Retour à la base, cousin",
+          "action_href": "/"
+        },
+        "401": {
+          "message": "Faut être co, sinon t'es un touriste !",
+          "action_label": "Connecte-toi, champion",
+          "action_href": "/login"
+        },
+        "403": {
+          "message": "Cette route, c'est pas pour toi, retourne à Mario Kart",
+          "action_label": "Retour, vite !",
+          "action_href": "/"
+        },
+        "404": {
+          "message": "Page introuvable, comme ton avenir",
+          "action_label": "Retour à la base",
+          "action_href": "/"
+        },
+        "408": {
+          "message": "Trop long, va faire un café",
+          "action_label": "Relance, si t'as le temps",
+          "action_href": "reload"
+        },
+        "409": {
+          "message": "Embouteillage, c'est Paris ici",
+          "action_label": "Retour à la base",
+          "action_href": "/"
+        },
+        "410": {
+          "message": "Ce truc est plus là, c'est dead, comme MSN",
+          "action_label": "Check les annonces",
+          "action_href": "/"
+        },
+        "418": {
+          "message": "Gros, je suis une théière, je livre pas de colis ☕",
+          "action_label": "Retour à la base",
+          "action_href": "/"
+        },
+        "429": {
+          "message": "Doucement, tu vas casser le site !",
+          "action_label": "Patiente, va prendre l'air",
+          "action_href": "reload"
+        },
+        "500": {
+          "message": "Gros bug, appelle un exorciste",
+          "action_label": "Retour à la base",
+          "action_href": "/"
+        },
+        "502": {
+          "message": "Connexion coupée, c'est la 3G de la campagne",
+          "action_label": "Relance, cousin",
+          "action_href": "reload"
+        },
+        "503": {
+          "message": "Pause écolo, le serveur est parti planter des arbres",
+          "action_label": "Retour à la base",
+          "action_href": "/"
+        },
+        "504": {
+          "message": "Temps dépassé, même Flash aurait abandonné",
+          "action_label": "Relance, si t'as la foi",
+          "action_href": "reload"
+        }
+      },
+      "stats": {
+        "in_progress": "Y'a {count, plural, =1 {} other {s}} annonces en cours, la street est active !",
+        "completed": "{count, plural, =1 {} other {s}} annonces terminées, t'es un boss !"
+      }
+    },
+    "index": {
+      "tab_title": "Ecodeli | La base des boss",
+      "hero_section": {
+        "title": "Livraison écolo pour les vrais, la street t'accueille !",
+        "subtitle": "Ici, c'est pas Amazon, c'est la mif qui livre ! Tu veux envoyer un colis ? Demande à un gars du quartier, il va te le déposer en trottinette ou à dos de lama, t'as capté ? En plus, c'est écolo, la planète elle dit merci !",
+        "cta_button": "Mate les annonces, y'a du sale"
+      },
+      "features_section": {
+        "title": "Ensemble, on fait tourner la planète (et les colis) !",
+        "features": {
+          "collaborative_delivery": {
+            "title": "Livraison entre bonhommes",
+            "description": "Ici, pas de livreur en costard, c'est ton voisin qui ramène le colis en claquettes-chaussettes. Moins de pollution, plus de rigolade, et si t'as de la chance, il t'offre un bonbon."
+          },
+          "personal_services": {
+            "title": "Services à la personne, version tonton",
+            "description": "Besoin d'un coup de main ? Y'a toujours un tonton ou une tata pour dépanner, que ce soit pour garder le petit, arroser les plantes ou réparer la box Internet (ou la casser)."
+          },
+          "product_repatriation": {
+            "title": "Achats et rapatriement, la débrouille",
+            "description": "T'as oublié ton chargeur chez mamie ? Pas de souci, un gars du quartier va te le ramener, même s'il doit traverser la France en mobylette !"
+          },
+          "chariot_rental": {
+            "title": "Lâcher de chariot, freestyle",
+            "description": "Besoin d'un chariot ? Ici, on se prête tout, même la poussette du petit frère. Faut juste pas la rendre cassée, sinon ça part en embrouille."
+          }
+        }
+      },
+      "faq_section": {
+        "title": "T'as des questions ? T'inquiète, on gère !",
+        "questions": {
+          "what_is_ecodeli": {
+            "question": "C'est quoi Ecodeli, c'est sérieux ou c'est une blague ?",
+            "answer": "Ecodeli, c'est la plateforme où les vrais s'entraident pour livrer des colis, faire des courses ou juste papoter. C'est la débrouille, la solidarité, et si t'es sage, tu gagnes des points street crédibilité."
+          },
+          "become_delivery_person": {
+            "question": "Comment je deviens livreur, moi aussi ?",
+            "answer": "Facile, cousin ! Tu crées un compte, tu trouves une annonce, tu proposes ton trajet, et si t'es validé, t'as plus qu'à enfiler tes baskets. Pas besoin de CV, juste de la bonne humeur (et un sac à dos)."
+          },
+          "delivery_security": {
+            "question": "C'est safe ou je vais me faire carotte mon colis ?",
+            "answer": "T'inquiète, ici c'est la famille ! Les profils sont checkés, les avis c'est du sérieux, et si jamais y'a un souci, on envoie la daronne régler ça. Assurance dispo pour les colis précieux, mais évite d'envoyer ta PS5, on sait jamais."
+          }
+        }
+      }
+    },
+    "legal_mentions": {
+      "tab_title": "Ecodeli | Mentions légales, obligé par la loi (et par la daronne)",
+      "title": "Mentions légales, sinon on finit au poste",
+      "intro": "Ici, c'est carré : t'as toutes les infos pour pas finir en garde à vue. Lis bien, même si t'as la flemme.",
+      "legal_notice": {
+        "title": "Mentions légales (promis, c'est pas long)",
+        "content": "Ce site, c'est un délire d'étudiants de l'ESGI, pas une multinationale. <br><br><strong>Éditeur :</strong><br>Noms : Johan, Guillaume, Rayan (la team de la street)<br>Adresse : 242 rue du Faubourg Saint-Antoine, 75012 Paname City<br>Email : ecodeli.fr@gmail.com (on répond si t'es poli)<br>Téléphone : laisse tomber, on décroche jamais<br><br><strong>Propriété intellectuelle :</strong><br>Les images, c'est soit à nous, soit à personne. Si t'es pas content, va voir Google Images.<br>Les textes, c'est du fait maison. Si tu copies, au moins cite la mif.<br><br><strong>Hébergement :</strong><br>Nom de l'hébergeur : Guillaume (le boss du serveur)<br>Adresse : Avon, France (viens pas sonner, y'a le chien)"
+      },
+      "privacy_policy": {
+        "title": "Politique de confidentialité (on n'est pas des espions)",
+        "content": "T'inquiète, on garde rien sur toi, même pas ton 06. <br><br>On utilise Matomo, mais en mode ninja : pas de cookies, pas de flicage, juste des stats pour dire qu'on a des visiteurs.<br><br><strong>Technos utilisées :</strong><br><ul><li>Svelte : pour faire joli</li><li>TailwindCSS et DaisyUI : pour les couleurs flashy</li><li>FontShare : pour écrire stylé</li></ul><br>On vend pas tes infos, on fait pas de pub, et si tu veux qu'on t'oublie, envoie un pigeon voyageur."
+      },
+      "terms_of_use": {
+        "title": "CGU (Conditions Générales d'Utilisation, cousin)",
+        "content": "Ici, c'est pour s'amuser, pas pour faire du business. <br><br>Si tu fais n'importe quoi, c'est pour ta pomme. Le site est fictif, donc si ça bug, c'est normal. <br><br>On décline toute responsabilité si tu te fais griller par ta meuf parce que t'as laissé traîner une annonce chelou."
+      },
+      "terms_of_sale": {
+        "title": "CGV (Conditions Générales de Vente, mais y'a rien à vendre)",
+        "content": "Aucune vente ici, poto. <br><br>Tout est fake, même les prix. Si tu paies, c'est que t'as cliqué trop vite. <br><br>Pas de livraison, pas de remboursement, pas de galère."
+      },
+      "disclaimer": {
+        "title": "Avertissement - Projet de la street",
+        "content": "<strong>Ecodeli</strong> c'est un projet d'école, pas une vraie boîte. <br><br>Tout est faux, même les profils musclés. <br><br>Si tu croises un bug, c'est normal, c'est la street qui code. <br><br>Ressemblance avec un vrai service ? C'est le hasard, cousin."
+      }
+    }
+  },
+  "app": {
+    "global": {
+      "menu": {
+        "title": "Mon compte (si t'en as un)",
+        "account_link": "Mon compte",
+        "profile_link": "Mon profil (si t'es photogénique)",
+        "logout_link": "Déconnexion (ou fuite)",
+        "discover_link": "Découvrir (ou stalker)",
+        "discussion_link": "Mes conversations (si t'as des amis)",
+        "announces_link": "Mes annonces (si t'en postes)",
+        "addresses_link": "Mes adresses (même fausses)",
+        "delivery_link": "Mes livraisons (si t'es livreur)",
+        "schedule_link": "Mon planning (si t'es organisé)",
+        "service_link": "Mes services (si t'es utile)",
+        "request_link": "Mes demandes (si t'as des besoins)"
+      }
+    },
+    "tutorial": {
+      "welcome": "Bienvenue sur ton espace Ecodeli, champion !",
+      "welcome_content": "Suis ce guide, même si t'as la flemme. Ça va vite, promis.",
+      "navigation_menu": "Menu de Navigation (pas celui du MacDo)",
+      "navigation_content": "Utilise ce menu pour naviguer, comme un GPS mais en plus simple.",
+      "discover_announcements": "Découvrir des annonces (comme Tinder mais pour les colis)",
+      "discover_content": "La section <b>Découvrir</b> te permet de trouver des annonces, comme un chasseur de trésors.",
+      "manage_announcements": "Gérer tes annonces (comme un chef d'orchestre)",
+      "manage_content": "Dans <b>Mes annonces</b>, tu peux créer et gérer tes annonces, comme un artiste.",
+      "instant_messaging": "Messagerie instantanée (pas le pigeon voyageur)",
+      "messaging_content": "La section <b>Messages</b> contient tes conversations, même les chelous.",
+      "account_management": "Gestion du compte (comme un comptable mais en plus cool)",
+      "account_content": "Dans <b>Mon compte</b>, tu peux gérer tes infos, ton portefeuille et tes abonnements.",
+      "ready": "T'es prêt, cousin !",
+      "ready_content": "Tu peux maintenant explorer la plateforme. Si tu te perds, c'est normal."
+    },
+    "clients": {
+      "account": {
+        "tab_title": "Ecodeli | Mon compte client",
+        "my_account": {
+          "title": "Mon compte client",
+          "my_sub": "Mon abonnement",
+          "sub_status_premium": "Premium",
+          "sub_status_basic": "Basic",
+          "sub_status_pro": "Pro",
+          "manage": "Gérer",
+          "manage_global_account": "Gérer mon compte global",
+          "manage_addresses": "Gérer mes adresses"
+        },
+        "my_electronic_wallet": {
+          "title": "Mon portefeuille électronique",
+          "amount_available": "Montant dispo",
+          "amount_pending": "Montant en attente",
+          "to_validate": "Valider",
+          "iban": "Mon IBAN (*****)",
+          "transfer_bank_account": "Transférer vers mon compte bancaire",
+          "available": "Dispo",
+          "pending": "En attente"
+        },
+        "chat": {
+          "tab_title": "Ecodeli | Messagerie client"
+        }
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes adresses",
+        "title": "Mes adresses",
+        "name": "Nom",
+        "address": "Adresse",
+        "postal_code": "Code postal",
+        "city": "Ville",
+        "country": "Pays",
+        "modify": "Modifier",
+        "delete_address": "Vire l'adresse",
+        "add_address": "Balance une adresse"
+      },
+      "ads": {
+        "tab_title": "Ecodeli | Mes annonces",
+        "title": "Mes annonces",
+        "modify": "Modifier",
+        "cancel": "Annuler",
+        "details": "Les bails",
+        "add_new_ads": "Balance une nouvelle annonce"
+      },
+      "discover": {
+        "tab_title": "Ecodeli | Découvrir",
+        "all_services": "Tous les services",
+        "taxi": "Taxi",
+        "gardening": "Jardinage",
+        "childcare": "Garde d'enfants",
+        "professional_service_provider": "Prestataire Pro",
+        "contact": "Contacter",
+        "details": "Les bails",
+        "city": "Ville"
+      },
+      "new-ads": {
+        "tab_title": "Ecodeli | Nouvelle annonce",
+        "main_title": "Nouvelle annonce",
+        "delivery_announcement": "Annonce de livraison",
+        "title": "Titre",
+        "address": "Adresse",
+        "picture": "Photo",
+        "add_picture": "Ajouter",
+        "desired_delivery_date": "Date de livraison souhaitée",
+        "package_size": "Taille du colis",
+        "total_price_offer": "Prix total proposé",
+        "departure": "Départ",
+        "add_a_step": "Ajoute une étape",
+        "cancel": "Annuler",
+        "arrival": "Arrivée"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Messagerie client"
+      }
+    },
+    "delivery": {
+      "account": {
+        "tab_title": "Ecodeli | Mon compte livreur"
+      },
+      "my_electronic_wallet": {
+        "tab_title": "Ecodeli | Mon portefeuille électronique",
+        "title": "Mon portefeuille électronique",
+        "amount_available": "Montant dispo",
+        "amount_pending": "Montant en attente",
+        "to_validate": "Valider",
+        "iban": "Mon IBAN",
+        "transfer_bank_account": "Transférer vers mon compte bancaire"
+      },
+      "notification": {
+        "delivery_notification": "Notifications de concordance de livraison par mail",
+        "confirmation": "Confirmation"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes adresses",
+        "title": "Mes adresses",
+        "name": "Nom",
+        "address": "Adresse",
+        "postal_code": "Code postal",
+        "city": "Ville",
+        "country": "Pays",
+        "modify": "Modifier",
+        "delete_address": "Vire l'adresse",
+        "add_address": "Balance une adresse"
+      },
+      "announce": {
+        "all_services": "Tous les services",
+        "transport": "Transport",
+        "delivery": "Livraison",
+        "city": "Ville",
+        "individual": "Particulier",
+        "contact": "Contacter",
+        "details": "Les bails"
+      },
+      "my_planned_trips": {
+        "tab_title": "Ecodeli | Mes trajets prévus",
+        "title": "Mes trajets prévus",
+        "departure": "Ville de départ",
+        "arrival": "Ville d'arrivée",
+        "date": "Jour",
+        "modify": "Modifier",
+        "cancel": "Annuler"
+      }
+    },
+    "providers": {
+      "tab_title": "Ecodeli | Mon profil",
+      "account": {
+        "title": "Mon compte commerçant",
+        "manage_my_documents": "Gérer mes papiers",
+        "manage_global_account": "Gérer mon compte global",
+        "manage_addresses": "Gérer mes adresses",
+        "manage_my_profil": "Gérer mon profil",
+        "tab_title": "Ecodeli | Mon compte prestataire"
+      },
+      "income": {
+        "title": "Mes revenus du mois",
+        "amount_raised_month": "Montant récolté ce mois-ci",
+        "iban": "Mon IBAN",
+        "valid": "Valider"
+      },
+      "service": {
+        "tab_title": "Ecodeli | Mes services accrédités",
+        "title": "Mes services accrédités",
+        "transport": "Transport de personnes",
+        "gardening": "Jardinage",
+        "childcare": "Garde d'enfants",
+        "request": "Tu peux contacter le service client pour toute demande",
+        "customer_service": "Contacter le service client"
+      },
+      "invoice": {
+        "title": "Mes Factures"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes adresses",
+        "title": "Mes adresses",
+        "name": "Nom",
+        "address": "Adresse",
+        "postal_code": "Code postal",
+        "city": "Ville",
+        "country": "Pays",
+        "modify": "Modifier",
+        "delete_address": "Vire l'adresse",
+        "add_address": "Balance une adresse"
+      },
+      "my_announces": {
+        "title": "Mes annonces",
+        "modify": "Modifier",
+        "cancel": "Annuler",
+        "details": "Les bails",
+        "add_new_ads": "Balance une nouvelle annonce"
+      },
+      "calendar": {
+        "tab_title": "Ecodeli | Mon planning",
+        "add": "Ajouter",
+        "time": "Heure",
+        "title": "Titre",
+        "cancel": "Annuler",
+        "day": "Jour",
+        "place": "Lieu (optionnel)",
+        "special": "Spécial",
+        "title_meeting": "Nouveau rendez-vous",
+        "monday": "Lundi",
+        "tuesday": "Mardi",
+        "wednesday": "Mercredi",
+        "thursday": "Jeudi",
+        "friday": "Vendredi",
+        "saturday": "Samedi",
+        "sunday": "Dimanche",
+        "week": "Semaine"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Messagerie prestataire"
+      }
+    },
+    "traders": {
+      "requests": {
+        "tab_title": "Ecodeli | Annonces Traders",
+        "title": "Annonces Traders",
+        "new_announcement": "Nouvelle annonce",
+        "no_photo": "Pas de photo",
+        "cart_release": "Lâcher de chariot",
+        "client": "Client",
+        "departure": "Départ",
+        "arrival": "Arrivée",
+        "delete": "Vire",
+        "modal": {
+          "title": "Nouvelle annonce",
+          "title_label": "Titre",
+          "description_label": "Description",
+          "package_size_label": "Taille du colis",
+          "price_label": "Prix (€)",
+          "price_advice": "Conseil : 1€ du km",
+          "client_email_label": "Email client",
+          "departure_location_label": "Lieu de départ",
+          "arrival_location_label": "Lieu d'arrivée",
+          "images_label": "Images",
+          "choose": "Choisir",
+          "cancel": "Annuler",
+          "create": "Créer"
+        },
+        "delete_modal": {
+          "title": "Vire l'annonce ?",
+          "cancel": "Annuler",
+          "delete": "Vire"
+        },
+        "notifications": {
+          "all_fields_required": "Faut remplir tous les champs obligatoires",
+          "invalid_email": "Email pas bon",
+          "user_not_authenticated": "Utilisateur pas co",
+          "announcement_created": "Annonce trader créée",
+          "announcement_deleted": "Annonce virée"
+        },
+        "status": {
+          "pending": "En attente",
+          "in_progress": "En cours",
+          "completed": "Terminée",
+          "cancelled": "Annulée",
+          "payment_pending": "En attente de paiement",
+          "paid": "Payé",
+          "failed": "Échec"
+        }
+      },
+      "account": {
+        "tab_title": "Ecodeli | Mon compte trader"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes adresses trader"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Messagerie trader"
+      }
+    },
+    "chat": {
+      "tab_title": "Ecodeli | Messagerie client"
+    },
+    "delivery-persons": {
+      "discover": {
+        "tab_title": "Ecodeli | Découvrir - Livreur",
+        "title": "Découvrir des annonces",
+        "all_services": "Tous les services",
+        "delivery": "Livraison",
+        "shopping": "Courses",
+        "contact": "Contacter",
+        "details": "Les bails",
+        "city": "Ville",
+        "notifications": {
+          "conversation_creation_error": "Erreur pour lancer la discussion"
+        }
+      },
+      "account": {
+        "tab_title": "Ecodeli | Mon compte livreur"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes adresses livreur"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Messagerie livreur"
+      },
+      "schedule": {
+        "tab_title": "Ecodeli | Mon planning livreur"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Connecte-toi, cousin (si t'as un compte)",
+      "tab_title": "Connexion (pas à la télé)",
+      "email_placeholder": "Ton email (pas celui de ta meuf)",
+      "password_placeholder": "Ton mot de passe (pas 123456)",
+      "button": "Connexion (si t'es sûr)",
+      "forgot_password_link": "Tu l'as oublié ton mot de passe ? (comme d'hab)",
+      "register_link": "Viens t'inscrire (si t'as pas de compte)"
+    },
+    "register": {
+      "title": "Viens t'inscrire, frère (si t'es nouveau)",
+      "tab_title": "Inscription (pas à la gym)",
+      "first_name_placeholder": "Ton prénom (pas celui de ton chien)",
+      "last_name_placeholder": "Ton nom (pas celui de ta mère)",
+      "email_placeholder": "Ton email (pas celui de ton boss)",
+      "password_placeholder": "Ton mot de passe (pas 123456)",
+      "button": "Inscription (si t'es sûr)",
+      "login_link": "Connecte-toi (si t'as déjà un compte)"
+    },
+    "forgot_password": {
+      "title": "Mot de passe oublié (comme d'hab)",
+      "tab_title": "Mot de passe oublié (pas grave)",
+      "email_placeholder": "Ton email (pas celui de ta meuf)",
+      "button": "Envoie un email (si t'en as un)",
+      "login_link": "Retour à la connexion (si t'as retrouvé ton mot de passe)"
+    },
+    "reset_password": {
+      "tab_title": "Remet ton mot de passe (pas celui de ta meuf)"
+    },
+    "space": {
+      "title": "Salut {name} ! (si c'est bien toi)",
+      "tab_title": "Espace perso (pas celui de ton voisin)",
+      "options": {
+        "client_link": "Espace client (si t'en es un)",
+        "delivery_link": "Espace livreur (si t'en es un)",
+        "merchant_link": "Espace commerçant (si t'en es un)",
+        "service_provider_link": "Espace prestataire (si t'en es un)",
+        "account_link": "Mon compte (si t'en as un)",
+        "admin_link": "Le boss (si t'en es un)"
+      },
+      "logout": "Déconnexion (ou fuite)"
+    },
+    "space_validation": {
+      "clients": {
+        "title": "Deviens client (si t'en veux un)",
+        "subtitle": "Mate le tuto pour voir comment ça marche Ecodeli ! (si t'as le temps)",
+        "button": "Deviens client (si t'es sûr)",
+        "rejected": "Ta demande précédente a été refusée, faut refaire une demande. (comme d'hab)",
+        "not_found": "T'as pas de profil client. (pas grave)"
+      },
+      "delivery-persons": {
+        "title": "Deviens livreur (si t'en veux un)",
+        "subtitle": "Balance ton dossier pour devenir livreur Ecodeli ! (si t'as des papiers)",
+        "button": "Envoie la demande (si t'es sûr)",
+        "rejected": "Ta demande précédente a été refusée, faut refaire une demande. (comme d'hab)",
+        "not_found": "T'as pas de profil livreur. (pas grave)",
+        "form": {
+          "1": "IBAN (si t'en as un)",
+          "2": "Carte d'identité (PDF, JPG, PNG) (si t'en as une)",
+          "3": "Permis de conduire (PDF, JPG, PNG) (si t'en as un)"
+        }
+      },
+      "traders": {
+        "title": "Deviens commerçant (si t'en veux un)",
+        "subtitle": "Balance ton dossier pour devenir commerçant sur Ecodeli ! (si t'as des papiers)",
+        "button": "Envoie la demande (si t'es sûr)",
+        "rejected": "Ta demande précédente a été refusée, faut refaire une demande. (comme d'hab)",
+        "not_found": "T'as pas de profil commerçant. (pas grave)",
+        "form": {
+          "1": "IBAN (si t'en as un)",
+          "2": "Carte d'identité du boss (PDF, JPG, PNG) (si t'en as une)",
+          "3": "Extrait de KBIS (PDF, JPG, PNG) (si t'en as un)"
+        }
+      },
+      "providers": {
+        "title": "Deviens prestataire (si t'en veux un)",
+        "subtitle": "Balance ton dossier pour devenir prestataire sur Ecodeli ! (si t'as des papiers)",
+        "button": "Envoie la demande (si t'es sûr)",
+        "rejected": "Ta demande précédente a été refusée, faut refaire une demande. (comme d'hab)",
+        "not_found": "T'as pas de profil prestataire. (pas grave)",
+        "form": {
+          "1": "IBAN (si t'en as un)",
+          "2": "Carte d'identité du boss (PDF, JPG, PNG) (si t'en as une)",
+          "3": "Extrait de KBIS (PDF, JPG, PNG) (si t'en as un)",
+          "4": "Certificats de prestation (PDF, JPG, PNG) (si t'en as)"
+        }
+      },
+      "pending": {
+        "title": "Ta demande est bien reçue ! (si c'est vrai)",
+        "subtitle": "Nos équipes bossent sur ta demande, t'auras une réponse dans 72h. (ou pas)",
+        "back_link": "Retour (si t'as envie)"
+      }
+    },
+    "account": {
+      "title": "Mon compte (si t'en as un)",
+      "tab_title": "Mon compte (pas celui de ta meuf)",
+      "profile": {
+        "first_name_placeholder": "Ton prénom (pas celui de ton chien)",
+        "last_name_placeholder": "Ton nom (pas celui de ta mère)",
+        "email_placeholder": "Ton email (pas celui de ton boss)",
+        "save_button": "Sauvegarde (si t'es sûr)"
+      },
+      "password": {
+        "old_password_placeholder": "Ancien mot de passe (pas celui de ta meuf)",
+        "new_password_placeholder": "Nouveau mot de passe (pas 123456)",
+        "save_button": "Sauvegarde (si t'es sûr)"
+      },
+      "actions": {
+        "delete_account": "Vire mon compte (si t'es sûr)",
+        "personal_info": "Mes infos perso (si t'en as)",
+        "return_to_app_link": "Retour à l'app (si t'en as envie)"
+      }
+    },
+    "admin_login": {
+      "title": "Panel Boss (si t'en es un)",
+      "email_placeholder": "Ton email (pas celui de ta meuf)",
+      "password_placeholder": "Ton mot de passe (pas 123456)",
+      "button": "Connexion (si t'es sûr)",
+      "forgot_password_link": "Tu l'as oublié ton mot de passe ? (comme d'hab)",
+      "login_link": "Retour à la page de connexion (si t'as changé d'avis)"
+    }
+  },
+  "admin": {
+    "global": {
+      "tab_title": "Ecodeli | Gestion des langues (si t'en parles)",
+      "users_title": "Utilisateurs (les vrais)",
+      "addresses_title": "Adresses (même fausses)",
+      "langs_title": "Langues (même le klingon)",
+      "ads_title": "Annonces (les bonnes)",
+      "wallets_title": "Portefeuilles (pas en cuir)",
+      "invoices_title": "Factures (si t'en as)",
+      "payments_title": "Paiements (si t'as des sous)",
+      "professionals_title": "Professionels (les boss)",
+      "ratings_title": "Avis des prestataires (les vrais)",
+      "accounting_group": "Comptabilité (si t'aimes les chiffres)",
+      "content_group": "Contenus (les trucs)",
+      "users_group": "Utilisateurs (les gars)"
+    },
+    "ads": {
+      "tab_title": "Ecodeli | Gestion des annonces (si t'en as)",
+      "ads_title": "Annonces (les bonnes)"
+    },
+    "users": {
+      "tab_title": "Ecodeli | Gestion des utilisateurs (si t'en es un)",
+      "users_title": "Utilisateurs (les vrais)",
+      "providers_title": "Prestataires (les boss)",
+      "delivery_persons_title": "Livreurs (les rapides)",
+      "traders_title": "Commerçants (les riches)",
+      "clients_title": "Clients (les pauvres)",
+      "profiles_title": "Profiles (si t'en as)",
+      "search_bar": "Cherche... (si t'as envie)",
+      "user_name": "Nom (pas celui de ton chien)",
+      "user_first_name": "Prénom (pas celui de ta mère)",
+      "user_email": "Email (pas celui de ta meuf)",
+      "status": "Statut (si t'en as un)",
+      "creation_date": "Date de création (si t'en as une)",
+      "actions": "Actions (si t'en fais)",
+      "modify": "Modifier (ou pas)",
+      "cancel": "Vire (si t'es sûr)",
+      "next": "Suivant (si t'as envie)",
+      "previous": "Précédent (si t'as envie)",
+      "page": "Page (si t'en as une)",
+      "card_id": "Carte d'identité (si t'en as une)",
+      "driving_license": "Permis de conduire (si t'en as un)",
+      "RIB": "RIB (si t'en as un)",
+      "create_it": "Crée le (si t'es créatif)",
+      "proof_of_activity": "Justificatif d'activité (si t'en as)",
+      "certification_document": "Document de certification (si t'en as)",
+      "reduction_percent": "Réduction (si t'en as)",
+      "user_modify": "Modifie l'utilisateur (si t'en as envie)",
+      "active": "Actif (si t'es actif)",
+      "verify": "Vérifié (si c'est vrai)",
+      "administrator": "Administrateur (le boss)",
+      "close_button": "Ferme (si t'en as envie)",
+      "record_button:": "Sauvegarde (si t'es sûr)",
+      "user_delete": "Vire l'utilisateur (si t'es sûr)",
+      "delete_confirmation": "T'es sûr de virer cet utilisateur ? (on rigole pas)",
+      "cancel_delete": "Annule (si t'as changé d'avis)",
+      "client_delete": "Vire le client (si t'es sûr)",
+      "provider_delete": "Vire le prestataire (si t'es sûr)",
+      "trader_delete": "Vire le commerçant (si t'es sûr)",
+      "delivery_delete": "Vire le livreur (si t'es sûr)",
+      "supplier_delete": "Vire le fournisseur (si t'es sûr)",
+      "delivery_status_modify": "Modifie le statut du livreur (si t'en as envie)",
+      "provider_status_modify": "Modifie le statut du prestataire (si t'en as envie)",
+      "trader_status_modify": "Modifie le statut du commerçant (si t'en as envie)",
+      "client_status_modify": "Modifie le statut du client (si t'en as envie)",
+      "to_validate": "Valide (si t'es sûr)",
+      "pending": "En attente (comme un client)",
+      "rejected": "Refusé (comme un CV)",
+      "none_validated": "Pas validé (comme un ticket de caisse)",
+      "pages": "Page (si t'en as une)",
+      "on": "sur (pas sous)",
+      "subscription": "Abonnement (si t'en as un)",
+      "history": "Historique (si t'en as un)",
+      "payment_history_title": "Historique des paiements (si t'en as)"
+    },
+    "addresses": {
+      "tab_title": "Gestion des adresses (même fausses)"
+    },
+    "langs": {
+      "tab_title": "Gestion des langues (même le klingon)"
+    },
+    "pro": {
+      "tab_title": "Gestion des professionnels (les boss)"
+    },
+    "ad-payments": {
+      "tab_title": "Paiements (si t'as des sous)"
+    },
+    "wallets": {
+      "tab_title": "Ecodeli | Gestion des portefeuilles (pas en cuir)",
+      "wallets_title": "Portefeuilles électroniques (pas en cuir)",
+      "search_bar": "Cherche... (si t'as envie)",
+      "user_name": "Utilisateur (si t'en es un)",
+      "user_email": "Email (pas celui de ta meuf)",
+      "amount_available": "Montant dispo (si t'en as)",
+      "amount_pending": "Montant en attente (comme un colis)",
+      "creation_date": "Date de création (si t'en as une)",
+      "last_update": "Dernière modif (si t'en as fait)",
+      "actions": "Actions (si t'en fais)",
+      "modify": "Modifie (si t'en as envie)",
+      "cancel": "Vire (si t'es sûr)",
+      "close_button": "Ferme (si t'en as envie)",
+      "record_button": "Sauvegarde (si t'es sûr)",
+      "wallet_modify": "Modifie le portefeuille (si t'en as envie)",
+      "wallet_delete": "Vire le portefeuille (si t'es sûr)",
+      "cancel_delete": "Annule (si t'as changé d'avis)",
+      "delete_confirmation": "T'es sûr de virer le portefeuille de (on rigole pas)"
+    },
+    "access_denied": {
+      "title": "Accès refusé (comme à la boîte)",
+      "message": "T'as pas les permissions pour accéder à cette section. Seuls les admins peuvent voir le panneau d'administration. (c'est la vie)",
+      "back_to_auth": "Retour à la page de connexion (si t'en as envie)"
+    },
+    "invoices": {
+      "tab_title": "Ecodeli | Factures (admin) (si t'en as)"
+    },
+    "ads-management": {
+      "tab_title": "Gestion des annonces (si t'en as)"
+    },
+    "ratings": {
+      "tab_title": "Ecodeli | Gestion des avis des prestataires (les vrais)",
+      "title": "Gestion des avis des prestataires (les vrais)",
+      "subtitle": "Check et gère les évaluations des prestataires (si t'en as envie)",
+      "provider": "Prestataire (si t'en es un)",
+      "average_rating": "Note moyenne (si t'en as une)",
+      "number_ratings": "Nombre d'avis (si t'en as)",
+      "actions": "Actions (si t'en fais)",
+      "view_ratings": "Mate les avis (si t'en as envie)",
+      "hide_ratings": "Cache (si t'en as envie)",
+      "rating_details": "Détail des avis (si t'en as envie)",
+      "no_comment": "Pas de commentaire (si t'en as pas)",
+      "rated_by": "Évalué par (si t'en as envie)",
+      "service": "Service (si t'en as un)",
+      "legend": "Légende (si t'en as une)",
+      "legend_low_rating": "Les prestataires avec une note moyenne en dessous de 2 étoiles sont en rouge (comme un feu rouge)",
+      "legend_view_details": "Clique sur \"Mate les avis\" pour voir le détail des évaluations (si t'en as envie)",
+      "no_ratings": "Pas d'avis trouvé (si t'en as pas)"
+    }
+  },
+  "track": {
+    "tab_title": "Ecodeli | Suis ton colis (mais pas trop près)",
+    "form": {
+      "title": "Suis ton colis (comme un stalker)",
+      "email_placeholder": "Ton email (pas celui de ta meuf)",
+      "ref_placeholder": "Référence de la commande (si t'en as une)",
+      "button": "Mate ça (si t'as envie)"
+    },
+    "details": {
+      "title": "Les bails de la commande (si t'en as une)",
+      "status_ad": "Statut de l'annonce (si t'en as une)",
+      "status_conversation": "Statut de la conversation (si t'en as une)",
+      "status_payment": "Statut du paiement (si t'en as un)",
+      "validate_button": "Valide la réception (si t'es sûr)",
+      "validated": "Commande validée et terminée, t'es un boss !"
+    },
+    "success": {
+      "tracking_fetched": "Suivi récupéré, c'est carré. (ou pas)",
+      "order_validated": "Commande validée, t'es un boss !"
+    },
+    "error": {
+      "tracking_failed": "Erreur pour le suivi. Relance. (ou pas)",
+      "validation_failed": "Erreur pour la validation. (c'est la vie)"
+    }
+  },
+  "rate": {
+    "tab_title": "Ecodeli | Note ton prestataire (si t'en as un)",
+    "title": "Note ton prestataire (si t'en as un)",
+    "subtitle": "Comment ça s'est passé avec {providerName} ? (dis-nous tout)",
+    "stars": {
+      "1": "Très déçu (comme un supporter de foot)",
+      "2": "Déçu (comme un client de la SNCF)", 
+      "3": "Moyen (comme un élève de 3ème)",
+      "4": "Satisfait (comme un client de MacDo)",
+      "5": "Très satisfait (comme un gagnant du loto)"
+    },
+    "comment": {
+      "label": "Commentaire (optionnel, mais on veut tout savoir)",
+      "placeholder": "Balance ton expérience... (même les détails)"
+    },
+    "submit": {
+      "button": "Envoie ma note (si t'es sûr)",
+      "loading": "Envoi... (patiente, c'est pas la fibre)"
+    },
+    "errors": {
+      "missing_token": "Token manquant (comme ton permis)",
+      "already_submitted": "Cette évaluation est déjà envoyée (comme un SMS)",
+      "invalid_token": "Token pas bon ou expiré (comme ton abonnement)",
+      "submission_error": "Erreur pour envoyer ton évaluation (c'est la vie)"
+    },
+    "success": {
+      "title": "Merci pour ton avis, cousin ! (on t'aime)",
+      "message": "Ton évaluation est enregistrée. Ça va aider d'autres gars à choisir leurs prestataires. (ou pas)",
+      "redirect_message": "Tu vas être redirigé vers la base dans quelques secondes... (ou pas)",
+      "back_button": "Retour à la base (si t'en as envie)",
+      "tab_title": "Ecodeli | Merci pour ton avis ! (on t'aime)"
+    }
+  },
+  "api_responses": {
+    "auth": {
+      "account": {
+        "user_already_exists": "Un gars avec cet email existe déjà (comme ton ex)",
+        "account_updated": "Compte modifié, t'es un boss !",
+        "password_updated": "Mot de passe modifié, c'est carré. (ou pas)",
+        "incorrect_new_password": "Le mot de passe doit faire au moins 8 caractères, avec une minuscule, une majuscule et un chiffre. (comme un CV)",
+        "incorrect_old_password": "Ancien mot de passe pas bon. (comme ton ex)"
+      },
+      "login": {
+        "login_successful": "T'es connecté, t'es un boss !",
+        "invalid_credentials": "Identifiants pas bons (comme ton CV)",
+        "account_inactive": "Ton compte est inactif. Contacte le support. (ou pas)"
+      },
+      "register": {
+        "register_successful": "T'es inscrit, t'es un boss !",
+        "user_already_exists": "Un gars avec cet email existe déjà (comme ton ex)",
+        "bad_request": "Faut tout remplir. Le mot de passe doit faire au moins 8 caractères, avec une minuscule, une majuscule et un chiffre. (comme un CV)"
+      },
+      "forgot_password": {
+        "email_sent": "L'email de réinitialisation est envoyé, t'es un boss !",
+        "account_not_found": "Compte introuvable. (comme ton avenir)"
+      },
+      "reset_password": {
+        "password_updated": "Mot de passe modifié, t'es un boss !",
+        "invalid_token": "Token pas bon. Relance la procédure de réinitialisation. (ou pas)"
+      },
+      "global": {
+        "already_logged_in": "T'es déjà connecté. (comme à la télé)",
+        "logged_out": "T'es déconnecté, t'es un boss !",
+        "session_expired": "Ta session a expiré. Reconnecte-toi. (ou pas)",
+        "unknown_error": "Une erreur inconnue. Relance plus tard. (ou pas)",
+        "fields_missing_invalid": "Champs manquants ou pas bons. (comme ton CV)",
+        "user_not_found": "Utilisateur introuvable. (comme ton avenir)"
+      }
+    }
+  },
+  "stripe": {
+    "trader_discount_applied": "Réduction de {percent}% appliquée grâce à ton statut de partenaire, t'es un boss !",
+    "trader_discount_info": "Réduction trader {percent}% (si t'en as)"
+  },
+  "components": {
+    "onboarding": {
+      "step": "Étape (si t'en as une)",
+      "of": "sur (pas sous)",
+      "previous": "Précédent (si t'en as envie)",
+      "next": "Suivant (si t'en as envie)",
+      "finish": "Termine (si t'en as envie)",
+      "skip_tutorial": "Passe le tuto (si t'as la flemme)"
+    },
+    "co2_calculator": {
+      "title": "Calcule tes économies CO₂ (si t'en fais)",
+      "description": "Calcule combien de CO₂ tu économises avec Ecodeli ! (si t'en fais)",
+      "departure_address": "Adresse de départ (pas celle de ton ex)",
+      "arrival_address": "Adresse d'arrivée (pas celle de ton ex)",
+      "choose_address": "Choisis une adresse (même fausse)",
+      "calculate": "Calcule (si t'en as envie)",
+      "calculating": "Calcul de ta bonne action en cours... (patiente)",
+      "savings_achieved": "🌱 Économies réalisées (si t'en fais)",
+      "per_kilometer": "Par kilomètre (si t'en fais)",
+      "total_journey": "Total du trajet (si t'en as un)",
+      "journey_distance": "Trajet de (si t'en as un)",
+      "kilometers": "km (si t'en fais)",
+      "thank_planet": "Merci pour la planète ! 🌍 (ou pas)",
+      "open_calculator": "Ouvre le calculateur d'économies CO₂ (si t'en as envie)",
+      "notifications": {
+        "select_addresses": "Choisis une adresse de départ et une d'arrivée. (même fausses)",
+        "different_addresses": "Les adresses de départ et d'arrivée doivent être différentes. (comme ton ex)",
+        "calculation_error": "Y'a eu une erreur pour le calcul. (c'est la vie)",
+        "load_addresses_error": "Impossible de charger les adresses de l'utilisateur. (c'est la vie)"
+      }
+    },
+    "wallet": {
+      "iban_sent_success": "IBAN envoyé, t'es un boss !",
+      "iban_validation_error": "Erreur pour valider l'IBAN (c'est la vie)",
+      "no_amount_available": "Pas de montant dispo à transférer. (comme ton compte)",
+      "transfer_success": "Montant transféré, t'es un boss !",
+      "transfer_error": "Erreur pour le transfert (c'est la vie)",
+      "unknown_profile": "Type de profil inconnu : (comme ton ex)",
+      "load_wallet_error": "Erreur pour charger le wallet (c'est la vie)"
+    }
+  }
+} 

@@ -4,6 +4,7 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  Min,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -40,5 +41,6 @@ export class CreateLocationDto {
   @IsOptional()
   @IsNumber()
   @Type(() => Number)
+  @Min(0)
   price?: number;
 }
