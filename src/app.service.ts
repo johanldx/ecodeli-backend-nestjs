@@ -23,16 +23,13 @@ export class AppService implements OnModuleInit {
 
   private async initializeDefaultAdmin() {
     try {
-      // Vérifier s'il y a des utilisateurs dans la base de données
       const userCount = await this.userRepository.count();
       
       if (userCount === 0) {
         console.log('Aucun utilisateur trouvé dans la base de données. Création du compte admin par défaut...');
         
-        // Générer un mot de passe complexe
         const password = this.generateComplexPassword();
         
-        // Créer le compte admin
         const adminUser = this.userRepository.create({
           first_name: 'Admin',
           last_name: 'EcoDeli',
@@ -117,6 +114,6 @@ export class AppService implements OnModuleInit {
   }
 
   getHello(): string {
-    return 'Hello World!';
+    return 'API EcoDeli';
   }
 }
