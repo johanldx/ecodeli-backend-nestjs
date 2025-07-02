@@ -36,6 +36,11 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 export class ReleaseCartAdsController {
   constructor(private readonly releaseCartAdsService: ReleaseCartAdsService) {}
 
+  @Get('mine')
+  async findMine(@CurrentUser() user: User) {
+    return this.releaseCartAdsService.findByUser(user.id);
+  }
+
   @Post()
   @UseInterceptors(FilesInterceptor('images'))
   @ApiConsumes('multipart/form-data')

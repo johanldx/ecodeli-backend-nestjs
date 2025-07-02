@@ -159,8 +159,8 @@
         }
       },
       "stats": {
-        "in_progress": "Y'a {count, plural, =1 {} other {s}} annonces en cours, la street est active !",
-        "completed": "{count, plural, =1 {} other {s}} annonces terminées, t'es un boss !"
+        "in_progress": "Y'a {count} annonces en cours, la street est active !",
+        "completed": "Y'a {count} annonces terminées, t'es un boss !"
       }
     },
     "index": {
@@ -293,6 +293,9 @@
         },
         "chat": {
           "tab_title": "Ecodeli | Messagerie client"
+        },
+        "subscription": {
+          "tab_title": "Ecodeli | Mon abonnement client (si t'en as un)"
         }
       },
       "addresses": {
@@ -594,7 +597,8 @@
         "account_link": "Mon compte (si t'en as un)",
         "admin_link": "Le boss (si t'en es un)"
       },
-      "logout": "Déconnexion (ou fuite)"
+      "logout": "Déconnexion (ou fuite)",
+      "support_rgpd": "Pour supprimer votre compte ou récupérer vos informations personnelles stockées chez EcoDeli, veuillez contacter le support via l'adresse <a href=\"mailto:hello@ecodeli.fr\" class=\"underline\">hello@ecodeli.fr</a>."
     },
     "space_validation": {
       "clients": {
@@ -665,7 +669,8 @@
         "delete_account": "Vire mon compte (si t'es sûr)",
         "personal_info": "Mes infos perso (si t'en as)",
         "return_to_app_link": "Retour à l'app (si t'en as envie)"
-      }
+      },
+      "support_rgpd": "Pour supprimer votre compte ou récupérer vos informations personnelles stockées chez EcoDeli, veuillez contacter le support via l'adresse <a href=\"mailto:hello@ecodeli.fr\" class=\"underline\">hello@ecodeli.fr</a>."
     },
     "admin_login": {
       "title": "Panel Boss (si t'en es un)",

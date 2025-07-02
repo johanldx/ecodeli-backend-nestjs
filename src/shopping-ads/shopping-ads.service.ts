@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ShoppingAd } from './entities/shopping-ads.entity';
@@ -62,6 +62,9 @@ export class ShoppingAdsService {
   }
 
   async findOne(id: number): Promise<ShoppingAd> {
+    if (!id || isNaN(Number(id))) {
+      throw new BadRequestException('ID invalide');
+    }
     const shoppingAd = await this.shoppingAdRepository.findOne({
       where: { id },
     });
@@ -83,7 +86,7 @@ export class ShoppingAdsService {
 
     // Vérifier que l'utilisateur est bien le propriétaire (optionnel mais recommandé)
     if (ad.posted_by !== userId) {
-      throw new Error('Vous n’êtes pas autorisé à modifier cette annonce');
+      throw new Error('Vous n\'êtes pas autorisé à modifier cette annonce');
     }
 
     // Relations à mettre à jour si modifiées
@@ -143,5 +146,9 @@ export class ShoppingAdsService {
     }
 
     await this.shoppingAdRepository.delete(id);
+  }
+
+  async findByUser(userId: number) {
+    return this.shoppingAdRepository.find({ where: { posted_by: userId } });
   }
 }

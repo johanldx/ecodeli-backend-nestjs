@@ -37,7 +37,7 @@ export class ReleaseCartAdsService {
     });
 
     if (!dep || !arr) {
-      throw new NotFoundException('Lieu de départ ou d’arrivée introuvable');
+      throw new NotFoundException('Lieu de départ ou d\'arrivée introuvable');
     }
 
     const imageUrls = await Promise.all(
@@ -106,5 +106,9 @@ export class ReleaseCartAdsService {
     const releaseCartAd = await this.findOne(id, user);
 
     await this.releaseCartAdRepo.delete(releaseCartAd.id);
+  }
+
+  async findByUser(userId: number) {
+    return this.releaseCartAdRepo.find({ where: { postedBy: { id: userId } } });
   }
 }

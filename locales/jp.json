@@ -159,8 +159,8 @@
         }
       },
       "stats": {
-        "in_progress": "Ecodeliのおかげで進行中の広告{count, plural, =1 {} other {s}}",
-        "completed": "Ecodeliのおかげで完了した広告{count, plural, =1 {} other {s}}"
+        "in_progress": "Ecodeliのおかげで進行中の広告",
+        "completed": "Ecodeliのおかげで完了した広告"
       }
     },
     "index": {
@@ -293,6 +293,9 @@
         },
         "chat": {
           "tab_title": "Ecodeli | クライアントメッセージング"
+        },
+        "subscription": {
+          "tab_title": "Ecodeli | クライアントのサブスクリプション"
         }
       },
       "addresses": {
@@ -665,7 +668,8 @@
         "delete_account": "マイアカウントを削除",
         "personal_info": "個人情報",
         "return_to_app_link": "アプリに戻る"
-      }
+      },
+      "support_rgpd": "EcoDeliに保存されているアカウントや個人情報の削除・取得をご希望の場合は、<a href=\"mailto:hello@ecodeli.fr\" class=\"underline\">hello@ecodeli.fr</a> までご連絡ください。"
     },
     "admin_login": {
       "title": "管理パネル",

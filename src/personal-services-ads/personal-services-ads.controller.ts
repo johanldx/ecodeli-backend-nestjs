@@ -37,6 +37,11 @@ import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 export class PersonalServicesAdsController {
   constructor(private readonly service: PersonalServicesAdsService) {}
 
+  @Get('mine')
+  async findMine(@CurrentUser() user: User) {
+    return this.service.findByUser(user.id);
+  }
+
   @Post()
   @UseInterceptors(FilesInterceptor('images'))
   @ApiConsumes('multipart/form-data')

@@ -59,6 +59,11 @@ export class DeliveryAdsController {
     return this.deliveryAdsService.create(user.id, dto, reference, images);
   }
 
+  @Get('mine')
+  async findMine(@CurrentUser() user: User) {
+    return this.deliveryAdsService.findByUser(user.id);
+  }
+
   @Get()
   @ApiOperation({ summary: 'Lister les annonces de livraison' })
   @ApiQuery({ name: 'posted_by', required: false, type: Number })

@@ -82,7 +82,7 @@ export class DeliveryStepsController {
     });
 
     if (!departureLocation || !arrivalLocation) {
-      throw new Error('Locations de départ ou d’arrivée invalides');
+      throw new Error('Locations de départ ou d\'arrivée invalides');
     }
 
     const routeMatch = await this.routeRepo

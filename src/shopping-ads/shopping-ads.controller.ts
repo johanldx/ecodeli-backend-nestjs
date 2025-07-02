@@ -10,6 +10,8 @@ import {
   UseInterceptors,
   UploadedFiles,
   HttpCode,
+  UseGuards,
+  BadRequestException,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -25,12 +27,19 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { User } from 'src/users/user.entity';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('Shopping Ads')
 @ApiBearerAuth()
 @Controller('shopping-ads')
 export class ShoppingAdsController {
   constructor(private readonly shoppingAdsService: ShoppingAdsService) {}
+
+  @UseGuards(JwtAuthGuard)
+  @Get('mine')
+  async findMine(@CurrentUser() user: User) {
+    return this.shoppingAdsService.findByUser(user.id);
+  }
 
   @Post()
   @UseInterceptors(FilesInterceptor('images'))
@@ -57,6 +66,9 @@ export class ShoppingAdsController {
   @Get(':id')
   @ApiResponse({ status: 200, type: ShoppingAdResponseDto })
   async findOne(@Param('id') id: number) {
+    if (!id || isNaN(Number(id))) {
+      throw new BadRequestException('ID invalide');
+    }
     return this.shoppingAdsService.findOne(id);
   }
 

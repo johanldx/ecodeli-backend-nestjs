@@ -122,7 +122,8 @@ constructor(
     if (!user) throw new BadRequestException('Utilisateur introuvable');
 
     if (!user.stripe_id) {
-      this.createStripeCustomer(user.id);
+      user.stripe_id = await this.createStripeCustomer(user.id);
+      await this.userRepo.save(user);
     }
 
     // Si l'utilisateur a déjà un abonnement actif, rediriger vers le portail
@@ -246,7 +247,8 @@ constructor(
     if (!user) throw new BadRequestException('Utilisateur introuvable');
 
     if (!user.stripe_id) {
-      this.createStripeCustomer(user.id);
+      user.stripe_id = await this.createStripeCustomer(user.id);
+      await this.userRepo.save(user);
     }
 
     let price = conv.price;

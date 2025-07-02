@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Brackets } from 'typeorm';
-import { Conversation, AdTypes } from './entities/conversation.entity';
+import { Conversation, AdTypes, ConversationStatus } from './entities/conversation.entity';
 import { ReleaseCartAd } from 'src/release-cart-ads/entities/release-cart-ad.entity';
 import { UpdateConversationDto } from './dto/update-conversation.dto';
 import { ShoppingAd } from 'src/shopping-ads/entities/shopping-ads.entity';
@@ -76,12 +76,32 @@ export class ConversationsService {
     return !!existingConversation;
   }
 
+  private async conversationPendingExists(
+    adType: AdTypes,
+    adId: number,
+    userId: number,
+  ): Promise<boolean> {
+    const existingConversation = await this.repo.findOne({
+      where: {
+        adType,
+        adId,
+        userFrom: { id: userId },
+        status: ConversationStatus.Pending,
+      },
+    });
+    return !!existingConversation;
+  }
+
   async create(dto: CreateConversationDto): Promise<Conversation> {
-    // Vérifier si une conversation existe déjà pour cette annonce (sauf pour ServiceProvisions)
     if (dto.adType !== AdTypes.ServiceProvisions) {
       const exists = await this.conversationExists(dto.adType, dto.adId, dto.userFrom);
       if (exists) {
         throw new ForbiddenException('Une conversation existe déjà pour cette annonce');
+      }
+    } else {
+      const pendingExists = await this.conversationPendingExists(dto.adType, dto.adId, dto.userFrom);
+      if (pendingExists) {
+        throw new ForbiddenException('Une conversation en attente existe déjà pour cette annonce');
       }
     }
 

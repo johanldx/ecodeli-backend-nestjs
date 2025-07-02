@@ -145,7 +145,7 @@ export class DeliveryAdsService {
       );
     }
 
-    // 5) Suppression de l’annonce
+    // 5) Suppression de l'annonce
     await this.adRepo.delete(id);
   }
 
@@ -156,8 +156,12 @@ export class DeliveryAdsService {
   ): Promise<DeliveryAd> {
     const ad = await this.adRepo.findOne({ where: { id } });
     if (!ad) throw new NotFoundException('Annonce introuvable');
-    // ici on considère que seul l’admin passe, sinon on ajoute un check
+    // ici on considère que seul l'admin passe, sinon on ajoute un check
     ad.status = status;
     return this.adRepo.save(ad);
+  }
+
+  async findByUser(userId: number) {
+    return this.adRepo.find({ where: { postedBy: { id: userId } } });
   }
 }

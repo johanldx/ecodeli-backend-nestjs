@@ -159,8 +159,8 @@
         }
       },
       "stats": {
-        "in_progress": "anuncio{count, plural, =1 {} other {s}} en curso gracias a Ecodeli",
-        "completed": "anuncio{count, plural, =1 {} other {s}} terminado{count, plural, =1 {} other {s}} gracias a Ecodeli"
+        "in_progress": "anuncios en curso gracias a Ecodeli",
+        "completed": "anuncios terminados gracias a Ecodeli"
       }
     },
     "index": {
@@ -293,6 +293,9 @@
         },
         "chat": {
           "tab_title": "Ecodeli | Mensajería cliente"
+        },
+        "subscription": {
+          "tab_title": "Ecodeli | Mi suscripción de cliente"
         }
       },
       "addresses": {
@@ -665,7 +668,8 @@
         "delete_account": "Eliminar mi cuenta",
         "personal_info": "Mi información personal",
         "return_to_app_link": "Volver a la aplicación"
-      }
+      },
+      "support_rgpd": "Para eliminar su cuenta o recuperar su información personal almacenada por EcoDeli, póngase en contacto con el soporte en <a href=\"mailto:hello@ecodeli.fr\" class=\"underline\">hello@ecodeli.fr</a>."
     },
     "admin_login": {
       "title": "Panel de administración",

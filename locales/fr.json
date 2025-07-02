@@ -159,8 +159,8 @@
         }
       },
       "stats": {
-        "in_progress": "annonce{count, plural, =1 {} other {s}} en cours grâce à Ecodeli",
-        "completed": "annonce{count, plural, =1 {} other {s}} terminée{count, plural, =1 {} other {s}} grâce à Ecodeli"
+        "in_progress": "annonces en cours grâce à Ecodeli",
+        "completed": "annonces terminées grâce à Ecodeli"
       }
     },
     "index": {
@@ -293,6 +293,9 @@
         },
         "chat": {
           "tab_title": "Ecodeli | Messagerie client"
+        },
+        "subscription": {
+          "tab_title": "Ecodeli | Mon abonnement client"
         }
       },
       "addresses": {
@@ -344,6 +347,9 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Messagerie client"
+      },
+      "subscription": {
+        "tab_title": "Ecodeli | Mon abonnement client"
       }
     },
     "delivery": {
@@ -623,7 +629,7 @@
     "space_validation": {
       "clients": {
         "title": "Devenir client",
-        "subtitle": "Visionez le tuto afin de découvir le fonctonnement d'Ecodeli !",
+        "subtitle": "Visionnez le tuto afin de découvrir le fonctionnement d'Ecodeli !",
         "button": "Devenir client",
         "rejected": "Votre précédente demande a été rejeté, vous devez refaire une demande.",
         "not_found": "Vous n'avez pas de profil client."
@@ -689,7 +695,8 @@
         "delete_account": "Supprimer mon compte",
         "personal_info": "Mes informations personnelles",
         "return_to_app_link": "Retour à l'application"
-      }
+      },
+      "support_rgpd": "Pour supprimer votre compte ou récupérer vos informations personnelles stockées chez EcoDeli, veuillez contacter le support via l'adresse <a href=\"mailto:hello@ecodeli.fr\" class=\"underline\">hello@ecodeli.fr</a>."
     },
     "admin_login": {
       "title": "Panel Admin",
@@ -931,6 +938,11 @@
         "fields_missing_invalid": "Champs manquants ou invalides.",
         "user_not_found": "Utilisateur introuvable."
       }
+    },
+    "namespace": {
+      "request_success": "Votre demande a bien été prise en compte.",
+      "request_error": "Une erreur est survenue lors de la demande.",
+      "not_found": "Profil non trouvé."
     }
   },
   "stripe": {

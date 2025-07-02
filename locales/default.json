@@ -159,8 +159,8 @@
         }
       },
       "stats": {
-        "in_progress": "annonce{count, plural, =1 {} other {s}} en cours grâce à Ecodeli",
-        "completed": "annonce{count, plural, =1 {} other {s}} terminée{count, plural, =1 {} other {s}} grâce à Ecodeli"
+        "in_progress": "annonces en cours grâce à Ecodeli",
+        "completed": "annonces terminées grâce à Ecodeli"
       }
     },
     "index": {
@@ -293,6 +293,9 @@
         },
         "chat": {
           "tab_title": "Ecodeli | Messagerie client"
+        },
+        "subscription": {
+          "tab_title": "Ecodeli | My client subscription"
         }
       },
       "addresses": {
@@ -344,6 +347,9 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Messagerie client"
+      },
+      "subscription": {
+        "tab_title": "Ecodeli | My client subscription"
       }
     },
     "delivery": {
@@ -665,7 +671,8 @@
         "delete_account": "Supprimer mon compte",
         "personal_info": "Mes informations personnelles",
         "return_to_app_link": "Retour à l'application"
-      }
+      },
+      "support_rgpd": "To delete your account or retrieve your personal data stored by EcoDeli, please contact support at <a href=\"mailto:hello@ecodeli.fr\" class=\"underline\">hello@ecodeli.fr</a>."
     },
     "admin_login": {
       "title": "Panel Admin",

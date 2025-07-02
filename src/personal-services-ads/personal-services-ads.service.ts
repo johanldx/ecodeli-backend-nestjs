@@ -119,4 +119,8 @@ export class PersonalServicesAdsService {
       return { action: 'deleted' };
     }
   }
+
+  async findByUser(userId: number) {
+    return this.adRepo.find({ where: { postedBy: { id: userId } } });
+  }
 }
