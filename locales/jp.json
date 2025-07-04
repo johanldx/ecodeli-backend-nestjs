@@ -347,6 +347,9 @@
       },
       "chat": {
         "tab_title": "Ecodeli | クライアントメッセージング"
+      },
+      "subscription": {
+        "tab_title": "Ecodeli | クライアントのサブスクリプション"
       }
     },
     "delivery": {
@@ -465,6 +468,15 @@
       },
       "chat": {
         "tab_title": "Ecodeli | プロバイダーメッセージング"
+      },
+      "samples": {
+        "title": "マイサンプル",
+        "amount_billed_month": "今月請求された金額",
+        "manage_samples": "マイサンプルを管理"
+      },
+      "pricing": {
+        "title": "価格設定",
+        "customer_contact": "カスタマーサービスに連絡"
       }
     },
     "traders": {
@@ -516,13 +528,28 @@
         }
       },
       "account": {
-        "tab_title": "Ecodeli | マイ商人アカウント"
+        "tab_title": "Ecodeli | マイ商人アカウント",
+        "title": "マイ商人アカウント",
+        "manage_my_documents": "マイ証明書を管理",
+        "manage_global_account": "マイグローバルアカウントを管理",
+        "manage_my_addresses": "マイ住所を管理",
+        "reduction_title": "マイパートナー割引",
+        "standard_rate": "適用された標準料金",
+        "reduction_rate": "取引に適用された{percent}%の割引",
+        "monthly_stats": {
+          "title": "月次統計",
+          "total_earned": "総収益"
+        }
       },
       "addresses": {
         "tab_title": "Ecodeli | マイ商人住所"
       },
       "chat": {
         "tab_title": "Ecodeli | 商人メッセージング"
+      },
+      "pricing": {
+        "title": "価格設定",
+        "customer_contact": "カスタマーサービスに連絡"
       }
     },
     "chat": {
@@ -911,6 +938,11 @@
         "fields_missing_invalid": "フィールドが不足しているか無効です。",
         "user_not_found": "ユーザーが見つかりません。"
       }
+    },
+    "namespace": {
+      "request_success": "リクエストが正常に処理されました。",
+      "request_error": "リクエスト中にエラーが発生しました。",
+      "not_found": "プロフィールが見つかりません。"
     }
   },
   "stripe": {

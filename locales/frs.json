@@ -1,0 +1,993 @@
+{
+  "landing": {
+    "global": {
+      "tab_message": "Ecodeli | Or sus, reviens donc, noble âme, car ta présence nous est chère !",
+      "header": {
+        "top_notice": "EcoDeli, preux messager des temps nouveaux, vous octroie livraisons vertueuses et solidaires. Quêtez missives à livrer près de vostre logis !",
+        "menu": {
+          "register": "S'enregistrer en la confrérie",
+          "login": "Entrer en la grande salle"
+        }
+      },
+      "footer": {
+        "title": "La livrée éco-responsable, aisée et fraternelle.",
+        "cta_button": "Contempler les missives",
+        "company_info": {
+          "address": "110 Rue de Flandre",
+          "postal_code": "75019 Paris"
+        },
+        "menu": {
+          "private_space": "Demeure du commun",
+          "business_space": "Demeure des marchands",
+          "legal_mentions": "Parchemins de légalité",
+          "admin": "Salle des gouvernances",
+          "track": "Queste des commandements"
+        }
+      },
+      "common": {
+        "close": "✕",
+        "cancel": "Révoquer",
+        "delete": "Effacer du parchemin",
+        "modify": "Amender",
+        "add": "Ajouter à la chronique",
+        "update": "Rafraîchir la chronique",
+        "confirm": "Sceller d'un sceau",
+        "save": "Consigner en registre",
+        "publish": "Proclamer",
+        "details": "Secrets dévoilés",
+        "loading": "Attente, le sablier s'écoule…",
+        "error": "Faute",
+        "success": "Victoire",
+        "warning": "Prudence",
+        "info": "Nouvelle",
+        "no_photo_available": "Nulle enluminure n'est disponible",
+        "date": "Jour du seigneur",
+        "departure": "Départ de la chevauchée",
+        "arrival": "Arrivée au castel",
+        "step": "Halte sur la route"
+      },
+      "modals": {
+        "confirm_delete": "Sceller la révocation",
+        "confirm_delete_message": "Veux-tu vraiment effacer ce vestige du parchemin ?",
+        "confirm_delete_address": "Es-tu certain de vouloir bannir cette adresse du grimoire ?",
+        "confirm_delete_announcement": "Veux-tu vraiment effacer cette missive ?",
+        "confirm_delete_language": "Es-tu certain de vouloir bannir la langue « {lang} » du royaume ?",
+        "confirm_delete_type": "Sceller la révocation de « {name} » ?",
+        "yes_delete": "Oïl, effacer"
+      },
+      "forms": {
+        "add_address": "Ajouter logis à la chronique",
+        "modify_address": "Amender le logis",
+        "add_language": "Ajouter langue au grimoire",
+        "new_announcement": "Nouvelle missive",
+        "new_service_announcement": "Nouvelle missive de service",
+        "add_trip": "Ajouter chevauchée",
+        "add_trip_button": "Ajouter la chevauchée",
+        "add_slot": "Ajouter créneau au cadran",
+        "add_element": "Ajouter relique",
+        "add_step": "Ajouter halte",
+        "modify_type": "Amender la nature",
+        "new_type": "Nouvelle nature",
+        "delete_type": "Effacer la nature",
+        "shopping_list": "Liste de victuailles",
+        "delivery_request": "Queste de livrée"
+      },
+      "notifications": {
+        "unauthorized_service": "Tu n'es point autorisé à proclamer pour ce service.",
+        "past_slot_error": "Impossible d'ajouter créneau au passé révolu",
+        "delete_slot_error": "Impossible d'effacer ce créneau du cadran",
+        "subscription_error": "Impossible d'amender l'abonnement",
+        "support_contact": "Pour amender tes parchemins justificatifs, contacte le soutien d'Ecodeli. La confrérie t'accompagnera en cette épreuve.",
+        "user_details_error": "Faute lors de la quête des secrets de l'usager : ",
+        "all_fields_required": "Tous champs doivent estre emplis.",
+        "announcement_created": "Missive créée avec faste",
+        "announcement_creation_error": "Faute lors de la création de la missive.",
+        "announcement_deleted": "Missive effacée avec faste",
+        "announcement_cancelled": "Missive révoquée (des palabres sont en cours)",
+        "announcement_deleted_simple": "Missive effacée",
+        "conversation_creation_error": "Faute lors de la création de la palabre",
+        "payment_session_error": "Faute lors de la création de la bourse de paiement.",
+        "location_creation_error": "Faute lors de la création du logis.",
+        "creation_error": "Faute lors de la création",
+        "already_contacted": "Tu as déjà mandé cette missive"
+      },
+      "errors": {
+        "400": {
+          "message": "Las ! Quelque chose cloche en vostre requête. Voulés-vous que l'on raccommode l'étiquette ?",
+          "action_label": "Retourner à la grand-salle",
+          "action_href": "/"
+        },
+        "401": {
+          "message": "Il te faut estre reconnu pour continuer. Nul voyage sans guide !",
+          "action_label": "Entrer en la grande salle",
+          "action_href": "/login"
+        },
+        "403": {
+          "message": "Cette route est gardée. Tu n'as point encore les clefs pour livrer céans.",
+          "action_label": "Retourner",
+          "action_href": "/"
+        },
+        "404": {
+          "message": "Page introuvable. Le colis a pris sentier de traverse… ou s'est fourvoyé.",
+          "action_label": "Retourner à la grand-salle",
+          "action_href": "/"
+        },
+        "408": {
+          "message": "Trop long à charger. La place attendait, mais le temps s'est enfui comme destrier fou !",
+          "action_label": "Tenter à nouveau",
+          "action_href": "reload"
+        },
+        "409": {
+          "message": "Petit encombrement : une autre action est déjà en branle. Reviens sous peu.",
+          "action_label": "Retourner à la grand-salle",
+          "action_href": "/"
+        },
+        "410": {
+          "message": "Ce contenu a quitté l'entrepôt. Il n'est plus à livrer.",
+          "action_label": "Contempler les missives",
+          "action_href": "/"
+        },
+        "418": {
+          "message": "Je suis pot à thé. Et ne puis livrer de colis ☕",
+          "action_label": "Retourner à la grand-salle",
+          "action_href": "/"
+        },
+        "429": {
+          "message": "Vous allez trop prestement ! Laissez-nous souffler entre deux chevauchées.",
+          "action_label": "Patienter et tenter à nouveau",
+          "action_href": "reload"
+        },
+        "500": {
+          "message": "Quelque chose s'est mal passé. Nos messagers techniques s'en occupent.",
+          "action_label": "Retourner à la grand-salle",
+          "action_href": "/"
+        },
+        "502": {
+          "message": "Le relais de missive est rompu. La connexion au castel a failli.",
+          "action_label": "Tenter à nouveau",
+          "action_href": "reload"
+        },
+        "503": {
+          "message": "Pause éco-responsable… Le service sera tost de retour !",
+          "action_label": "Retourner à la grand-salle",
+          "action_href": "/"
+        },
+        "504": {
+          "message": "Temps de réponse expiré. Même les plus lestes peuvent faillir.",
+          "action_label": "Tenter à nouveau",
+          "action_href": "reload"
+        }
+      },
+      "stats": {
+        "in_progress": "missives en cours par la grâce d'Ecodeli",
+        "completed": "missives menées à bien par la grâce d'Ecodeli"
+      }
+    },
+    "index": {
+      "tab_title": "Ecodeli | Le Grand Portail",
+      "hero_section": {
+        "title": "La livrée éco-responsable, à la portée de toute âme.",
+        "subtitle": "EcoDeli est place de chevauchée où maints voyageurs s'unissent pour livrer missives et paquets en toute vertu et solidarité. En partageant leur route, les gens d'EcoDeli expédient ou portent fardeaux à moindre denier, tout en honorant la Terre et le lien fraternel.",
+        "cta_button": "Contempler les missives"
+      },
+      "features_section": {
+        "title": "Ensemble, livrons plus verdoyant.",
+        "features": {
+          "collaborative_delivery": {
+            "title": "Livrée de colis en confrérie",
+            "description": "Nous aidons à amoindrir l'empreinte sur la Terre en favorisant le transport de biens en bonne compagnie. EcoDeli fait se rencontrer expéditeurs et messagers pour un service plus vertueux."
+          },
+          "personal_services": {
+            "title": "Services à la personne",
+            "description": "Trouvez preux compagnons pour maintes besognes locales : livrées promptes, emplettes, routes journalières. L'avenir du transport gît en l'entraide du voisinage, plus économe, plus humain, plus loyal."
+          },
+          "product_repatriation": {
+            "title": "Achat et rapatriement de biens",
+            "description": "Quérir ou recouvrer denrées et victuailles céans, sans entrave, en voyageant d'esprit avisé."
+          },
+          "chariot_rental": {
+            "title": "Lâcher de chariot",
+            "description": "EcoDeli encourage l'échange utile et souple de chariots entre gens du peuple, mis à disposition en lieux choisis."
+          }
+        }
+      },
+      "faq_section": {
+        "title": "Vous avez moult questions ? C'est bien nature !",
+        "questions": {
+          "what_is_ecodeli": {
+            "question": "Qu'est-ce donc qu'EcoDeli et comment la chose opère-t-elle ?",
+            "answer": "EcoDeli est place de crowdshipping où expéditeurs croisent voyageurs ou conducteurs, tous prêts à porter fardeaux lors de routes déjà tracées, allégeant ainsi l'empreinte sur la Terre. Les usagers publient missive, suivent le paquet en temps réel et jouissent d'une livrée sûre grâce à l'assurance d'EcoDeli."
+          },
+          "become_delivery_person": {
+            "question": "Comment puis-je devenir messager sur EcoDeli ?",
+            "answer": "Pour devenir messager, il te suffit de créer compte en la place d'EcoDeli, puis de quérir les missives proches de ton logis. Une fois missive choisie, tu peux proposer ta route et convenir des termes avec l'expéditeur. Simple, prompt et sans serment."
+          },
+          "delivery_security": {
+            "question": "Les livrées sont-elles sûres et assurées ?",
+            "answer": "Oïl, EcoDeli met moult mesures pour garantir la sûreté des livrées. Les profils sont vérifiés, les échanges se font en la place sûre, et nous convions chacun à laisser avis pour renforcer la confiance. Une assurance peut aussi estre offerte pour certains paquets selon leur valeur."
+          }
+        }
+      }
+    },
+    "legal_mentions": {
+      "tab_title": "Ecodeli | Parchemins de Légalité",
+      "title": "Parchemins de Légalité",
+      "intro": "Selon les lois du royaume, ci-après trouverez-vous maints secrets sur l'éditeur de ce lieu, la charte de discrétion, les conditions générales, et une note sur la nature chimérique de ce projet.",
+      "legal_notice": {
+        "title": "Parchemins de Légalité",
+        "content": "Le présent lieu est tenu par une âme en quête de savoir, dans le cadre d'une quête académique à l'ESGI (École Supérieure de Génie Informatique).<br><br><strong>Identité de l'éditeur :</strong><br>Noms : Johan LEDOUX, Guillaume CONSTANTY, Rayan CHEBICHEB<br>Adresse : 242 rue du Faubourg Saint-Antoine, 75012 Paris, France<br>Email : ecodeli.fr@gmail.com<br>Téléphone : non communiqué<br><br><strong>Propriété intellectuelle :</strong><br>Les enluminures, images et figures en ce lieu sont libres ou usitées avec permission. Leur propriété est respectée et signalée si besoin est.<br>Les textes sont œuvre de la confrérie. Toute citation étrangère est attribuée à son auteur ou à la source d'origine.<br><br><strong>Hébergement :</strong><br>Nom de l'hébergeur : Guillaume CONSTANTY<br>Raison sociale : particulier<br>Adresse : Avon, France<br>Téléphone : non communiqué"
+      },
+      "privacy_policy": {
+        "title": "Charte de Discrétion et Biscuits",
+        "content": "EcoDeli veille grandement à la sauvegarde de vostre vie privée.<br><br>Nulle donnée n'est recueillie sans vostre assentiment. Ce lieu use de Matomo, outil de mesure discret, sans biscuits ni collecte de secrets identifiables.<br><br><strong>Arcanes usitées céans :</strong><br><ul><li>Svelte : artifice de l'avant-scène</li><li>TailwindCSS et DaisyUI : ornementations d'interface</li><li>FontShare : polices libres</li></ul><br>Nulle donnée n'est partagée hors du castel, nulle réclame n'est diffusée.<br><br>Vous pouvez requérir l'effacement de tout secret vous concernant en mandant la confrérie."
+      },
+      "terms_of_use": {
+        "title": "Conditions Générales d'Usage (CGU)",
+        "content": "L'accès et l'usage du lieu <strong>EcoDeli</strong> sont réservés à l'usage personnel, pour la contemplation du projet. Toute exploitation marchande ou professionnelle est proscrite.<br><br>L'usager jure d'user du lieu selon la loi du royaume de France.<br><br>Le lieu étant chimérique, maintes fonctions peuvent estre inopérantes ou feintes à fin d'apprentissage.<br><br>Les auteurs déclinent toute responsabilité quant à l'usage des savoirs présentés céans."
+      },
+      "terms_of_sale": {
+        "title": "Conditions Générales de Vente (CGV)",
+        "content": "Nulle vente véritable n'est accomplie céans.<br><br>Les <strong>Conditions Générales de Vente</strong> sont là pour l'illustration, dans le cadre de la simulation.<br><br>Nul paiement, produit ou service ne sera octroyé par EcoDeli.<br><br>Toute mention de transaction, prix ou commande est chimère et sans force de loi.<br><br>L'usager est averti que le lieu ne propose nul service marchand."
+      },
+      "disclaimer": {
+        "title": "Avertissement - Oeuvre Chimérique",
+        "content": "<strong>EcoDeli</strong> est œuvre pédagogique chimérique, forgée par étudiants de l'ESGI lors de leur année d'apprentissage.<br><br>Nulle entreprise véritable, nul service de livrée ou d'entremise n'est proposé.<br><br>Toutes les données (missives, profils, routes, etc.) sont simulacres.<br><br>Le but de ce projet est de montrer prouesse en art web, UX/UI, gestion de projet et déploiement d'applications modernes.<br><br>Toute ressemblance avec services existants n'est que fortuite."
+      }
+    }
+  },
+  "app": {
+    "global": {
+      "menu": {
+        "title": "Mon grimoire",
+        "account_link": "Mon grimoire",
+        "profile_link": "Mon portrait",
+        "logout_link": "Quitter la confrérie",
+        "discover_link": "Découvrir les missives",
+        "discussion_link": "Mes palabres",
+        "announces_link": "Mes missives",
+        "addresses_link": "Mes logis",
+        "delivery_link": "Mes livrées",
+        "schedule_link": "Mon cadran",
+        "service_link": "Mes besognes",
+        "request_link": "Mes requêtes"
+      }
+    },
+    "tutorial": {
+      "welcome": "Sois le bienvenu en ton espace EcoDeli, noble voyageur !",
+      "welcome_content": "Suis ce guide prompt pour découvrir les arcanes principales de la confrérie.",
+      "navigation_menu": "Menu de Navigation",
+      "navigation_content": "Use ce menu pour voguer entre les diverses salles de ton espace.",
+      "discover_announcements": "Découvrir les missives",
+      "discover_content": "La salle <b>Découvrir</b> te permet de contempler toutes les missives disponibles.",
+      "manage_announcements": "Gérer tes missives",
+      "manage_content": "En <b>Mes missives</b>, tu peux forger et gouverner toutes les missives que tu proclames.",
+      "instant_messaging": "Palabre instantanée",
+      "messaging_content": "La salle <b>Palabres</b> recèle toutes tes conversations avec les autres âmes.",
+      "account_management": "Gouvernance du grimoire",
+      "account_content": "En <b>Mon grimoire</b>, tu peux gouverner tes secrets, ta bourse et tes serments.",
+      "ready": "Te voilà paré !",
+      "ready_content": "Tu peux à présent explorer la place. Tu peux revoir ce guide à tout moment depuis la salle 'Mon grimoire'."
+    },
+    "clients": {
+      "account": {
+        "tab_title": "Ecodeli | Mon grimoire de client",
+        "my_account": {
+          "title": "Mon grimoire de client",
+          "my_sub": "Mon serment d'abonnement",
+          "sub_status_premium": "Privilégié",
+          "sub_status_basic": "Commun",
+          "sub_status_pro": "Marchand",
+          "manage": "Gouverner",
+          "manage_global_account": "Gouverner mon grimoire universel",
+          "manage_addresses": "Gouverner mes logis"
+        },
+        "my_electronic_wallet": {
+          "title": "Ma bourse enchantée",
+          "amount_available": "Denier disponible",
+          "amount_pending": "Denier en attente",
+          "to_validate": "Sceller",
+          "iban": "Mon IBAN (*****)",
+          "transfer_bank_account": "Transférer vers mon coffre en banque",
+          "available": "Disponible",
+          "pending": "En attente"
+        },
+        "chat": {
+          "tab_title": "Ecodeli | Palabre de client"
+        },
+        "subscription": {
+          "tab_title": "Ecodeli | Mon serment d'abonnement"
+        }
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes logis",
+        "title": "Mes logis",
+        "name": "Nom du logis",
+        "address": "Adresse du logis",
+        "postal_code": "Code postal du fief",
+        "city": "Cité",
+        "country": "Royaume",
+        "modify": "Amender",
+        "delete_address": "Effacer le logis",
+        "add_address": "Ajouter logis à la chronique"
+      },
+      "ads": {
+        "tab_title": "Ecodeli | Mes missives",
+        "title": "Mes missives",
+        "modify": "Amender",
+        "cancel": "Révoquer",
+        "details": "Secrets dévoilés",
+        "add_new_ads": "Ajouter nouvelle missive"
+      },
+      "discover": {
+        "tab_title": "Ecodeli | Découvrir",
+        "all_services": "Toutes besognes",
+        "taxi": "Charroi",
+        "gardening": "Jardinage",
+        "childcare": "Garde d'enfants",
+        "professional_service_provider": "Prestataire de renom",
+        "contact": "Mandement",
+        "details": "Secrets dévoilés",
+        "city": "Cité"
+      },
+      "new-ads": {
+        "tab_title": "Ecodeli | Nouvelle missive",
+        "main_title": "Nouvelle missive",
+        "delivery_announcement": "Missive de livrée",
+        "title": "Titre",
+        "address": "Adresse du logis",
+        "picture": "Enluminure",
+        "add_picture": "Ajouter enluminure",
+        "desired_delivery_date": "Jour de livrée souhaité",
+        "package_size": "Taille du fardeau",
+        "total_price_offer": "Denier total proposé",
+        "departure": "Départ de la chevauchée",
+        "add_a_step": "Ajouter halte",
+        "cancel": "Révoquer",
+        "arrival": "Arrivée au castel"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Palabre de client"
+      },
+      "subscription": {
+        "tab_title": "Ecodeli | Mon serment d'abonnement"
+      }
+    },
+    "delivery": {
+      "account": {
+        "tab_title": "Ecodeli | Mon grimoire de messager"
+      },
+      "my_electronic_wallet": {
+        "tab_title": "Ecodeli | Ma bourse enchantée",
+        "title": "Ma bourse enchantée",
+        "amount_available": "Denier disponible",
+        "amount_pending": "Denier en attente",
+        "to_validate": "Sceller",
+        "iban": "Mon IBAN",
+        "transfer_bank_account": "Transférer vers mon coffre en banque"
+      },
+      "notification": {
+        "delivery_notification": "Notifications de concordance de livrée par missive",
+        "confirmation": "Confirmation"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes logis",
+        "title": "Mes logis",
+        "name": "Nom du logis",
+        "address": "Adresse du logis",
+        "postal_code": "Code postal du fief",
+        "city": "Cité",
+        "country": "Royaume",
+        "modify": "Amender",
+        "delete_address": "Effacer le logis",
+        "add_address": "Ajouter logis à la chronique"
+      },
+      "announce": {
+        "all_services": "Toutes besognes",
+        "transport": "Transport",
+        "delivery": "Livrée",
+        "city": "Cité",
+        "individual": "Particulier",
+        "contact": "Mandement",
+        "details": "Secrets dévoilés"
+      },
+      "my_planned_trips": {
+        "tab_title": "Ecodeli | Mes chevauchées prévues",
+        "title": "Mes chevauchées prévues",
+        "departure": "Cité de départ",
+        "arrival": "Cité d'arrivée",
+        "date": "Jour du seigneur",
+        "modify": "Amender",
+        "cancel": "Révoquer"
+      }
+    },
+    "providers": {
+      "tab_title": "Ecodeli | Mon grimoire de marchand",
+      "account": {
+        "title": "Mon grimoire de marchand",
+        "manage_my_documents": "Gouverner mes parchemins justificatifs",
+        "manage_global_account": "Gouverner mon grimoire universel",
+        "manage_addresses": "Gouverner mes logis",
+        "manage_my_profil": "Gouverner mon portrait",
+        "tab_title": "Ecodeli | Mon grimoire de marchand"
+      },
+      "income": {
+        "title": "Mes deniers du mois",
+        "amount_raised_month": "Montant récolté ce mois-ci",
+        "iban": "Mon IBAN",
+        "valid": "Sceller"
+      },
+      "service": {
+        "tab_title": "Ecodeli | Mes besognes accréditées",
+        "title": "Mes besognes accréditées",
+        "transport": "Transport de personnes",
+        "gardening": "Jardinage",
+        "childcare": "Garde d'enfants",
+        "request": "Tu peux mandater la confrérie pour toute requête",
+        "customer_service": "Mandater la confrérie"
+      },
+      "invoice": {
+        "title": "Mes Parchemins de paiement"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes logis",
+        "title": "Mes logis",
+        "name": "Nom du logis",
+        "address": "Adresse du logis",
+        "postal_code": "Code postal du fief",
+        "city": "Cité",
+        "country": "Royaume",
+        "modify": "Amender",
+        "delete_address": "Effacer le logis",
+        "add_address": "Ajouter logis à la chronique"
+      },
+      "my_announces": {
+        "title": "Mes missives",
+        "modify": "Amender",
+        "cancel": "Révoquer",
+        "details": "Secrets dévoilés",
+        "add_new_ads": "Ajouter nouvelle missive"
+      },
+      "calendar": {
+        "tab_title": "Ecodeli | Mon cadran",
+        "add": "Ajouter",
+        "time": "Heure",
+        "title": "Titre",
+        "cancel": "Révoquer",
+        "day": "Jour du seigneur",
+        "place": "Lieu (optionnel)",
+        "special": "Spécial",
+        "title_meeting": "Nouveau rendez-vous",
+        "monday": "Lundi",
+        "tuesday": "Mardi",
+        "wednesday": "Mercredi",
+        "thursday": "Jeudi",
+        "friday": "Vendredi",
+        "saturday": "Samedi",
+        "sunday": "Dimanche",
+        "week": "Semaine"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Palabre de marchand"
+      },
+      "samples": {
+        "title": "Mes échantillons",
+        "amount_billed_month": "Montant facturé ce mois-ci",
+        "manage_samples": "Gouverner mes échantillons"
+      },
+      "pricing": {
+        "title": "Tarification",
+        "customer_contact": "Mandater la confrérie"
+      }
+    },
+    "traders": {
+      "requests": {
+        "tab_title": "Ecodeli | Missives des Marchands",
+        "title": "Missives des Marchands",
+        "new_announcement": "Nouvelle missive",
+        "no_photo": "Nulle enluminure",
+        "cart_release": "Lâcher de chariot",
+        "client": "Client",
+        "departure": "Départ",
+        "arrival": "Arrivée",
+        "delete": "Effacer",
+        "modal": {
+          "title": "Nouvelle missive",
+          "title_label": "Titre",
+          "description_label": "Description",
+          "package_size_label": "Taille du fardeau",
+          "price_label": "Prix (écus)",
+          "price_advice": "Conseil : 1 écu du lieue",
+          "client_email_label": "Parchemin du client",
+          "departure_location_label": "Lieu de départ",
+          "arrival_location_label": "Lieu d'arrivée",
+          "images_label": "Enluminures",
+          "choose": "Choisir",
+          "cancel": "Révoquer",
+          "create": "Forger"
+        },
+        "delete_modal": {
+          "title": "Effacer la missive ?",
+          "cancel": "Révoquer",
+          "delete": "Effacer"
+        },
+        "notifications": {
+          "all_fields_required": "Tous champs doivent estre emplis",
+          "invalid_email": "Parchemin invalide",
+          "user_not_authenticated": "Âme non reconnue",
+          "announcement_created": "Missive de marchand forgée",
+          "announcement_deleted": "Missive effacée"
+        },
+        "status": {
+          "pending": "En attente",
+          "in_progress": "En cours",
+          "completed": "Parachevée",
+          "cancelled": "Révoquée",
+          "payment_pending": "En attente de bourse",
+          "paid": "Payé",
+          "failed": "Échec"
+        }
+      },
+      "account": {
+        "tab_title": "Ecodeli | Mon grimoire de marchand",
+        "title": "Mon grimoire de marchand",
+        "manage_my_documents": "Gouverner mes parchemins justificatifs",
+        "manage_global_account": "Gouverner mon grimoire universel",
+        "manage_my_addresses": "Gouverner mes logis",
+        "reduction_title": "Ma réduction de confrère",
+        "standard_rate": "Tarif usuel appliqué",
+        "reduction_rate": "Réduction de {percent}% octroyée sur vos transactions",
+        "monthly_stats": {
+          "title": "Statistiques mensuelles",
+          "total_earned": "Total amassé"
+        }
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes logis de marchand"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Palabre de marchand"
+      },
+      "pricing": {
+        "title": "Tarification",
+        "customer_contact": "Mandater la confrérie"
+      }
+    },
+    "chat": {
+      "tab_title": "Ecodeli | Palabre de client"
+    },
+    "delivery-persons": {
+      "discover": {
+        "tab_title": "Ecodeli | Découvrir - Messager",
+        "title": "Découvrir des missives",
+        "all_services": "Toutes besognes",
+        "delivery": "Livrée",
+        "shopping": "Emplettes",
+        "contact": "Mandement",
+        "details": "Secrets dévoilés",
+        "city": "Cité",
+        "notifications": {
+          "conversation_creation_error": "Faute lors de la création de la palabre"
+        }
+      },
+      "account": {
+        "tab_title": "Ecodeli | Mon grimoire de messager"
+      },
+      "addresses": {
+        "tab_title": "Ecodeli | Mes logis de messager"
+      },
+      "chat": {
+        "tab_title": "Ecodeli | Palabre de messager"
+      },
+      "schedule": {
+        "tab_title": "Ecodeli | Mon cadran de messager"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Entrer en la grande salle",
+      "tab_title": "Connexion à la confrérie",
+      "email_placeholder": "Parchemin d'adresse",
+      "password_placeholder": "Sésame secret",
+      "button": "Entrer",
+      "forgot_password_link": "Mot de passe oublié ?",
+      "register_link": "S'enregistrer en la confrérie"
+    },
+    "register": {
+      "title": "S'enregistrer en la confrérie",
+      "tab_title": "Inscription à la confrérie",
+      "first_name_placeholder": "Prénom",
+      "last_name_placeholder": "Nom",
+      "email_placeholder": "Parchemin d'adresse",
+      "password_placeholder": "Sésame secret",
+      "button": "S'enregistrer",
+      "login_link": "Entrer en la grande salle"
+    },
+    "forgot_password": {
+      "title": "Mot de passe oublié",
+      "tab_title": "Mot de passe oublié",
+      "email_placeholder": "Parchemin d'adresse",
+      "button": "Envoyer un messager",
+      "login_link": "Retour à la grande salle"
+    },
+    "reset_password": {
+      "tab_title": "Réinitialisation du sésame secret"
+    },
+    "space": {
+      "title": "Bonjour {name} !",
+      "tab_title": "Salle personnelle",
+      "options": {
+        "client_link": "Salle du commun",
+        "delivery_link": "Salle du messager",
+        "merchant_link": "Salle du marchand",
+        "service_provider_link": "Salle du prestataire",
+        "account_link": "Mon grimoire",
+        "admin_link": "Salle des gouvernances"
+      },
+      "logout": "Quitter la confrérie"
+    },
+    "space_validation": {
+      "clients": {
+        "title": "Devenir commun",
+        "subtitle": "Regarde le parchemin pour découvrir le fonctionnement d'Ecodeli !",
+        "button": "Devenir commun",
+        "rejected": "Ta précédente requête fut rejetée, il te faut recommencer.",
+        "not_found": "Tu n'as point de profil commun."
+      },
+      "delivery-persons": {
+        "title": "Devenir messager",
+        "subtitle": "Dépose ton parchemin de candidature pour devenir messager Ecodeli !",
+        "button": "Envoyer la requête",
+        "rejected": "Ta précédente requête fut rejetée, il te faut recommencer.",
+        "not_found": "Tu n'as point de profil messager.",
+        "form": {
+          "1": "IBAN",
+          "2": "Carte d'identité (PDF, JPG, PNG)",
+          "3": "Permis de chevauchée (PDF, JPG, PNG)"
+        }
+      },
+      "traders": {
+        "title": "Devenir marchand",
+        "subtitle": "Dépose ton parchemin de candidature pour devenir marchand sur Ecodeli !",
+        "button": "Envoyer la requête",
+        "rejected": "Ta précédente requête fut rejetée, il te faut recommencer.",
+        "not_found": "Tu n'as point de profil marchand.",
+        "form": {
+          "1": "IBAN",
+          "2": "Carte d'identité du chef (PDF, JPG, PNG)",
+          "3": "Extrait de registre (PDF, JPG, PNG)"
+        }
+      },
+      "providers": {
+        "title": "Devenir prestataire",
+        "subtitle": "Dépose ton parchemin de candidature pour devenir prestataire sur Ecodeli !",
+        "button": "Envoyer la requête",
+        "rejected": "Ta précédente requête fut rejetée, il te faut recommencer.",
+        "not_found": "Tu n'as point de profil prestataire.",
+        "form": {
+          "1": "IBAN",
+          "2": "Carte d'identité du chef (PDF, JPG, PNG)",
+          "3": "Extrait de registre (PDF, JPG, PNG)",
+          "4": "Certificats de besogne (PDF, JPG, PNG)"
+        }
+      },
+      "pending": {
+        "title": "Ta requête a bien été reçue !",
+        "subtitle": "Les membres de la confrérie étudient ta requête, tu auras réponse sous 72h.",
+        "back_link": "Retour"
+      }
+    },
+    "account": {
+      "title": "Mon grimoire",
+      "tab_title": "Mon grimoire",
+      "profile": {
+        "first_name_placeholder": "Prénom",
+        "last_name_placeholder": "Nom",
+        "email_placeholder": "Parchemin d'adresse",
+        "save_button": "Consigner"
+      },
+      "password": {
+        "old_password_placeholder": "Ancien sésame secret",
+        "new_password_placeholder": "Nouveau sésame secret",
+        "save_button": "Consigner"
+      },
+      "actions": {
+        "delete_account": "Effacer mon grimoire",
+        "personal_info": "Mes secrets personnels",
+        "return_to_app_link": "Retour à la confrérie"
+      },
+      "support_rgpd": "Pour effacer ton grimoire ou réclamer tes secrets conservés par EcoDeli, contacte la confrérie via <a href=\"mailto:hello@ecodeli.fr\" class=\"underline\">hello@ecodeli.fr</a>."
+    },
+    "admin_login": {
+      "title": "Salle des gouvernances",
+      "email_placeholder": "Parchemin d'adresse",
+      "password_placeholder": "Sésame secret",
+      "button": "Entrer",
+      "forgot_password_link": "Mot de passe oublié ?",
+      "login_link": "Retour à la grande salle"
+    }
+  },
+  "admin": {
+    "global": {
+      "tab_title": "Ecodeli | Gouvernance des langues",
+      "users_title": "Âmes",
+      "addresses_title": "Logis",
+      "langs_title": "Langues",
+      "ads_title": "Missives",
+      "wallets_title": "Bourses",
+      "invoices_title": "Parchemins de paiement",
+      "payments_title": "Bourses de paiement",
+      "professionals_title": "Preux",
+      "ratings_title": "Avis des prestataires",
+      "accounting_group": "Comptabilité",
+      "content_group": "Contenus",
+      "users_group": "Âmes"
+    },
+    "ads": {
+      "tab_title": "Ecodeli | Gouvernance des missives",
+      "ads_title": "Missives"
+    },
+    "users": {
+      "tab_title": "Ecodeli | Gouvernance des âmes",
+      "users_title": "Âmes",
+      "providers_title": "Prestataires",
+      "delivery_persons_title": "Messagers",
+      "traders_title": "Marchands",
+      "clients_title": "Communs",
+      "profiles_title": "Portraits",
+      "search_bar": "Quêter...",
+      "user_name": "Nom",
+      "user_first_name": "Prénom",
+      "user_email": "Parchemin",
+      "status": "Statut",
+      "creation_date": "Jour de création",
+      "actions": "Actions",
+      "modify": "Amender",
+      "cancel": "Effacer",
+      "next": "Suivant",
+      "previous": "Précédent",
+      "page": "Page",
+      "card_id": "Carte d'identité",
+      "driving_license": "Permis de chevauchée",
+      "RIB": "RIB",
+      "create_it": "Créé le",
+      "proof_of_activity": "Preuve d'activité",
+      "certification_document": "Parchemin de certification",
+      "reduction_percent": "Réduction",
+      "user_modify": "Amender l'âme",
+      "active": "Actif",
+      "verify": "Vérifié",
+      "administrator": "Gouverneur",
+      "close_button": "Fermer",
+      "record_button:": "Consigner",
+      "user_delete": "Effacer l'âme",
+      "delete_confirmation": "Es-tu certain de vouloir effacer cette âme ?",
+      "cancel_delete": "Révoquer",
+      "client_delete": "Effacer le commun",
+      "provider_delete": "Effacer le prestataire",
+      "trader_delete": "Effacer le marchand",
+      "delivery_delete": "Effacer le messager",
+      "supplier_delete": "Effacer le fournisseur",
+      "delivery_status_modify": "Amender le statut du messager",
+      "provider_status_modify": "Amender le statut du prestataire",
+      "trader_status_modify": "Amender le statut du marchand",
+      "client_status_modify": "Amender le statut du commun",
+      "to_validate": "Sceller",
+      "pending": "En attente",
+      "rejected": "Rejeté",
+      "none_validated": "Non scellé",
+      "pages": "Page",
+      "on": "sur",
+      "subscription": "Serment",
+      "history": "Chronique",
+      "payment_history_title": "Chronique des paiements"
+    },
+    "addresses": {
+      "tab_title": "Gouvernance des logis"
+    },
+    "langs": {
+      "tab_title": "Gouvernance des langues"
+    },
+    "pro": {
+      "tab_title": "Gouvernance des preux"
+    },
+    "ad-payments": {
+      "tab_title": "Bourses de paiement"
+    },
+    "wallets": {
+      "tab_title": "Ecodeli | Gouvernance des bourses",
+      "wallets_title": "Bourses enchantées",
+      "search_bar": "Quêter...",
+      "user_name": "Âme",
+      "user_email": "Parchemin",
+      "amount_available": "Denier disponible",
+      "amount_pending": "Denier en attente",
+      "creation_date": "Jour de création",
+      "last_update": "Dernière modification",
+      "actions": "Actions",
+      "modify": "Amender",
+      "cancel": "Effacer",
+      "close_button": "Fermer",
+      "record_button": "Consigner",
+      "wallet_modify": "Amender la bourse",
+      "wallet_delete": "Effacer la bourse",
+      "cancel_delete": "Révoquer",
+      "delete_confirmation": "Es-tu certain de vouloir effacer la bourse de"
+    },
+    "access_denied": {
+      "title": "Accès refusé",
+      "message": "Tu n'as point les permissions pour accéder à cette salle. Seuls les gouverneurs peuvent consulter le panneau de gouvernance.",
+      "back_to_auth": "Retour à la grande salle"
+    },
+    "invoices": {
+      "tab_title": "Ecodeli | Parchemins de paiement (gouvernance)"
+    },
+    "ads-management": {
+      "tab_title": "Gouvernance des missives"
+    },
+    "ratings": {
+      "tab_title": "Ecodeli | Gouvernance des avis des prestataires",
+      "title": "Gouvernance des avis des prestataires",
+      "subtitle": "Consulte et gouverne les avis des prestataires",
+      "provider": "Prestataire",
+      "average_rating": "Note moyenne",
+      "number_ratings": "Nombre d'avis",
+      "actions": "Actions",
+      "view_ratings": "Voir les avis",
+      "hide_ratings": "Masquer",
+      "rating_details": "Secrets des avis",
+      "no_comment": "Nul commentaire",
+      "rated_by": "Évalué par",
+      "service": "Besogne",
+      "legend": "Légende",
+      "legend_low_rating": "Les prestataires avec une note moyenne inférieure à 2 étoiles sont affichés en rouge",
+      "legend_view_details": "Clique sur 'Voir les avis' pour consulter le détail des évaluations",
+      "no_ratings": "Nul avis trouvé"
+    }
+  },
+  "track": {
+    "tab_title": "Ecodeli | Queste des commandements",
+    "form": {
+      "title": "Queste des commandements",
+      "email_placeholder": "Parchemin",
+      "ref_placeholder": "Référence de la missive",
+      "button": "Afficher"
+    },
+    "details": {
+      "title": "Secrets de la commande",
+      "status_ad": "Statut de la missive",
+      "status_conversation": "Statut de la palabre",
+      "status_payment": "Statut de la bourse",
+      "validate_button": "Sceller la réception",
+      "validated": "Commande scellée et parachevée !"
+    },
+    "success": {
+      "tracking_fetched": "Queste récupérée avec faste.",
+      "order_validated": "Commande scellée avec faste !"
+    },
+    "error": {
+      "tracking_failed": "Faute lors de la queste. Veuillez réessayer.",
+      "validation_failed": "Faute lors de la validation."
+    }
+  },
+  "rate": {
+    "tab_title": "Ecodeli | Noter un preux",
+    "title": "Note ton preux",
+    "subtitle": "Comment s'est passée ta besogne avec {providerName} ?",
+    "stars": {
+      "1": "Fort déçu",
+      "2": "Déçu",
+      "3": "Moyen",
+      "4": "Satisfait",
+      "5": "Fort satisfait"
+    },
+    "comment": {
+      "label": "Commentaire (optionnel)",
+      "placeholder": "Partage ton expérience..."
+    },
+    "submit": {
+      "button": "Envoyer ma note",
+      "loading": "Envoi..."
+    },
+    "errors": {
+      "missing_token": "Sceau manquant",
+      "already_submitted": "Cette évaluation a déjà été scellée",
+      "invalid_token": "Sceau invalide ou expiré",
+      "submission_error": "Faute lors de la soumission de ton évaluation"
+    },
+    "success": {
+      "title": "Merci pour ton avis !",
+      "message": "Ton évaluation a été consignée avec faste. Elle aidera d'autres âmes à choisir leurs preux.",
+      "redirect_message": "Tu vas être redirigé vers le grand portail dans quelques instants...",
+      "back_button": "Retour au grand portail",
+      "tab_title": "Ecodeli | Merci pour ton avis !"
+    }
+  },
+  "api_responses": {
+    "auth": {
+      "account": {
+        "user_already_exists": "Une âme avec ce parchemin existe déjà",
+        "account_updated": "Grimoire modifié avec faste.",
+        "password_updated": "Sésame secret modifié avec faste.",
+        "incorrect_new_password": "Le sésame secret doit comporter au moins 8 caractères, dont une minuscule, une majuscule et un chiffre.",
+        "incorrect_old_password": "Ancien sésame secret incorrect."
+      },
+      "login": {
+        "login_successful": "Tu as été reconnu avec faste",
+        "invalid_credentials": "Sésame ou parchemin invalide",
+        "account_inactive": "Ton grimoire est inactif. Contacte la confrérie."
+      },
+      "register": {
+        "register_successful": "Tu as été inscrit avec faste",
+        "user_already_exists": "Une âme avec ce parchemin existe déjà",
+        "bad_request": "Tous champs doivent estre emplis. Le sésame secret doit comporter au moins 8 caractères, dont une minuscule, une majuscule et un chiffre."
+      },
+      "forgot_password": {
+        "email_sent": "Le parchemin de réinitialisation a été envoyé avec faste.",
+        "account_not_found": "Grimoire introuvable."
+      },
+      "reset_password": {
+        "password_updated": "Sésame secret modifié avec faste.",
+        "invalid_token": "Sceau invalide. Veuillez relancer la queste de réinitialisation."
+      },
+      "global": {
+        "already_logged_in": "Tu es déjà reconnu.",
+        "logged_out": "Tu as quitté la confrérie avec faste",
+        "session_expired": "Ta session a expiré. Reviens donc.",
+        "unknown_error": "Faute inconnue. Veuillez réessayer plus tard.",
+        "fields_missing_invalid": "Champs manquants ou invalides.",
+        "user_not_found": "Âme introuvable."
+      }
+    },
+    "namespace": {
+      "request_success": "Ta requête a bien été prise en compte.",
+      "request_error": "Faute lors de la requête.",
+      "not_found": "Profil non trouvé."
+    }
+  },
+  "stripe": {
+    "trader_discount_applied": "Réduction de {percent}% octroyée grâce à ton statut de confrère !",
+    "trader_discount_info": "Réduction marchand {percent}%"
+  },
+  "components": {
+    "onboarding": {
+      "step": "Halte",
+      "of": "sur",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "finish": "Parachever",
+      "skip_tutorial": "Passer le parchemin"
+    },
+    "co2_calculator": {
+      "title": "Calculateur d'économies CO₂",
+      "description": "Calcule combien de CO₂ tu épargnes en usant d'EcoDeli !",
+      "departure_address": "Logis de départ",
+      "arrival_address": "Logis d'arrivée",
+      "choose_address": "Choisir un logis",
+      "calculate": "Calculer",
+      "calculating": "Calcul de ta bonne action en cours...",
+      "savings_achieved": "🌱 Économies réalisées",
+      "per_kilometer": "Par lieue",
+      "total_journey": "Total du trajet",
+      "journey_distance": "Chevauchée de",
+      "kilometers": "lieues",
+      "thank_planet": "Merci pour la Terre ! 🌍",
+      "open_calculator": "Ouvrir le calculateur d'économies CO₂",
+      "notifications": {
+        "select_addresses": "Sélectionne un logis de départ et un logis d'arrivée.",
+        "different_addresses": "Les logis de départ et d'arrivée doivent différer.",
+        "calculation_error": "Faute lors du calcul.",
+        "load_addresses_error": "Impossible de charger les logis de l'âme."
+      }
+    },
+    "wallet": {
+      "iban_sent_success": "IBAN envoyé avec faste",
+      "iban_validation_error": "Faute lors de la validation de l'IBAN",
+      "no_amount_available": "Nul denier à transférer.",
+      "transfer_success": "Denier transféré avec faste",
+      "transfer_error": "Faute lors du transfert",
+      "unknown_profile": "Type de profil inconnu :",
+      "load_wallet_error": "Faute lors du chargement de la bourse"
+    }
+  }
+}

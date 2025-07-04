@@ -109,6 +109,9 @@ export class ReleaseCartAdsService {
   }
 
   async findByUser(userId: number) {
-    return this.releaseCartAdRepo.find({ where: { postedBy: { id: userId } } });
+    return this.releaseCartAdRepo.find({
+      where: { postedBy: { id: userId } },
+      relations: ['postedBy', 'departureLocation', 'arrivalLocation'],
+    });
   }
 }

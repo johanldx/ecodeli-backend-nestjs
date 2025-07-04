@@ -347,6 +347,9 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Client messaging"
+      },
+      "subscription": {
+        "tab_title": "Ecodeli | My client subscription"
       }
     },
     "delivery": {
@@ -465,6 +468,15 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Provider messaging"
+      },
+      "samples": {
+        "title": "My samples",
+        "amount_billed_month": "Amount billed this month",
+        "manage_samples": "Manage my samples"
+      },
+      "pricing": {
+        "title": "Pricing",
+        "customer_contact": "Contact customer service"
       }
     },
     "traders": {
@@ -516,13 +528,28 @@
         }
       },
       "account": {
-        "tab_title": "Ecodeli | My trader account"
+        "tab_title": "Ecodeli | My trader account",
+        "title": "My trader account",
+        "manage_my_documents": "Manage my supporting documents",
+        "manage_global_account": "Manage my global account",
+        "manage_my_addresses": "Manage my addresses",
+        "reduction_title": "My partner discount",
+        "standard_rate": "Standard rate applied",
+        "reduction_rate": "Discount of {percent}% applied on your transactions",
+        "monthly_stats": {
+          "title": "Monthly statistics",
+          "total_earned": "Total earned"
+        }
       },
       "addresses": {
         "tab_title": "Ecodeli | My trader addresses"
       },
       "chat": {
         "tab_title": "Ecodeli | Trader messaging"
+      },
+      "pricing": {
+        "title": "Pricing",
+        "customer_contact": "Contact customer service"
       }
     },
     "chat": {
@@ -911,6 +938,11 @@
         "fields_missing_invalid": "Missing or invalid fields.",
         "user_not_found": "User not found."
       }
+    },
+    "namespace": {
+      "request_success": "Your request has been taken into account.",
+      "request_error": "An error occurred during the request.",
+      "not_found": "Profile not found."
     }
   },
   "stripe": {

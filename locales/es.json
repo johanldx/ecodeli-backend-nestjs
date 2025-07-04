@@ -347,6 +347,9 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Mensajería cliente"
+      },
+      "subscription": {
+        "tab_title": "Ecodeli | Mi suscripción de cliente"
       }
     },
     "delivery": {
@@ -465,6 +468,15 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Mensajería proveedor"
+      },
+      "samples": {
+        "title": "Mis muestras",
+        "amount_billed_month": "Cantidad facturada este mes",
+        "manage_samples": "Gestionar mis muestras"
+      },
+      "pricing": {
+        "title": "Tarificación",
+        "customer_contact": "Contactar con atención al cliente"
       }
     },
     "traders": {
@@ -516,13 +528,28 @@
         }
       },
       "account": {
-        "tab_title": "Ecodeli | Mi cuenta comerciante"
+        "tab_title": "Ecodeli | Mi cuenta comerciante",
+        "title": "Mi cuenta comerciante",
+        "manage_my_documents": "Gestionar mis justificantes",
+        "manage_global_account": "Gestionar mi cuenta global",
+        "manage_my_addresses": "Gestionar mis direcciones",
+        "reduction_title": "Mi descuento de socio",
+        "standard_rate": "Tarifa estándar aplicada",
+        "reduction_rate": "Descuento del {percent}% aplicado en tus transacciones",
+        "monthly_stats": {
+          "title": "Estadísticas mensuales",
+          "total_earned": "Total ganado"
+        }
       },
       "addresses": {
         "tab_title": "Ecodeli | Mis direcciones comerciante"
       },
       "chat": {
         "tab_title": "Ecodeli | Mensajería comerciante"
+      },
+      "pricing": {
+        "title": "Tarificación",
+        "customer_contact": "Contactar con atención al cliente"
       }
     },
     "chat": {
@@ -911,6 +938,11 @@
         "fields_missing_invalid": "Campos faltantes o inválidos.",
         "user_not_found": "Usuario no encontrado."
       }
+    },
+    "namespace": {
+      "request_success": "Tu solicitud ha sido tenida en cuenta.",
+      "request_error": "Ha ocurrido un error durante la solicitud.",
+      "not_found": "Perfil no encontrado."
     }
   },
   "stripe": {

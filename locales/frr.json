@@ -347,6 +347,9 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Messagerie client"
+      },
+      "subscription": {
+        "tab_title": "Ecodeli | Mon abonnement client (si t'en as un)"
       }
     },
     "delivery": {
@@ -465,6 +468,15 @@
       },
       "chat": {
         "tab_title": "Ecodeli | Messagerie prestataire"
+      },
+      "samples": {
+        "title": "Mes échantillons (si t'en as)",
+        "amount_billed_month": "Montant facturé ce mois-ci",
+        "manage_samples": "Gérer mes échantillons"
+      },
+      "pricing": {
+        "title": "Tarification",
+        "customer_contact": "Contacter le service client"
       }
     },
     "traders": {
@@ -516,13 +528,28 @@
         }
       },
       "account": {
-        "tab_title": "Ecodeli | Mon compte trader"
+        "tab_title": "Ecodeli | Mon compte trader",
+        "title": "Mon compte trader",
+        "manage_my_documents": "Gérer mes justificatifs",
+        "manage_global_account": "Gérer mon compte global",
+        "manage_my_addresses": "Gérer mes adresses",
+        "reduction_title": "Mon remise partenaire",
+        "standard_rate": "Tarif standard appliqué",
+        "reduction_rate": "Remise de {percent}% appliquée sur tes transactions",
+        "monthly_stats": {
+          "title": "Statistiques mensuelles",
+          "total_earned": "Total gagné"
+        }
       },
       "addresses": {
         "tab_title": "Ecodeli | Mes adresses trader"
       },
       "chat": {
         "tab_title": "Ecodeli | Messagerie trader"
+      },
+      "pricing": {
+        "title": "Tarification",
+        "customer_contact": "Contacter le service client"
       }
     },
     "chat": {
@@ -912,6 +939,11 @@
         "fields_missing_invalid": "Champs manquants ou pas bons. (comme ton CV)",
         "user_not_found": "Utilisateur introuvable. (comme ton avenir)"
       }
+    },
+    "namespace": {
+      "request_success": "Ta demande a été prise en compte.",
+      "request_error": "Une erreur s'est produite lors de la demande.",
+      "not_found": "Profil introuvable."
     }
   },
   "stripe": {
