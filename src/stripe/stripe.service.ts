@@ -783,6 +783,13 @@ constructor(
           where: { id: adId },
           relations: ['postedBy'],
         });
+        // Pour ShoppingAds, postedBy pointe vers user_id, on doit récupérer l'utilisateur via posted_by
+        if (ad && !ad.postedBy) {
+          const user = await this.userRepo.findOne({
+            where: { id: ad.posted_by }
+          });
+          ad.postedBy = user;
+        }
         break;
       case 'DeliverySteps':
         ad = await this.deliveryRepo.findOne({

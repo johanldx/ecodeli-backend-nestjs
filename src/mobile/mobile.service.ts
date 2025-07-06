@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeliveryPerson } from 'src/delivery-persons/delivery-person.entity';
 import {
@@ -9,6 +9,12 @@ import {
   AdStatus,
   ShoppingAd,
 } from 'src/shopping-ads/entities/shopping-ads.entity';
+import { User } from 'src/users/user.entity';
+import { AdTypes } from 'src/conversations/entities/conversation.entity';
+import { PaymentStatus, PaymentTypes } from 'src/ad-payments/entities/payment.enums';
+import { AdPayment } from 'src/ad-payments/entities/ad-payment.entity';
+import { WalletsService } from 'src/wallets/wallets.service';
+import { EmailService } from 'src/email/email.service';
 import { In, Repository } from 'typeorm';
 
 @Injectable()
@@ -22,6 +28,15 @@ export class MobileService {
 
     @InjectRepository(ShoppingAd)
     private shoppingAdRepo: Repository<ShoppingAd>,
+
+    @InjectRepository(User)
+    private userRepo: Repository<User>,
+
+    @InjectRepository(AdPayment)
+    private paymentRepo: Repository<AdPayment>,
+
+    private walletsService: WalletsService,
+    private emailService: EmailService,
   ) {}
 
   async findDeliveryPersonById(id: number): Promise<DeliveryPerson | null> {
@@ -73,26 +88,94 @@ export class MobileService {
   async completeAd(
     type: 'shopping' | 'delivery',
     id: number,
-  ): Promise<boolean> {
+  ): Promise<{ success: boolean; message?: string }> {
+    let ad: any;
+    let adType: AdTypes;
+
     if (type === 'shopping') {
-      const ad = await this.shoppingAdRepo.findOne({ where: { id } });
-      if (!ad) return false;
+      ad = await this.shoppingAdRepo.findOne({ 
+        where: { id }, 
+        relations: ['postedBy'] 
+      });
+      if (!ad) {
+        throw new NotFoundException('Annonce shopping introuvable');
+      }
+      // Pour ShoppingAds, postedBy pointe vers user_id, on doit récupérer l'utilisateur via posted_by
+      if (!ad.postedBy) {
+        const user = await this.userRepo.findOne({
+          where: { id: ad.posted_by }
+        });
+        ad.postedBy = user;
+      }
+      adType = AdTypes.ShoppingAds;
+    } else if (type === 'delivery') {
+      ad = await this.deliveryStepRepo.findOne({
+        where: { id },
+        relations: ['deliveryAd', 'deliveryAd.postedBy'],
+      });
+      if (!ad) {
+        throw new NotFoundException('Étape de livraison introuvable');
+      }
+      adType = AdTypes.DeliverySteps;
+    } else {
+      throw new BadRequestException('Type d\'annonce non supporté');
+    }
+
+    // Récupération et mise à jour du paiement
+    const payment = await this.paymentRepo.findOne({ 
+      where: { 
+        reference_id: ad.id, 
+        payment_type: adType as unknown as PaymentTypes 
+      } 
+    });
+
+    if (payment && payment.status !== PaymentStatus.COMPLETED) {
+      payment.status = PaymentStatus.COMPLETED;
+      await this.paymentRepo.save(payment);
+      
+      // Transfert du pending vers le disponible
+      if (payment.user) {
+        await this.walletsService.movePendingToAvailable(payment.user.id, payment.amount);
+      }
+    }
+
+    // Mise à jour du statut de l'annonce
+    if (type === 'shopping') {
       ad.status = AdStatus.COMPLETED;
       await this.shoppingAdRepo.save(ad);
-      return true;
+    } else if (type === 'delivery') {
+      ad.status = DeliveryStepStatus.COMPLETED;
+      await this.deliveryStepRepo.save(ad);
     }
 
-    if (type === 'delivery') {
-      const step = await this.deliveryStepRepo.findOne({
-        where: { id },
-        relations: ['deliveryAd'],
-      });
-      if (!step) return false;
-      step.status = DeliveryStepStatus.COMPLETED;
-      await this.deliveryStepRepo.save(step);
-      return true;
+    // Envoi d'email de notification
+    if (payment) {
+      const adName = ad?.title || ad?.name || `Annonce #${ad?.id}` || 'Votre annonce';
+      let recipientEmail = '';
+      let recipientName = '';
+      
+      if (type === 'shopping') {
+        if (ad?.postedBy) {
+          recipientEmail = ad.postedBy.email;
+          recipientName = `${ad.postedBy.first_name} ${ad.postedBy.last_name}`;
+        }
+      } else if (type === 'delivery') {
+        if (ad?.deliveryAd?.postedBy) {
+          recipientEmail = ad.deliveryAd.postedBy.email;
+          recipientName = `${ad.deliveryAd.postedBy.first_name} ${ad.deliveryAd.postedBy.last_name}`;
+        }
+      }
+      
+      if (recipientEmail) {
+        await this.emailService.sendEmail(
+          recipientEmail,
+          'Paiement validé - EcoDeli',
+          'Paiement validé avec succès',
+          `Félicitations ${recipientName} ! Votre paiement de ${payment.amount}€ pour "${adName}" a été validé avec succès. L'argent a été débité de votre compte.`
+        );
+      }
     }
 
-    return false;
+    return { success: true };
   }
 }

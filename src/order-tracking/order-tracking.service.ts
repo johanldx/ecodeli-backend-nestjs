@@ -43,6 +43,13 @@ export class OrderTrackingService {
     switch (conversation.adType) {
       case AdTypes.ShoppingAds:
         ad = await this.shoppingRepo.findOne({ where: { id: conversation.adId }, relations: ['postedBy'] });
+        // Pour ShoppingAds, postedBy pointe vers user_id, on doit récupérer l'utilisateur via posted_by
+        if (ad && !ad.postedBy) {
+          const user = await this.userRepo.findOne({
+            where: { id: ad.posted_by }
+          });
+          ad.postedBy = user;
+        }
         break;
       case AdTypes.DeliverySteps:
         ad = await this.deliveryRepo.findOne({ 
@@ -108,6 +115,13 @@ export class OrderTrackingService {
     switch (conversation.adType) {
       case AdTypes.ShoppingAds:
         ad = await this.shoppingRepo.findOne({ where: { id: conversation.adId }, relations: ['postedBy'] });
+        // Pour ShoppingAds, postedBy pointe vers user_id, on doit récupérer l'utilisateur via posted_by
+        if (ad && !ad.postedBy) {
+          const user = await this.userRepo.findOne({
+            where: { id: ad.posted_by }
+          });
+          ad.postedBy = user;
+        }
         break;
       case AdTypes.DeliverySteps:
         ad = await this.deliveryRepo.findOne({ 
@@ -173,7 +187,7 @@ export class OrderTrackingService {
     // Pour ServiceProvisions : on ne touche pas au statut de l'annonce
 
     // Envoi d'email de notification
-    if (payment && payment.user) {
+    if (payment) {
       const adName = ad?.title || ad?.name || `Annonce #${ad?.id}` || 'Votre annonce';
       
       // Déterminer le destinataire selon le type d'annonce
