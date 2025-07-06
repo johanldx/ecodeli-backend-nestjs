@@ -7,24 +7,17 @@ import * as bodyParser from 'body-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Configuration spéciale pour Stripe webhook (DOIT être avant le parsing JSON global)
   app.use('/stripe/webhook', bodyParser.raw({ type: 'application/json' }));
-  
-  // Configuration générale pour le parsing JSON (après la configuration Stripe)
   app.use(bodyParser.json());
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   app.enableCors({
-    origin: [
-      'http://localhost:3001',
-      'http://192.168.0.179:3001',
-      'https://ecodeli.fr',
-    ],
-    methods: 'GET,POST,PUT,DELETE, PATCH',
-    allowedHeaders: 'Content-Type,Authorization',
-    credentials: true,
+    origin: '*',
+    methods: 'GET,POST,PUT,DELETE,PATCH,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization,X-Requested-With,Accept,Origin',
+    credentials: false,
   });
 
   const config = new DocumentBuilder()
