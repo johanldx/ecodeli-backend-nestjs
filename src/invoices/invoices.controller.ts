@@ -19,6 +19,7 @@ import {
   ApiTags,
   ApiResponse,
   ApiOperation,
+  ApiBearerAuth,
 } from '@nestjs/swagger';
 import { InvoicesService } from './invoices.service';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
@@ -28,7 +29,9 @@ import { AdminGuard } from 'src/auth/guards/admin.guard';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('invoices')
+@ApiBearerAuth()
 @Controller('invoices')
+@UseGuards(JwtAuthGuard)
 export class InvoicesController {
   private readonly logger = new Logger(InvoicesController.name);
   constructor(private readonly invoicesService: InvoicesService) {}

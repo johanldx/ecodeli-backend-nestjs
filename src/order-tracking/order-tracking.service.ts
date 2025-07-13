@@ -222,9 +222,9 @@ export class OrderTrackingService {
       if (recipientEmail) {
         await this.emailService.sendEmail(
           recipientEmail,
-          'Paiement validé - EcoDeli',
-          'Paiement validé avec succès',
-          `Félicitations ${recipientName} ! Votre paiement de ${payment.amount}€ pour "${adName}" (conversation #${conversation.id}) a été validé avec succès. L'argent a été débité de votre compte.`
+          'Demande de validation de commande prise en compte et validée - EcoDeli',
+          'Demande de validation de commande reçue et validée',
+          `Bonjour ${recipientName} ! Votre demande de validation de commande pour "${adName}" (conversation #${conversation.id}) a bien été prise en compte et validée.`
         );
       }
     }

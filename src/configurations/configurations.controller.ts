@@ -12,12 +12,14 @@ import { ConfigurationsService } from './configurations.service';
 import { CreateConfigurationDto } from './dto/create-configuration.dto';
 import { UpdateConfigurationDto } from './dto/update-configuration.dto';
 import { ConfigurationResponseDto } from './dto/configuration-response.dto';
-import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOkResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { AdminGuard } from 'src/auth/guards/admin.guard';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('Configurations')
+@ApiBearerAuth()
 @Controller('configurations')
+@UseGuards(JwtAuthGuard)
 export class ConfigurationsController {
   constructor(private readonly service: ConfigurationsService) {}
 

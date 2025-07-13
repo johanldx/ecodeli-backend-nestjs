@@ -746,6 +746,42 @@ constructor(
           </div>`
         );
       }
+
+      // Envoi d'email au destinataire de l'argent
+      let moneyRecipientEmail = '';
+      let moneyRecipientName = '';
+      
+      if (ad) {
+        switch (adType) {
+          case 'ServiceProvisions':
+            // Pour ServiceProvisions : celui qui a posté l'annonce (le prestataire)
+            if (ad.postedBy) {
+              moneyRecipientEmail = ad.postedBy.email;
+              moneyRecipientName = `${ad.postedBy.first_name} ${ad.postedBy.last_name}`;
+            }
+            break;
+          case 'ShoppingAds':
+          case 'ReleaseCartAds':
+          case 'DeliverySteps':
+            // Pour les autres types : le userFrom de la conversation (le client)
+            if (conversation.userFrom) {
+              moneyRecipientEmail = conversation.userFrom.email;
+              moneyRecipientName = `${conversation.userFrom.first_name} ${conversation.userFrom.last_name}`;
+            }
+            break;
+        }
+      }
+      
+      if (moneyRecipientEmail) {
+        const adName = ad?.title || ad?.name || `Annonce #${ad?.id}` || 'Votre annonce';
+        const amount = session.amount_total ? (session.amount_total / 100) : 0;
+        await this.emailService.sendEmail(
+          moneyRecipientEmail,
+          'Paiement reçu pour votre annonce - EcoDeli',
+          'Paiement reçu',
+          `Un paiement de ${amount}€ a été reçu pour votre annonce "${adName}" (conversation #${conversation.id}). L'argent est actuellement en attente de validation. Consultez vos conversations sur https://ecodeli.fr pour suivre l'avancement.`
+        );
+      }
     } catch (e) {
       console.error('[Stripe] Erreur lors de l\'envoi du mail de tracking :', e);
     }
