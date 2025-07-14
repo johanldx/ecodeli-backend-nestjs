@@ -4,11 +4,10 @@ import {
   IsEnum,
   IsArray,
   IsDateString,
-  IsUUID,
   IsOptional,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { AdStatus, PackageSize } from '../entities/delivery-ads.entity';
+import { PackageSize } from '../entities/delivery-ads.entity';
 
 export class CreateDeliveryAdDto {
   @ApiProperty()

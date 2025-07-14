@@ -36,16 +36,16 @@ export class Rating {
   conversationId: number;
 
   @Column({ type: 'int', name: 'rating', nullable: true })
-  rating: number | null; // 1-5 étoiles, null tant que pas noté
+  rating: number | null;
 
   @Column({ type: 'text', nullable: true })
   comment: string | null;
 
   @Column({ type: 'varchar', length: 255, unique: true })
-  token: string; // Token unique pour l'email
+  token: string;
 
   @Column({ type: 'boolean', default: false })
-  isUsed: boolean; // Pour éviter les votes multiples
+  isUsed: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

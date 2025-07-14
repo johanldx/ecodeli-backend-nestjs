@@ -15,10 +15,10 @@ export class I18nService {
   private readJsonFile(filePath: string): Record<string, any> | null {
     try {
       const content = fs.readFileSync(filePath, 'utf8');
-      if (!content.trim()) return null; // vide
+      if (!content.trim()) return null;
       return JSON.parse(content);
     } catch {
-      return null; // JSON invalide
+      return null;
     }
   }
 
@@ -154,6 +154,6 @@ export class I18nService {
       .readdirSync(this.localesPath)
       .filter((file) => file.endsWith('.json'))
       .map((file) => path.basename(file, '.json'))
-      .filter((lang) => lang !== 'default'); // exclure default
+      .filter((lang) => lang !== 'default');
   }
 }

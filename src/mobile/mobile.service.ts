@@ -100,7 +100,6 @@ export class MobileService {
       if (!ad) {
         throw new NotFoundException('Annonce shopping introuvable');
       }
-      // Pour ShoppingAds, postedBy pointe vers user_id, on doit récupérer l'utilisateur via posted_by
       if (!ad.postedBy) {
         const user = await this.userRepo.findOne({
           where: { id: ad.posted_by }
@@ -121,7 +120,6 @@ export class MobileService {
       throw new BadRequestException('Type d\'annonce non supporté');
     }
 
-    // Récupération et mise à jour du paiement
     const payment = await this.paymentRepo.findOne({ 
       where: { 
         reference_id: ad.id, 
@@ -133,13 +131,11 @@ export class MobileService {
       payment.status = PaymentStatus.COMPLETED;
       await this.paymentRepo.save(payment);
       
-      // Transfert du pending vers le disponible
       if (payment.user) {
         await this.walletsService.movePendingToAvailable(payment.user.id, payment.amount);
       }
     }
 
-    // Mise à jour du statut de l'annonce
     if (type === 'shopping') {
       ad.status = AdStatus.COMPLETED;
       await this.shoppingAdRepo.save(ad);
@@ -148,7 +144,6 @@ export class MobileService {
       await this.deliveryStepRepo.save(ad);
     }
 
-    // Envoi d'email de notification
     if (payment) {
       const adName = ad?.title || ad?.name || `Annonce #${ad?.id}` || 'Votre annonce';
       let recipientEmail = '';

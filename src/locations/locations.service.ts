@@ -1,14 +1,12 @@
 import {
   Injectable,
   NotFoundException,
-  ForbiddenException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Location } from './entities/location.entity';
 import { CreateLocationDto } from './dto/create-location.dto';
 import { UpdateLocationDto } from './dto/update-location.dto';
-import { assertUserOwnsResourceOrIsAdmin } from 'src/auth/utils/assert-ownership';
 
 @Injectable()
 export class LocationsService {
@@ -40,8 +38,6 @@ export class LocationsService {
     const location = await this.locationRepository.findOneBy({ id });
 
     if (!location) throw new NotFoundException();
-
-    //assertUserOwnsResourceOrIsAdmin(user, location.user_id);
 
     return location;
   }

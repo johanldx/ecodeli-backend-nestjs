@@ -25,7 +25,6 @@ export class UsersService {
     });
     await this.userRepository.save(user);
     
-    // Assigner le plan Starter par défaut au nouvel utilisateur
     await this.subscriptionsService.assignDefaultSubscription(user.id);
     
     return this.toResponseDto(user);

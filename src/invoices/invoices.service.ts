@@ -89,9 +89,6 @@ export class InvoicesService {
     return this.invoiceRepository.save(invoice);
   }
 
-  /**
-   * Génère une facture PDF pour un provider, la stocke et la sauvegarde.
-   */
   async generateMonthlyInvoiceForProvider(providerId: number, year: number, month: number): Promise<Invoice> {
     this.logger.log(`[START] Invoice generation for provider #${providerId} for ${year}-${month}`);
 
@@ -159,7 +156,6 @@ export class InvoicesService {
     const totalAmount = invoiceEntity.lines.reduce((sum, line) => sum + line.amount, 0);
     const formattedAmount = this.formatCurrency(totalAmount);
 
-    // Retirer l'argent du wallet du prestataire
     try {
       await this.walletsService.create(
         {
@@ -301,7 +297,6 @@ export class InvoicesService {
     this.generateTableRow(doc, subtotalPosition, '', '', '', 'Total des revenus', this.formatCurrency(totalAmount));
 
     const vatPosition = subtotalPosition + 20;
-    // La TVA est gérée par le prestataire, Ecodeli verse un montant brut.
     this.generateTableRow(doc, vatPosition, '', '', '', 'TVA', 'N/A');
 
     const totalPosition = vatPosition + 25;
@@ -346,16 +341,12 @@ export class InvoicesService {
     return (cents).toFixed(2) + ' €';
   }
 
-  /**
-   * Retourne la liste des providerId ayant au moins un paiement validé sur la période
-   */
   async getProvidersWithPayments(year: number, month: number): Promise<number[]> {
     const start = new Date(year, month - 1, 1, 0, 0, 0);
     const end = new Date(year, month, 0, 23, 59, 59);
 
-    // On récupère les IDs des utilisateurs ayant des paiements "completed" sur la période
     const userWithPayments = await this.adPaymentRepository.find({
-      select: ['user'], // On ne sélectionne que l'utilisateur
+      select: ['user'],
       where: {
         status: PaymentStatus.COMPLETED,
         created_at: Between(start, end),
@@ -369,12 +360,11 @@ export class InvoicesService {
       return [];
     }
     
-    // On trouve les providers qui correspondent à ces userIds
     const providers = await this.providerRepository.find({
       where: {
         user: { id: In(userIds) },
       },
-      select: ['id'], // On ne veut que l'ID du provider
+      select: ['id'],
     });
     
     const providerIds = providers.map(p => p.id);

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Rating } from './entities/rating.entity';
@@ -15,16 +15,10 @@ export class RatingsService {
     private readonly emailService: EmailService,
   ) {}
 
-  /**
-   * Génère un token unique pour l'email de rating
-   */
   private generateToken(): string {
     return randomBytes(32).toString('hex');
   }
 
-  /**
-   * Crée une entrée de rating (appelée quand une conversation est complétée)
-   */
   async createRatingEntry(
     providerId: number,
     raterId: number,
@@ -49,9 +43,6 @@ export class RatingsService {
     return savedRating;
   }
 
-  /**
-   * Soumet une note via le token
-   */
   async submitRating(dto: CreateRatingDto): Promise<Rating> {
     const ratingEntry = await this.ratingRepo.findOne({
       where: { token: dto.token, isUsed: false },
@@ -62,22 +53,17 @@ export class RatingsService {
       throw new NotFoundException('Token invalide ou déjà utilisé');
     }
 
-    // Marquer comme utilisé et sauvegarder la note
     ratingEntry.rating = dto.rating;
     ratingEntry.comment = dto.comment || null;
     ratingEntry.isUsed = true;
 
     const savedRating = await this.ratingRepo.save(ratingEntry);
 
-    // Envoyer un email de notification au prestataire
     await this.sendProviderNotificationEmail(savedRating);
 
     return savedRating;
   }
 
-  /**
-   * Envoie un email de notification au prestataire quand il reçoit une note
-   */
   private async sendProviderNotificationEmail(rating: Rating): Promise<void> {
     try {
       if (!rating.provider?.email) {
@@ -110,7 +96,6 @@ export class RatingsService {
         <p>Cette évaluation est maintenant visible dans votre espace prestataire et contribue à votre note moyenne globale.</p>
       `;
 
-      // Ajouter un avertissement si la note est basse
       if (rating.rating && rating.rating < 2) {
         content += `
           <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 5px; margin: 20px 0;">
@@ -137,15 +122,11 @@ export class RatingsService {
     }
   }
 
-  /**
-   * Récupère les statistiques de rating d'un prestataire
-   */
   async getProviderRatingStats(providerId: number): Promise<ProviderRatingResponseDto> {
     const ratings = await this.ratingRepo.find({
       where: { providerId, isUsed: true },
     });
 
-    // Filtrer les ratings qui ont une note (pas null)
     const validRatings = ratings.filter(r => r.rating !== null);
 
     if (validRatings.length === 0) {
@@ -165,15 +146,12 @@ export class RatingsService {
     });
 
     return {
-      averageRating: Math.round(averageRating * 10) / 10, // Arrondir à 1 décimale
+      averageRating: Math.round(averageRating * 10) / 10,
       totalRatings,
       ratingDistribution: distribution,
     };
   }
 
-  /**
-   * Récupère une entrée de rating par token (pour affichage de la page de rating)
-   */
   async getRatingByToken(token: string): Promise<Rating> {
     const rating = await this.ratingRepo.findOne({
       where: { token, isUsed: false },
@@ -187,9 +165,6 @@ export class RatingsService {
     return rating;
   }
 
-  /**
-   * Récupère tous les avis avec les informations des prestataires pour l'admin
-   */
   async getAllRatingsForAdmin(): Promise<any[]> {
     const ratings = await this.ratingRepo.find({
       where: { isUsed: true },
@@ -197,7 +172,6 @@ export class RatingsService {
       order: { createdAt: 'DESC' },
     });
 
-    // Grouper par prestataire et calculer les moyennes
     const providerStats = new Map();
     
     ratings.forEach(rating => {
@@ -226,7 +200,6 @@ export class RatingsService {
       stats.count++;
     });
 
-    // Calculer les moyennes et formater les données
     const result = Array.from(providerStats.values()).map(stats => ({
       provider: {
         id: stats.provider.id,
@@ -239,6 +212,6 @@ export class RatingsService {
       ratings: stats.ratings,
     }));
 
-    return result.sort((a, b) => a.averageRating - b.averageRating); // Trier par note croissante
+    return result.sort((a, b) => a.averageRating - b.averageRating);
   }
 } 

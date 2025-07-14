@@ -76,12 +76,11 @@ export class ProviderSchedulesService {
   async findFiltered(filters: {
     start?: Date;
     end?: Date;
-    providerId?: number; // ATTENTION : ici, c'est en réalité le userId
+    providerId?: number;
     personalServiceTypeId?: number;
   }): Promise<ProviderScheduleDto[]> {
     const where: any = {};
 
-    // Étape 1 : Si on a un userId (appelé ici à tort providerId), on retrouve le vrai provider
     if (filters.providerId) {
       const provider = await this.providerRepo.findOne({
         where: { user: { id: filters.providerId } },
@@ -92,7 +91,6 @@ export class ProviderSchedulesService {
       where.provider = { id: provider.id };
     }
 
-    // Étape 2 : Ajout des autres filtres
     if (filters.start && filters.end) {
       where.startTime = Between(filters.start, filters.end);
     }
@@ -101,7 +99,6 @@ export class ProviderSchedulesService {
       where.personalServiceType = { id: filters.personalServiceTypeId };
     }
 
-    // Étape 3 : Requête finale
     const list = await this.repo.find({
       where,
       relations: ['provider', 'personalServiceType'],

@@ -112,7 +112,7 @@ export class ProvidersController {
 
     if (proof.size > maxSize || !allowedTypes.includes(proof.mimetype)) {
       throw new BadRequestException(
-        'Justificatif d’activité invalide (max 5MB, jpg/png/pdf)',
+        'Justificatif d\'activité invalide (max 5MB, jpg/png/pdf)',
       );
     }
 

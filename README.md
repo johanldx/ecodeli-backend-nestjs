@@ -1,179 +1,223 @@
-# Ecodeli Backend - API NestJS
+# Ecodeli Backend – API NestJS
 
-<p align="center">
-  <img src="src/assets/ecodeli.png" width="200" alt="Ecodeli Logo" />
-</p>
+![Ecodeli Logo](src/assets/ecodeli.png)
 
-## Description
+## Présentation
 
-Backend API pour la plateforme Ecodeli, une application de livraison écologique et de services personnalisés. Cette API est construite avec [NestJS](https://nestjs.com/) et fournit tous les services nécessaires pour la gestion des utilisateurs, des livraisons, des paiements et des communications en temps réel.
+**Ecodeli** est une plateforme de livraison écologique et de services personnalisés. Ce dépôt contient l’API backend développée avec [NestJS](https://nestjs.com/), qui gère l’ensemble des fonctionnalités métier : utilisateurs, annonces, paiements, messagerie, notifications, abonnements, etc.
 
-## Fonctionnalités principales
+---
 
-- 🔐 **Authentification et autorisation** - JWT, gestion des rôles
-- 👥 **Gestion des utilisateurs** - Clients, fournisseurs, livreurs
-- 🚚 **Système de livraison** - Suivi, validation
-- 💳 **Paiements** - Intégration Stripe, gestion des abonnements
-- 💬 **Messagerie** - WebSockets pour les conversations en temps réel
-- 📧 **Notifications** - Emails automatisés avec Resend
-- 🌍 **Internationalisation** - Support multi-langues
-- 📊 **Calculateur CO2** - Impact environnemental des livraisons
-- 📱 **API Mobile** - Endpoints dédiés pour l'application mobile
-- 🗄️ **Base de données** - MySQL avec TypeORM
+## Sommaire
+- [Ecodeli Backend – API NestJS](#ecodeli-backend--api-nestjs)
+  - [Présentation](#présentation)
+  - [Sommaire](#sommaire)
+  - [Fonctionnalités](#fonctionnalités)
+  - [Organisation du code](#organisation-du-code)
+  - [Prérequis](#prérequis)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Lancement](#lancement)
+  - [Tests](#tests)
+  - [Documentation API](#documentation-api)
+  - [Déploiement avec PM2](#déploiement-avec-pm2)
+    - [Installation de PM2](#installation-de-pm2)
+    - [Lancer l’application avec PM2](#lancer-lapplication-avec-pm2)
+    - [Commandes utiles PM2](#commandes-utiles-pm2)
+    - [Configuration PM2](#configuration-pm2)
+  - [Philosophie de code](#philosophie-de-code)
+  - [Support](#support)
+  - [Licence](#licence)
 
-## Prérequis
+---
 
-- Node.js (version 18 ou supérieure)
-- npm ou yarn
-- Base de données MySQL
-- Compte AWS S3 (pour le stockage de fichiers)
-- Compte Stripe (pour les paiements)
-- Compte Resend (pour les emails)
+## Fonctionnalités
+- **Authentification & autorisation** (JWT, rôles)
+- **Gestion des utilisateurs** (clients, prestataires, livreurs)
+- **Gestion des annonces** (livraison, services, courses, etc.)
+- **Paiements** (Stripe, abonnements, wallet)
+- **Messagerie temps réel** (WebSocket)
+- **Notifications email** (Resend)
+- **Internationalisation** (multi-langues)
+- **Calcul CO2** (impact environnemental)
+- **API mobile** (routes dédiées)
 
-## Installation
+---
 
-```bash
-# Cloner le repository
-git clone <repository-url>
-cd ecodeli-backend-nestjs
+## Organisation du code
 
-# Installer les dépendances
-npm install
-
-# Copier le fichier d'environnement
-cp .env.example .env
-
-# Configurer les variables d'environnement dans .env
+```
+ecodeli-backend-nestjs/
+├── src/
+│   ├── ad-payments/           # Paiements liés aux annonces
+│   ├── app/                   # Bootstrap, configuration principale
+│   ├── assets/                # Images, logos backend
+│   ├── auth/                  # Authentification, rôles, guards
+│   ├── clients/               # Gestion des clients
+│   ├── co2-calculator/        # Calcul d'impact CO2
+│   ├── configurations/        # Paramètres dynamiques
+│   ├── conversations/         # Système de messagerie
+│   ├── delivery-ads/          # Annonces de livraison
+│   ├── delivery-persons/      # Gestion des livreurs
+│   ├── delivery-steps/        # Étapes de livraison
+│   ├── email/                 # Service d'envoi d'emails
+│   ├── i18n/                  # Internationalisation
+│   ├── invoices/              # Facturation
+│   ├── locations/             # Points de départ/arrivée
+│   ├── messages/              # Messages individuels
+│   ├── mobile/                # Endpoints spécifiques mobile
+│   ├── order-tracking/        # Suivi et validation de commandes
+│   ├── personal-service-types/ # Types de services à la personne
+│   ├── personal-services-ads/ # Annonces de services à la personne
+│   ├── providers/             # Gestion des prestataires
+│   ├── provider-schedules/    # Plannings des prestataires
+│   ├── ratings/               # Système de notation
+│   ├── release-cart-ads/      # Annonces de chariots en libre service
+│   ├── routes/                # Gestion des itinéraires
+│   ├── shopping-ads/          # Annonces de courses
+│   ├── storage/               # Stockage de fichiers (S3)
+│   ├── stripe/                # Intégration Stripe
+│   ├── subscriptions/         # Abonnements
+│   ├── subscription-payments/ # Paiements d'abonnement
+│   ├── tasks/                 # Tâches planifiées (cron)
+│   ├── traders/               # Commerçants partenaires
+│   ├── users/                 # Utilisateurs
+│   ├── wallet-transactions/   # Transactions de portefeuille
+│   ├── wallets/               # Portefeuilles utilisateurs
+│   └── ...
+├── test/                      # Tests end-to-end
+├── locales/                   # Fichiers de traduction JSON
+├── Dockerfile                 # Déploiement conteneurisé
+├── ecosystem.config.cjs       # PM2 config
+├── entrypoint.sh              # Script de démarrage Docker
+├── package.json               # Dépendances et scripts
+├── tsconfig.json              # Config TypeScript
+└── ...
 ```
 
-## Configuration
+---
 
-Créez un fichier `.env` à la racine du projet avec les variables suivantes :
+## Prérequis
+- Node.js 18+
+- npm ou yarn
+- Base de données MySQL/MariaDB
+- Compte AWS S3 (stockage)
+- Compte Stripe (paiements)
+- Compte Resend (emails)
+
+---
+
+## Installation
+```bash
+# Cloner le repo
+$ git clone <repository-url>
+$ cd ecodeli-backend-nestjs
+
+# Installer les dépendances
+$ npm install
+```
+
+---
+
+## Configuration
+Copier le fichier `.env.example` en `.env` et compléter les variables :
 
 ```env
-# Base de données
 DATABASE_HOST=localhost
 DATABASE_PORT=3306
 DATABASE_USERNAME=root
-DATABASE_PASSWORD=password
+DATABASE_PASSWORD=...
 DATABASE_NAME=ecodeli
-
-# JWT
-JWT_SECRET=your-jwt-secret
-JWT_EXPIRES_IN=7d
-
-# AWS S3
-AWS_ACCESS_KEY_ID=your-aws-access-key
-AWS_SECRET_ACCESS_KEY=your-aws-secret-key
+JWT_SECRET=...
+AWS_ACCESS_KEY_ID=...
+AWS_SECRET_ACCESS_KEY=...
 AWS_REGION=eu-west-3
-AWS_S3_BUCKET=ecodeli-bucket
-
-# Stripe
-STRIPE_SECRET_KEY=your-stripe-secret-key
-STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
-
-# Resend (Email)
-RESEND_API_KEY=your-resend-api-key
-
-# Application
+AWS_S3_BUCKET=...
+STRIPE_SECRET_KEY=...
+STRIPE_WEBHOOK_SECRET=...
+RESEND_API_KEY=...
 PORT=3000
 NODE_ENV=development
 ```
 
-## Démarrage
+---
 
+## Lancement
 ```bash
-# Mode développement
-npm run start:dev
+# Démarrage en développement
+$ npm run start:dev
 
-# Mode production
-npm run start:prod
-
-# Mode debug
-npm run start:debug
+# Démarrage en production
+$ npm run start:prod
 ```
+
+---
 
 ## Tests
-
 ```bash
 # Tests unitaires
-npm run test
-
-# Tests en mode watch
-npm run test:watch
-
-# Tests avec couverture
-npm run test:cov
+$ npm run test
 
 # Tests end-to-end
-npm run test:e2e
+$ npm run test:e2e
+
+# Lint
+$ npm run lint
 ```
+
+---
 
 ## Documentation API
+- Swagger : http://localhost:3000/documentation
+- OpenAPI JSON : http://localhost:3000/documentation/open-api.json
 
-Une fois l'application démarrée, la documentation Swagger est disponible à :
-- **Développement** : http://localhost:3000/api
-- **Production** : https://api.ecodeli.fr/api
+---
 
-## Structure du projet
+## Déploiement avec PM2
 
-```
-src/
-├── auth/                 # Authentification et autorisation
-├── users/               # Gestion des utilisateurs
-├── clients/             # Gestion des clients
-├── providers/           # Gestion des fournisseurs
-├── delivery-ads/        # Annonces de livraison
-├── delivery-persons/    # Gestion des livreurs
-├── delivery-steps/      # Étapes de livraison
-├── routes/              # Gestion des itinéraires
-├── orders/              # Gestion des commandes
-├── payments/            # Gestion des paiements
-├── stripe/              # Intégration Stripe
-├── wallets/             # Gestion des portefeuilles
-├── conversations/       # Conversations en temps réel
-├── messages/            # Messages
-├── ratings/             # Système de notation
-├── email/               # Service d'emails
-├── storage/             # Gestion des fichiers
-├── co2-calculator/      # Calculateur d'impact CO2
-├── mobile/              # API mobile
-└── i18n/                # Internationalisation
-```
+Pour un déploiement en production, il est recommandé d’utiliser [PM2](https://pm2.keymetrics.io/), un gestionnaire de processus Node.js.
 
-## Déploiement
-
-### Avec Docker
-
+### Installation de PM2
 ```bash
-# Construire l'image
-docker build -t ecodeli-backend .
-
-# Lancer le conteneur
-docker run -p 3000:3000 ecodeli-backend
+npm install -g pm2
 ```
 
-### Avec Docker Compose
-
+### Lancer l’application avec PM2
 ```bash
-docker-compose up -d
+# Démarrer en mode production
+pm run build
+pm run start
+
+# Lancer avec PM2
+pm2 start ecosystem.config.cjs
 ```
 
-## Scripts disponibles
+### Commandes utiles PM2
+- `pm2 status` : Voir l’état des processus
+- `pm2 logs` : Voir les logs en temps réel
+- `pm2 restart <nom|id>` : Redémarrer un service
+- `pm2 stop <nom|id>` : Arrêter un service
+- `pm2 delete <nom|id>` : Supprimer un service
+- `pm2 save` : Sauvegarder la configuration pour redémarrage auto
+- `pm2 startup` : Générer la commande pour démarrage automatique au boot
 
-- `npm run build` - Compiler le projet
-- `npm run start` - Démarrer en mode production
-- `npm run start:dev` - Démarrer en mode développement
-- `npm run start:debug` - Démarrer en mode debug
-- `npm run lint` - Linter le code
-- `npm run format` - Formater le code
-- `npm run test` - Lancer les tests
-- `npm run test:e2e` - Lancer les tests end-to-end
+### Configuration PM2
+Le fichier `ecosystem.config.cjs` est déjà fourni et prêt à l’emploi pour gérer l’application en mode production.
+
+---
+
+## Philosophie de code
+- **Clean code** : code lisible, structuré, DRY, SRP.
+- **Commentaires** : uniquement pour expliquer une logique complexe ou un choix technique non trivial.
+- **Tests** : privilégier la robustesse et la couverture des cas métier.
+- **Sécurité** : attention aux données sensibles, validation systématique.
+
+---
 
 ## Support
+Pour toute question ou problème, contactez l’équipe de développement Ecodeli.
 
-Pour toute question ou problème, veuillez contacter l'équipe de développement Ecodeli.
+---
 
 ## Licence
-
-Ce projet est privé et propriétaire d'Ecodeli.
+Projet privé, propriété de Johan LEDOUX.

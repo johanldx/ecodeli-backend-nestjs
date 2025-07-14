@@ -31,7 +31,6 @@ import {
   ApiConsumes,
   ApiBody,
 } from '@nestjs/swagger';
-import { UpdateDeliveryPersonStatusDto } from 'src/delivery-persons/dto/update-delivery-person-status.dto';
 import { UpdateTraderStatusDto } from './dto/update-trader-status.dto';
 
 @ApiTags('Traders')

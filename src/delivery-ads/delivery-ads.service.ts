@@ -5,9 +5,6 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Express } from 'express';
-import { v4 as uuidv4 } from 'uuid';
-
 import { DeliveryAd } from './entities/delivery-ads.entity';
 import { CreateDeliveryAdDto } from './dto/create-delivery-ads.dto';
 import { UpdateDeliveryAdDto } from './dto/update-delivery-ads.dto';
@@ -32,7 +29,6 @@ export class DeliveryAdsService {
     reference: string,
     images: Express.Multer.File[],
   ): Promise<DeliveryAd> {
-    // upload images
     const urls = await Promise.all(
       images.map((f) =>
         this.storageService.uploadFile(
@@ -103,9 +99,7 @@ export class DeliveryAdsService {
     if (!ad) throw new NotFoundException('Annonce introuvable');
     assertUserOwnsResourceOrIsAdmin(user, ad.postedBy.id);
 
-    // handle new images
     if (newImages && newImages.length) {
-      // delete old
       if (ad.imageUrls?.length) {
         await Promise.all(
           ad.imageUrls.map((u) => this.storageService.deleteFile(u)),
@@ -128,24 +122,20 @@ export class DeliveryAdsService {
   }
 
   async remove(id: number, user: any): Promise<void> {
-    // 1) On charge l'annonce avec son auteur
     const ad = await this.adRepo.findOne({
       where: { id },
       relations: ['postedBy'],
     });
     if (!ad) throw new NotFoundException('Annonce introuvable');
 
-    // 2) Vérif droits
     assertUserOwnsResourceOrIsAdmin(user, ad.postedBy.id);
 
-    // 3) Suppression des fichiers images
     if (ad.imageUrls?.length) {
       await Promise.all(
         ad.imageUrls.map((u) => this.storageService.deleteFile(u)),
       );
     }
 
-    // 5) Suppression de l'annonce
     await this.adRepo.delete(id);
   }
 
@@ -156,7 +146,6 @@ export class DeliveryAdsService {
   ): Promise<DeliveryAd> {
     const ad = await this.adRepo.findOne({ where: { id } });
     if (!ad) throw new NotFoundException('Annonce introuvable');
-    // ici on considère que seul l'admin passe, sinon on ajoute un check
     ad.status = status;
     return this.adRepo.save(ad);
   }

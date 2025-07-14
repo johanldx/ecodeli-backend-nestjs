@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ShoppingAd } from './entities/shopping-ads.entity';
@@ -84,12 +88,10 @@ export class ShoppingAdsService {
   ): Promise<ShoppingAd> {
     const ad = await this.findOne(id);
 
-    // Vérifier que l'utilisateur est bien le propriétaire (optionnel mais recommandé)
     if (ad.posted_by !== userId) {
       throw new Error('Vous n\'êtes pas autorisé à modifier cette annonce');
     }
 
-    // Relations à mettre à jour si modifiées
     if (dto.departureLocationId) {
       const departureLocation = await this.locationRepository.findOne({
         where: { id: dto.departureLocationId },
@@ -110,7 +112,6 @@ export class ShoppingAdsService {
       ad.arrivalLocation = arrivalLocation;
     }
 
-    // Suppression des anciennes images si de nouvelles sont envoyées
     if (newImages?.length) {
       if (ad.imageUrls?.length) {
         await Promise.all(

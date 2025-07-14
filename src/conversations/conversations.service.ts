@@ -32,9 +32,6 @@ export class ConversationsService {
     private readonly personalServiceRepo: Repository<PersonalServiceAd>,
   ) {}
 
-  /**
-   * Vérifie si l'annonce de la conv appartient à l'user
-   */
   private async isAdOwner(
     conv: Conversation,
     userId: number,
@@ -57,10 +54,6 @@ export class ConversationsService {
     }
   }
 
-  /**
-   * Vérifie si une conversation existe déjà pour cette annonce et cet utilisateur
-   * Retourne true si une conversation existe déjà
-   */
   private async conversationExists(
     adType: AdTypes,
     adId: number,

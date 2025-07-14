@@ -46,7 +46,6 @@ export class Subscription {
   })
   updated_at: Date;
 
-  // Relation one-to-many avec SubscriptionPayment
   @OneToMany(() => SubscriptionPayment, (payment) => payment.subscription)
   @ApiProperty({
     description: 'The payments associated with the subscription.',

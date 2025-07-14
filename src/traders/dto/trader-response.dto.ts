@@ -1,4 +1,3 @@
-// src/traders/dto/trader-response.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
 import { ValidationStatus } from '../trader.entity';
 
@@ -19,7 +18,6 @@ export class TraderResponseDto {
   user: {
     id: number;
     email: string;
-    // Ajoutez ici d'autres propriétés liées à l'utilisateur
   };
 
   @ApiProperty({

@@ -1,12 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-  OneToOne,
-  ManyToOne,
-  JoinColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, ManyToOne, JoinColumn } from 'typeorm';
 import { Client } from 'src/clients/client.entity';
 import { Location } from 'src/locations/entities/location.entity';
 import { DeliveryStep } from 'src/delivery-steps/entities/delivery-step.entity';
@@ -45,7 +37,6 @@ export class User {
   @Column({ type: 'varchar', nullable: true })
   resetPasswordToken: string | null;
 
-  // Champs pour les abonnements
   @Column({ type: 'int', nullable: true })
   current_subscription_id: number | null;
 
@@ -65,8 +56,6 @@ export class User {
   })
   updated_at: Date;
 
-  // Relations
-
   @OneToOne(() => Client, (client) => client.user, { onDelete: 'CASCADE' })
   clients: Client[];
 
@@ -82,13 +71,12 @@ export class User {
   @OneToMany(() => ReleaseCartAd, (releaseCartAd) => releaseCartAd.postedBy)
   releaseCartAds: ReleaseCartAd[];
 
-  @OneToMany(() => ShoppingAd, (shoppingAd) => shoppingAd.postedBy) // Added relationship with ShoppingAd
-  shoppingAds: ShoppingAd[]; // Relation with ShoppingAd
+  @OneToMany(() => ShoppingAd, (shoppingAd) => shoppingAd.postedBy)
+  shoppingAds: ShoppingAd[];
 
   @OneToMany(() => PersonalServiceAd, (ad) => ad.postedBy)
   personalServiceAds: PersonalServiceAd[];
 
-  // Relation avec l'abonnement actuel
   @ManyToOne(() => Subscription, { nullable: true })
   @JoinColumn({ name: 'current_subscription_id' })
   currentSubscription: Subscription;

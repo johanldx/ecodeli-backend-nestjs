@@ -508,7 +508,6 @@ constructor(
     });
 
     if (user) {
-      // Assigner le plan Free par défaut
       const freePlan = await this.subscriptionRepo.findOne({
         where: { name: 'Free' },
       });
@@ -536,8 +535,6 @@ constructor(
       });
 
       if (user) {
-        // The invoice's billing period end is the new subscription end date.
-        // This avoids an extra API call and the typing issue.
         if (invoice.period_end) {
           user.subscription_end_date = new Date(invoice.period_end * 1000);
           await this.userRepo.save(user);

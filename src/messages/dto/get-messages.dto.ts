@@ -4,7 +4,7 @@ import { Type } from 'class-transformer';
 
 export class GetMessagesDto {
   @ApiProperty({ description: 'ID de la conversation' })
-  @Type(() => Number) // Transforme la valeur en nombre
+  @Type(() => Number)
   @IsInt()
   @Min(1)
   conversationId: number;

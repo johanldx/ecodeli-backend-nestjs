@@ -70,7 +70,7 @@ export class SubscriptionsController {
     @Query('return_url') returnUrl: string,
   ) {
     if (!returnUrl) {
-      returnUrl = 'http://localhost:5173/app/account';
+      returnUrl = 'https://ecodeli.fr/app/account';
     }
     return this.subscriptionsService.createCustomerPortalSession(user.id, returnUrl);
   }

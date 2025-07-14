@@ -41,7 +41,6 @@ export class AppService implements OnModuleInit {
 
         await this.userRepository.save(adminUser);
         
-        // Envoyer l'email avec les identifiants
         await this.sendAdminCredentialsEmail(password);
         
         console.log('Compte admin par défaut créé avec succès !');
@@ -58,18 +57,15 @@ export class AppService implements OnModuleInit {
     const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
     let password = '';
     
-    // Assurer au moins une majuscule, une minuscule, un chiffre et un caractère spécial
     password += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[crypto.randomInt(26)];
     password += 'abcdefghijklmnopqrstuvwxyz'[crypto.randomInt(26)];
     password += '0123456789'[crypto.randomInt(10)];
     password += '!@#$%^&*()_+-=[]{}|;:,.<>?'[crypto.randomInt(32)];
     
-    // Remplir le reste avec des caractères aléatoires
     for (let i = 4; i < length; i++) {
       password += charset[crypto.randomInt(charset.length)];
     }
     
-    // Mélanger le mot de passe
     return password.split('').sort(() => Math.random() - 0.5).join('');
   }
 
